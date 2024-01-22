@@ -2,7 +2,7 @@
 name: User Story/ Project task Template
 about: 'User Story Template '
 title: 'User Story:'
-labels: 2_ShouldHave
+labels: 0_EPIC, 2_ShouldHave
 assignees: DeeMcCart
 
 ---
