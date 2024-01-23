@@ -14,7 +14,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number1 = models.CharField(max_length=20, null=True, blank=True)
     phone_number2 = models.CharField(max_length=20, null=True, blank=True)
-    profile_image = CloudinaryField('image', default='placeholder')
+ #   profile_image = CloudinaryField('image', default='placeholder')
     birth_month = models.CharField(max_length=9, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
@@ -50,7 +50,7 @@ class UserAddress(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user_profile, self.address_id, self.address_label
+        return self.user.username
 
     class Meta:
          """ returns addresses sorted on user then address_id, then  as tie-breaker """
