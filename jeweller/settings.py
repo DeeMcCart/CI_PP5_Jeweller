@@ -44,7 +44,7 @@ ACCOUNT_USERNAME_MIN_LENGTH=4
 LOGIN_URL='/accounts/login'
 LOGIN_REDIRECT_URL='/'
 
-
+MESSAGE_STORAGE='django.contrib.messages.storage.session.SessionStorage'
 
 
 ALLOWED_HOSTS = ['8000-deemccart-cipp5jeweller-z9gejgqz2xm.ws-eu107.gitpod.io', ]

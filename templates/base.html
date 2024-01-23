@@ -128,13 +128,13 @@
         {% for message in messages %}
             {% with message.level as level %}
             {% if level == 40 %}
-                {% include 'includes/toasts/toast_error.html' %}
+                {% include 'includes/toasts/toast-error.html' %}
             {% elif level == 30 %}
-                {% include 'includes/toasts/toast_warning.html' %}
+                {% include 'includes/toasts/toast-warning.html' %}
             {% elif level == 25 %}
-                {% include 'includes/toasts/toast_success.html' %}
+                {% include 'includes/toasts/toast-success.html' %}
             {% else %}
-                {% include 'includes/toasts/toast_info.html' %}
+                {% include 'includes/toasts/toast-info.html' %}
             {% endif %}
         {% endwith %}        
         
@@ -148,7 +148,12 @@
     {% endblock %}
     
     <h1>Goldmark Jewellers</h1>
-    {% block postloadjs %}
+    {% block postload_js %}
+    <script type="text/javascript">
+        $('.toast').toast('show');
+    </script>
+
+
     {% endblock %}
     
   </body>
