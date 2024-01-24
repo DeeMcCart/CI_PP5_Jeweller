@@ -24,7 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-on$8obxt=u3a_v47v_eo8sa+r9p**oe@ne19nufyu87+rrr_-f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
 
 
 AUTHENTICATION_BACKENDS = [
@@ -153,11 +154,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-# STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 #STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticCloudinaryStorage'
+# STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 #CLOUDINARY_STORAGE = {
 #    'CLOUD_NAME': os.environ['CLOUDINARY_CLOUD_NAME'],
 #    'API_KEY': os.environ['CLOUDINARY_API_KEY'],
@@ -165,18 +165,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 #}
 
 
-# Media Files (Images) - Cloudinary
 MEDIA_URL = '/media/'
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
-
-
-
-
-
-
+# Media Files (Images) - Cloudinary
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
