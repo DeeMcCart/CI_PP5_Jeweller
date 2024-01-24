@@ -50,7 +50,7 @@ MESSAGE_STORAGE='django.contrib.messages.storage.session.SessionStorage'
 
 ALLOWED_HOSTS = ['8000-deemccart-cipp5jeweller-z9gejgqz2xm.ws-eu107.gitpod.io', 
                  'https://jeweller-bd1caeb15bbd.herokuapp.com/',
-                 'jeweller-bd1caeb15bbd.herokuapp.com/',
+                 '.jeweller-bd1caeb15bbd.herokuapp.com/',
                 ]
 
 
