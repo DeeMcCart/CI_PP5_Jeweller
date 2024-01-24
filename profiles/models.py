@@ -4,6 +4,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from cloudinary.models import CloudinaryField
 from django_countries.fields import CountryField
+from django.core.files.storage import FileSystemStorage
+from PIL import Image
 
     
 # Create your models here.
@@ -14,7 +16,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number1 = models.CharField(max_length=20, null=True, blank=True)
     phone_number2 = models.CharField(max_length=20, null=True, blank=True)
- #   profile_image = CloudinaryField('image', default='placeholder')
+    profile_image = models.ImageField(upload_to='profile_images', default='placeholder.png')
     birth_month = models.CharField(max_length=9, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
