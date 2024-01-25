@@ -38,7 +38,7 @@
     {% block extra_js %}
     {% endblock %}
     
-    <title>Goldmark Jewellers
+    <title>Goldmark Jewellers <!-- this is what displays on the tab -->
         {% block extra_title %}
         {% endblock %}
     </title>
@@ -66,6 +66,12 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div id = "profile-avatar">
+                {% if user.is_authenticated and request.user.userprofile %}
+                <span class="navbar-text text-muted "><img class="navbar-image" src="{{request.user.userprofile.profile_image}}" alt="Users avatar logo"> Welcome, {{user.username}}!</span>
+                <!-- <img href="{{user.user_profile.profile_image.url}}"> -->
+                {% endif %}
             </div>
             <div id="navbar-links" class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
@@ -120,7 +126,6 @@
                 <h4 class="logo-font my-1">Free delivery on orders over €{{ free_shipping_threshold }}!</h4>                
             </div>            
         </div>
-
     </header>
 
     {% if messages %}

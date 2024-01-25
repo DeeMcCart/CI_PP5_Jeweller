@@ -48,8 +48,7 @@ LOGIN_REDIRECT_URL='/'
 MESSAGE_STORAGE='django.contrib.messages.storage.session.SessionStorage'
 
 
-ALLOWED_HOSTS = ['8000-deemccart-cipp5jeweller-z9gejgqz2xm.ws-eu107.gitpod.io', 
-                 'https://jeweller-bd1caeb15bbd.herokuapp.com/',
+ALLOWED_HOSTS = ['8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io', 
                  '.jeweller-bd1caeb15bbd.herokuapp.com/',
                  'https://jeweller-bd1caeb15bbd.herokuapp.com/'
                 ]
@@ -182,4 +181,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-free_shipping_threshold = 75
+
+BUSINESS_NAME = 'FreddyTheDawg'
+FREE_SHIPPING_THRESHOLD = 75
