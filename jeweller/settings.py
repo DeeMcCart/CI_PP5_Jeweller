@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'gunicorn',
     'home',
     'profiles',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
