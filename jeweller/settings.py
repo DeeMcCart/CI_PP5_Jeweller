@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-on$8obxt=u3a_v47v_eo8sa+r9p**oe@ne19nufyu87+rrr_-f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 
@@ -51,6 +51,7 @@ MESSAGE_STORAGE='django.contrib.messages.storage.session.SessionStorage'
 ALLOWED_HOSTS = ['8000-deemccart-cipp5jeweller-z9gejgqz2xm.ws-eu107.gitpod.io', 
                  'https://jeweller-bd1caeb15bbd.herokuapp.com/',
                  '.jeweller-bd1caeb15bbd.herokuapp.com/',
+                 'https://jeweller-bd1caeb15bbd.herokuapp.com/'
                 ]
 
 
