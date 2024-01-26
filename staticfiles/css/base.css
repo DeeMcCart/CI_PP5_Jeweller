@@ -3,7 +3,8 @@ html {
 }
 
 body {
-    background: url('/media/homepage-background-cropped.jpg') no-repeat center center fixed;
+    background-color:beige;
+   /* url('/media/homepage-background-cropped.jpg') no-repeat center center fixed; */
     background-size: cover;
     height: calc(100vh - 164px);
     color: #555;
@@ -66,6 +67,19 @@ body {
     border: 1px solid black !important;
 }
 
+/* navbar styling */
+#navbarText {
+    justify-content: end;
+    flex-grow: 0;
+}
+
+.navbar-image {
+    display: inline-block;
+    max-width: 150px;
+    max-height: 50px;
+    border-radius: 50%;
+}
+
 /* Toasts css:
 /* Apply snippet from csstricks.com to pickup standard bootstrap message colours. */
 /* https://css-tricks.com/snippets/css/css-triangle: */
@@ -105,7 +119,62 @@ body {
     
     border-right:10px solid blue; 
   }
-  
+
+/* DMcC 25/01/24:  Styling for allauth forms */
+
+.btn-signup {
+    background-color: #1c9797;
+    color: #fff;
+}
+
+.btn-signup:hover,
+.btn-signup:active {
+    background-color: #fff;
+    color: #1c9797;
+}
+
+.btn-edit {
+    background-color: #1c9797;
+    color: #fff;
+}
+
+.btn-delete {
+    background-color: #E84610;
+    color: #fff;
+}
+
+.icon-delete {
+    color: red;
+}
+
+.icon-edit {
+    color: blue;
+}
+
+.icon-copy {
+    color: green;
+}
+
+.btn-cancel {
+    background-color: gray;
+    color: #fff;
+}
+
+.btn-like {
+    color: #E84610;
+    border: none;
+    background: transparent;
+}
+
+.btn-like:hover,
+.btn-like:active {
+    color: #E84610;
+    background: transparent;
+    border: none;
+}
+
+
+
 
 /* ------------------------------- bootstrap toasts */
 /* position message at top rhs of screen & assign high z-index: */
@@ -115,9 +184,11 @@ body {
     right: 15px;
     z-index: 99999999999;
 }
+
 .custom-toast {
     overflow: visible;
 }
+
 .toast-capper {
     height: 2px;
 }
@@ -145,7 +216,7 @@ body {
         z-index: 1030;
     }
 
-    .header-container {
-        padding-top: 164px;
-    }
+ /*   .header-container { */
+ /*       padding-top: 164px;  */
+ /*   } */
 }

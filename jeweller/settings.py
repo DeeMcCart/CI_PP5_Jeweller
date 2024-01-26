@@ -24,9 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-on$8obxt=u3a_v47v_eo8sa+r9p**oe@ne19nufyu87+rrr_-f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-
+DEBUG = False
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -50,7 +48,7 @@ MESSAGE_STORAGE='django.contrib.messages.storage.session.SessionStorage'
 
 ALLOWED_HOSTS = ['8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io', 
                  '.jeweller-bd1caeb15bbd.herokuapp.com/',
-                 'https://jeweller-bd1caeb15bbd.herokuapp.com/'
+                 'https://jeweller-bd1caeb15bbd.herokuapp.com/',
                 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io', 
