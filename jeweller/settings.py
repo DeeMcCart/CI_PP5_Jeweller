@@ -47,7 +47,7 @@ MESSAGE_STORAGE='django.contrib.messages.storage.session.SessionStorage'
 
 
 ALLOWED_HOSTS = ['8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io', 
-                 '.jeweller-bd1caeb15bbd.herokuapp.com/',
+                 '.jeweller-bd1caeb15bbd.herokuapp.com',
                  'https://jeweller-bd1caeb15bbd.herokuapp.com/',
                 ]
 
@@ -169,9 +169,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -185,7 +182,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #    'API_KEY': os.environ['CLOUDINARY_API_KEY'],
 #    'API_SECRET': os.environ['CLOUDINARY_API_SECRET'],
 #}
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
