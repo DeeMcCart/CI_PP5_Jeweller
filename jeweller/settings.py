@@ -42,7 +42,7 @@ ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_EMAIL_VERIFICATION='Mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE=True
 ACCOUNT_USERNAME_MIN_LENGTH=4
-LOGIN_URL='/accounts/login'
+LOGIN_URL='/accounts/login/'
 LOGIN_REDIRECT_URL='/'
 
 MESSAGE_STORAGE='django.contrib.messages.storage.session.SessionStorage'
@@ -53,6 +53,9 @@ ALLOWED_HOSTS = ['8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io',
                  'https://jeweller-bd1caeb15bbd.herokuapp.com/'
                 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io', 
+                        'https://jeweller-bd1caeb15bbd.herokuapp.com/'
+                ]
 
 # Application definition
 
@@ -71,10 +74,20 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'whitenoise',
     'gunicorn',
+    
+
+    # Apps
     'home',
     'profiles',
+
+    # Other
     'crispy_forms',
+    'crispy_bootstrap5',
 ]
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -84,6 +97,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
@@ -102,6 +116,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+        'builtins': [
+            'crispy_forms.templatetags.crispy_forms_tags',
+            'crispy_forms.templatetags.crispy_forms_field',
+             ],
         },
     },
 ]
@@ -183,4 +201,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 BUSINESS_NAME = 'FreddyTheDawg'
-FREE_SHIPPING_THRESHOLD = 75
+FREE_DELIVERY_THRESHOLD = 75
+SITE_CURRENCY = "EUR"
+SITE_CURRENCY_SYMBOL ="€"
+STANDARD_DELIVERY_PERCENTAGE = 10
+STANDARD_DELIVERY_AMOUNT = 7
+FIRST_ORDER_NUMBER = 24004

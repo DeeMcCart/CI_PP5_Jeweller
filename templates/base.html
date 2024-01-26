@@ -23,7 +23,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    {% endblock %}
+        {% endblock %}
     
     {% block extra_css %}
     {% endblock %}
@@ -33,12 +33,13 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a5acd5b07c.js" crossorigin="anonymous"></script>
     {% endblock %}
     
     {% block extra_js %}
     {% endblock %}
     
-    <title>Goldmark Jewellers <!-- this is what displays on the tab -->
+    <title>Goldmark Jewellers 
         {% block extra_title %}
         {% endblock %}
     </title>
@@ -46,119 +47,113 @@
 </head>
 
 <body>
-    <header class="container-fluid fixed-top">
-        <div class="row">
-            <div id="logo" class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-                <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 class="logo-font text-black my-0"><strong>Goldmark</strong> Jewellers</h2>
-                </a>
-            </div>
-            <div id="search-field" class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                <form method="GET" action="">
-                    <div class="input-group w-100">
-                        <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
-                        <div class="input-group-append">
-                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
-                                <span class="icon">
-                                    <i class="fas fa-search"></i>
-                                </span>
-                            </button>
-                        </div>
+<!--    <nav class="navbar navbar-expand-lg navbar-light bg-white justify-content-end"> -->
+<div id="header" class="container-fluid fixed-top"> <!-- header is div -->
+    <div class="row">
+        <div id="logo" class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+            <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                <h2 class="logo-font text-black my-0"><strong>Goldmark</strong> Jewellers</h2>
+            </a>
+        </div> <!-- end div logo -->
+        <div id="search-field" class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+            <form method="GET" action="">
+                <div class="input-group w-100">
+                    <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
+                    <div class="input-group-append">
+                        <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                            <span class="icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </button>
                     </div>
-                </form>
-            </div>
-            <div id = "profile-avatar">
-                {% if user.is_authenticated and request.user.userprofile %}
-                <span class="navbar-text text-muted "><img class="navbar-image" src="{{request.user.userprofile.profile_image}}" alt="Users avatar logo"> Welcome, {{user.username}}!</span>
-                <!-- <img href="{{user.user_profile.profile_image.url}}"> -->
-                {% endif %}
-            </div>
-            <div id="navbar-links" class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                    <li id="profile-link" class="list-inline-item dropdown">
-                        <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="text-center">
-                                <div><i class="fas fa-user fa-lg"></i></div>
-                                <p class="my-0">My Account</p>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                            {% if request.user.is_authenticated %}
-                                {% if request.user.is_superuser %}
-                                    <a href="" class="dropdown-item">Product Management</a>
-                                {% endif %}
-                                <a href="" class="dropdown-item">My Profile</a>
-                                <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                            {% else %}
-                                <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                                <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                            {% endif %}
+                </div>
+            </form>
+        </div> <!-- end div search-field -->
+        <div id="navbar-links" class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+            <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+                <li id="profile-link" class="list-inline-item dropdown">
+                    <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="text-center">
+                            <div><i class="fas fa-user fa-lg"></i></div>
+                            <p class="my-0">My Account</p>
                         </div>
-                    </li>
-                    <li id="basket-link" class="list-inline-item">
-                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="">
-                            <div class="text-center">
-                                <div><i class="fas fa-shopping-bag fa-lg"></i></div>
-                                <p class="my-0">
-                                    {% if grand_total %}
-                                        €{{ grand_total|floatformat:2 }}
-                                    {% else %}
-                                        €0.00
-                                    {% endif %}
-                                </p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row bg-white">
-            <nav class="navbar navbar-expand-lg navbar-light w-100">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                {% include 'includes/mobile-top-header.html' %}
-                {% include 'includes/main-nav.html' %}
-            </nav>
-        </div>
-        <div id="delivery-banner" class="row text-center">
-            <div class="col bg-black text-white">
-                <h4 class="logo-font my-1">Free delivery on orders over €{{ free_shipping_threshold }}!</h4>                
-            </div>            
-        </div>
-    </header>
+                    </a>
+                    <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.is_superuser %}
+                                <a href="" class="dropdown-item">Catalog-admin</a>
+                                <a href="" class="dropdown-item">Product-admin</a>
+                                <a href="" class="dropdown-item">Promotions-admin</a>
+                            {% endif %}
+                            <a href="" class="dropdown-item">My Profile</a>
+                            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                        {% else %}
+                            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                        {% endif %}
+                    </div>
+                </li> <!-- end li profile-link -->
+                <li id="basket-link" class="list-inline-item">
+                    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="">
+                        <div class="text-center">
+                            <div><i class="fas fa-basket-shopping fa-lg"></i></div>
+                            <p class="my-0">
+                                {% if grand_total %}
+                                    €{{ grand_total|floatformat:2 }}
+                                {% else %}
+                                    €0.00
+                                {% endif %}
+                            </p>
+                        </div> <!-- end div class = text-center-->
+                    </a>
+                </li> <!-- end li basket-link-->
+            </ul>   <!-- end ul of navbar items-->
+        </div> <!-- end div id=navbar-links -->
+    </div> <!-- end div class = row-->
+    <div class="row bg-white">
+        <nav class="navbar navbar-expand-lg navbar-light w-100">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            {% include 'includes/mobile-top-header.html' %}
+            {% include 'includes/main-nav.html' %}
+        </nav>
+    </div>
+    <div id="delivery-banner" class="row text-center">
+        <div class="col bg-black text-white">
+            <h4 class="logo-font my-1">Free delivery on orders over €{{ free_delivery_threshold }}!</h4>                
+        </div>            
+    </div>
+</header>
 
-    {% if messages %}
-    <div class="message-container">
-        {% for message in messages %}
-            {% with message.level as level %}
-            {% if level == 40 %}
-                {% include 'includes/toasts/toast-error.html' %}
-            {% elif level == 30 %}
-                {% include 'includes/toasts/toast-warning.html' %}
-            {% elif level == 25 %}
-                {% include 'includes/toasts/toast-success.html' %}
-            {% else %}
-                {% include 'includes/toasts/toast-info.html' %}
-            {% endif %}
-        {% endwith %}        
-        
-        {% endfor %}
-    </div> <!-- end div message-container-->
-    {% endif %}
+{% if messages %}
+<div class="message-container">
+    {% for message in messages %}
+        {% with message.level as level %}
+        {% if level == 40 %}
+            {% include 'includes/toasts/toast-error.html' %}
+        {% elif level == 30 %}
+            {% include 'includes/toasts/toast-warning.html' %}
+        {% elif level == 25 %}
+            {% include 'includes/toasts/toast-success.html' %}
+        {% else %}
+            {% include 'includes/toasts/toast-info.html' %}
+        {% endif %}
+    {% endwith %}        
+    
+    {% endfor %}
+</div> <!-- end div message-container-->
+{% endif %}
 
     {% block page_header %}
     {% endblock %}
     {% block content %}
     {% endblock %}
     
-    <h1>Goldmark Jewellers</h1>
     {% block postload_js %}
     <script type="text/javascript">
         $('.toast').toast('show');
     </script>
-
-
     {% endblock %}
     
   </body>
