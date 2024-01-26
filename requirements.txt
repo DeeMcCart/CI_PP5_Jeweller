@@ -1,14 +1,16 @@
 asgiref==3.7.2
 cloudinary==1.38.0
+crispy-bootstrap4==2023.1
 crispy-bootstrap5==2023.10
 Django==4.2.9
-django-allauth==0.41.0
+django-allauth==0.60.1
 django-cloudinary-storage==0.3.0
 django-countries==7.2.1
 django-crispy-forms==2.1
 gunicorn==21.2.0
 oauthlib==3.2.2
 pillow==10.2.0
+PyJWT==2.8.0
 python3-openid==3.2.0
 pytz==2023.3.post1
 requests-oauthlib==1.3.1
