@@ -65,10 +65,12 @@
 <!--    <nav class="navbar navbar-expand-lg navbar-light bg-white justify-content-end"> -->
 <div id="header" class="container-fluid fixed-top"> <!-- header is div -->
     <div class="row">
-        <a class="navbar-brand" href="#" <img src="{% static 'images/logo.png' %}" alt="Jeweller business logo" class="logo"></a>
         <div id="logo" class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
             <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                <h2 class="logo-font text-black my-0"><strong>Goldmark</strong> Jewellers</h2>
+                <h2 class="logo-font text-black my-0">
+                    <img class="logo" src="{% static 'images/logo.png' %}" alt="Jeweller business logo" >
+                    <strong class="fst-italic">Goldmark</strong> Jewellers
+                </h2>
             </a>
         </div> <!-- end div logo -->
         <div id="search-field" class="col-12 col-lg-4 my-auto py-1 py-lg-0">
@@ -107,11 +109,15 @@
                 <!-- signed in -->
                 <li id="profile-link" class="list-inline-item dropdown">
                     <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="text-center">
+                            <!-- DMcC 28/01/24: replaced fa avatar with users chosen image.. hmm not working, reverted -->
+                            <!-- <div><img class="navbar-image" src="{% static request.user.userprofile.profile_image %}" >alt="My Avatar"></div>
+                             -->
+                             <div class="text-center">
                             <div><i class="fas fa-user fa-lg"></i></div>
-                            <p class="my-0">My Account</p>
+                            <p class="my-0">{{ request.user }}</p>
                         </div>
                     </a>
+                            
                     <div class="dropdown-menu border-0" aria-labelledby="user-options">
                             <a href="" class="dropdown-item">My Profile</a>
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
@@ -123,7 +129,7 @@
                     <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="text-center">
                             <div><i class="fas fa-user fa-lg"></i></div>
-                            <p class="my-0">Me</p>
+                            <p class="my-0">Profile</p>
                         </div>
                     </a>
                     <div class="dropdown-menu border-0" aria-labelledby="user-options">
