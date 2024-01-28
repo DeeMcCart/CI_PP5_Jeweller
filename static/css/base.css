@@ -1,9 +1,21 @@
+/* Define variables (which will apply across multiple styles) */
+:root {
+    --border: 1px solid black !important;
+    --color-background: beige;
+    --color-banner-background: gray;   
+    --color-red: #E84610;
+    --color-button-foreground: white;
+    --color-button-background: black; 
+}
+
 html {
     height: 100%;
 }
 
-body {
-    background-color:beige;
+body  
+ {
+    display: flex;
+    background-color: var(--color-background);
    /* url('/media/homepage-background-cropped.jpg') no-repeat center center fixed; */
     background-size: cover;
     height: calc(100vh - 164px);
@@ -30,6 +42,8 @@ body {
     width: 1.5rem;
 }
 
+
+
 .logo {
     max-width: 50px;
     max-height: 50px;
@@ -44,14 +58,14 @@ body {
 }
 
 .shop-now-button {
-    background: black;
-    color: white;
+    background: var(--color-button-background);
+    color: var(color-button-foreground);
     min-width: 260px;
 }
 
 .btn-black {
-    background: black;
-    color: white;
+    background: var(--color-button-background);
+    color: var(--color-button-foreground);
 }
 
 .shop-now-button:hover,
@@ -83,6 +97,10 @@ body {
     max-width: 150px;
     max-height: 50px;
     border-radius: 50%;
+}
+
+#delivery-banner {
+    background-color: var(--color-banner-background);
 }
 
 /* Toasts css:
@@ -166,20 +184,34 @@ body {
 }
 
 .btn-like {
-    color: #E84610;
+    color: var(--color-red);
     border: none;
     background: transparent;
 }
 
 .btn-like:hover,
 .btn-like:active {
-    color: #E84610;
+    color: var(--color-red);
     background: transparent;
     border: none;
 }
 
 
+/* footer */
+footer {
+    background-color: var(--color-background);
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-top: var(--border);
+}
 
+.social-icon {
+    height: 1rem;
+    margin: 1rem;
+}
 
 /* ------------------------------- bootstrap toasts */
 /* position message at top rhs of screen & assign high z-index: */
@@ -221,7 +253,7 @@ body {
         z-index: 1030;
     }
 
- /*   .header-container { */
- /*       padding-top: 164px;  */
- /*   } */
+    .header-container { 
+        padding-top: 164px;  
+    } 
 }

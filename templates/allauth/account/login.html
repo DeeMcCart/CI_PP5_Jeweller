@@ -12,7 +12,7 @@
   <hr>
 
     <p>{% blocktrans %}If you have not created an account yet, then please
-    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+    <a href="{{ signup_url }}">register </a>first.{% endblocktrans %}</p>
 
     <form class="form p-2 login" method="POST" action="{% url 'account_login' %}">
       {% csrf_token %}

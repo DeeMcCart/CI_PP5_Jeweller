@@ -17,10 +17,11 @@
         <!-- older version of bootstrap
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
         <!-- Bootstrap CSS -->
-        <!-- Bootstrap 4.6.2 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
-            integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
+            integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> 
         <!-- DMcC 28/01/24 Replaced with v 5.3.2 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap-grid.min.css" 
+        integrity="sha512-ZuRTqfQ3jNAKvJskDAU/hxbX1w25g41bANOVd1Co6GahIe2XjM6uVZ9dh0Nt3KFCOA061amfF2VeL60aJXdwwQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,11 +40,14 @@
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" 
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>  
-    <!-- DMcC 28/01/24 superceded?? Kept in as otherwise dropdow nav items stopped working-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" 
-        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> 
+    <!-- DMcC 28/01/24 superceded?? Kept in as otherwise dropdow nav items stopped working -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js" 
+        integrity="sha512-7rusk8kGPFynZWu26OKbTeI+QPoYchtxsmPeBqkHIEXJxeun4yJ4ISYe7C6sz9wdxeE1Gk3VxsIWgCZTc+vX3g==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" 
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> -->
 
-        <!-- DMcC 28/01/24 - replaced with Bootstrap version 5.2.3. as per Daisy DeeMac YouTube video -->
+    <!-- DMcC 28/01/24 - replaced with Bootstrap version 5.2.3. as per Daisy DeeMac YouTube video -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js" 
         integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg==" 
         crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
@@ -59,129 +63,47 @@
         {% endblock %}
     </title>
 
-</head>
 
-<body>
-<!--    <nav class="navbar navbar-expand-lg navbar-light bg-white justify-content-end"> -->
+<!-- the nav class is used to control display of this section only if large screen-->    
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-white justify-content-end"> --> 
 <div id="header" class="container-fluid fixed-top"> <!-- header is div -->
     <div class="row">
-        <div id="logo" class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-            <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                <h2 class="logo-font text-black my-0">
-                    <img class="logo" src="{% static 'images/logo.png' %}" alt="Jeweller business logo" >
-                    <strong class="fst-italic">Goldmark</strong> Jewellers
-                </h2>
-            </a>
-        </div> <!-- end div logo -->
-        <div id="search-field" class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-            <form method="GET" action="">
-                <div class="input-group w-100">
-                    <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
-                    <div class="input-group-append">
-                        <button class="form-control btn btn-black border border-black rounded-0" type="submit">
-                            <span class="icon">
-                                <i class="fas fa-search"></i>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div> <!-- end div search-field -->
+        <!-- responsive logo display -->
+        {% include 'includes/nav-logo.html' %}
+
+        <!-- search field display, this diplays only on L and XL screens  -->    
+        {% include 'includes/nav-search.html' %}    
         <!-- navbar links -->
         <div id="navbar-links" class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-            <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                {% if request.user.is_authenticated and request.user.is_superuser %}
-                <!-- settings dropdown menu (only visible to signed-in Admin users) -->
-                <li id="sysmaint-link" class = "list-inline-item dropdown">
-                    <a class="text-black nav-link" href="#" id="sysmaint-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="text-center">
-                        <div><i class="fas fa-gear fa-lg"></i></div>
-                        <p class="my-0">SysMaint</p>
-                    </div>
-                    <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                        <a href="" class="dropdown-item">Catalog-admin</a>
-                        <a href="" class="dropdown-item">Product-admin</a>
-                        <a href="" class="dropdown-item">Promotions-admin</a>
-                    </div>
-                </li>
-                {% endif %}
-                {% if request.user.is_authenticated %}
-                <!-- signed in -->
-                <li id="profile-link" class="list-inline-item dropdown">
-                    <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <!-- DMcC 28/01/24: replaced fa avatar with users chosen image.. hmm not working, reverted -->
-                            <!-- <div><img class="navbar-image" src="{% static request.user.userprofile.profile_image %}" >alt="My Avatar"></div>
-                             -->
-                             <div class="text-center">
-                            <div><i class="fas fa-user fa-lg"></i></div>
-                            <p class="my-0">{{ request.user }}</p>
-                        </div>
-                    </a>
-                            
-                    <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                            <a href="" class="dropdown-item">My Profile</a>
-                            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                    </div>
-                </li> <!-- end li profile-link -->
-                {% else %}
-                <!-- not signed in -->
-                <li id="profile-link" class="list-inline-item dropdown">
-                    <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="text-center">
-                            <div><i class="fas fa-user fa-lg"></i></div>
-                            <p class="my-0">Profile</p>
-                        </div>
-                    </a>
-                    <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                    </div>
-                </li>    
-                {% endif %}
+            <!-- Responsivenes: display the profile and grand total within this ul on large and XL screens -->
+            <ul class="list-inline list-unstyled text-center text-lg-right my-0 d-none d-lg-block">
+                {% include 'includes/nav-profile.html' %}
                 <!-- if basket exists, show total -->
-                {% if grand_total %}
-                <li id="basket-link" class="list-inline-item">
-                    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="">
-                        <div class="text-center">
-                            <div><i class="far fa-basket-shopping fa-lg"></i></div>
-                            <p class="my-0">
-                                    €{{ grand_total|floatformat:2 }}
-                            </p>
-                        </div> <!-- end div class = text-center-->
-                    </a>
-                </li> <!-- end li basket-link-->
-                {% else %}
-                <!-- DMcC 28/01/24 keep this section in for testing, but eventually remove the basket symmbol if theres notiin in it -->
-                <li id="basket-link" class="list-inline-item">
-                    <a class="text-black nav-link" href="">
-                    <div class="text-center">
-                        <div><i class="fas fa-basket-shopping fa-lg"></i></div>
-                        <p class="my-0">
-                                €0.00
-                        </p>
-                    </div> <!-- end div class = text-center-->
-                    </a>
-                </li> <!-- end li basket-link-->
-                {% endif %}
+                {% include 'includes/nav-grand-total.html' %}
             </ul>   <!-- end ul of navbar items-->
         </div> <!-- end div id=navbar-links -->
     </div> <!-- end div class = row-->
-    <div class="row bg-white">
+    <!-- New row for the secondary header (category searches) -->
+    <div class="row bg-beige">
         <nav class="navbar navbar-expand-lg navbar-light w-100">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            {% include 'includes/mobile-top-header.html' %}
-            {% include 'includes/main-nav.html' %}
+            <!-- nav-mobile reduces the searchbar display to an icon with drop-down rather than full field width for XS S M screens-->
+            {% include 'includes/nav-mobile.html' %}
+            <!-- nav-secondary shows a secondary navbar which is used to offer/apply filters on products displayed -->
+            {% include 'includes/nav-secondary.html' %}
         </nav>
-    </div>
+    </div> <!-- end div row -->
     <div id="delivery-banner" class="row text-center">
         <div class="col bg-black text-white">
-            <h4 class="logo-font my-1">Free delivery on orders over €{{ free_delivery_threshold }}!</h4>                
+            <h4 class="logo-font my-1">Free delivery on orders over €{{ FREE_DELIVERY_THRESHOLD }}!</h4>                
         </div>            
     </div>
-</header>
+</nav>
+</head>
 
+<body>
 {% if messages %}
 <div class="message-container">
     {% for message in messages %}
@@ -203,8 +125,11 @@
 
     {% block page_header %}
     {% endblock %}
+
     {% block content %}
     {% endblock %}
+
+    {% include 'includes/footer.html' %}
     
     {% block postload_js %}
     <script type="text/javascript">
@@ -212,5 +137,6 @@
     </script>
     {% endblock %}
     
-  </body>
+
+</body>
 </html>
