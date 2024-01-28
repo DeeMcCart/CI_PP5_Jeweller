@@ -17,12 +17,15 @@
         <!-- older version of bootstrap
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <!-- Bootstrap 4.6.2 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
+            integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
+        <!-- DMcC 28/01/24 Replaced with v 5.3.2 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static '/css/base.css' %}">
         <link rel="icon" href="{% static '/favicon.ico' %}" type="image/x-icon">
         {% endblock %}
     
@@ -30,11 +33,22 @@
     {% endblock %}
     
     {% block corejs %}
+    
     <!-- Bootstrap Option 2: Separate Popper and Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-        <script src="https://kit.fontawesome.com/a5acd5b07c.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" 
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" 
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>  
+    <!-- DMcC 28/01/24 superceded?? Kept in as otherwise dropdow nav items stopped working-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" 
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> 
+
+        <!-- DMcC 28/01/24 - replaced with Bootstrap version 5.2.3. as per Daisy DeeMac YouTube video -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js" 
+        integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+    
+    <script src="https://kit.fontawesome.com/a5acd5b07c.js" crossorigin="anonymous"></script>
     {% endblock %}
     
     {% block extra_js %}
@@ -51,6 +65,7 @@
 <!--    <nav class="navbar navbar-expand-lg navbar-light bg-white justify-content-end"> -->
 <div id="header" class="container-fluid fixed-top"> <!-- header is div -->
     <div class="row">
+        <a class="navbar-brand" href="#" <img src="{% static 'images/logo.png' %}" alt="Jeweller business logo" class="logo"></a>
         <div id="logo" class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
             <a href="{% url 'home' %}" class="nav-link main-logo-link">
                 <h2 class="logo-font text-black my-0"><strong>Goldmark</strong> Jewellers</h2>
@@ -70,8 +85,26 @@
                 </div>
             </form>
         </div> <!-- end div search-field -->
+        <!-- navbar links -->
         <div id="navbar-links" class="col-12 col-lg-4 my-auto py-1 py-lg-0">
             <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+                {% if request.user.is_authenticated and request.user.is_superuser %}
+                <!-- settings dropdown menu (only visible to signed-in Admin users) -->
+                <li id="sysmaint-link" class = "list-inline-item dropdown">
+                    <a class="text-black nav-link" href="#" id="sysmaint-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="text-center">
+                        <div><i class="fas fa-gear fa-lg"></i></div>
+                        <p class="my-0">SysMaint</p>
+                    </div>
+                    <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                        <a href="" class="dropdown-item">Catalog-admin</a>
+                        <a href="" class="dropdown-item">Product-admin</a>
+                        <a href="" class="dropdown-item">Promotions-admin</a>
+                    </div>
+                </li>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <!-- signed in -->
                 <li id="profile-link" class="list-inline-item dropdown">
                     <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="text-center">
@@ -80,34 +113,50 @@
                         </div>
                     </a>
                     <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                        {% if request.user.is_authenticated %}
-                            {% if request.user.is_superuser %}
-                                <a href="" class="dropdown-item">Catalog-admin</a>
-                                <a href="" class="dropdown-item">Product-admin</a>
-                                <a href="" class="dropdown-item">Promotions-admin</a>
-                            {% endif %}
                             <a href="" class="dropdown-item">My Profile</a>
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                        {% else %}
-                            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                        {% endif %}
                     </div>
                 </li> <!-- end li profile-link -->
+                {% else %}
+                <!-- not signed in -->
+                <li id="profile-link" class="list-inline-item dropdown">
+                    <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="text-center">
+                            <div><i class="fas fa-user fa-lg"></i></div>
+                            <p class="my-0">Me</p>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                    </div>
+                </li>    
+                {% endif %}
+                <!-- if basket exists, show total -->
+                {% if grand_total %}
                 <li id="basket-link" class="list-inline-item">
                     <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="">
                         <div class="text-center">
-                            <div><i class="fas fa-basket-shopping fa-lg"></i></div>
+                            <div><i class="far fa-basket-shopping fa-lg"></i></div>
                             <p class="my-0">
-                                {% if grand_total %}
                                     €{{ grand_total|floatformat:2 }}
-                                {% else %}
-                                    €0.00
-                                {% endif %}
                             </p>
                         </div> <!-- end div class = text-center-->
                     </a>
                 </li> <!-- end li basket-link-->
+                {% else %}
+                <!-- DMcC 28/01/24 keep this section in for testing, but eventually remove the basket symmbol if theres notiin in it -->
+                <li id="basket-link" class="list-inline-item">
+                    <a class="text-black nav-link" href="">
+                    <div class="text-center">
+                        <div><i class="fas fa-basket-shopping fa-lg"></i></div>
+                        <p class="my-0">
+                                €0.00
+                        </p>
+                    </div> <!-- end div class = text-center-->
+                    </a>
+                </li> <!-- end li basket-link-->
+                {% endif %}
             </ul>   <!-- end ul of navbar items-->
         </div> <!-- end div id=navbar-links -->
     </div> <!-- end div class = row-->

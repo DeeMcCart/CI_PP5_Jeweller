@@ -16,6 +16,7 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+print(f'Base dir is ',BASE_DIR)
 
 
 # gain access to env.py file:
@@ -84,7 +85,6 @@ INSTALLED_APPS = [
     'whitenoise',
     'gunicorn',
     
-
     # Apps
     'home',
     'profiles',
@@ -197,6 +197,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+print(f'Media root is ', MEDIA_ROOT)
 
 # Media Files (Images) - Cloudinary
 # DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
