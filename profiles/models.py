@@ -16,7 +16,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number1 = models.CharField(max_length=20, null=True, blank=True)
     phone_number2 = models.CharField(max_length=20, null=True, blank=True)
-    first_name = models.CharField(max_length=20, default=User)
+    first_name = models.CharField(max_length=20, null=True, blank=True)
     last_name = models.CharField (max_length=30, null=True, blank=True)
     profile_image = models.ImageField(upload_to='images', default='placeholder.png')
     birth_month = models.CharField(max_length=9, null=True, blank=True)

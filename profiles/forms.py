@@ -1,11 +1,12 @@
 from django import forms
 from .models import UserProfile
+from allauth.account.forms import SignupForm
 
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        exclude = ('user',)
+        
         
     def __init__(self, *args, **kwargs):
         """
@@ -17,7 +18,7 @@ class UserProfileForm(forms.ModelForm):
             'phone_number1': 'Phone Number',
             'phone_number2': 'Alt Phone',
             'profile_image': "../../static/images/placeholder.png",
-            'birth_month': 'ooo',
+            'birth_month': '00',
              }
 
         self.fields['phone_number1'].widget.attrs['autofocus'] = True
@@ -58,3 +59,4 @@ class UserAddressForm(forms.ModelForm):
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
             self.fields[field].label = False
+

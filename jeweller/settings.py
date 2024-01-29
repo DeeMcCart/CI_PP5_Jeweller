@@ -44,11 +44,14 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID=1
 
+ACCOUNT_FORMS = {
+'signup': 'jeweller.forms.CustomSignupForm',
+}
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_VERIFICATION_METHOD='username_email'
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_EMAIL_VERIFICATION='None'
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE=True
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE=False
 ACCOUNT_USERNAME_MIN_LENGTH=4
 LOGIN_URL='/accounts/login/'
 LOGIN_REDIRECT_URL='/'
@@ -206,6 +209,8 @@ print(f'Media root is ', MEDIA_ROOT)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+MESSAGE_STORAGE='django.contrib.messages.storage.session.SessionStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

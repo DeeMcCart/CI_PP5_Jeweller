@@ -253,7 +253,8 @@ footer {
         z-index: 1030;
     }
 
-    .header-container { 
+    /* DMcC 28/01/24 commenting out the below as am getting some whitespace on larger screens */
+ /*   .header-container { 
         padding-top: 164px;  
-    } 
+    } */
 }
