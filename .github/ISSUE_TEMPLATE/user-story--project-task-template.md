@@ -2,7 +2,7 @@
 name: User Story/ Project task Template
 about: 'User Story Template '
 title: 'User Story:'
-labels: 0_EPIC, 2_ShouldHave
+labels: 2_ShouldHave
 assignees: DeeMcCart
 
 ---
@@ -10,6 +10,7 @@ assignees: DeeMcCart
 EPIC:  <epic>
 
 As a **role** I can **capability** so that **received benefit**
+As a **role** I want to **action** to achieve **desired outcome**  
 
 ### Assumptions or Pre-Requisites:
 *
