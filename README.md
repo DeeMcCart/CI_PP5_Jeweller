@@ -65,13 +65,14 @@ Developer:  **Deirdre McCarthy**, Feb 2024
 
 ## About
 ---------
-Jeweller is a system which is designed for a real-life retail Jewellery business.  This business built a first website 4 years ago (https://goldmark.ie/), but it was not integrated with the retail business or everyday processes, and was not successfully implemented.  It remains in use as a 'shop window' only but is not maintained, with most products showing as 'out of stock', and online orders discouraged.  The business owners are, however, quite active on facebook and tend to use that channel for advertising and organic marketing - marketing to existing customers and friends of the business.  Facebook is used to  showcase custom-made products, and to promote/suggest time-based purchases, e.g. Valentines Day, Communion, Mothers Day, Confirmation, Fathers Day, monthly birth-stone, Christmas.   The business operates in a medium sized town in the south-east of Ireland, and currently makes all sales in-person, relying on the customer to physically visit.  (Often this will start with an enquiry phonecall) .  There are two competing jewellers in close proximity.
+Jeweller is a system which is designed for a real-life retail Jewellery business.  This business built a first website 4 years ago (https://goldmark.ie/), but it was not integrated with the retail business or everyday processes, and was not successfully implemented.  It remains in use as a 'shop window' for off-the-shelf items, but is not maintained, with most products showing as 'out of stock', and online orders discouraged.  The business owners are, quite active on facebook for (free) advertising and organic marketing - marketing to existing customers and friends of the business.  Facebook is used to  showcase custom-made products, and to prompt time-based purchases, e.g. Valentines Day, Communion, Mothers Day, Confirmation, Fathers Day, monthly birth-stone, Christmas.   The business operates in a medium sized town in the south-east of Ireland, and currently makes all sales in-person, relying on the customer to physically visit.  (Often this will begin with an enquiry phonecall) .  There are two competing jewellers in close proximity.
 
 The Jeweller business offers four lines of business:
 * retail jewellery, brand-name watches, zippo lighters, accessories - off the shelf;
 * customised retail jewellery, e.g. engraved lighters or hip flasks.
 * retail jewellery - custom-made (this process generally begins with the customer making an enquiry as to a particular design, or wishing to re-use and re-fashion their own gold jewellery items);
-* repairs and watch batteries (customer repairs and trade repairs);
+* retail services - repairs, watch batteries and valuations;
+* trade repairs (on behalf of other jewellery retailers);
 
 As a family-owned and -operated business the unique selling points are:
 * well established, multi-generational business (the owners are the 3rd generation to operate jewellery businesses in Ireland, and have been in operation in their current location for approx 35 years);
@@ -168,113 +169,141 @@ Initial themes loaded
 ## User Goals/ User Stories
 ----------------
 Written in the format 'As a **role** I want to **action** to achieve **desired outcome**    
+### First-time User/ Unregistered User
+* FTU_01  As a **First-Time User** I want to **quickly understand the site purpose** so I **can decide whether to spend time exploring and discovering the site**
+* FTU_02  As a **First-Time User** I want to **easily navigate the site** so I **don't become frustrated and leave**
+* FTU_03 As a **First-Time User** I want to **receive feedback at each step on the site** so that I **understand what I am doing, and, if I'm in a multi-step process, I understand how far along I am in the processs**
+* FTU_04 As a **First-Time User** I want to **access this site on a device of my choosing (mobile, tablet, laptop, desktop)** so that I can **access by a method and at a time that is convenient and accessible to me**
+* FTU_05 As a **First-Time User** I want to **navigate the site without mandatory login** so **I can discover site features before deciding whether to commit to using site**
+* FTU_06:  As a **First-Time User** I want to **see a range of products which are offered by the Jeweller, to see pictures, descriptions price (for off-the-shelf items), lead-time for each item** so that I can **make purchase decisions**
+* FTU_07:  As a **First-Time User** I want to understand **whether an item is in-stock, made-to-order** and **what are lead times (e.g. available now, lead time 6 weeks for make-to-order, lead time 1 week for casted items)**
+* FTU_08:  As a **First-Time User** I want to **search for a product by name or description** to **know if Jeweller sells the item of interest**
+* FTU_09:  As a **First-Time User** I want to **filter my product view** to **see only what I'm interested in ** (e.g. particular metals, stones, colours, particular occasions) (Preferably filter by multiple categories)
+* FTU_10: As a **First-Time User** I want to **sort my product view by price, date added ....** in order to **see the items most relevant to me**
+* FTU_11: As a **First-Time User** I want to **view custom products** in order to **get inspiration for my design idea**
+* FTU_12: As a **First-Time User** I would like to be able to **receive prompt on affinity items** in order to **see items that are related to the item I'm interested in (e.g. earrings may have matching necklace or bracelet)**
+* FTU_13: As a **First-Time User** I would like to receive suggestions or prompts for particular occasions (which could be date-related e.g. communions, confirmations, mothers day, christmas)
+* FTU_14:  As a **First-Time User** I want to be able to **share/like a item I like with a 3rd party (e.g. via whatsapp, fb etc)** so I can **prompt them to buy it (for me!)** <- affinity marketing
+
+* FTU_15: As a **First-Time User** I want to **create a shopping basket of items** in order to **determine price**
+* FTU_16: As a **First-Time User** I want to **amend or remove items in my shopping basket** in order to **determine price**
+* FTU_17: As a **First-Time User** I want to **convert my shopping basket into a collection order** in order to **purchase items**
+* FTU_18: As a **First-Time User** I want to **personalise my order** to **reflect gift messages, special wrapping etc**
+* FTU_19: As a **First-Time User** I want to **pay for my order using credit card** to **ensure the purchase is completed**
+* FTU_20: As a **First-Time User** I want to **receive an on-screen confirmation of order number** to **ensure the purchase is completed**
+* FTU_21: As a **first-Time User** I want to **receive email/text notifying me of my order number and lead time** so I can **plan when to collect**
+
+* FTU_22: As a **First-Time User** I would like to **complete an enquiry form** to **ask a question about products or services**
+* FTU_23: As a **First-Time User** I want to **see services offered (repairs, make-to-order items,** to achieve **benefit**
+* FTU_24: As a **First-Time User** I want to **browse the Jeweller's blog** to **increase my affinity with this retailer**
+* FTU_25: As a **First-Time User** I want to **consult the Jeweller's FAQ** to **understand the retailer's processes for orders, shipping etc**
+
+* FTU_26: As a **First-Time User** I would like to **signup for newsletter** to **increase my affinity with this retailer**
+* FTU_27: As a **First-Time User** I would like to **create a profile** to **track my history with this retailer**
+
+* FTU_28 (Future): As a **First-Time User** I would like to  **make an appointment for engagement rings** in order to **elevate a high value buying decision**
+
+* FTU_XX As a first-time user I about what this site does, and want to quickly understand this site's relevance to me, so I don't waste my time on useless engagement 
+* FTU_XX As a first time user I would like to be able to easily navigate the site and quickly learn its functionality
+* FTU_XX As a first time user I would like to be able to easily navigate the site and quickly learn its functionality 
+* FTU_XX  As a first-time user I would like to undertand the role of user feedback and user reviews 'X users found this useful or relevant',
+* FTU_XX As a first-time user I want clear, timely and unambiguous feedback and interaction
+* FTU_XX As a first-time user I expect links and functions that work as expected
+  
+### Returning User - Additional Goals
+* RU_01 As a returning user I want to create a user profile so that I can personalise my site experience (profile image, bookmarks, actions)
+* RU_02 As a returning user I want to create product reviews & ratings so I can feel powerful
+* 
 ### Site owner/moderator Goals
-* SO_01 As site owner I want to provide a platform where users can directly access useful resources to help with real-life financial decision making
-* SO_02 As site owner I want to largely (but not entirely) re-use/ connect to information from authoritative sources 
-* SO_03 As site owner I want to avoid connecting to information which is opinion- rather than fact-based (ie perhaps from a less authoritative source) or at least highlight that the source is less authorative, or offered by a biased source.
-* SO_04 As site owner I want to provide straightforward, intuitive, consistent website navigation, (using graphical navigation where possible, even where the destination leads to text-based informataion)
-* SO_05 As site owner I want to allow users to 'chop and dice' complex information into small chunks 
-* SO_06 As site owner I want to provide a website, which meets current programming, performance and accessibility standards (html, css, javascript, responsive, accessibility, performance)
-* SO_07 As site owner I want to provide an opportunity for the user to provide feedback, including reporting issues, or suggesting improvements to the Financial Planner site
-* SO-08 As site owner I want to acknowledge to the user that their feedback has been received
-* SO-09 As site owner I would like to store a database of content to include url links, 
-* SO-10 As site owner, I would like to have the capability to organise the content by lifestage, theme, and other criteria (possibly hierarchical groupings, hashtags) to allow cross referncing of user needs to content 
-* SO_11 As site owner, I would like to encourague users to engage with each article's content, by providing suggested actions and next steps for the user to take 
-* SO_12 As site owner, I would like to provide a personal database where users can store their own actions and record their progress in following the steps
-* SO_14 As site owner, I would like to make the content of the database shareable and reusable to others (perhaps subject to signing a re-use agreement) by providing an API to the published database
-
-### First-time User Goals
-* FTU_01 As a first time user I want to access relevant information to increase my financial understanding/literacy on a specific topic
-* FTU_02 As a first-time user I about what this site does, and want to quickly understand this site's relevance to me, so I don't waste my time on useless engagement 
-* FTU_03 As a first time user I would like to be able to easily navigate the site and quickly learn its functionality 
-* FTU_04 As a first time user I would like to understand the acountability and trustability of information presented on the site - maybe via an 
-about page which clearly identifies information souces, information gathering/harvesting processes including moderation (flowchart would be good here).
-* FTU_05  As a first-time user I would like to undertand the role of user feedback and user reviews 'X users found this useful or relevant',
-* FTU_06 As a first-time user I want clear, timely and unambiguous feedback and interaction
-* FTU_07 As a first-time user I expect links and functions that work as expected
-* FTU_08 (FUTURE) As a first time user I would like to understand the part I can play in contributing to the body of knowledge
-
-
-### Returning User Goals
-* RU_01 As a returning user I want to mark information I find useful so I can quickly access it again (favourites)
-* RU_02 As a returning user I want to create a user profile so that I can personalise my site experience (profile image, bookmarks, actions)
-* RU_03 As a returning user want to build my knowledge in certain areas
-* RU_04 As a returning user I want to build the body of knowledge for other users (by adding credibility ratings).
-
+* SO_01 As site owner I want to showcase my Jewellery business professionally and align with my business values and processes
+* SO_02 As site owner I want to provide straightforward, intuitive, consistent website navigation, (using graphical navigation where possible, even where the destination leads to text-based informataion)
+* SO_03 As site owner I want to provide a website, which meets current programming, performance and accessibility standards (html, css, javascript, responsive, accessibility, performance)
+* SO_04 As site owner I want to provide an opportunity for the user to provide feedback, including reporting issues, or suggesting improvements to the Financial Planner site
+* SO-05 As site owner I want to acknowledge to the user that their feedback has been received
+* SO-06
+  
 ### Other stakeholder Goals
-* OT_01 As an educator I would like to be able to provide mied-media content and task-related elements such as worksheets  
-* OT_02 As The Department of Finance Ireland I want to use this site towards achieving financial literaccy objectives
-
+* OT_01
+* 
 
 ## UX Design Decisions
 ----------------
 
 ### Wireframes
-<details><summary>Landing Page - Articles</summary>
-<img src="./django_financial_planner/docs/readme_images/wireframe-01-articles.png">
+<details><summary>Landing Page, search & filter functionality </summary>
+<img src="./jeweller/docs/readme_images/wireframe-01.png">
 </details>
 
-<details><summary>Lifestage Planner - themed access to Articles</summary>
-<img src="./django_financial_planner/docs/readme_images/wireframe-02-themed-articles.png">
+<details><summary>Create a basket</summary>
+<img src="./jeweller/docs/readme_images/wireframe-02-basket.png">
 </details>
 
-<details><summary>Article detail - with suggested actions</summary>
-<img src="./django_financial_planner/docs/readme_images/wireframe-03-article-detail.png">
+<details><summary>Checkout & additional services</summary>
+<img src="./jeweller/docs/readme_images/wireframe-03.png">
 </details>
 
-<details><summary>My Planner - personalised user profile/action tracker</summary>
-<img src="./django_financial_planner/docs/readme_images/wireframe-04-my-planner.png">
+<details><summary>Checkout - address page/action tracker</summary>
+<img src="./jeweller/docs/readme_images/wireframe-04-checkout-address.png">
 </details>
 
+<details><summary>Checkout - payment page/action tracker</summary>
+<img src="./jeweller/docs/readme_images/wireframe-05-checkout-payment.png">
+</details>
 
 <details><summary>About/ Feedback page</summary>
-<img src="./django_financial_planner/docs/readme_images/wireframe-05-about-feedback.png">
+<img src="./jeweller/docs/readme_images/wireframe-06-about-feedback.png">
 </details>
   
 ### Fonts Chosen
-The website itself is designed to be fairly unobtrusive.  Article fonts were somewhat limited with the standard range of Summernote (Article content creator) fonts, the best of the options seemed to be Arial 16.
+(To be completed)
 
 ### Colour Scheme 
-Again, designed to be fairly unobtrusive and not to draw attention to the background.  The articles themselves contain a colourful image and content may include images.  A green background colour and a default green-money logo have been used where possible on the site.
+(To be completed) 
 
 ### Design Images
+(To be completed)
 
 ### Design Images - Icons and Symbols
-
-Consistent icons and symbols are used throughout the site, and in multiple contexts - e.g. Certain icons for likes, bookmarks, tasks, and responses (comments) appear in both a user and an article context.  These are descibed more fully within the features section.
+(To be completed)
 
 ## Agile
-An Agile approach was followed in plannning this project.  This is somewhat in contrast to the developer's well-practised 'waterfall' habits and presented both a challenge and an opportunity to think in a different way about deliverables and incremental delivery.
-It was helpful that the developer participated in a hackathon during Sept 2023, and had an opportunity to observe experienced Agile developers, and their use of Github issue tracking in a team environment.
-This led to a much clearer understanding of User story and task breakdown, as well as how github can be tailored  to add value, rather than overhead(!), to programming work.
+An Agile approach was followed in plannning this project.  Github Issues and Projects were used to track project work as follows:
+* Sprints - The project was organised into 5 sprints/iterations Sprint1..Sprint5, each of one week in duration.
+* EPICS - created to track the various streams of work; Stored as github issues (to allow a task hierarchy) AND as Issue custom fields (to allow for analysis in github insights).  Typically include quite a few sub-issues.  XX EPICs created for this proect
+* Issues - created to represent units of work.  Where issue= User Story then the content is structured using a template, which requires a title, statement in the form of As a **role** I want to **action** in order to **benefit**.
+Using Github/ Gitpod, it is possible to reference an issue # within a commit message, this is automatically appended to the issue.  Github also supports multi-media comments to track progress on an issue,  this was used for incorporating screenprints at 'review' stage as **proof** of work done before closing out an issue. YY User Story/Task issues were created for this project.
+* Bugs - project issues were used to track bugs, an individual template was created for bug data capture.
+* Kanban boards - implemented with 4 status buckets - backlog, in-progress, review, done.  This was useful as 'review' means that I could assess/document  completion before finalising an issue as 'done'.
+* Labels
+* Project fields: Prioritities
+* Project fields: Sizing
+* Project fields: Estimated Story Points (time); actual time   
+
+
+### Following an Agile process during development:
 * One precept which was difficult to master was respecting the timeboxing of each iteration.  Attempts to 'just finish' a task by extending the iteration by a day or two, needed to be curbed.  Instead, I had to (will have to) train myself to end the sprint, then assess which work had been completed or not.
 * Story points present another challenge.  A very natural interpretation of story points is to assign them a time value (rather than an 'effort' value).  So, at the outset, the most natural approach felt like assigning each task an estimated duration, and reflecting on story points as hours.  This allowed me to capacity plan the first couple of sprints/ iterations based on the time I had available..... I await to see if I will continue this as the project progresses, or whether I move to a more fluid interpretation of SPs.
-* However with the magic law of time (better check what magic law this is) creative tasks in which I am fully engaged make the time fly, meaning I can spend quite a bit of elapsed time but without feeling the strain, whereas less desirable tasks cause time to drag!  <- how does this reflect story points?
-* Agile representation using github tools
 
    
 ### Project
-A github project was created within the Financial_Planner repo.  At a high level the project details are very simple really just a name and description.
+A github project was created within the Jeweller repo.  At a high level the project details are very simple really just a name and description.
 <details><summary>GitHub Project Setup</summary>
-<img src="./django_financial_planner/docs/readme_images/agile-overview-of-project2.png">
+<img src="./jeweller/docs/readme_images/agile-overview-of-project.png">
 </details>
 
 
 ### Issue Template
 <details><summary>Issue template - User Story</summary>
-<img src="./django_financial_planner/docs/readme_images/agile-issues-template.png">
+<img src="./jeweller/docs/readme_images/agile-issues-template.png">
 </details>
     
 At the outset, an issue template was created specifically for user stories.  This holds 5 sections:  
-* EPIC:  The parent functional theme for this user story
+* EPIC:  The parent functional theme for this user story.  
 * A statement of what is to be achieved in the format 'As a **role** I want to **action** to achieve **goal**'.
 * Assumptions made when creating this isssue (e.g. pre-requisites)
 * Acceptance Criteria: List of conditions to demonstrate the issue has been satisfied/resolved
 * Tasks:  Checkbox-marked list of tasks to address this user story.
-
-Mid-way through the project, I created a template to capture project bugs to facilitate separate tracking/reporting.
-I found this useful for 'larger' bugs although I maintained an issue logging spreadsheet for the project, and logged almost 70 issues in the 6 or so weeks of development.
-
+* Associated project tracking fields (MoSCoW label, priority, estimated SPs, actual SPs, EPIC, Assigned-to, associated Project & Milestone)
 
 ### Project Issues
 Issues were created to track planned end-to-end work in Financial_Planner, using the issue template for consistent appearance and content.   
@@ -288,7 +317,6 @@ Some of the issues created were in fact tasks, which underpinned several user st
 <img src="./django_financial_planner/docs/readme_images/agile-issue-example-task.png">
 </details>
 
-
 ### EPICs
 An epic in agile is a large body of work that can be broken down into a number of smaller stories, which are represented as github Issues.
 The Financial_Planner project uses custom fields to hold the epic name, some initial high-level epics:  Agile, UX, Docs, MVP.
@@ -296,7 +324,6 @@ For clarity EPIC is also listed at the top of each issue.
 <details><summary>EPICs</summary>
 <img src="./django_financial_planner/docs/readme_images/agile-epics.png">
 </details>
-
 
 ### MoSCoW prioritisation
 For prioritising user stories and known tasks, I assigned a label to each issue, one of:
@@ -309,41 +336,40 @@ To make selection easier (ensure that these appeared at top of label list in the
 <img src="./django_financial_planner/docs/readme_images/agile-issues-moscow-prioritization.png">
 </details>
 
-
-### Story Points
+### Estimated & Actual Story Points
 Story points are intended as a 'level of required effort' measure.  I used a custom issue category field to represent these. 
 While at the beginning it was easiest to think of story points in terms of 'hours', as the sprints passed it became easier to assess relative to work already completed.
 An observation would be that interpreting story points as 'hours' is somewhat one-dimensional, as sometimes the elapsed hours can be greater or lesser depending on mood, state of flow etc.
 
-
 ### Milestones
-While this is a relatively short project (developed over 2 months duration), there was sufficient opportunity to set milestones for MVP (mostly consisting of must-have issues) and releases.
-The use of MVP milestone encouraged a 'deploy-early' mindset whereby the software could be delivered incrementally, with successive releases building on proven, working software.  
-When creating the milestone a due date is needed, initially I set a due date of 3 weeks prior to deadline for MVP, with additional release dates scheduled up to the project deadline.
+Three project milestones were used:
+* First deploy (due date = end Sprint1)
+* MVP (due date =  end Sprint2)
+* Version 1 (due date = end Sprint4)
+This'deploy-early' approach meant the software could be delivered incrementally, with successive releases building on proven, working software.  
 
-This approach ensured, it would be possible to deliver a working, functional system, even if difficulties were encountered with implementing some of the 'could-have' features..
 <details><summary>Milestones</summary>
-<img src="./django_financial_planner/docs/readme_images/agile-milestones.png">
+<img src="./jeweller/docs/readme_images/agile-milestones.png">
 </details>
 
 ### Sprints and Iterations
 In Agile methodology, effort is timeboxed into Srints, with a kickoff at the start of each Sprint time period, in which items from the product backlog are made ready for work (groomed) by ensuring all the details are completed on the user-story/issue card (task details, acceptance criteria, priority, dependencies, Story Point estimate ) before a developer starts working on it.  At the end of a sprint a retrospective should be undertaken to determine what worked well or not during that sprint.
-For Financial_Planner a time-period of weekly sprints was chosen.  Loosely (given that the developer consisted of a one-person team), the sprint ran from Monday-Sunday inclusive, and the aim was to complete certain agreed user stories during a particular sprint.
+For Jeweller a time-period of weekly sprints was chosen.  Loosely (given that the developer consisted of a one-person team), the sprint ran from Monday-Sunday inclusive, and the aim was to complete certain agreed user stories during a particular sprint.
 
-<details><summary>Sprints/ github Iterations</summary>
-<img src="./django_financial_planner/docs/readme_images/agile-sprint-iteration-weekly.png">
-</details>
+At the end of each sprint a formal process was followed:
+* retrospective
+* backlog grooming & prioritisation
+* decision as to what is to be included in next Sprint
+* readme Updates
 
-Initially when performing the design tasks (effectively the first four sprints), the timeboxing aspects were not fully respected.
-However from sprint5 onwards (the first programming sprint), it became easier to decide clearly what was to be included at the outset of each sprint, and to pull specific issues from the backlog and ensure that they were progressed during the planned sprint. 
-I started doing formal sprint reviews with burndown charts, at end of:
-[Sprint 5 retrospective]([Issue #24](https://github.com/DeeMcCart/CI_PP4_Financial_Planner/issues/24 target="_blank") )
+I added the last task, readme updates, based on learning from my previous Code Institute PP4 project, where I'd invested so much effort and detail into the Agile record keeping that I faced an impossible task to duplicate the content into READme at project completion.  So the intention is to keep it Agile with small, incremental updates to the Readme, as well as the code!
 
-[Sprint 6 retrospective]([Issue #33](https://github.com/DeeMcCart/CI_PP4_Financial_Planner/issues/33 target="_blank") )
-
-[Sprint 7 retrospective]([Issue #35](https://github.com/DeeMcCart/CI_PP4_Financial_Planner/issues/35 target="_blank") )
-
-[Sprint 8 retrospective]([Issue #47](https://github.com/DeeMcCart/CI_PP4_Financial_Planner/issues/47 target="_blank") )
+Burndown charts were maintained over the 5 prooject sprints.  These can be seen on the 
+Sprint1 Retrospective: Issue #
+Sprint2 Retrospective: Issue #
+Sprint3 Retrospective: Issue # 
+Sprint4 Retrospective: Issue #
+Sprint5 Retrospective: Issue #
 
 As each weekly sprint progressed, I became more fluent with the insights/ burndown charts and started to develop to include actual time logged, a useful metric
 
@@ -361,78 +387,63 @@ Issues progressed through:
 ### Tabular Projects View
 The tabular view of projects was very useful at the backlog grooming stage, as it shows open issues, and gives easy visiblity of associated fields, e.g. story points, epic, assigned sprint, etc 
 <details><summary>Projects - Tabular view</summary>
-<img src="./django_financial_planner/docs/readme_images/agile-overview-of-project.png">
+<img src="./jeweller/docs/readme_images/agile-overview-of-project.png">
 </details>
 
 <details><summary>Projects - Tabular view2</summary>
-<img src="./django_financial_planner/docs/readme_images/agile-issues-tabular-view.png">
+<img src="./jeweller/docs/readme_images/agile-issues-tabular-view.png">
 </details>
 
+### Commit Messages
+The XXXX convention was adopted this time around for commit messsages, as prviously submitted projects have highlighted small inconsistencies.
+Where possible the Kanban issue # is referenced, this links the commit message to the issue on the Kanban board.
     
 ### Kanban board
 Within a sprint, the kanban board provides invaluable visual tracking.  
-In the Financial_Planner kanban board, issues progress from leftmost column (backlog) to rightmost (done)
+In the Jeweller kanban board, issues progress from leftmost column (backlog) to rightmost (done)
 Note that each column holds a descriptor to tell you what is happening to issues within the column.
 <details><summary>Projects - Kanban (simple)</summary>
-<img src="./django_financial_planner/docs/readme_images/agile-issues-kanban-view.png">
+<img src="./jeweller/docs/readme_images/agile-issues-kanban-view.png">
 </details>
 
-An improved kanban view (developed mid-way through the project) is shown here, note that this shows:
+Two main Kanban views were used, one for EPICs only, and one for Issues.  See:
 * the number of issues at each kanban board state (e.g. highlighted in blue for InProgress column)
 * The storypoints for each individual issue, as well as the total storypoints at each lifecycle status (e.g. highlighted in green for 'Todo' column)
 * The EPIC associated with each issue (e.g. highlighted in pink within the 'Done' column)
 
-![Projects - Rich Kanban board](./django_financial_planner/docs/readme_images/agile-issues-kanban-view-sp-epic-num-issues-per-col.png?raw=true "Improved kanban board with lots of information")
+![Projects - Rich Kanban board](./jeweller/docs/readme_images/agile-issues-kanban-view-sp-epic-num-issues-per-col.png?raw=true "Improved kanban board with lots of information")
 
  
 ### Agile Observations and learnings
-* Observation from hackathon - short user story names are best for visibility and tracking
-* Observation from hackathon - a user story is generally a fairly big block with a number of subtasks.  It is not advisable to have an entire user story which is longer than a sprint, as it will be carried forward in the 'to do' or 'in progress' bucket without clear visibility.  Therefore likely to try breaking a complex user story into sub-stories/tasks.  Both the user story and the sub tasks will be listed as issues, the user story will remain in the 'to do' bucket after grooming, and its tasks will be ticked off when their individual issues are completed.  The individual issues will move through the kanban board lifecycle of backlog -> to do -> in progress -> review -> done.  The 'parent' user story will remain at 'to do' (or possibly 'in progress'???)
-* Observation from hackathon - when merging of PR (pull requests) was performed in a distributed development environment, it was possible to link the PR to a kanban issue, and to automatically update the issue status based on the PR.   I would be interested in exploring how ths might be done for a solo developr (possibly workflows?)
-* Observation - if I reference the issue # on a commit (but must be in the format #8 ) then I can hyperlink from that commit message back to the relevant user story or issue.
-* Use of EPIC as a label rather than as an issue - this was an early decision, although when reviewing our cohort leader Alan Bushell's PP4 project, he showed how he had used Issues within Github to represent EPICS.  This seemed to work really well as it was possible to demonstrate a hierarchy of EPIC -> issues by including a link to the sub-issues within the EPIC 'issue' body.  Thus it was possible to click on the issues within the EPIC, check their status, then return to the EPIC.
-At the time of seeing this I had already committed to using labels to represent EPICs, so I stayed with my original approach just to see how it would work in practice.
-* Use of a public project repo - I made the repo public early on, as I had assumed this was needed for assessment.  And about half way through I was surprised to see some comments on my tasks from another (unknown) github user offering assistance with development - kind of like an open source approach.  So they had commented on a couple of tasks.  I kept the repo public, but changed the settings so that only users who had previously committed to the repo could comment, and I blocked that particular user from the workspace....
-
+* Improvement from PP4 in use of EPICs defined as Issues, which allows a hierarchy of issues to be built
+* All user stories are assigned a code e.g. RU_01 is first Returning User story, these are used with an abbreviated title to keep the Kanban board neat.
+* To avoid extra documentation work (as I found this quite time consuming in PP4), hyperlinks are used where possible, e.g. on commit message to link to relevant Github Issue. 
+* Improvement from PP4 by defining each EPIC as a parent Issue to represent hierarchy (inspired by our cohort leader Alan Bushell),  it was possible to demonstrate a hierarchy of EPIC -> issues by including a link to the sub-issues within the EPIC 'issue' body.  Thus it was possible to click on the issues within the EPIC, check their status, then return to the EPIC.
+* While it felt like a bit of duplication, I found on the 'Github Insights' bar charts for sprint retrospectives, the EPIC needed to be defined as a project field to become eligible for chart breakdown & grouping.
+* Labels were well used, 'EPIC' Issues were assigned label 'EPIC' where other issues were given a MoSCoW (01_MustHave 02_ShouldHave, 03_CouldHave, 04_WontHave).  Identifing the EPICs with a separate label allowed them to be excluded from the main KanBan board and moved to a separate board.
+* This project is quite comprehensive and contains a LOT of user stories!!!  In practice, as part of each end-of-sprint ceremony, I created Issues for the user stories to be done in that sprint.  That helped as it just meant the KanBan board didnt become overwhelming.
+  
 ## Features 
 Implemented features are fully documented in the Features readme, located at  
 
 ### Features in Scope 
 
-<a href="https://github.com/DeeMcCart/CI_PP4_Financial_Planner/blob/main/README_Features.md" target="_blank">Site features</a>
+<a href="https://github.com/DeeMcCart/Jeweller/blob/main/README_Features.md" target="_blank">Site features</a>
 
 It was helpful to create this as a separate document, as it is also offered to users as a 'how to' guide.
 
 ### Implementation Decisions
-This project was somewhat unusual for me as I followed the Agile principle of not defining every feature fully at the start of a 8-week project process.  Instead, the project evolved and took its own shape over the duration.  I followed a principle of incremental delivery, deployed early and established the core structures pretty much as per the walkthrough training given.
+Incremental delivery, 
+deployed early 
+followed & adapted the Boutique walkthrough
+refereced additional Django walkthroughs and other materials
 <br>  
 Some of the site ideas and features needed only really became clear as I played with the site as it was delivered, and experienced frustration or spotted opportunites or elements that were worth adding. So the site grew organically as time went on.
 <br>
-And it would still be growing organically if I didn't have a project dealine to submit (sometimes deadlines are really useful!!!)
 
 ### Features Left to Implement
-
-#### F18 Write a custom app for Admin Console (FUTURE)
-The FinancialPlanner site as delivered is a good base site with strong core functionality in the areas of content and task management. It has a decent front-end and is depends strongly on a standard Django Admin console in the backend.  However, as the site has incrementally developed, the database model complexity has increase, so there are a number of tables which need to be manually synchrnised, for example articles vs structured search tags, these are maintained separately and require some overhead to ensure they remain well-designed and consistent.
-So this site would definitely benefit from a well-designed admin console to simplify the database maintanance overhead
-
-#### F19 Content Creation (ONGOING & FUTURE)
-Development of the site has required considerable programming effort however to really make it flourish, well-designed, appropriate content is needed.  There is huge scope for worksheets, budgeting lists, and many other tools to be created and made available to users.  This is where the real site benefit lies, in practical, relevant content that is easily understood and convertible into actionable tasks.
-
-#### F20 Gamification (DEFINITELY FUTURE)
-One of the original hopes for this site was to include a 'Game of Life' concept whereby a user could start with a notional financial health rating then take decisions and see the financial impact.  This is effectively a financial modelling exercise, the concept of a 'game' makes it less threatening to users, whereas, it could in fact act as a simulation providing 'what if' financial implications of life decisions.
-
-#### F21 Structured/Lifestage search (NEAR-FUTURE)
-The use of the structured article tags to provide a lifestage search feature has been designed and is operational in the backend, but doesnt yet have a front end implementation. This is a key feature as it would allow much more granular content filtering and greatly assist users by filtering down to just articles aligned with the user's needs e.g. 'I want to.... get a mortgage', 'I want to.... move to Ireland', 'I want to.... plan for later life' 
-
-#### F22 UX and Integration features
-Would like a 'share' button on articles and the ability to connect to whatsapp and other social media portals.
-Would like to be able to send email notification for password reminders.
-Would like to improve appearance of task and response windows, they are functional now but could be more beautiful.
-
-#### Other features to be identified via target-user interaction
-There are lots of other features which could be useful.  The version of FinancialPlanner delivered today is really a proof-of-concept and ideally it would now be exposed to a wider group of potential users, and based on their feedback and real-life needs, a development road map coud be established.  In the absence of an app to show, it has been difficult to have the 'what would you like in a financial literacy app?' discussion with potential users, but the FinancialPlanner app as-is is fine for demo and discussion purposes.
-I would hope to develop FinancialPlanner further as a commercial app.  
+* FTU_28 (Future): As a **First-Time User** I would like to  **make an appointment for engagement rings** in order to **elevate a high value buying decision**
+* 
                
 ## Technologies
 
@@ -443,13 +454,14 @@ I would hope to develop FinancialPlanner further as a commercial app.
 - Python
 - Django (initial v 3, now V4+)
 - Bootrap (V5)
+- 
 
 ### Frameworks & Tools
 * Github:  used to maintain the code repository, and for some readme edits and commits
 * Git
 * Gitpod:  used for editing and for tracking code commits back to Github
 * Balsamiq:  used for wireframing
-* Lucidchart: used for database diagramming
+* Lucidchart: used for database diagramming & process flows
 * Canva: used to create some infographic content
 * Leonardo AI: used to create some of the site images
 
@@ -471,30 +483,30 @@ HTML validation was performed for the various site pages as follows:  Render the
  
   on the index html pages when checked in the W3C validator:
 
-![W3C Validator - index page](./django_financial_planner/docs/readme_images/validation-w3c-index-html.png?raw=true "W3C validator (index page)")
+![W3C Validator - index page](./jeweller/docs/readme_images/validation-w3c-index-html.png?raw=true "W3C validator (index page)")
 
 
-![W3C validator - my_planner page](./django_financial_planner/docs/readme_images/validation-w3c-myplanner-html.png?raw=true "W3C validator (my planner page)")
+![W3C validator - XX template ](./jeweller/docs/readme_images/validation-w3c-XXXX-html.png?raw=true "W3C validator (my planner page)")
 
-![W3C validator - my_actions page](./django_financial_planner/docs/readme_images/validation-w3c-myactions-html.png?raw=true "W3C validator (my actions page)") 
+![W3C validator - YY  template ](./jeweller/docs/readme_images/validation-w3c-XXXX-html.png?raw=true "W3C validator (my actions page)") 
 
-![W3C validator - my_user page](./django_financial_planner/docs/readme_images/validation-w3c-myuser-html.png?raw=true "W3C validator (my actions page)") 
+![W3C validator - my_user page](./jeweller/docs/readme_images/validation-w3c-XXXX-html.png?raw=true "W3C validator (my actions page)") 
 
 ### CSS Validation
 
 No errors returned when passing through the official Jigsaw validator.  
 
-- ![(Jigaw) CSS Validator)](./django_financial_planner/docs/readme_images/val-css.png?raw=true "CSS validator") 
+- ![(Jigaw) CSS Validator)](./jeweller/docs/readme_images/val-css.png?raw=true "CSS validator") 
 
 
 ### Performance
 Performance for all pages was tested using the Lighthouse tool within Google Chrome.  Performance was at 98% for the index page (intro modal).
 
 
-![Performance - Lighthouse - index](./django_financial_planner/docs/readme_images/validation-lighthouse-performance-index-html1.png?raw=true "Lighthouse - index page") 
+![Performance - Lighthouse - index](./jeweller/docs/readme_images/validation-lighthouse-performance-index-html1.png?raw=true "Lighthouse - index page") 
 
 
-![Performance - article detail](./django_financial_planner/docs/readme_images/validation-lighthouse-performance-article-detail-html.png?raw=true "Lighthouse - index page") 
+![Performance - article detail](./jeweller/docs/readme_images/validation-lighthouse-performance-article-detail-html.png?raw=true "Lighthouse - index page") 
 
 
 ### Device Testing
@@ -511,19 +523,19 @@ The website was tested on the following browsers:
 * Mozilla Firefox v112.1.0 (Motorola g(7) phone)
 
 ### Testing Features
-![Feature testing page1](./django_financial_planner/docs/readme_images/val-feature-p1.png?raw=true "Feature testing page1") 
+![Feature testing page1](./jeweller/docs/readme_images/val-feature-p1.png?raw=true "Feature testing page1") 
 
-![Feature testing page2](./django_financial_planner/docs/readme_images/val-feature-p2.png?raw=true "Feature testing page2") 
+![Feature testing page2](./jeweller/docs/readme_images/val-feature-p2.png?raw=true "Feature testing page2") 
 
-![Feature testing page3](./django_financial_planner/docs/readme_images/val-feature-p3.png?raw=true "Feature testing page3") 
+![Feature testing page3](./jeweller/docs/readme_images/val-feature-p3.png?raw=true "Feature testing page3") 
 
 
 ### Bugs and issues
-Almost 70 issues were recorded, I used an excel spreadhseet to keep track.  
+Almost XX issues were recorded, I used an excel spreadhseet to keep track.  
 
 The structure of the log is shown here:
 
-![Feature testing page3](./django_financial_planner/docs/readme_images/val-issuelog.png?raw=true "Feature testing page3") 
+![Feature testing page3](./jeweller/docs/readme_images/val-issuelog.png?raw=true "Feature testing page3") 
 
 There are a number of smaller responsiveness issues still open at the time of writing (icon alignment on mobile phone)
 
@@ -635,26 +647,27 @@ Can set automatic redeployment in Heroku, this will refresh the app at every com
 Multiple sources were used in assembling this site.
 
 
-### Content - Financial Planner
-* Inspiration taken from many many sources
-* Ref the UX strategy section
+### Content - Jeweller
+* Existing Goldmark Jewellers website
+* Existing Goldmark Jewellers marketing materials
+* Review of other Jewellry websites
+* Simone XXXX jeweller website was a particular inspiration
 
-### Financial Planner site ethos - authenticity
-https://nobsmarketplace.com/blog/how-do-you-know-if-website-authoritative/ offers a definition of an authoritative website as 'a trusted source that offers reliable information to users'
-https://nobsmarketplace.com/blog/how-do-you-know-if-website-authoritative/ factors to determine an authoritative website: site domain name/url; value offered to the user; reputable sources (with verifiable credentials); quality of inbound & outbound links; website UX, design & functionality; proven user trust & engagement (e.g. measured by organic comments, likes and shares given by customers/users, as well as the quality of the audience the website has attracted)
+### Product images and descriptions
 
 ### Agile implementation in github
 * https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-text-and-number-fields#adding-a-number-field to understand how story points might be represented in GitHub
  
-### Code - Financial Planner
-Dennis Ivy
-Multiple Code Institute PP4 projects used for reference
+### Code - Jeweller
+DeeMac YouTube series - Setting up a Django receipe website
+Book - 
+Multiple Code Institute PP5 projects used for reference
 
  
 ### Acknowledgements
-* I would particularly like to thank Alan Bushell, our cohort facilitator who guided us through this partiularly diverse phase of the course, kept us on track with weekly standups, ensured we all stepped into the limelight and provided really useful advice.
+* I would particularly like to thank Alan Bushell, our cohort facilitator who has remained a steady consistent and wise presence during my 12 months on this programme.  His willingness to engage with each of us, his dedication to our weekly standups, his approachability and his guidance have been a huge support over this period.  
 * I would like to sincerely thank my mentor, Mo Shami for his kindness, enthusiasm and support throughout.  Mo's ability to absorb the essence of a situation and to communicate a clear path ahead has been invaluable.
-* I would also like to thank Derek and my family for their personal support, and for their help with system testing.
+* I would also like to thank Derek and my family for their personal support, and for their advice on Goldmark business processes, help with system testing, and patience during my (mental or physcial) absence.
 
 
 
