@@ -1,7 +1,7 @@
 <!-- this logic ccalculates the basket grand total and associates it with a list item for the navbar -->
 {% if grand_total %}
 <li id="basket-link" class="list-inline-item">
-    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="">
+    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_basket' %}">
         <div class="text-center">
             <div><i class="far fa-basket-shopping fa-lg"></i></div>
             <p class="my-0">
