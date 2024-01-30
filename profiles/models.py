@@ -14,11 +14,10 @@ class UserProfile(models.Model):
     includes profile_image, can be linked to delivery addresses 
     and order history """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number1 = models.CharField(max_length=20, null=True, blank=True)
-    phone_number2 = models.CharField(max_length=20, null=True, blank=True)
-    first_name = models.CharField(max_length=20, null=True, blank=True)
-    last_name = models.CharField (max_length=30, null=True, blank=True)
+    phone_number1 = models.CharField(max_length=15, null=True, blank=True)
+    phone_number2 = models.CharField(max_length=15, null=True, blank=True)
     profile_image = models.ImageField(upload_to='images', default='placeholder.png')
+    newsletter_signup = models.BooleanField(default=False)
     birth_month = models.CharField(max_length=9, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
@@ -42,7 +41,7 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 class UserAddress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_address")
-    address_type =  models.CharField(max_length=4, null=False, editable=True)
+    address_type =  models.CharField(max_length=4, null=False, editable=True, default='HOME')
     address_id = models.CharField(max_length=4, null=False, editable=False)
     address_label = models.CharField(max_length=25, null=True, blank=True)
     address1 = models.CharField(max_length=80, null=True, blank=True)
