@@ -91,6 +91,7 @@ INSTALLED_APPS = [
     # Apps
     'home',
     'profiles',
+    'products',
     'basket',
 
     # Other
