@@ -305,15 +305,16 @@ a.category-badge > span.badge:hover {
 footer {
     background-color: var(--color-background);
     display: flex;
+    /* width: 100%;  DMcC hmm something strange with css the social icons now displaying and wrapping in a smallarea only */
     flex-shrink: 0;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     border-top: var(--border);
 }
 
 .social-icon {
-    max-height: 1rem;
+    max-height: 20px;
     margin: 1rem;
 }
 
