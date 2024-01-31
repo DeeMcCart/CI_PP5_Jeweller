@@ -1,0 +1,300 @@
+{% extends 'base.html' %} 
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!-- DMcC 23/01/24 Created profile form based on the 'My Planner form of CI_PP4' -->
+
+    <div class="container bg-grey">
+        <div class="row g-0">
+            <div class="row d-flex justify-content-center">
+                <div class = "col-md-10 mt-5 pt-5">
+                    <div class = "row z-depth-3">
+                        <div class="profile-card col-sm-4 rounded">
+                            <div class ="card-block text-center text-grey rounded-left">
+                                {% if "placeholder" in profile_image %}
+                                <img class="card-img-top rounded"
+                                    src="../../static/images/placeholder.png">
+                                {% else %}
+                              <!--  <img class="mt-5 img-fluid" src="{{ profile_image.url }}"> -->
+                                <img class="mt-5 img-fluid" src="{{request.user.userprofile.profile_image.url}}" alt="Users profile image or Avatar">
+                                <p></p>
+                                {% endif %}
+
+                                <h2 class="font-weight-bold mt-4" id="userid">{{user}}</h2>
+                                <p>{{request.user.first_name}}  {{request.user.last_name}}</p>
+
+                                
+
+    <!-- intended to do a check if the user profile exists and restrict functionality (e.g. adding actions) if not -->
+    <!-- however, the user only reaches this page if they are a rgistered user so better to ensure the user profile -->
+    <!-- was auto created when they became a registered user, and to allow them to continue here -->
+    <!--                          <p id="user_profile">{{user_profile}}</p>  -->
+                            </div> <!-- end class card-block -->
+                        </div> <!-- end class col -->
+                        <div class="profile-card col-sm-8 rounded">
+                            <h1 class="mt-3 text-center">My Profile</h1>
+                            <hr class="mt-0 bg-info">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p class="font-weight-bold">Email:</p>
+                                    <h6 class="text-muted">{{request.user.email}}</h6> 
+                                </div> <!-- end class col-sm-6 -->
+                                <div class="col-sm-6">
+                                    <p class="font-weight-bold">Mobile phone:</p>
+                                    <h6 class="text-muted">{{request.user.userprofile.phone_number1}}</h6> 
+                                </div> <!-- end class col-sm-6 -->
+                                <div class="col-sm-6">
+                                    <p class="font-weight-bold">Landline/Alt Phone:</p>
+                                    <h6 class="text-muted">{{request.user.userprofile.phone_number2}}</h6> 
+                                </div> <!-- end class col-sm-6 -->
+                                <div class="col-sm-6">
+                                    <p class="font-weight-bold">Birth month:</p>
+                                    <h6 class="text-muted" id="birth_year">{{request.user.userprofile.birth_month}}</h6> 
+                                </div> <!-- end class col-sm-6 -->
+                                <div class="col-sm-6">
+                                    <p class="font-weight-bold">Last logged In:</p>
+                                    <h6 class="text-muted" id="last_login">{{request.user.last_login}}
+                                    </h6> 
+                                </div> <!-- end class col-sm-6 -->
+                            </div> <!-- end class row -->    
+                        
+                  
+                        <h4 class="mt-3">Stored Delivery Addresses</h4>
+                        <hr class="bg-primary">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <a href="#my-addresses"><i class="fa fa-arrow-right red-o " data-bs-toggle="tooltip" data-bs-placement="top" title="My Saved Addresses"></i></a> 
+                                <h6 class="text-muted">{{number_of_addresses}}</h6>
+                                {% if addresses %}
+                                <input type="button" class="btn btn-signup right" id="show-hide-addresses-b" value = "Show Addresses" onclick="show_hide_addresses()">
+                                {% endif %}
+                            </div> 
+                            <div class="col-sm-3">
+                                <a href="#my-orders"><i class = "large fas fa-bookmark" data-bs-toggle="tooltip" data-bs-placement="top" title="Orders"></i></a>
+                                <h6 class="text-muted">{{number_of_orders}}</h6>
+                                {% if orders %}
+                                <input type="button" class="btn btn-signup right" id="show-hide-orderes-b" value = "Show BMs" onclick="show_hide_orders()">
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-3">
+                                <a href="#my-reviews"><i class="far fa-comments" data-bs-toggle="tooltip" data-bs-placement="top" title="(Moderated) Reviews"></i></a> 
+                                <h6 class="text-muted">{{ number_of_valid_reviews }}</h6>
+                                {% if reviews %}
+                                <input type="button" class="btn btn-signup right" id="show-hide-reviews-b" value = "Show Reviews" onclick="show_hide_reviews()">
+                                {% endif %}
+                             </div>
+                             <div class="col-sm-3">
+                                <!-- DMcC 16/11/23 Replace 'Like' with 'handclap' icon (nopes didnt work, try thumbs-up) -->
+                                <!-- <i class = "large fa-solid fa-heart red-o" data-bs-toggle="tooltip" title="# Likes"></i> -->
+                                <i class="fas fa-thumbs-up btn-like" data-bs-toggle="tooltip" data-bs-placement="top" title="# Likes"></i> 
+                                <h6 class="text-muted">{{number_of_likes}}</h6>
+                            </div>
+                        </div> <!-- end class row -->
+            
+                        
+                        {% if "placeholder" in profile_image %}
+                        <form style="display: inline"  action="{% url 'create_user' %}" method="get">
+                            <button class="btn btn-signup right">Add your profile photo</button>
+                        </form>
+                        {% endif %}
+                        
+  <!--                      <a href="{% url 'update_user' request.user.id %}">  -->
+<!--                                <button class="btn btn-signup right" type="submit">Update user</button></a>  -->
+                    </div> <!-- end div class col-sm-8 bg-info rounded-right -->    
+                    
+                </div> <!-- end div class row z-depth-3 -->
+                
+            </div> <!-- end div class col-md-10 mt-5 pt-5-->
+            
+        </div> <!-- end div class row d-flex justify-content-center -->
+        
+    </div> <!-- end div class row g-0 -->
+
+    <div class = "container-fluid hide-div" id="address-container">
+        <br>
+        {%if orders %}    
+        <div class = "table-responsive">
+            <strong id="my-actions">Linked orders:</strong>
+            <table class="table table-bordered table-hover ">
+                <thead class="table-success">
+                    <tr>
+                    <th></th>
+                    <th></th>
+                    <th>Seq</th>
+                    <th>Date added</th>
+                    <th>Task</th>
+                    <th>Done so Far</th>
+                    <th>Results</th>
+                    <th>Done?</th>
+                    <th>Date Completed</th>
+                    <th>URL</th>
+                    </tr>
+                </thead>
+                <!-- DMcC 18/11/23 Remove reference to form below as dont believe it is needed -->
+                <!-- <form method="post" style="margin-top:1.3em";> -->
+                {% for order in orders %}
+                <tr class="text-muted">
+                    <td><a href="{% url 'update_order' order.id %}"><i class="far fa-edit icon-edit"></i></a></td>
+                    <td><a href="{% url 'cancel_order' order.id %}"><i class='far fa-trash-alt icon-delete'></i></a></td>
+                    <td>{{order.user_order_seq}}</td>
+                    <td class="date">{{order.created_on|date:"d/m/y"}}</td>
+                    <td class="Item">{{order.item}}</td>
+                    <td>{{order.item_desc}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>{{order.unit_price}}</td>
+                    <td>{{order.completed|yesno:"Y,N"}}</td>
+                    <td>{{order.completed_on|date:"d/m/y"}}</td>
+                    {% if order.trackingurl %}
+                    <td><a href="{{order.tracking_url}}" target="_blank">link</a></td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div> <!-- class = "table-responsive"-->
+        {% endif %}
+        
+        <!-- DMcC 18/11/23 need to replace the button within an anchor tag by something whether a mini form or just a link -->
+        <!-- <a href="{% url 'create_action' %}"><button class="btn btn-signup right" type="submit">Add new action</button></a>  -->
+        <form style="display: inline"  action="{% url 'create_order' %}" method="get">
+            <button class="btn btn-signup right">Add new Task</button>
+        </form>         
+    </div> <!-- end id=actions-container -->
+            <p></p>
+
+    
+    <div class = "container-fluid hide-div" id="reading-container">
+        {% if bookmarks %}
+        <strong id="my-bookmarks">My Reading List:</strong>
+        
+        <table class="table table-bordered table-hover table-responsive">
+            <thead class="table-success">
+                <tr>
+                <th>Article</th>
+                <th>Date</th>
+                </tr>
+            </thead>
+        
+            {% for bookmark in bookmarks %}
+            <tr class="text-muted">
+                <td><a href="../{{bookmark.slug}}">{{bookmark}}</a></td> 
+                <td class="date">{{bookmark.created_on|date:"d/m/y"}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div> <!-- end div reading-container -->
+
+    <div class = "container-fluid hide-div" id="comments-container">
+        {% if comments %}
+        <strong id="my-comments">My Responses:</strong>
+        <table class="table table-bordered table-hover table-responsive">
+            <thead class="table-success">
+                <tr>
+                <th>Article</th>
+                <th>Comment</th>
+                <th>Approved</th>
+                <th>Date</th>
+                </tr>
+            </thead>
+            {% for comment in comments %}
+            <tr class="text-muted">
+                <td><a href="../{{comment.article.slug}}">{{comment.article}}</a></td> 
+                <td>{{comment.body}}</td>
+                <td>{{comment.approved|yesno:"Y,N"}}</td>
+                <td class="date">{{comment.created_on|date:"d/m/y"}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div> <!--- end div id comments-container -->
+
+</div> <!-- end div class container bg-grey -->
+
+<script>
+    function calc_age() {
+        const d = new Date();
+        let curr_year= parseInt(d.getFullYear());
+        console.log("Current year is " + (curr_year) + ", Next year is " + (curr_year+1));
+        let int_birth_year = parseInt(document.getElementById("birth_year").innerHTML)
+        console.log("Birth year is " + int_birth_year + ", Next year is " + (int_birth_year+1));
+        let approx_age_calc = curr_year - int_birth_year;
+        console.log("Approx age is " + approx_age_calc);                            
+        document.getElementById("approx_age").innerHTML = approx_age_calc;
+        };
+</script>
+
+<!-- DMcC 16/11/23 the following script needed to control tooltip display above the hovered element-->    
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
+<script>
+    const d = new Date();
+    let curr_year= parseInt(d.getFullYear());
+    var birth_year = document.getElementById("birth_year");
+    birth_year.onchange = calc_dates()
+
+    function calc_dates() {
+        let int_birth_year = parseInt(birth_year.innerHTML)
+        let approx_age_calc = curr_year - int_birth_year;
+        document.getElementById("age_approx").innerHTML = approx_age_calc;
+    }
+
+    function show_hide_orders() {
+        console.log("In function show_hide_orders()");
+        show_orders_button = document.getElementById("show-hide-orders-b");
+        console.log("current value of show/hide button is " + show_orders_button.value);
+        if (show_orders_button.value == "Show Orders") {
+            document.getElementById("orders-container").classList.remove("hide-div");
+            console.log("Removed class hide-div from actions-container")
+            show_orders_button.value="Hide Orders";
+            }  
+        else 
+            {
+            document.getElementById("orders-container").classList.add("hide-div");
+            console.log("Added class hide-div to orders-container")
+            show_orders_button.value="Show Orders";
+            }  
+        }
+
+    function show_hide_addresses() {
+        console.log("In function show_hide_addresses()");
+        show_addresses_button = document.getElementById("show-hide-addresses-b");
+        console.log("current value of show/hide button is " + show_addresses_button.value);
+        if (show_addresses_button.value == "Show BMs") {
+            document.getElementById("addresses-container").classList.remove("hide-div");
+            console.log("Removed class hide-div from addresses-container")
+            show_reading_button.value="Hide Addrs";
+            }  
+        else 
+            {
+            document.getElementById("address-container").classList.add("hide-div");
+            console.log("Added class hide-div to addresses-container")
+            show_reading_button.value="Show Addrs";
+            }  
+        }
+        
+    function show_hide_reviews() {
+        console.log("In function show_hide_comments()");
+        show_comments_button = document.getElementById("show-hide-comments-b");
+        console.log("current value of show/hide button is " + show_comments_button.value);
+        if (show_comments_button.value == "Show Resp") {
+            document.getElementById("comments-container").classList.remove("hide-div");
+            console.log("Removed class hide-div from comments-container")
+            show_comments_button.value="Hide Resp";
+            }  
+        else 
+            {
+            document.getElementById("comments-container").classList.add("hide-div");
+            console.log("Added class hide-div to comments-container")
+            show_comments_button.value="Show Resp";
+            }  
+        }
+
+</script>
+                                
+{% endblock content %}

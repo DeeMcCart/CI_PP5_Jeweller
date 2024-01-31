@@ -14,7 +14,7 @@ html {
 
 body  
  {
-    display: flex;
+    /* display: flex; DMcC removed 31/01/24 to align with walkthrough styling */
     background-color: var(--color-background);
    /* url('/media/homepage-background-cropped.jpg') no-repeat center center fixed; */
     background-size: cover;
@@ -24,6 +24,7 @@ body
     filter: grayscale(0.7);
 }
 
+/* background::before DMcC retained 31/01/24 even though different to walkthrough styling */
 .background::before {
     content: "";
     position: absolute;
@@ -40,11 +41,10 @@ body
     justify-content: center;
     height: 1.5rem;
     width: 1.5rem;
+    z-index:5;
 }
 
-
-
-.logo {
+.logo { /* DMcC retained 31/01/24 even though not aligned with walkthrough */
     max-width: 50px;
     max-height: 50px;
 }
@@ -68,6 +68,19 @@ body
     color: var(--color-button-foreground);
 }
 
+.btn-outline-black {
+    background: white;
+    color: black !important; /* use important to override link colors for <a> elements */
+    border: 1px solid black;
+}
+
+.btn-outline-black:hover, /* DMcC 31/01/24 added to align with walkthrough styling */
+.btn-outline-black:active,
+.btn-outline-black:focus {
+    background: black;
+    color: white !important;
+}
+
 .shop-now-button:hover,
 .shop-now-button:active,
 .shop-now-button:focus,
@@ -86,6 +99,42 @@ body
     border: 1px solid black !important;
 }
 
+
+.overlay {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: white;
+	z-index: -1;
+}
+
+a.category-badge > span.badge:hover {
+    background: #212529 !important;
+    color: #fff !important;
+}
+
+.btt-button {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.btt-link {
+    cursor: pointer;
+}
+
+/* Reduce image size for basket */
+.image-basket {
+    max-width: 30%;
+    max-height: auto;
+}
+
+
+
 /* navbar styling */
 #navbarText {
     justify-content: end;
@@ -102,6 +151,27 @@ body
 #delivery-banner {
     background-color: var(--color-banner-background);
 }
+
+/* ------------------------------- bootstrap toasts */
+/* position message at top rhs of screen & assign high z-index: */
+
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
+.toast-capper {
+    height: 2px;
+}
+
+
+/* ------------------------------- bootstrap toasts */
 
 /* Toasts css:
 /* Apply snippet from csstricks.com to pickup standard bootstrap message colours. */
@@ -142,6 +212,40 @@ body
     
     border-right:10px solid blue; 
   }
+
+  /* Convenience classes - colors copied from Bootstrap */
+.arrow-primary {
+    border-bottom-color: #007bff !important;
+}
+
+.arrow-secondary {
+    border-bottom-color: #6c757d !important;
+}
+
+.arrow-success {
+    border-bottom-color: #28a745 !important;
+}
+
+.arrow-danger {
+    border-bottom-color: #dc3545 !important;
+}
+
+.arrow-warning {
+    border-bottom-color: #ffc107 !important;
+}
+
+.arrow-info {
+    border-bottom-color: #17a2b8 !important;
+}
+
+.arrow-light {
+    border-bottom-color: #f8f9fa !important;
+}
+
+.arrow-dark {
+    border-bottom-color: #343a40 !important;
+}
+
 
 /* DMcC 25/01/24:  Styling for allauth forms */
 
@@ -213,24 +317,6 @@ footer {
     margin: 1rem;
 }
 
-/* ------------------------------- bootstrap toasts */
-/* position message at top rhs of screen & assign high z-index: */
-.message-container {
-    position: fixed;
-    top: 72px;
-    right: 15px;
-    z-index: 99999999999;
-}
-
-.custom-toast {
-    overflow: visible;
-}
-
-.toast-capper {
-    height: 2px;
-}
-
-
 
 
 
@@ -254,7 +340,19 @@ footer {
     }
 
     /* DMcC 28/01/24 commenting out the below as am getting some whitespace on larger screens */
- /*   .header-container { 
+    /* DMcC 31/01/24 reinstated for testing */
+    .header-container { 
         padding-top: 164px;  
-    } */
+    } 
+}
+
+/* pad the top a bit when navbar is collapsed on mobile */
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 116px;
+    }
+
+    body {
+        height: calc(100vh - 116px);
+    }
 }

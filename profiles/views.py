@@ -26,11 +26,17 @@ def profile(request):
                     messages.success(request, 'Profile updated successfully')
                 else:
                     messages.error(request, 'Update failed. Please ensure the form is valid.')
+#        orders=profile.orders(all)
+        template = 'profiles/profile.html'
+        context = {
+            'form': form,
+            'orders': orders,
+            'on_profile_page': True,}
+        return render(request, template, context)   
     else:
         print(f"Profile ", profile, "NOT retrieved")
-        print(f"No profile retrieved")
-        messages.error(request, 'Update failed. Please ensure the form is valid.')
-        return(profile)      
+        messages.error(request, 'No profile retrieved. Please ensure the form is valid.')
+              
 
 
 

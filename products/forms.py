@@ -1,3 +1,5 @@
+#  DMcC 31/01/24 this will need more work to maintain products and display category 1-6 titles and range of values
+#
 
 from django import forms
 from .models import Product, Category
