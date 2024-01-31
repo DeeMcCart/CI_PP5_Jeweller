@@ -23,12 +23,12 @@ def add_to_basket(request, item_id):
         basket[item_id] += quantity
         print(f'Product {product.name} added to basket')
         time.sleep(1)
-        messages.success(request, f'Added another {product.name} to your bag')
+        messages.success(request, f'Added another {product.name} to your basket')
         time.sleep(1)
     else:
         basket[item_id] = quantity
         print(f'Product {product.name} added to basket')
-        messages.success(request, f'Added {product.name} to your bag')
+        messages.success(request, f'Added {product.name} to your basket')
 
     request.session['basket'] = basket
     return redirect(redirect_url)
@@ -38,6 +38,7 @@ def adjust_basket(request, item_id):
     """Adjust the quantity of the specified product to the specified amount"""
 
     product = get_object_or_404(Product, pk=item_id)
+    print(f"retrieved product ", product, " to adjust basket")
     quantity = int(request.POST.get('quantity'))
     basket = request.session.get('basket', {})
 
