@@ -5,6 +5,7 @@
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 All Products
             </a>
+            <!-- DMcC 31/01/24 the below tested and works OK, except tha the searches seem to be in descending order H->L rather than ascending?-->
             <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
                 <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
                 <a href="{% url 'products' %}?sort=rating&direction=desc" class="dropdown-item ">By Rating</a>
@@ -15,36 +16,47 @@
 
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                FilterCat1
+                Type
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                <a href="" class="dropdown-item">By Cat1Val1 e.g price</a>
-                <a href="" class="dropdown-item ">By Cat1Val2 e.g. rating</a>
-                <a href="" class="dropdown-item ">By Cat1Val3 e.g. Category</a>
+                <!-- DMcC 31/01/24: want to have configuratable cats something like this: -->
+                <!-- <a href="" class="dropdown-item">{{ catname.cat0 }}</a>  -->
+                <!-- <a href="" class="dropdown-item ">By Cat1Val2 e.g. rating</a> -->
+                <!-- <a href="" class="dropdown-item ">By Cat1Val3 e.g. Category</a> -->
+
+                <a href="{% url 'products' %}?category=ring" class="dropdown-item">Ring</a>
+                <a href="{% url 'products' %}?category=pendant,pendant (set)" class="dropdown-item">Pendant</a>
+                <a href="{% url 'products' %}?category=earrings,earrings (set)" class="dropdown-item">Earrings</a>
+                <a href="{% url 'products' %}?category=watch (gents),watch (ladies)" class="dropdown-item">Watch</a>
+                <a href="{% url 'products' %}?category=bangle" class="dropdown-item">Bangle</a>
+                <a href="{% url 'products' %}?category=brooch" class="dropdown-item">Brooch</a>
                 <a href="{% url 'products' %}" class="dropdown-item">All Items</a>
             </div>
         </li>
 
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="clothing-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                FilterCat2
+                <!-- FilterCat2 --> Precious Metal
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="clothing-link">
-                <a href="" class="dropdown-item">Cat2Val1</a>
-                <a href="" class="dropdown-item">Cat2Val2</a>
-                <a href="" class="dropdown-item">Cat3Val3</a>
-                <a href="" class="dropdown-item">All Clothing</a>
+            <div class="dropdown-menu border-0" aria-labelledby="metals-link">
+                <!-- -<a href="" class="dropdown-item">Cat2Val1</a> -->
+                <a href="{% url 'products' %}?cat1=gold,gold (yellow gold),gold (white gold),gold(rose gold)" class="dropdown-item">Gold</a>
+                <a href="{% url 'products' %}?cat1=silver" class="dropdown-item">Silver</a>
+                <a href="{% url 'products' %}?cat1=platinum" class="dropdown-item">Platinum</a>
+                <!-- <a href="" class="dropdown-item">Cat3Val3</a> -->
+                <a href="{% url 'products' %}" class="dropdown-item">All Items</a>
             </div>
         </li>
 
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="homeware-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                FilterCat3
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="stone-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Precious Stones
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="homeware-link">
-                <a href="" class="dropdown-item">Cat3Val1</a>
+            <div class="dropdown-menu border-0" aria-labelledby="stone-link">
+                <a href="{% url 'products' %}?cat2=diamond|cat3=diamond" class="dropdown-item">Diamond</a>
+                <a href="{% url 'products' %}?cat2=opal|cat3=opal" class="dropdown-item">Opal</a>
                 <a href="" class="dropdown-item">Cat3Val2</a>
-                <a href="" class="dropdown-item">All Homeware</a>
+                <a href="{% url 'products' %}" class="dropdown-item">All Items</a>
             </div>
         </li>
 

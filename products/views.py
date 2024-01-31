@@ -88,3 +88,9 @@ def add_product(request):
     }
 
     return render(request, template, context)
+
+def display_cat_names(request):
+    disp_names=Catname.filter(default_display=True).nice_name
+    print(f'Eligible catnames are ', disp_names)
+    return disp_names
+    
