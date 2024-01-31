@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, Cat1, Cat2, Cat3, Cat4, Cat5, Cat6, Catname
+from .models import Product, Category, Cat0, Cat1, Cat2, Cat3, Cat4, Cat5, Cat6, Catname
 
 # Register your models here.
 
@@ -35,6 +35,7 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Product)
 admin.site.register(Category)
 admin.site.register(Catname)
+admin.site.register(Cat0)
 admin.site.register(Cat1)
 admin.site.register(Cat2)
 admin.site.register(Cat3)

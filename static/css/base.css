@@ -313,7 +313,7 @@ footer {
 }
 
 .social-icon {
-    height: 1rem;
+    max-height: 1rem;
     margin: 1rem;
 }
 
@@ -340,10 +340,10 @@ footer {
     }
 
     /* DMcC 28/01/24 commenting out the below as am getting some whitespace on larger screens */
-    /* DMcC 31/01/24 reinstated for testing */
-    .header-container { 
+    /* DMcC 31/01/24 reinstated for testing - nope still huge whitespace */
+ /*   .header-container { 
         padding-top: 164px;  
-    } 
+    } */ 
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */

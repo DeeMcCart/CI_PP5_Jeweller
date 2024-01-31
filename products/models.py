@@ -41,6 +41,7 @@ class Catname(models.Model):
     cat_num = models.IntegerField()
     cat_name = models.CharField(max_length=15)
     nice_name = models.CharField(max_length=50, null=True, blank=True)
+    default_display = models.BooleanField(default=True)
 
     def __str__(self): 
         return f'{self.cat_num}------{self.cat_name}------{self.nice_name}'
@@ -48,12 +49,12 @@ class Catname(models.Model):
     def get_nice_name(self):
         return self.nice_name
 
-
 class Cat0(models.Model):
     cat0_value = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
         return f'{self.cat0_value}'
+
 
 class Cat1(models.Model):
     cat1_value = models.CharField(max_length=30, null=True, blank=True)
@@ -91,3 +92,4 @@ class Cat6(models.Model):
 
     def __str__(self):
         return f'{self.cat6_value}'
+
