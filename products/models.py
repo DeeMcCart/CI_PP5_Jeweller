@@ -32,9 +32,10 @@ class Product(models.Model):
     cat4_value = models.ForeignKey('Cat4', null=True, blank=True, on_delete=models.SET_NULL)
     cat5_value = models.ForeignKey('Cat5', null=True, blank=True, on_delete=models.SET_NULL)
     cat6_value = models.ForeignKey('Cat6', null=True, blank=True, on_delete=models.SET_NULL)
+    
     def __str__(self):
-        return f'{self.category}.....{self.name}.....Categories: {self.cat0_value}; {self.cat1_value}; {self.cat2_value}; {self.cat3_value}; {self.cat4_value}; {self.cat5_value}; {self.cat6_value}'
-        
+        return f'{self.sku} {self.category}.....{self.name}.....Categories: {self.cat0_value}; {self.cat1_value}; {self.cat2_value}; {self.cat3_value}; {self.cat4_value}; {self.cat5_value}; {self.cat6_value}'
+        ordering(self.sku)      
 
 class Catname(models.Model):
     cat_num = models.IntegerField()
