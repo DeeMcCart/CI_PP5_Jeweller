@@ -128,6 +128,9 @@
 	</script>
     
     <script type="text/javascript">
+        // Use this chappie to send urls through to the view functions
+        // the urls are built here acording to sorting and searching criteria
+        // and then are sent through to the all_Products (?) function  in the Products view
         $('#sort-selector').change(function() {
             var selector = $(this);
             var currentUrl = new URL(window.location);
