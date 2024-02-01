@@ -3,16 +3,17 @@ from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
 
-from .models import Product, Category
+from .models import Product, Category, Cat1, Cat2, Cat3, Cat4
 from .forms import ProductForm
 
 # Create your views here.
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
+    """ DMcC 01.02.24 Extended to allow searching by new cat1..cat4 values - unsuccessful"""
 
     products = Product.objects.all()
-    print(f"products returned are: ", products)
+    
     query = None
     categories = None
     sort = None
@@ -38,6 +39,7 @@ def all_products(request):
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
 
+       
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -46,6 +48,8 @@ def all_products(request):
             
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
+
+            
 
     current_sorting = f'{sort}_{direction}'
 

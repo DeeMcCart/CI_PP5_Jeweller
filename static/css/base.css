@@ -21,7 +21,7 @@ body
     height: calc(100vh - 164px);
     color: #555;
     font-family: 'Lato';
-    filter: grayscale(0.7);
+   /* filter: grayscale(0.7); */
 }
 
 /* background::before DMcC retained 31/01/24 even though different to walkthrough styling */

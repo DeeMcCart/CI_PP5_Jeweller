@@ -35,7 +35,7 @@ class Product(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.sku} {self.category}.....{self.name}.....Categories: {self.cat0_value}; {self.cat1_value}; {self.cat2_value}; {self.cat3_value}; {self.cat4_value}; {self.cat5_value}; {self.cat6_value};'
+        return f'{self.sku} {self.category}.....{self.name}.....Categories: {self.cat0_value}; {self.cat1_value}; {self.cat2_value}; {self.cat3_value}; {self.cat4_value}; {self.cat5_value}; {self.cat6_value}; {self.created_on};'
         ordering(self.sku)      
 
 class Catname(models.Model):
@@ -54,14 +54,14 @@ class Cat0(models.Model):
     cat0_value = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.cat0_value}'
+        return {self.cat0_value}
 
 
 class Cat1(models.Model):
     cat1_value = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.cat1_value}'
+        return {self.cat1_value}
         
 class Cat2(models.Model):
     cat2_value = models.CharField(max_length=30, null=True, blank=True)
