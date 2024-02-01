@@ -58,6 +58,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
+                                                        <!-- Button to decrement quantity in basket -->
                                                         <button class="decrement-qty btn btn-sm btn-black rounded-0" 
                                                             data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
                                                             <span>
@@ -137,18 +138,85 @@
 
 {% block postloadjs %}
 {{ block.super }}
-{% include 'products/includes/quantity_input_script.html' %}
-{% include '../products/templates/product/includes/quantity_input_script.html' %}
 
+<!-- event listener for scrolling to top of page when btt-link (arrow button) is clicked -->
+<script type="text/javascript">
+    $('.btt-link').click(function(e) {
+        window.scrollTo(0,0)
+    })
+</script>
+
+
+<!-- DMcC 1/02/24 directly include quantity_input_script functionality below as doesnt seem to be activating -->
+<!-- this script activates the decrement / increment arrows under the item's basket quantity -->
+<!-- oops I think I see the problem, I had already edited this to remove size parameters??? -->
+<!-- Moving this script directly into here as can't understand why its sitting as a html file under the product/.../include -->
+<!-- rather than within the basket function -->
+<script type="text/javascript">
+
+    // Disable +/- buttons outside 1-99 range
+    function handleEnableDisable(itemId) {
+        var currentValue = parseInt($(`#id_qty_${itemId}`).val());
+        var minusDisabled = currentValue < 2;
+        var plusDisabled = currentValue > 98;
+        $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
+        $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
+    }
+
+    // Ensure proper enabling/disabling of all inputs on page load
+    var allQtyInputs = $('.qty_input');
+    for(var i = 0; i < allQtyInputs.length; i++){
+        var itemId = $(allQtyInputs[i]).data('item_id');
+        handleEnableDisable(itemId);
+    }
+
+    // Check enable/disable every time the input is changed
+    $('.qty_input').change(function() {
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    });
+
+    // Increment quantity
+    $('.increment-qty').click(function(e) {
+       e.preventDefault();
+       var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+       var currentValue = parseInt($(closestInput).val());
+       $(closestInput).val(currentValue + 1);
+       var itemId = $(this).data('item_id');
+       handleEnableDisable(itemId);
+    });
+
+    // Decrement quantity
+    $('.decrement-qty').click(function(e) {
+       e.preventDefault();
+       var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+       var currentValue = parseInt($(closestInput).val());
+       $(closestInput).val(currentValue - 1);
+       var itemId = $(this).data('item_id');
+       handleEnableDisable(itemId);
+    });
+</script>
+
+
+
+<!-- end qty_input_script js coding -->
+<!-- DMcC 01/02/24 this shitey function doesnt seem to be working -->
+<!-- pressing increment or decrement actually processes an update -->
 <script type="text/javascript">
     // Update quantity on click
+    // event listner for what fuk=cking link
     $('.update-link').click(function(e) {
+        console.log('Update button pressed!!')
+        // in the context below:
+        // this = current element (update-link)
+        // .prev selects previous sibling element which has class update-form 
         var form = $(this).prev('.update-form');
         form.submit();
     })
 
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
+        console.log('About to remove item from baseket!!')
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];
         console.log(itemId)
@@ -163,3 +231,6 @@
     })
 </script>
 {% endblock %}
+
+
+

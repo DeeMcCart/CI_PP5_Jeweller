@@ -33,10 +33,11 @@ class Product(models.Model):
     cat5_value = models.ForeignKey('Cat5', null=True, blank=True, on_delete=models.SET_NULL)
     cat6_value = models.ForeignKey('Cat6', null=True, blank=True, on_delete=models.SET_NULL)
     created_on = models.DateTimeField(auto_now_add=True)
+    dummy_field = models.CharField(max_length=10, null=True, blank = True)
 
     def __str__(self):
-        return f'{self.sku} {self.category}.....{self.name}.....Categories: {self.cat0_value}; {self.cat1_value}; {self.cat2_value}; {self.cat3_value}; {self.cat4_value}; {self.cat5_value}; {self.cat6_value}; {self.created_on};'
-        ordering(self.sku)      
+        return self.name
+
 
 class Catname(models.Model):
     cat_num = models.IntegerField()
@@ -54,14 +55,14 @@ class Cat0(models.Model):
     cat0_value = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
-        return {self.cat0_value}
+        return f'{self.cat0_value}'
 
 
 class Cat1(models.Model):
     cat1_value = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
-        return {self.cat1_value}
+        return f'{self.cat1_value}'
         
 class Cat2(models.Model):
     cat2_value = models.CharField(max_length=30, null=True, blank=True)

@@ -89,23 +89,23 @@ class OrderLineItem(models.Model):
         return f'SKU {self.product.sku} on order {self.order.order_number} line number {self.line_number}'
 
     def _generate_line_number(order):
-            """
-            Generate a next number for the line# for a givve order, based on increments of 10
-            from the last order line saved for this order, and using it
-            Else, if no orders on table, then use the  FIRST_LINE_NUMBER from settings
-            """
-            print("In function generate_Line_number for order ", order)
-                       
-            if ( OrderLineItem.objects.filter_by(order).order_by('line_number').last()):
-                max_line_number = OrderLineItem.objects.filter_by(order).order_by('line_number').last().line_number
-                print(f"highest line # on this order is ", max_line_number)
-                next_line_number = int(max_order_number) + 10
-                print(f"next line # on this order is ", next_line_number)
-                
-            else:
-                next_line_number = settings.FIRST_LINE_NUMBER
-                
-            return str(next_line_number)
+        """
+        Generate a next number for the line# for a givve order, based on increments of 10
+        from the last order line saved for this order, and using it
+        Else, if no orders on table, then use the  FIRST_LINE_NUMBER from settings
+        """
+        print("In function generate_Line_number for order ", order)
+                    
+        if ( OrderLineItem.objects.filter_by(order).order_by('line_number').last()):
+            max_line_number = OrderLineItem.objects.filter_by(order).order_by('line_number').last().line_number
+            print(f"highest line # on this order is ", max_line_number)
+            next_line_number = int(max_order_number) + 10
+            print(f"next line # on this order is ", next_line_number)
+            
+        else:
+            next_line_number = settings.FIRST_LINE_NUMBER
+            
+        return str(next_line_number)
 
 class OrderAddress(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_address")

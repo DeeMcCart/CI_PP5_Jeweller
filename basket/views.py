@@ -6,7 +6,7 @@ import time
 # Create your views here.
 
 def view_basket(request):
-    """ A view that renders the bag contents page """
+    """ A view that renders the basket contents page """
 
     return render(request, 'basket/basket.html')
 
@@ -64,7 +64,8 @@ def remove_from_basket(request, item_id):
 
         basket.pop(item_id)
         messages.success(request, f'{product.name} removed from your basket')
-
+        # DMcC 01/02/24 note - seems to reach this point but not to re-dispay 
+        
         request.session['basket'] = basket
         return HttpResponse(status=200)
 

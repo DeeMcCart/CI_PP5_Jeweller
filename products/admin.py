@@ -13,9 +13,10 @@ class CatnameAdmin(admin.ModelAdmin):
     list_display = (
         'cat_num',
         'cat_name',
-        'cat_nice_name',
+        'nice_name',
         )
-    ordering='cat_num'
+
+    ordering=('cat_num',)
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
@@ -32,13 +33,13 @@ class ProductAdmin(admin.ModelAdmin):
 
     ordering = ('sku',)
 
-admin.site.register(Product,)
-admin.site.register(Category,)
-admin.site.register(Catname,)
-admin.site.register(Cat0,)
-admin.site.register(Cat1,)
-admin.site.register(Cat2,)
-admin.site.register(Cat3,)
-admin.site.register(Cat4,)
-admin.site.register(Cat5,)
-admin.site.register(Cat6,)
+admin.site.register(Product, ProductAdmin)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Catname, CatnameAdmin)
+admin.site.register(Cat0)
+admin.site.register(Cat1)
+admin.site.register(Cat2)
+admin.site.register(Cat3)
+admin.site.register(Cat4)
+admin.site.register(Cat5)
+admin.site.register(Cat6)
