@@ -10,7 +10,7 @@ from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from basket.contexts import basket_contents
 
-#  import stripe
+import stripe
 import json
 
 
