@@ -54,6 +54,11 @@ class UserAddress(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+    def __str__(self):
+        return f'{self.user}__{self.address_type}__{self.address_id}__{self.address_label}__{self.address1}__{self.address2}__{self.postcode}__{self.created_on};'
+        ordering(self.user, self.address_type)      
+
 
     class Meta:
          """ returns addresses sorted on user then address_id, then  as tie-breaker """

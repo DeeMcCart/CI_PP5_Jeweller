@@ -85,3 +85,24 @@ class OrderLineItem(models.Model):
 
     def __str__(self):
         return f'SKU {self.product.sku} on order {self.order.order_number}'
+
+class OrderAddress(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_address")
+    address_type =  models.CharField(max_length=4, null=False, editable=True, default='BILL')
+    address_id = models.CharField(max_length=4, null=False, editable=False)
+    address_label = models.CharField(max_length=25, null=True, blank=True)
+    address1 = models.CharField(max_length=80, null=True, blank=True)
+    address2 = models.CharField(max_length=80, null=True, blank=True)
+    town_or_city = models.CharField(max_length=40, null=True, blank=True)
+    county = models.CharField(max_length=80, null=True, blank=True)
+    postcode = models.CharField(max_length=20, null=True, blank=True)
+    country = CountryField(blank_label='Country *', null=True, blank=True) 
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.order}__{self.address_type}__{self.address_id}__{self.address_label}__{self.address1}__{self.address2}__{self.postcode}__{self.created_on};'
+        ordering(self.order, self.address_type) 
+
+    class Meta:
+         """ returns addresses sorted on order# then address_id, then created_on as tie-breaker """
+         ordering = ['order', 'address_id', 'created_on']        
