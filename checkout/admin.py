@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import Order, OrderLineItem
 
 # Register your models here.
-from .models import Order, OrderLineItem
+from .models import Order, OrderLineItem, OrderAddress
 from profiles.models import UserProfile
 
 
@@ -10,10 +9,11 @@ class OrderLineItemAdminInline(admin.TabularInline):
     model = OrderLineItem
     readonly_fields = ('lineitem_total',)
 
-
+class OrderAddressAdminInLine(admin.TabularInline):
+    model = OrderAddress
 
 class OrderAdmin(admin.ModelAdmin):
-    inlines = (OrderLineItemAdminInline,)
+    inlines = (OrderLineItemAdminInline, OrderAddressAdminInLine)
 
     readonly_fields = ('order_number', 'date',
                        'delivery_cost', 'order_total',
@@ -31,4 +31,4 @@ class OrderAdmin(admin.ModelAdmin):
 
     ordering = ('-date',)
 
-admin.site.register(Order, OrderAdmin)
+admin.site.register(Order, OrderAdmin, )

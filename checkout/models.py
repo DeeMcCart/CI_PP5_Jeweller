@@ -18,7 +18,7 @@ class Order(models.Model):
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
-    county = models.CharField(ma7x_length=80, null=True, blank=True)
+    county = models.CharField(max_length=80, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
@@ -70,21 +70,23 @@ class Order(models.Model):
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
-    order_line = models.IntegerField(default=10) 
+    line_number = models.IntegerField(default=10) 
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
-    quantity = models.IntegerField(null=False, blank=False, default=0)
+    category = models.CharField(max_length=30, null=True, blank=True)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
 
     def save(self, *args, **kwargs):
         """
-        Override the original save method to set the lineitem total
+        Override the original save method to set the lineitem total, set the line number,
         and update the order total.
         """
         self.lineitem_total = self.product.price * self.quantity
+        if not self.line_number:
+            self.order_line = self._generate_line_number()
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'SKU {self.product.sku} on order {self.order.order_number}'
+        return f'SKU {self.product.sku} on order {self.order.order_number} line number {self.line_number}'
 
     def _generate_line_number(order):
             """
@@ -94,14 +96,14 @@ class OrderLineItem(models.Model):
             """
             print("In function generate_Line_number for order ", order)
                        
-            if ( OrderLineItem.objects.filter_by(order).order_by('order_line').last()):
-                max_line_number = OrderLineItem.objects.filter_by(order).order_by('order_number').last().order_number
+            if ( OrderLineItem.objects.filter_by(order).order_by('line_number').last()):
+                max_line_number = OrderLineItem.objects.filter_by(order).order_by('line_number').last().line_number
                 print(f"highest line # on this order is ", max_line_number)
                 next_line_number = int(max_order_number) + 10
                 print(f"next line # on this order is ", next_line_number)
                 
             else:
-                next_order_number = settings.FIRST_LINE_NUMBER
+                next_line_number = settings.FIRST_LINE_NUMBER
                 
             return str(next_line_number)
 

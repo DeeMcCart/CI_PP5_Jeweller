@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Category(models.Model):
-    name = models.CharField(max_length=254)
+    name = models.CharField(max_length=30)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
     class Meta:
@@ -35,7 +35,7 @@ class Product(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.sku} {self.category}.....{self.name}.....Categories: {self.cat0_value}; {self.cat1_value}; {self.cat2_value}; {self.cat3_value}; {self.cat4_value}; {self.cat5_value}; {self.cat6_value}; {self.created_on};'
+        return f'{self.sku} {self.category}.....{self.name}.....Categories: {self.cat0_value}; {self.cat1_value}; {self.cat2_value}; {self.cat3_value}; {self.cat4_value}; {self.cat5_value}; {self.cat6_value};'
         ordering(self.sku)      
 
 class Catname(models.Model):
