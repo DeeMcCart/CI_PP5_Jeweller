@@ -13,8 +13,9 @@ class UserProfile(models.Model):
     """ UserProfile class extends allauth User models
     includes profile_image, can be linked to delivery addresses 
     and order history """
+    # DMcC 05/02/24 troubleshooting user profile creation using custom jeweller/forms.py/CustomerSignupForm
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number1 = models.CharField(max_length=15, null=True, blank=True)
+    phone_number1 = models.CharField(max_length=15, null=True, blank=True, default='08X1111111')
     phone_number2 = models.CharField(max_length=15, null=True, blank=True)
     profile_image = models.ImageField(upload_to='images', default='placeholder.png')
     newsletter_signup = models.BooleanField(default=False)
@@ -32,7 +33,8 @@ class UserProfile(models.Model):
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
-    Create or update the user profile    """
+    Create or update the user profile    
+    """
 
     if created:
         UserProfile.objects.create(user=instance)

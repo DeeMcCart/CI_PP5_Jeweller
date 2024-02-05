@@ -44,17 +44,30 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID=1
 
+# ACCOUT_FORMS: Used to override the builtin forms. (Otherwise forms are found in templates/allauth/account Defaults to:
 ACCOUNT_FORMS = {
 'signup': 'jeweller.forms.CustomSignupForm',
 }
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-ACCOUNT_VERIFICATION_METHOD='username_email'
+# DMcC 05/02/24 Think ACCOUNT_VERIRFICAION_METHOD now replaced by 
+ACCOUNT_VERIFICATION_METHOD="username_email"
+# DMcC ACCOUNT_AUTHENTICATION_METHOD:  specifies login method to use -userame/email/either (AllAuth 0.60.0)
+ACCOUNT_AUTHENTICATION_METHOD="username_email"
+# The user is required to hand over an email address when signing up.
 ACCOUNT_EMAIL_REQUIRED=True
-ACCOUNT_EMAIL_VERIFICATION='None'
+# Determines the email verification method during signup – choose one of mandatory/ optional/none
+ACCOUNT_EMAIL_VERIFICATION="none"
+# When signing up, let the user type in their email address twice to avoid typo’s.
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE=False
+# When signing up, force the user to type in their password twice to avoid typo’s.
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE=False
+
+# An integer specifying the minimum allowed length of a username.
 ACCOUNT_USERNAME_MIN_LENGTH=4
 LOGIN_URL='/accounts/login/'
 LOGIN_REDIRECT_URL='/'
+# Controls the life time of the session. Set to None to ask the user (“Remember me?”), False to not remember, and True to always remember.
+ACCOUNT_SESSION_REMEMBER=None
 
 MESSAGE_STORAGE='django.contrib.messages.storage.session.SessionStorage'
 
@@ -84,6 +97,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
     'django.contrib.sites',
     'cloudinary',
     'cloudinary_storage',
@@ -116,6 +130,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    
+    # Add the account middleware:
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'jeweller.urls'
