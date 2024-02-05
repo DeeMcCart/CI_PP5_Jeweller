@@ -51,6 +51,7 @@ def checkout(request):
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
+            'order_total': 999,
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
@@ -63,6 +64,8 @@ def checkout(request):
                             order=order,
                             product=product,
                             quantity=item_data,
+                            price = product.price,
+                            lineitem_total = item_data,
                         )
                         order_line_item.save()
                     else:
@@ -153,7 +156,7 @@ def checkout_success(request, order_number):
 
 
     messages.success(request, f'Order successfully processed! \
-        Your order number is {order_number}. A confirmation \
+        Your order number is {order_number}, total value {order.order_total}. A confirmation \
         email will be sent to {order.email}.')
 
     if 'basket' in request.session:

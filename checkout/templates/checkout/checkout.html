@@ -276,10 +276,11 @@
                         if (result.paymentIntent.status === 'succeeded') {
                             // show a success message to your customer
                             // There's a risk of the customer closing the window before callback
-                            // execution.  Set up a webhook or plugin to listeen for the
-                            // payment_intent.succeeded event that handles any business criticql
+                            // execution.  Set up a webhook or plugin to listen for the
+                            // payment_intent.succeeded event that handles any business critical
                             // post-payment actions.
                             form.submit();
+                            // give the user a message to tell them the payment has succeeded and the total value? //
                         }
                     }
                 });

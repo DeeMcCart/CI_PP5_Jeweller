@@ -17,6 +17,8 @@ def basket_contents(request):
             'item_id': item_id,
             'quantity': quantity,
             'product': product,
+            'price': product.price,
+            'lineitem_total': quantity * product.price, 
         })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
