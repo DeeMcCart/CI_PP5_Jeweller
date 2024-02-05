@@ -68,6 +68,7 @@ ALLOWED_HOSTS = ['8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io',
                 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io', 
+                        'https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io',    
                         'https://jeweller-bd1caeb15bbd.herokuapp.com/'
                 ]
 
