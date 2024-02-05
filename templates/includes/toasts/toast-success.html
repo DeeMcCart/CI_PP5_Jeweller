@@ -22,22 +22,21 @@
                         <span class="float-right">€{{ total|floatformat:2 }}</span>
                     </p></strong>
                     {% if free_delivery_delta > 0 %}
+                    <!-- Need some extra items in shopping basket to be eligible for free delivery -->
                     <p class="mb-0 p-2 bg-warning shadow-sm text-black text-center">
                         Spend <strong>€{{ free_delivery_delta }}</strong> more to get free delivery!
                     </p>
                     {% endif %}
-
-                </div>
-            </div>
+                    <!-- still showing grand total therefore eligible for checkout -->
+                    <a href="{% url 'view_basket' %}" class="btn btn-black btn-block rounded-0">
+                        <span class="text-uppercase">Go To Secure Checkout</span>
+                        <span class="icon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </a>
+               
+                </div> <!-- end class col-->
+            </div> <!-- end class row -->
         {% endif %}
-        <div class="row">
-            <a href="{% url 'view_basket' %}" class="btn btn-black btn-block rounded-0">
-                <span class="text-uppercase">Go To Secure Checkout</span>
-                <span class="icon">
-                    <i class="fas fa-lock"></i>
-                </span>
-            </a>
-        </div>
-        
-    </div>
-</div>
+    </div> <!-- end div "toast-body bg-white" -->
+</div> <!-- end div "toast custom-toast rounded-0 border-top-0" -->
