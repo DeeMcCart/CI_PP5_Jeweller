@@ -268,20 +268,23 @@ Written in the format 'As a **role** I want to **action** to achieve **desired o
 
 ## Agile
 An Agile approach was followed in plannning this project.  Github Issues and Projects were used to track project work as follows:
-* Sprints - The project was organised into 5 sprints/iterations Sprint1..Sprint5, each of one week in duration.
-* EPICS - created to track the various streams of work; Stored as github issues (to allow a task hierarchy) AND as Issue custom fields (to allow for analysis in github insights).  Typically include quite a few sub-issues.  XX EPICs created for this proect
-* Issues - created to represent units of work.  Where issue= User Story then the content is structured using a template, which requires a title, statement in the form of As a **role** I want to **action** in order to **benefit**.
-Using Github/ Gitpod, it is possible to reference an issue # within a commit message, this is automatically appended to the issue.  Github also supports multi-media comments to track progress on an issue,  this was used for incorporating screenprints at 'review' stage as **proof** of work done before closing out an issue. YY User Story/Task issues were created for this project.
+* Sprints - The project was organised into 5 one-week sprints/iterations Sprint1..Sprint5.
+* EPICS - created to track the various streams of work; Stored as github issues (to allow a task hierarchy) AND as Issue custom fields (to allow for analysis in github insights).  Typically include quite a few sub-issues.  
+* 6-7 EPICs created for this proect
+* Issues - created to represent items of work.  Issues = User Stories are apply a template, which requires a title, statement in the form of As a **role** I want to **action** in order to **benefit**, Pre-requisites and Tasks.
+* Gitpod commit messages can reference #XX, this links to issue XX.  
+* Github allows multi-media comments per issue,  used for screenprint **proofs** of tsk completion. 
+* YY User Story/Task issues were created for this project.
 * Bugs - project issues were used to track bugs, an individual template was created for bug data capture.
-* Kanban boards - implemented with 4 status buckets - backlog, in-progress, review, done.  This was useful as 'review' means that I could assess/document  completion before finalising an issue as 'done'.
-* Labels
-* Project fields: Prioritities
-* Project fields: Sizing
-* Project fields: Estimated Story Points (time); actual time   
+* Kanban boards - 4 status buckets - backlog, in-progress, review, done.  
+* Labels - Used to track MoSCoW prioritisation
+* Project fields: Prioritities P0 = top triority, P1, P2
+* Project fields: T-shirt Sizing used when grooming backlog at end each sprint
+* Project fields: Estimated Story Points (time); actual SPs - used for end-of-spring analysis   
 
 
 ### Following an Agile process during development:
-* One precept which was difficult to master was respecting the timeboxing of each iteration.  Attempts to 'just finish' a task by extending the iteration by a day or two, needed to be curbed.  Instead, I had to (will have to) train myself to end the sprint, then assess which work had been completed or not.
+* Timeboxing each Sprint is challenge.  Attempts to 'just finish' a task by extending the iteration by a day or two, needed to be curbed.  Instead, I had to (will have to) train myself to end the sprint, then assess which work had been completed or not.
 * Story points present another challenge.  A very natural interpretation of story points is to assign them a time value (rather than an 'effort' value).  So, at the outset, the most natural approach felt like assigning each task an estimated duration, and reflecting on story points as hours.  This allowed me to capacity plan the first couple of sprints/ iterations based on the time I had available..... I await to see if I will continue this as the project progresses, or whether I move to a more fluid interpretation of SPs.
 
    
@@ -364,11 +367,16 @@ At the end of each sprint a formal process was followed:
 
 I added the last task, readme updates, based on learning from my previous Code Institute PP4 project, where I'd invested so much effort and detail into the Agile record keeping that I faced an impossible task to duplicate the content into READme at project completion.  So the intention is to keep it Agile with small, incremental updates to the Readme, as well as the code!
 
-Burndown charts were maintained over the 5 prooject sprints.  These can be seen on the 
-Sprint1 Retrospective: Issue #
-Sprint2 Retrospective: Issue #
+Burndown charts were maintained over the 5 project sprints.  These can be seen on the:
+
+Sprint1 Retrospective: Issue # https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/12
+
+Sprint2 Retrospective: Issue # https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/38
+
 Sprint3 Retrospective: Issue # 
+
 Sprint4 Retrospective: Issue #
+
 Sprint5 Retrospective: Issue #
 
 As each weekly sprint progressed, I became more fluent with the insights/ burndown charts and started to develop to include actual time logged, a useful metric
@@ -394,6 +402,7 @@ The tabular view of projects was very useful at the backlog grooming stage, as i
 <img src="./jeweller/docs/readme_images/agile-issues-tabular-view.png">
 </details>
 
+
 ### Commit Messages
 The XXXX convention was adopted this time around for commit messsages, as prviously submitted projects have highlighted small inconsistencies.
 Where possible the Kanban issue # is referenced, this links the commit message to the issue on the Kanban board.
@@ -413,6 +422,12 @@ Two main Kanban views were used, one for EPICs only, and one for Issues.  See:
 
 ![Projects - Rich Kanban board](./jeweller/docs/readme_images/agile-issues-kanban-view-sp-epic-num-issues-per-col.png?raw=true "Improved kanban board with lots of information")
 
+Viewing by EPIC was useful for an overall view of the project: https://github.com/users/DeeMcCart/projects/5/views/7
+
+Each EPIC contains a drill down into its 'child tasks', e.g. https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/16
+
+Example 'child' task: https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/17
+
  
 ### Agile Observations and learnings
 * Improvement from PP4 in use of EPICs defined as Issues, which allows a hierarchy of issues to be built
@@ -424,7 +439,37 @@ Two main Kanban views were used, one for EPICs only, and one for Issues.  See:
 * This project is quite comprehensive and contains a LOT of user stories!!!  In practice, as part of each end-of-sprint ceremony, I created Issues for the user stories to be done in that sprint.  That helped as it just meant the KanBan board didnt become overwhelming.
   
 ## Features 
-Implemented features are fully documented in the Features readme, located at  
+
+
+F01  Clarity of purpose and navigation
+Screenprint - Landing page - clear call-to-action
+Screenprint - navbar - consistent
+
+Meets requirements:
+* FTU_01  As a **First-Time User** I want to **quickly understand the site purpose** so I **can decide whether to spend time exploring and discovering the site**
+* FTU_02  As a **First-Time User** I want to **easily navigate the site** so I **don't become frustrated and leave**
+
+F02  Consistent use of logos, message styles and pop-ups
+Screenprints:  Toast Messaging
+
+Meets requirements:
+* FTU_03 As a **First-Time User** I want to **receive feedback at each step on the site** so that I **understand what I am doing, and, if I'm in a multi-step process, I understand how far along I am in the processs**
+
+F03 Responsiveness:
+Meets requirement:  * FTU_04 As a **First-Time User** I want to **access this site on a device of my choosing (mobile, tablet, laptop, desktop)** so that I can **access by a method and at a time that is convenient and accessible to me**
+
+F04 Ability to navigate the site without login
+
+* FTU_05 As a **First-Time User** I want to **navigate the site without mandatory login** so **I can discover site features before deciding whether to commit to using site**
+* SOXX Want to use the site as a shop window and welcome browsers who will complete the purchase pysically at the shop
+F05
+F06
+F07
+F08
+F09
+F10
+F11
+F12  
 
 ### Features in Scope 
 
@@ -654,6 +699,12 @@ Multiple sources were used in assembling this site.
 * Simone XXXX jeweller website was a particular inspiration
 
 ### Product images and descriptions
+
+### References
+* https://docs.allauth.org/en/latest/account/advanced.html extending the AllAuth User model
+* https://docs.djangoproject.com/en/dev/topics/auth/customizing/ extending the AllAuth User model
+* Django 4 by Example: Build Powerful and Reliable web Applications from Scratch, Author:  XXXXXX
+
 
 ### Agile implementation in github
 * https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-text-and-number-fields#adding-a-number-field to understand how story points might be represented in GitHub
