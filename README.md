@@ -203,24 +203,44 @@ Written in the format 'As a **role** I want to **action** to achieve **desired o
 
 * FTU_28 (Future): As a **First-Time User** I would like to  **make an appointment for engagement rings** in order to **elevate a high value buying decision**
 
-* FTU_XX As a first-time user I about what this site does, and want to quickly understand this site's relevance to me, so I don't waste my time on useless engagement 
-* FTU_XX As a first time user I would like to be able to easily navigate the site and quickly learn its functionality
-* FTU_XX As a first time user I would like to be able to easily navigate the site and quickly learn its functionality 
-* FTU_XX  As a first-time user I would like to undertand the role of user feedback and user reviews 'X users found this useful or relevant',
-* FTU_XX As a first-time user I want clear, timely and unambiguous feedback and interaction
-* FTU_XX As a first-time user I expect links and functions that work as expected
-  
+
 ### Returning User - Additional Goals
-* RU_01 As a returning user I want to create a user profile so that I can personalise my site experience (profile image, bookmarks, actions)
-* RU_02 As a returning user I want to create product reviews & ratings so I can feel powerful
-* 
+* RU_01 As a **Returning User** I want to **quickly navigate to the Products Page** to **focus on items i'm most intersted in**
+* RU_02 As a **Returning User** I want to **filter products by type, type-of-metal, type-of-stone** so I can **see the products I am most interested in**
+* RU_03 As a **Returning User** I want to **sort products** by **date added** so i can see what is new on the site
+* RU_04 As a **Returning User** I would like **to receive prompts of upcoming celebration days and associated promotions** 
+* RU_05 As a **Returning User** I would like to **be prompted with affinity products, based on on what I've previously purchased** so I can **make coordinated buying decisions**
+* RU_06 As a **Returning User** I want to **view my order status** so I **know if the order has been shipped**
+* RU_07 As a **Returning User** I want to **raise product enquiries on the site** so **I can save time rather than phonning**
+* RU_08 As a **Returning User** I would like to **receive an emailed newsletter periodically** so **I am alerted to promotions**
+* RU_09 As a **Returning User** I want to **add or update contact details and preferences (email, phone number)** on my profile so **Jeweller can contact me in a way that suits me**
+* RU_10 As a **Returning User** I want to **add an image of my choosing to my profile** to **personalise my experience** #45 
+* RU_11 As **Returning User** I want to **assign delivery address(es) to my account** to **streamline the ordering process**
+* RU_12 As a **Returning User** I would like to **choose a saved delivery address when placing an order** to **streamline the ordering process**
+* RU_13 As a **Returning User** I would like to **create Product Reviews and ratings** to **increase interaction with the site and help to guide other purchasers**
+ 
 ### Site owner/moderator Goals
-* SO_01 As site owner I want to showcase my Jewellery business professionally and align with my business values and processes
-* SO_02 As site owner I want to provide straightforward, intuitive, consistent website navigation, (using graphical navigation where possible, even where the destination leads to text-based informataion)
-* SO_03 As site owner I want to provide a website, which meets current programming, performance and accessibility standards (html, css, javascript, responsive, accessibility, performance)
-* SO_04 As site owner I want to provide an opportunity for the user to provide feedback, including reporting issues, or suggesting improvements to the Financial Planner site
-* SO-05 As site owner I want to acknowledge to the user that their feedback has been received
-* SO-06
+* SO_01 As **System Owner** I want to **provide a system that is easy to use** to **encourage users to visit and return to the site** #36 
+* SO_02 As **System Owner** I want to **provide responsive web pages** to **encourage users to use the site across multiple devices**
+* SO_03 As **System Owner** I want to **include social links** to **increase user engagement with site**
+* SO_04 As **System Owner** I want to **use the site as a shop window** to **facilitate unregistered users who will complete purchases in-person**
+* SO_05 As **System Owner** I want to **permit guest checkout** to **facilitate unregistered users to complete purchases on the site**
+* SO_06 As **System Owner** I want to **track orders raised** to **ensure they progress through the shipping lifecycle**
+* SO_07 As **System Owner** I want to **link to an post tracking** to **provide delivery status to customers**
+* SO_08 As **System Owner** I want to **create and maintain product catgories** to **benefit**
+* SO_09 As **System Owner** I want to **create and maintain items** to **benefit**
+* SO_10 As **System Owner** I want to **identify make-to-order/custom products as well as off-the-shelf** products to **advertise both business streams**
+* SO_11 As **System Owner** I want to **create and maintain item affinities** to **benefit**
+* SO_12 As **System Owner** I want to **create and maintain time-based marketing promotions** to **benefit**
+* SO_13 As **System Owner** I want to **link products product categories to marketing promotions** to **benefit**
+* SO_14 As **System Owner** I want to **provide a robust payment interface** so as to **maintain trust and integrity and minimse payment queries**
+
+* SO_XX As site owner I want to showcase my Jewellery business professionally and align with my business values and processes
+* SO_XX As site owner I want to provide straightforward, intuitive, consistent website navigation, (using graphical navigation where possible, even where the destination leads to text-based informataion)
+* SO_XX As site owner I want to provide a website, which meets current programming, performance and accessibility standards (html, css, javascript, responsive, accessibility, performance)
+* SO_XX As site owner I want to provide an opportunity for the user to provide feedback, including reporting issues, or suggesting improvements to the Financial Planner site
+* SO-XX As site owner I want to acknowledge to the user that their feedback has been received
+
   
 ### Other stakeholder Goals
 * OT_01
