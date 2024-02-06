@@ -54,10 +54,12 @@ form.addEventListener('submit', function(ev) {
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
 
+    // determine if the user has requested to save address info to profile    
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
     // From using {% csrf_token %} in the form
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     // pass this information to the view cache_checkout_data
+    // along with the client secret for the payment intent
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,
@@ -66,7 +68,12 @@ form.addEventListener('submit', function(ev) {
     var url = '/checkout/cache_checkout_data/';
 
     // Post the above data to the URL
-    // wait for a response that the call was done
+    // wait for a response that the call was done before calling payment intent method
+    //
+    // DMcC 06/02/24 note that the billing_details sent to Stripe below 
+    // are the details entered on the checkout.html form
+    // and this interface has the capacity for different billing
+    // and shipping addresses
     $.post(url, postData).done(function () {
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
@@ -125,6 +132,7 @@ form.addEventListener('submit', function(ev) {
                 }
             }
         });
+    // fail function kicks in if view sends a 400 bad request response    
     }).fail(function () {
         // just reload the page, the error will be in django messages
         location.reload();

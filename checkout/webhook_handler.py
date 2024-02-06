@@ -47,14 +47,20 @@ class StripeWH_Handler:
         shipping_details = intent.shipping
         grand_total = round(stripe_charge.amount / 100, 2) #updated as per lesson stripe part 15
 
-        # Clean data in the shipping details
+        # Clean data in the shipping details, distinguish between Stripe blank string
+        # and null value we want to store in our database
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
 
+        # assume the order doesnt yet exist
         order_exists = False
         attempt = 1
+        # note that we are taking 5 attempts to check if the order exists
+        # just because there could be a delay in asynch processing
         while attempt <= 5:
+            # check if the order exists already 
+            # (based on exact match to the order details.... hmmm)
             try:
                 order = Order.objects.get(
                     full_name__iexact=shipping_details.name,
@@ -67,7 +73,7 @@ class StripeWH_Handler:
                     street_address2__iexact=shipping_details.address.line2,
                     county__iexact=shipping_details.address.state,
                     grand_total=grand_total,
-                    original_bag=basket,
+                    original_basket=basket,
                     stripe_pid=pid,
                 )
                 order_exists = True
@@ -75,10 +81,12 @@ class StripeWH_Handler:
             except Order.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
+        # we expect that the order will already have been created
         if order_exists:
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
                 status=200)
+        # but if not then the webhook handler will cause it to be created
         else:
             order = None
             try:
@@ -92,7 +100,7 @@ class StripeWH_Handler:
                     street_address1=shipping_details.address.line1,
                     street_address2=shipping_details.address.line2,
                     county=shipping_details.address.state,
-                    original_bag=basket,
+                    original_basket=basket,
                     stripe_pid=pid,
                 )
                 ## DMcC 06/02/24 think the below needs to be json.loads(basket).items():
