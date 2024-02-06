@@ -11,7 +11,7 @@ class CustomSignupForm(SignupForm):
     first_name = forms.CharField(max_length=30, label='First Name')
     last_name = forms.CharField(max_length=30, label='Last Name')
     newsletter_signup = forms.BooleanField(label='Sign up for newsletter')
-    profile_image = forms.ImageField(label='Avatar') 
+    # profile_image = forms.ImageField(label='Avatar') 
         
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)
@@ -20,15 +20,19 @@ class CustomSignupForm(SignupForm):
         user.save()
         print(f'User ', user.first_name, ' ', user.last_name, ' created')
 
-        user_profile = UserProfileForm.save(request)
+#       DMcC 06/02/24 currently getting a WSGI error on new user profile creation
+#       (but it is getting created with default values )
+#       Try delaying the commit to see if this makes a difference
+
+        user_profile = UserProfileForm.save(request, commit=False)
 #        create_or_update_user_profile(User, user, True) #Pass the sender, instance and created flag
-        user_profile = get_object_or_404(UserProfile, user=user)
+#        user_profile = get_object_or_404(UserProfile, user=user)
         print(f'User Profile ', user_profile.user, ' created')
 
         user_profile.user=self.cleaned_data['username']
         user_profile.phone_number1=self.cleaned_data['phone_number1']
         user_profile.phone_number2='0591231234'
-        user_profile.profile_image=self.cleaned_data['profile_image']
+#        user_profile.profile_image=self.cleaned_data['profile_image']
         user_profile.newsletter_signup=self.cleaned_data['newsletter_signup']
         
         user_profile.save()

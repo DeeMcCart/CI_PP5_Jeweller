@@ -21,7 +21,10 @@ body
     height: calc(100vh - 164px);
     color: #555;
     font-family: 'Lato';
-    /* filter: grayscale(0.7); 
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    /* filter: grayscale(0.7); */
 }
 
 /* background::before DMcC retained 31/01/24 even though different to walkthrough styling */
@@ -51,6 +54,7 @@ body
 
 .logo-font {
     text-transform: bold;
+    text-transform: uppercase;
 }
 
 .main-logo-link {
@@ -59,8 +63,10 @@ body
 
 .shop-now-button {
     background: var(--color-button-background);
-    color: var(color-button-foreground);
+    color: var(--color-button-foreground);
     min-width: 260px;
+    font-size: 4rem;
+    padding: 5px;
 }
 
 .btn-black {
@@ -77,7 +83,7 @@ body
 .btn-outline-black:hover, /* DMcC 31/01/24 added to align with walkthrough styling */
 .btn-outline-black:active,
 .btn-outline-black:focus {
-    background: black;
+    background: grey;
     color: white !important;
 }
 
@@ -88,7 +94,7 @@ body
 .btn-black:active,
 .btn-black:focus {
     background: #222;
-    color: white;
+    color: var(--color-button-foreground);
 }
 
 .text-black {

@@ -94,6 +94,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 06/02/24 DMcC add Django Debug toolbar 
+    'debug_toolbar',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -133,6 +135,9 @@ MIDDLEWARE = [
     
     # Add the account middleware:
     "allauth.account.middleware.AccountMiddleware",
+    # DMcC 06/02/24 Add debug toolbar middleware
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'jeweller.urls'

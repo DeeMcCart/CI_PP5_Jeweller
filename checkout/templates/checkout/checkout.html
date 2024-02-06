@@ -3,8 +3,7 @@
 {% load basket_tools %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static '/checkout/css/checkout.css' %}">
-    <!-- DMcC 05/02/24 <p> loading extra css from {% static 'checkout/css/checkout.css' %} and picked up OK</p> -->  
+    <link rel="stylesheet" href="{% static '/checkout/css/checkout.css' %}"> 
 {% endblock %}
 
 {% block page_header %}
@@ -130,18 +129,19 @@
 							</span>
 							<span>Your card will be charged <strong>€{{ grand_total|floatformat:2 }}</strong></span>
 						</p>
-					</div>
-                </form>
-            </div>
-        </div>
-    </div>
+					</div> <!-- end div class submit-button -->
+                </form> <!-- end form id ="payment-form"-->
+            </div> <!-- end div class "col-12 col-lg-6" (Payment details entered by user)-->
+        </div> <!-- end div class="row" -->
+    </div> <!-- end div class="container" -->
+    
     <div id="loading-overlay">
         <h1 class="text-light logo-font loading-spinner">
             <span class="icon">
                 <i class="fas fa-3x fa-sync-alt fa-spin"></i>
             </span>
         </h1>
-    </div>
+    </div> <!-- end div id="loading-overlay"-->
 
 {% endblock %}
 
