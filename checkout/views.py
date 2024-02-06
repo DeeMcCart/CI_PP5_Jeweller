@@ -33,9 +33,7 @@ def cache_checkout_data(request):
 
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
-    print('Stripe public key is ', stripe_public_key)
     stripe_secret_key = settings.STRIPE_SECRET_KEY
-    print('Stripe public key is ', stripe_public_key)
 
     if request.method == 'POST':
         ''' successful payment should trigger creation of an order '''
@@ -136,6 +134,8 @@ def checkout_success(request, order_number):
         profile = UserProfile.objects.get(user=request.user)
         # Attach the user's profile to the order
         order.user_profile = profile
+        # DMcC attempt to overcome issue with grand total not being saved to order 
+        
         order.save()
 
         # save the user's info

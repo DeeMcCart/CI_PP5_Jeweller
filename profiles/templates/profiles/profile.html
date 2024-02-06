@@ -26,14 +26,19 @@
         {{ profile }}
         <div class="row">
             <div class="col-12 col-lg-4">
-                <p class="text-muted">Default Delivery Information</p>
-                <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                <p class="text-muted">User Profile Information</p>
+                <!-- DMcC 06/02/24 add enctype to below to allow pickup of form images -->
+                <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form|crispy }}
                     <button class="btn btn-black rounded-0 text-uppercase float-right">Update Information</button>
                 </form>
             </div>
-            <div class="col-12 col-lg-8">
+            
+            <div class="col-12 col-lg-2">
+            </div>
+
+            <div class="col-12 col-lg-6">
                 <p class="text-muted">Order History</p>
             <!-- something weird about the order-history class it makes the orders disappear -->    
             <div class = "order-hitory table-responsive">

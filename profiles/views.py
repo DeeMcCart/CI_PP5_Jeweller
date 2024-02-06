@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
+from django.contrib import messages
+from django.contrib.auth.models import User
 from .models import UserProfile
 from checkout.models import Order
-# from checkout.models import Order
-from django.contrib import messages
 from .forms import UserProfileForm
+from jeweller.forms import CustomSignupForm
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.core.files.storage import default_storage
@@ -12,24 +13,27 @@ from django.core.files.storage import default_storage
   
 
 def profile(request):
-    """ Display the user's profile. """
-    profile = get_object_or_404(UserProfile, user=request.user)
-
+    """ Display or update the user's profile. """
+    if request.user.is_authenticated:
+        current_profile = get_object_or_404(UserProfile, user=request.user)
+        current_user = get_object_or_404(User, username=request.user)
+       
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)
-        if form.is_valid():
-            form.save()
+        # user_form = CustomSignupForm(request.POST, request.FILES or None, instance=current_user)
+        profile_form = UserProfileForm(request.POST, request.FILES or None, instance=current_profile)
+        if profile_form.is_valid():
+            profile_form.save()
             messages.success(request, 'Profile updated successfully')
         else:
             messages.error(request, 'Update failed. Please ensure the form is valid.')
     else:
-        form = UserProfileForm(instance=profile)
+        profile_form = UserProfileForm(instance=current_profile)
     
-    orders = profile.orders.all()
+    orders = current_profile.orders.all()
 
     template = 'profiles/profile.html'
     context = {
-        'form': form,
+        'form': profile_form,
         'orders': orders,
         'on_profile_page': True,
     }

@@ -10,7 +10,8 @@ class CustomSignupForm(SignupForm):
     phone_number_1 = forms.CharField(max_length=15, label='Mobile')
     first_name = forms.CharField(max_length=30, label='First Name')
     last_name = forms.CharField(max_length=30, label='Last Name')
-    newsletter_signup = forms.BooleanField(label='Sign up for newsletter') 
+    newsletter_signup = forms.BooleanField(label='Sign up for newsletter')
+    profile_image = forms.ImageField(label='Avatar') 
         
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)
@@ -27,6 +28,7 @@ class CustomSignupForm(SignupForm):
         user_profile.user=self.cleaned_data['username']
         user_profile.phone_number1=self.cleaned_data['phone_number1']
         user_profile.phone_number2='0591231234'
+        user_profile.profile_image=self.cleaned_data['profile_image']
         user_profile.newsletter_signup=self.cleaned_data['newsletter_signup']
         
         user_profile.save()
@@ -41,5 +43,8 @@ class CustomSignupForm(SignupForm):
             'first_name', 
             'last_name', 
             'email', 
+            'profile_image',
             'password1', 
             'password2',)
+        
+        
