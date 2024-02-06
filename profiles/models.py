@@ -19,7 +19,8 @@ class UserProfile(models.Model):
     phone_number2 = models.CharField(max_length=15, null=True, blank=True)
     profile_image = models.ImageField(upload_to='images', default='placeholder.png')
     newsletter_signup = models.BooleanField(default=False)
-    birth_month = models.CharField(max_length=9, null=True, blank=True)
+    # DMcC removed birth_month as FUTURE feature
+    # birth_month = models.CharField(max_length=9, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

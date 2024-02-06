@@ -24,7 +24,6 @@ class UserProfileForm(forms.ModelForm):
             'phone_number1': 'Phone Number',
             'phone_number2': 'Alt Phone',
             'profile_image': "../../static/images/placeholder.png",
-            'birth_month': '00',
             'newsletter_signup': False,
              }
         # self.fields['phone_number1'].widget.attrs['autofocus'] = True
