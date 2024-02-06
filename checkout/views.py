@@ -49,7 +49,6 @@ def checkout(request):
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
-            'order_total': 999,
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
@@ -62,6 +61,7 @@ def checkout(request):
                             order=order,
                             product=product,
                             quantity=item_data,
+                            # DMcC 06/02/24 added line item price and total to model
                             price = product.price,
                             lineitem_total = item_data,
                         )
@@ -141,6 +141,7 @@ def checkout_success(request, order_number):
         # save the user's info
         if save_info:
             # save the order information into default fields
+            # DMcC 06/02/24 May need to re-look at the below as wish to choose which delivery address this saves to for the user
             profile_data = {
                 'default_phone_number': order.phone_number,
                 'default_country': order.country,
