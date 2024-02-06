@@ -152,7 +152,7 @@
   <!--  <div> Applying postloadjs block on checkout 
         <p>Stripe files to load are at {% static 'checkout/js/stripe_elements.js' %}</p>
     </div> -->
-    <!-- <script src="/checkout/static/checkout/js/stripe_elements.js"></script> -->
+    <!-- <script src="{% static 'checkout/js/stripe_elements.js' %}"></script> -->
     <!-- DMcC 05/02/24 Build Stripe js directly into checkout html as difficulty retrieving js file in dev environment -->
     <!-- logged in issue log for later investigation -->
     <script type="text/javascript">

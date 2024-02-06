@@ -53,28 +53,34 @@ def checkout(request):
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save()
+            # DMcC 06/02/24:  Current line number starts at 10
+            current_line_number=10
             for item_id, item_data in basket.items():
                 try:
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
                             order=order,
+                            # DMcC 06/02/24 line should be an increment of existing line #s
+                            line_number=current_line_number, 
                             product=product,
                             quantity=item_data,
                             # DMcC 06/02/24 added line item price and total to model
                             price = product.price,
                             lineitem_total = item_data,
-                        )
+                            )
                         order_line_item.save()
                     else:
                         for size, quantity in item_data['items_by_size'].items():
                             order_line_item = OrderLineItem(
                                 order=order,
+                                line_number=current_line_number, 
                                 product=product,
                                 quantity=quantity,
                                 product_size=size,
                             )
                             order_line_item.save()
+                    current_line_number+=10
                 except Product.DoesNotExist:
                     messages.error(request, (
                         "One of the products in your basket wasn't found in our database. "
@@ -152,6 +158,7 @@ def checkout_success(request, order_number):
                 'default_county': order.county,
             }
             user_profile_form = UserProfileForm(profile_data, instance=profile)
+            print(f'Attempting to update default delivery adddress for customer profile')
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
