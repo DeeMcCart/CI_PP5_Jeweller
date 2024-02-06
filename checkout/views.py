@@ -16,13 +16,19 @@ import json
 
 @require_POST
 def cache_checkout_data(request):
+    # To be used before we call the confor card payent method in stripe js
+    # We will mae a post request to this view, giving it the client secret
+    # from the payment intent, which we can parse to extract intent ID (pid) 
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
             'basket': json.dumps(request.session.get('basket', {})),
+            # NB save_info reflects the user's choice to save the address info
             'save_info': request.POST.get('save_info'),
             'username': request.user,
+            # DMcC 06/02/24 Add field 'description' here as placeholder for order #
+            'description': 99999,
         })
         return HttpResponse(status=200)
     except Exception as e:

@@ -6,8 +6,15 @@ from django.views.decorators.csrf import csrf_exempt
 from checkout.webhook_handler import StripeWH_Handler
 
 import stripe
+# webhooks.py contains a webhook function which takes a request
+# code comes mostly from Stripe, just using wh_secret instead of endpoint_secret
+# and a generic exception handler
 
+# the @require_POST means this view requires a POST request
+# and won't accept a GET request
+#
 @require_POST
+# Stripe won't send a csrf token so mark as exempt:
 @csrf_exempt
 def webhook(request):
     """Listen for webhooks from Stripe"""
@@ -51,4 +58,5 @@ def webhook(request):
 
     # Call the event handler with the event
     response = event_handler(event)
+    # Return the reponse to Stripe
     return response

@@ -9,6 +9,10 @@ import stripe
 
 class StripeWH_Handler:
     """Handle Stripe webhooks"""
+    """ These webhooks are 'signals' sent securely from Stripe to a URL we specify 
+        This tells our app that something is happening in Stripe and prevents 
+        an orphaned Stripe transaction (payment without an assoicated order)
+    """  
 
     def __init__(self, request):
         self.request = request
@@ -26,9 +30,12 @@ class StripeWH_Handler:
         Handle the payment_intent.succeeded webhook from Stripe
         """
         intent = event.data.object
+        # print out the payment intent coming from Stripe
         print(intent)
+        
         pid = intent.id
-        bag = intent.metadata.bag
+        # DMcC 06/02/24 Changed 'bag' to 'basket' in next line:
+        basket = intent.metadata.basket
         save_info = intent.metadata.save_info
 
         # Get the Charge object
@@ -60,7 +67,7 @@ class StripeWH_Handler:
                     street_address2__iexact=shipping_details.address.line2,
                     county__iexact=shipping_details.address.state,
                     grand_total=grand_total,
-                    original_bag=bag,
+                    original_bag=basket,
                     stripe_pid=pid,
                 )
                 order_exists = True
@@ -85,10 +92,11 @@ class StripeWH_Handler:
                     street_address1=shipping_details.address.line1,
                     street_address2=shipping_details.address.line2,
                     county=shipping_details.address.state,
-                    original_bag=bag,
+                    original_bag=basket,
                     stripe_pid=pid,
                 )
-                for item_id, item_data in json.loads(bag).items():
+                ## DMcC 06/02/24 think the below needs to be json.loads(basket).items():
+                for item_id, item_data in json.loads(basket).items():
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
