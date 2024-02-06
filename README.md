@@ -715,16 +715,17 @@ Multiple sources were used in assembling this site.
 ### Content - Jeweller
 * Existing Goldmark Jewellers website
 * Existing Goldmark Jewellers marketing materials
-* Review of other Jewellry websites
+* Review of other Jewellery websites
 * Simone XXXX jeweller website was a particular inspiration
 
 ### Product images and descriptions
+Goldmark facebook page
 
 ### References
 * https://docs.allauth.org/en/latest/account/advanced.html extending the AllAuth User model
 * https://docs.djangoproject.com/en/dev/topics/auth/customizing/ extending the AllAuth User model
 * Django 4 by Example: Build Powerful and Reliable web Applications from Scratch, Author:  XXXXXX
-
+* https://www.conventionalcommits.org/en/v1.0.0/#specification commit messages (recommendation from PP4 assessment team)
 
 ### Agile implementation in github
 * https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-text-and-number-fields#adding-a-number-field to understand how story points might be represented in GitHub
@@ -733,12 +734,12 @@ Multiple sources were used in assembling this site.
 DeeMac YouTube series - Setting up a Django receipe website
 Book - 
 Multiple Code Institute PP5 projects used for reference
-
  
 ### Acknowledgements
 * I would particularly like to thank Alan Bushell, our cohort facilitator who has remained a steady consistent and wise presence during my 12 months on this programme.  His willingness to engage with each of us, his dedication to our weekly standups, his approachability and his guidance have been a huge support over this period.  
 * I would like to sincerely thank my mentor, Mo Shami for his kindness, enthusiasm and support throughout.  Mo's ability to absorb the essence of a situation and to communicate a clear path ahead has been invaluable.
-* I would also like to thank Derek and my family for their personal support, and for their advice on Goldmark business processes, help with system testing, and patience during my (mental or physcial) absence.
+* Thank you also to the assessors who have given feedback on prevous projects
+* I would also like to thank Derek and my family for their personal support, and for their advice on Goldmark business processes, help with system testing, and patience during my project-related absence!
 
 
 
