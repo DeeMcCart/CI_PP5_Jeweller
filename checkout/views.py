@@ -128,7 +128,9 @@ def checkout(request):
                 bill_address=None
                 profile = UserProfile.objects.get(user=request.user)
                 if profile:
-                    bill_address= profile.user_address.filter(address_type="BILL")[0]
+                    addresses = profile.user_address.filter(address_type="BILL")
+                    if addresses:
+                        bill_address = addresses[0]
                 if bill_address:
                     print(f'Found billing address ', bill_address)
                     order_form = OrderForm(initial={
