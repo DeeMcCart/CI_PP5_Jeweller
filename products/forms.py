@@ -2,7 +2,7 @@
 #
 
 from django import forms
-from .models import Product, Category
+from .models import Product, Category, Cat1, Cat2, Cat3, Cat4
 
 class ProductForm(forms.ModelForm):
     
@@ -15,6 +15,7 @@ class ProductForm(forms.ModelForm):
         categories = Category.objects.all()
         friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
 
+        # permit only the friendly names for the choices in product category
         self.fields['category'].choices = friendly_names
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'

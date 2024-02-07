@@ -9,8 +9,10 @@ from .forms import ProductForm
 # Create your views here.
 
 def all_products(request):
+    """ This is the engine of searching, sorting and filtering """
     """ A view to show all products, including sorting and search queries """
-    """ DMcC 01.02.24 Extended to allow searching by new cat1..cat4 values - unsuccessful"""
+    """ DMcC 01.02.24 Extended to allow searching by new cat1..cat4 values """
+    """ not yet successful """
 
     products = Product.objects.all()
     
@@ -20,6 +22,7 @@ def all_products(request):
     direction = None
 
     if request.GET:
+        # sort by name/ category in order asc/desc
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
@@ -33,13 +36,14 @@ def all_products(request):
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             products = products.order_by(sortkey)
-            
+        
+        # filter by category, e.g. ring, pendant, earrings
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
 
-       
+       # search using the wildcard search field
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -48,9 +52,7 @@ def all_products(request):
             
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
-
             
-
     current_sorting = f'{sort}_{direction}'
 
     context = {
@@ -75,7 +77,7 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 def add_product(request):
-    """ Add a product to the store """
+    """ Sysadmin:  Add a product to the store """
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
