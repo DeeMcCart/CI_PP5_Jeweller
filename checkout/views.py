@@ -120,7 +120,35 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        order_form = OrderForm()
+    # DMcC 07/02/24 copy the default delivery address from the user to the order (if exists)
+    # DMcC 07/02/24 This will reuire more work to distinguish between ship and BILL addresses
+    # But lets assume BILL address for now.  Ref = Profile App Part 8
+        if request.user.is_authenticated:
+            try:
+                bill_address=None
+                profile = UserProfile.objects.get(user=request.user)
+                if profile:
+                    bill_address= profile.user_address.filter(address_type="BILL")[0]
+                if bill_address:
+                    print(f'Found billing address ', bill_address)
+                    order_form = OrderForm(initial={
+                        'full_name': profile.user.get_full_name(),
+                        'email': profile.user.email,
+                        'phone_number': profile.phone_number1,
+                        'street_address1': bill_address.address1,
+                        'street_address2': bill_address.address2,
+                        'town_or_city': bill_address.town_or_city,
+                        'county': bill_address.county,
+                        'postcode': bill_address.postcode,
+                        'country': bill_address.country,
+                        })
+                else:
+                    order_form = OrderForm()
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
+        else:
+          order_form = OrderForm()
+
 
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
@@ -151,14 +179,14 @@ def checkout_success(request, order_number):
         profile = UserProfile.objects.get(user=request.user)
         # Attach the user's profile to the order
         order.user_profile = profile
-        # DMcC attempt to overcome issue with grand total not being saved to order 
-        
         order.save()
 
         # save the user's info
         if save_info:
             # save the order information into default fields
             # DMcC 06/02/24 May need to re-look at the below as wish to choose which delivery address this saves to for the user
+            # DMcC 07/02/24 Think this needs to save to the default shipping address for the user?  Actually, think need to look more
+            # closely at the checkout process and determine where the shipping and billing addresses are being asssigned
             profile_data = {
                 'default_phone_number': order.phone_number,
                 'default_country': order.country,
