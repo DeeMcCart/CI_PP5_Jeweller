@@ -29,12 +29,16 @@ def profile(request):
     else:
         profile_form = UserProfileForm(instance=current_profile)
     
-    orders = current_profile.orders.all()
+    # retrieve historical orders linked to this user profile
+    orders = current_profile.orders.all().order_by('-order_number')
+    # retrieve all addresses linked to this user profile
+    addresses = current_profile.user_address.all()
 
     template = 'profiles/profile.html'
     context = {
         'form': profile_form,
         'orders': orders,
+        'addresses': addresses,
         'on_profile_page': True,
     }
 
