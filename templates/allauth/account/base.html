@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
+<!-- DMcC 07/02/24 Note this has been modified to pickup -->
+<!-- some ofthe Jeweller site styling -->
 {% block content %}
     <div class="container header-container">
         <div class="overlay"></div>
         <div class="row">
-            <div class="col-12 col-md-6">
+            <!-- DMcC 07/02/24 modified as below div class="col-12 col-md-6" -->
+            <div class="col-6">
+                <!-- DMcC 07/02/24 modified as below div class="col-12 col-md-6" -->
                 <div class="allauth-form-inner-content">
                     {% block inner_content %}
                     {% endblock %}

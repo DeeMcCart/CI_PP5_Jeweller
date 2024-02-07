@@ -30,7 +30,12 @@ class UserProfile(models.Model):
         """ set ordering of user profiles to most recent first """
         ordering = ['-created_on']
         
-    
+# DMcC 07/02/24: Below is a signal this will ensure that whenever 
+# a User is created, a UserProfile is also created.
+# Effectively this acts as a database trigger on save of User
+# Note that this would normally sit in a separate signals.py file but
+# incorporated here as relatively small code snippet
+#     
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
@@ -42,10 +47,15 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     # Existing users: just save the profile
     instance.userprofile.save()
 
+# UserAddress is a child of UserProfile, and it has the ability to store 
+# multiple addresses per UserProfile.  Business logic is that only 1 
+# address_type BILL is linked to a user profile (want to avoid multiple billing 
+# addresses - fraud risk), but could have multiple SHIP addresses
+# 
 class UserAddress(models.Model):
     user_profile = models.ForeignKey(UserProfile, null = False, on_delete=models.CASCADE, related_name="user_address")
     address_type =  models.CharField(max_length=4, null=False, editable=True, default='BILL')
-    address_id = models.CharField(max_length=4, null=False, editable=False)
+    address_id = models.CharField(max_length=4, null=False, editable=False, default='HOME')
     address_label = models.CharField(max_length=25, null=True, blank=True)
     address1 = models.CharField(max_length=80, null=True, blank=True)
     address2 = models.CharField(max_length=80, null=True, blank=True)
