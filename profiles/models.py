@@ -43,8 +43,8 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     instance.userprofile.save()
 
 class UserAddress(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_address")
-    address_type =  models.CharField(max_length=4, null=False, editable=True, default='HOME')
+    user_profile = models.ForeignKey(UserProfile, null = False, on_delete=models.CASCADE, related_name="user_address")
+    address_type =  models.CharField(max_length=4, null=False, editable=True, default='BILL')
     address_id = models.CharField(max_length=4, null=False, editable=False)
     address_label = models.CharField(max_length=25, null=True, blank=True)
     address1 = models.CharField(max_length=80, null=True, blank=True)
@@ -56,13 +56,13 @@ class UserAddress(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user.username
+        return self.user_profile.user.username
     
     def __str__(self):
-        return f'{self.user}__{self.address_type}__{self.address_id}__{self.address_label}__{self.address1}__{self.address2}__{self.postcode}__{self.created_on};'
-        ordering(self.user, self.address_type)      
+        return f'{self.user_profile}__{self.address_type}__{self.address_id}__{self.address_label}__{self.address1}__{self.address2}__{self.postcode}__{self.created_on};'
+        ordering(self.user_profile, self.address_type)      
 
 
     class Meta:
          """ returns addresses sorted on user then address_id, then  as tie-breaker """
-         ordering = ['user', 'address_id', 'created_on']        
+         ordering = ['user_profile', 'address_id', 'created_on']        

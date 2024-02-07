@@ -93,7 +93,7 @@ class OrderLineItem(models.Model):
 
     def _generate_line_number(order):
         """
-        Generate a next number for the line# for a givve order, based on increments of 10
+        Generate a next number for the line# for a given order, based on increments of 10
         from the last order line saved for this order, and using it
         Else, if no orders on table, then use the  FIRST_LINE_NUMBER from settings
         """
