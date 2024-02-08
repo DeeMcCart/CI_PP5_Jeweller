@@ -3,12 +3,17 @@
 
 from django import forms
 from .models import Product, Category, Cat1, Cat2, Cat3, Cat4
+from .widgets import CustomClearableFileInput
+
 
 class ProductForm(forms.ModelForm):
     
     class Meta:
         model = Product
         fields = '__all__'
+    
+    # DMcC 09/02/24:  Apply our lovely widget to improve clunky apperance of image
+    image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
