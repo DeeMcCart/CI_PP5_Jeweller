@@ -8,10 +8,12 @@ from jeweller.forms import CustomSignupForm
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.core.files.storage import default_storage
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
   
-
+# DMcC 09/02/24 Add @login_required decorator to ensure user logged in
+@login_required
 def profile(request):
     """ Display or update the user's profile. """
     if request.user.is_authenticated:

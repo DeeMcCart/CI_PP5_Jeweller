@@ -5,6 +5,7 @@ from django.db.models.functions import Lower
 
 from .models import Product, Category, Cat1, Cat2, Cat3, Cat4
 from .forms import ProductForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -76,7 +77,9 @@ def product_detail(request, product_id):
 
     return render(request, 'products/product_detail.html', context)
 
-
+# DMcC 09/02/24 Add @login_required decorator to ensure user logged in
+# before executing the view (otherwise redirects them to login)
+@login_required
 def add_product(request):
     """ Sysadmin:  Add a product to the store """
     if request.method == 'POST':
@@ -101,6 +104,8 @@ def add_product(request):
     return render(request, template, context)
 
 
+# DMcC 09/02/24 Add @login_required decorator to ensure user logged in
+@login_required
 def edit_product(request, product_id):
     """ Edit a product in the store """
     product = get_object_or_404(Product, pk=product_id)
@@ -127,6 +132,8 @@ def edit_product(request, product_id):
     
 
 
+# DMcC 09/02/24 Add @login_required decorator to ensure user logged in
+@login_required
 def delete_product(request, product_id):
     """ Delete a product from the store """
     product = get_object_or_404(Product, pk=product_id)
