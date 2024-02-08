@@ -14,7 +14,10 @@
     </div>
     <div class="dropdown-menu border-0" aria-labelledby="user-options">
         <a href="" class="dropdown-item">Catalog-admin</a>
-        <a href="" class="dropdown-item">Product-admin</a>
+        <a href="{% url 'add_product' %}" class="dropdown-item">Product-add</a>
+        <a href="{% url 'edit_product' product.id }" class="dropdown-item">Product-edit</a>
+        <a href="{% url 'delete_product' product.id }" class="dropdown-item">Product-remove/delete</a>
+        
         <a href="" class="dropdown-item">Promotions-admin</a>
     </div>
 </li>
