@@ -76,7 +76,6 @@ MESSAGE_STORAGE='django.contrib.messages.storage.session.SessionStorage'
 ALLOWED_HOSTS = ['8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io', 
                 'https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io/',
                 '8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io',    
-
                  '.jeweller-bd1caeb15bbd.herokuapp.com',
                  'https://jeweller-bd1caeb15bbd.herokuapp.com/',
                 ]
@@ -132,7 +131,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     
     # Add the account middleware:
@@ -247,7 +245,8 @@ if 'USE_AWS' in os.environ:
     AWS_S3_OBJECT_PARAMETERS = {
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
         'CacheControl': 'max-age=94608000',
-    }
+   }
+
     # Bucket Config
     AWS_STORAGE_BUCKET_NAME = 'ci-pp5-jeweller'
     AWS_S3_REGION_NAME = 'eu-north-1'
@@ -275,7 +274,6 @@ MESSAGE_STORAGE='django.contrib.messages.storage.session.SessionStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-BUSINESS_NAME = 'FreddyTheDawg'
 FREE_DELIVERY_THRESHOLD = 75
 SITE_CURRENCY = "EUR"
 SITE_CURRENCY_SYMBOL ="€"
