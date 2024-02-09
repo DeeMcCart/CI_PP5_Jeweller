@@ -1,12 +1,10 @@
 <!-- this template is used to cleanup display of product images -->
 <!-- when in add / edit/ delete modes -->
 <!-- DMcC 08/02/24 however dont seem to be reaching this template...-->
-<p>In custom_clearable_file_input.html</p>
-<h2>Hey hey Good Looking!!</h2>
 {% if widget.is_initial %}
     <p>{{ widget.initial_text }}:</p>
     <a href="{{ widget.value.url }}">
-        <!-- DMcC 08/02/24 preview image (does this require image to be defined via URL?)-->
+        <!-- DMcC 08/02/24 preview image -->
         <img width="96" height="96" class="rounded shadow-sm" src="{{ widget.value.url }}">
     </a>
     {% if not widget.required %}

@@ -8,4 +8,4 @@ class CustomClearableFileInput(ClearableFileInput):
     input_text = _('')
     # DMcC HTML template doesnt seem to be picking up so have put it into the templates folder
     template_name = 'products/custom_clearable_file_input.html'
-    print("how do i know if this widget has activated?")
+   

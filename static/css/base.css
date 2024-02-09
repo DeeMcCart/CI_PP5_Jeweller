@@ -28,6 +28,7 @@ body
     /* filter: grayscale(0.7); */
 }
 
+
 /* background::before DMcC retained 31/01/24 even though different to walkthrough styling */
 .background::before {
     content: "";

@@ -13,16 +13,10 @@ class ProductForm(forms.ModelForm):
         fields = '__all__'
     
 
-    preimage = forms.ImageField()
-    if (preimage):
-        print('In ProductForm, Pre-Image exists', preimage)
-
-
+    
     # DMcC 09/02/24:  Apply our lovely widget to improve clunky apperance of image
     image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
-    if (image):
-        print('In ProductForm, Image exists', image)
-
+   
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         categories = Category.objects.all()
