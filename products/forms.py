@@ -1,19 +1,16 @@
 #  DMcC 31/01/24 this will need more work to maintain products and display category 1-6 titles and range of values
 #
-
 from django import forms
 from .models import Product, Category, Cat1, Cat2, Cat3, Cat4
 from .widgets import CustomClearableFileInput
 
 
 class ProductForm(forms.ModelForm):
-    
+    """ Used to hold the product maintenance fields """
     class Meta:
         model = Product
         fields = '__all__'
-    
-
-    
+        
     # DMcC 09/02/24:  Apply our lovely widget to improve clunky apperance of image
     image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
    

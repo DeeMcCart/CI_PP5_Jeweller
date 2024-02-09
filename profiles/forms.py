@@ -4,13 +4,16 @@ from django.contrib.auth.models import User
 from allauth.account.forms import SignupForm
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
-
+from .widgets import CustomClearableFileInput
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         exclude = ('user',)
 
+    # DMcC 09/02/24:  Apply our lovely widget to improve clunky apperance of image
+    profile_image = forms.ImageField(label='ProfileImage', required=False, widget=CustomClearableFileInput)
+   
     def __init__(self, *args, **kwargs):
         """
         Add placeholders and classes, remove auto-generated

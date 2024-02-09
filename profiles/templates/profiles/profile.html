@@ -38,8 +38,22 @@
                 <!-- DMcC 06/02/24 add enctype to below to allow pickup of form images -->
                 <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form|crispy }}
-                    <button class="btn btn-black rounded-0 text-uppercase float-right">Update Information</button>
+                <!-- DMcC switch from form to field display in order to better render image -->
+                <!---     {{ form|crispy }}  -->
+               
+                    {% for field in form %}
+                        {% if field.name != 'profile_image' %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    {% endfor %}
+                    
+                    
+                    <div class="text-right">
+                        <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
+                        <button class="btn btn-black rounded-0" type="submit">Update Profile</button>
+                    </div>
                 </form>
                 <hr>
                 <table class ="table table-sm table-borderless">
