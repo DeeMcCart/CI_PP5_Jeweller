@@ -17,8 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-
-
+from home import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,3 +28,9 @@ urlpatterns = [
     path('checkout/', include('checkout.urls')),
     path('', include('home.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Error handlers for site errors
+handler404 = 'home.views.error_404'
+handler500 = 'home.views.error_500'
+handler403 = 'home.views.error_403'
+handler400 = 'home.views.error_400'

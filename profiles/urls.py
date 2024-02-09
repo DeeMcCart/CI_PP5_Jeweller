@@ -3,5 +3,5 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [
-    path('', views.profile, name='profile'),
+    path('<int:profile_id>/', views.profile_detail, name='profile_detail'),
     path('order_history/<order_number>', views.order_history, name='order_history'),]

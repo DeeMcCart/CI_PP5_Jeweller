@@ -17,6 +17,7 @@
         <a href="{% url 'add_product' %}" class="dropdown-item">Product-add</a>
         <a href="{% url 'edit_product' product.id }" class="dropdown-item">Product-edit</a>
         <a href="{% url 'delete_product' product.id }" class="dropdown-item">Product-remove/delete</a>
+        <a href="{% url 'administer_users' }" class="dropdown-item">Product-remove/delete</a>
         
         <a href="" class="dropdown-item">Promotions-admin</a>
     </div>
@@ -29,7 +30,7 @@
             
     <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <!-- DMcC 28/01/24: replaced fa avatar with users chosen image.. hmm not working, reverted -->
-        <!-- <div><img class="navbar-image" src="{% static request.user.userprofile.profile_image %}" >alt="My Avatar"></div>
+        <!-- <div><img class="navbar-image" src="{% static request.user.userprofile.profile_image %}" >></div>
             -->
         <div class="text-center">
             <!-- display profile image -->
@@ -38,8 +39,8 @@
         </div>
     </a>
             
-    <div class="dropdown-menu border-0" aria-labelledby="user-options">
-            <a href="/profile" class="dropdown-item">My Profile</a>
+    <div class="dropdown-menu border-0" aria-labelledby="user-options">       
+            <a href="{% url 'profile_detail' request.user.userprofile.id %}" class="dropdown-item">My Profile</a>
             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
     </div>
 </li> <!-- end li profile-link -->
