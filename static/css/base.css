@@ -4,6 +4,7 @@
     --color-background: beige;
     --color-banner-background: gray;   
     --color-red: #E84610;
+    --color-danger: #dc3545;
     --color-button-foreground: white;
     --color-button-background: black; 
 }
@@ -324,8 +325,32 @@ footer {
     margin: 1rem;
 }
 
+/* Product Form - used to improve image upload UX*/
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
 
+.btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
 
+.custom-checkbox .custom-control-label::before {
+    border-radius: 0;
+    border-color: var(--color-danger);
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: var(--color-danger);
+    border-color: var(--color-danger);
+    border-radius: 0;
+}
 
 /* -------------------------------- Media Queries */
 
