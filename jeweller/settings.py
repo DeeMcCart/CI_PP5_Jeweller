@@ -225,7 +225,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticCloudinaryStorage'
+# STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticCloudinaryStorage'
 # STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 #CLOUDINARY_STORAGE = {
 #    'CLOUD_NAME': os.environ['CLOUDINARY_CLOUD_NAME'],
@@ -233,8 +233,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #    'API_SECRET': os.environ['CLOUDINARY_API_SECRET'],
 #}
 
-# DMcC 09/02/24:  Remove reference to whitenoise as now deploying to Amazon for the static files storage
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# DMcC 09/02/24:  Restore reference to whitenoise as Amaxon deployment didnt pickup all static files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
