@@ -34,7 +34,9 @@
             -->
         <div class="text-center">
             <!-- display profile image -->
-            <span class="navbar-text text-muted "><img class="navbar-image" src="{{request.user.userprofile.profile_image.url}}" alt="Users avatar logo"></span>
+            <!-- DMcC the below changed 10/02/24 a thorwing an error whenn interpreted by AWS static -->
+            <!-- <span class="navbar-text text-muted "><img class="navbar-image" src="{{request.user.userprofile.profile_image.url}}" alt="Users avatar logo"></span>-->
+            <span class="navbar-text text-muted "><img class="navbar-image" src="{{request.user.userprofile.profile_image}}" alt="Users avatar logo"></span>
             <p class="my-0">Welcome, {{ request.user }}!</p>    
         </div>
     </a>
