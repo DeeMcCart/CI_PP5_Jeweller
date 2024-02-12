@@ -234,7 +234,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #}
 
 # DMcC 09/02/24:  Restore reference to whitenoise as Amaxon deployment didnt pickup all static files
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
