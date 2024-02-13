@@ -7,24 +7,21 @@
 
 {% block inner_content %}
 <div class="container text-center">
-  <hr>
-  <h2 class="logo-font mb-4">{% trans "Sign In" %}</h2>
-  <hr>
-
+    <h2 class="logo-font mb-4">{% trans "Sign In" %}</h2>
+  
     <p>{% blocktrans %}If you have not created an account yet, then please
     <a href="{{ signup_url }}">register </a>first.{% endblocktrans %}</p>
 
-    <form class="form p-2 login" method="POST" action="{% url 'account_login' %}">
+    <form class="login" method="POST" action="{% url 'account_login' %}">
       {% csrf_token %}
       {{ form|crispy }}
       {% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
       <a class="btn btn-outline-black rounded-0" href="{% url 'home' %}">Home</a>
-      <button class="btn-primary m-25 mb-2" type="submit">{% trans "Sign In" %}</button>
-      <p class="mt-2">
-        <a class="button secondaryAction d-block" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-      </p>
+      <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+      <a class="button secondaryAction d-block" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+      
     </form>
 </div> <!--  end div container text-center -->
 {% endblock %}

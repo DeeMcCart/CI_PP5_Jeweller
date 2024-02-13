@@ -9,13 +9,13 @@
 <div class="container text-center">
 
   <hr>
-  <h2 class="logo-font mb-4">Goldmark - User {{ business_name }} {% trans "Sign Up" %}</h2>
+  <h2 class="logo-font mb-4">Goldmark - User {% trans "Sign Up" %}</h2>
   <hr>
   <p> You can browse this site as a guest user.  To track your orders, please register.</p>
 
   <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
-  <form class="form p-2" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
     {{ form|crispy }}
     
