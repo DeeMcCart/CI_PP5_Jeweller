@@ -727,7 +727,9 @@ Goldmark facebook page
 * Django 4 by Example: Build Powerful and Reliable web Applications from Scratch, Author:  XXXXXX
 * https://stackoverflow.com/questions/77293705/i-am-building-a-product-review-app-in-my-django-ecommerce-project-i-cant-get-m
 * https://www.youtube.com/watch?v=UgEVC7oJDHI Author:Desphisx, Creating Reviews and Star Rating Feature in Django
+* https://www.geeksforgeeks.org/create-a-product-review-and-rating-system-using-html-css-and-javascript/ For product review entry & display
 * https://www.conventionalcommits.org/en/v1.0.0/#specification commit messages (recommendation from PP4 assessment team)
+
 
 ### Agile implementation in github
 * https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-text-and-number-fields#adding-a-number-field to understand how story points might be represented in GitHub

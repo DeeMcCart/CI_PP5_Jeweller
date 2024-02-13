@@ -47,9 +47,7 @@
                             title="reviews out of 5"><a class="text-info" href="#product-ratings"> </meter>
                             <p>({% if num_reviews == 0 %}No 
                                 {% else %}{{ num_reviews }} 
-                                {% endif %} Review
-                                    {% if num_reviews != 1 %}s
-                                    {% endif %})</p></a>
+                                {% endif %} Review{% if num_reviews != 1 %}s{% endif %})</p></a>
                     </div>
                     
                     {% if request.user.is_superuser %}
@@ -125,6 +123,26 @@
 
                         {% endfor %}    
                     {% endif %}
+                    <div class="review-container">
+                        <!-- <div class="review-rating">
+                            <span id="review-rating">0</span>/5
+                        </div>  -->
+                        <div class="review-stars" id="stars">
+                            <span class="review-star" data-value="1"><i class="fas fa-star mr-1"></i></span>
+                            <span class="review-star" data-value="2"><i class="fas fa-star mr-1"></i></span>
+                            <span class="review-star" data-value="3"><i class="fas fa-star mr-1"></i></span>
+                            <span class="review-star" data-value="4"><i class="fas fa-star mr-1"></i></span>
+                            <span class="review-star" data-value="5"><i class="fas fa-star mr-1"></i></span>
+                        </div>
+                        <p>Share your review:</p>
+                        <textarea id="review-rating"
+                            placeholder="Write your review here">
+                        </textarea>
+                        <button id="submit-review" class="btn btn-black rounded-0 text-uppercase mt-5">Post Review</button>
+                        <div class="reviews" id="reviews">
+                        </div>
+                    </div>
+                                      
                 </div> <!-- ratings-container mb-5 mt-md-5 -->
             </div> <!-- end class col-12 col-md-6 col-lg-4 -->  
         </div> <!-- end class row (of product detail)-->
@@ -133,7 +151,7 @@
     <!-- DMcC 13/02/24 scroll-up button at end of reviews -->
     <div class="btt-button shadow-sm rounded-0 border border-black">
         <a class="btt-link d-flex h-100">
-            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+            <i class="scroll-arrow fas fa-arrow-up text-black mx-auto my-auto"></i>
         </a>	
     </div>
 {% endblock %}
@@ -146,5 +164,88 @@
 			window.scrollTo(0,0)
 		})
 	</script>
+    <!-- DMcC 13/02/24 following script is for handling of the product review entry (whilst avoiding 2 forms on one page)-->
+    <!-- Credit to https://www.geeksforgeeks.org/create-a-product-review-and-rating-system-using-html-css-and-javascript/-->
+    <script type="text/javascript">
+        const stars = document.querySelectorAll(".review-star");
+        const rating = document.getElementById("review-rating");
+        const reviewText = document.getElementById("review");
+        const submitBtn = document.getElementById("review-submit");
+        const reviewsContainer = document.getElementById("reviews");
+        
+        stars.forEach((star) => {
+            star.addEventListener("click", () => {
+                const value = parseInt(star.getAttribute("data-value"));
+                // rating.innerText = value;
+        
+                // Remove all existing classes from stars
+                stars.forEach((s) => s.classList.remove("review-one", 
+                                                        "review-two", 
+                                                        "review-three", 
+                                                        "review-four", 
+                                                        "review-five"));
+        
+                // Add the appropriate class to 
+                // each star based on the selected star's value
+                stars.forEach((s, index) => {
+                    if (index < value) {
+                        s.classList.add(getStarColorClass(value));
+                    }
+                });
+        
+                // Remove "selected" class from all stars
+                stars.forEach((s) => s.classList.remove("selected"));
+                // Add "selected" class to the clicked star
+                star.classList.add("selected");
+            });
+        });
+        
+        submitBtn.addEventListener("click", () => {
+            const review = reviewText.value;
+            const userRating = parseInt(review-rating.innerText);
+        
+            if (!userRating || !review) {
+                alert(
+        "Please select a rating and provide a review before submitting."
+                    );
+                return;
+            }
+        
+            if (userRating > 0) {
+                const reviewElement = document.createElement("div");
+                reviewElement.classList.add("review");
+                reviewElement.innerHTML = 
+        `<p><strong>Rating: ${userRating}/5</strong></p><p>${review}</p>`;
+                reviewsContainer.appendChild(reviewElement);
+        
+                // Reset styles after submitting
+                reviewText.value = "";
+                rating.innerText = "0";
+                stars.forEach((s) => s.classList.remove("review-one", 
+                                                        "review-two", 
+                                                        "review-three", 
+                                                        "review-four", 
+                                                        "review-five", 
+                                                        "review-selected"));
+            }
+        });
+        
+        function getStarColorClass(value) {
+            switch (value) {
+                case 1:
+                    return "review-one";
+                case 2:
+                    return "review-two";
+                case 3:
+                    return "review-three";
+                case 4:
+                    return "review-four";
+                case 5:
+                    return "review-five";
+                default:
+                    return "";
+            }
+        }
+    </script>
 
 {% endblock %}

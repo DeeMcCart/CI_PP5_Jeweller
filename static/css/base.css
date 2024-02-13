@@ -127,6 +127,7 @@ a.category-badge > span.badge:hover {
 .btt-button {
     height: 42px;
     width: 42px;
+    z-index: 10;
     position: fixed;
     bottom: 10px;
     right: 10px;
@@ -136,6 +137,9 @@ a.category-badge > span.badge:hover {
     cursor: pointer;
 }
 
+ .scroll-arrow {
+    z-index: 10;
+}
 /* Reduce image size for basket */
 .image-basket {
     max-width: 30%;
@@ -156,7 +160,7 @@ a.category-badge > span.badge:hover {
 .navbar-image,
 .reviewer-image {
     display: inline-block;
-    max-width: 150px;
+    max-width: 50px;
     max-height: 50px;
     border-radius: 50%;
 }
@@ -465,6 +469,76 @@ footer {
         linear-gradient(90deg, gold var(--percent), rgba(0, 0, 0, 0.2) var(--percent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.review-container {
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 400px;
+}
+
+ 
+.review-rating {
+    font-size: 20px;
+    margin: 10px 0;
+}
+ 
+ .review-star {
+    cursor: pointer;
+}
+ 
+.review-one {
+    color: rgb(255, 0, 0);
+}
+ 
+.review-two {
+    color: rgb(255, 106, 0);
+}
+ 
+.review-three,
+.review-four,
+.review-five {
+/*        color: rgb(251, 255, 120); */
+    color: gold;        
+}
+ 
+textarea {
+    width: 90%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+ 
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+ 
+button:hover {
+    background-color: #0056b3;
+}
+ 
+.reviews {
+    margin-top: 20px;
+    text-align: left;
+}
+ 
+.review {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+}
+ 
+.review p {
+    margin: 0;
 }
 
 
