@@ -1,7 +1,7 @@
 #  DMcC 31/01/24 this will need more work to maintain products and display category 1-6 titles and range of values
 #
 from django import forms
-from .models import Product, Category, Cat1, Cat2, Cat3, Cat4
+from .models import Product, Category, Cat1, Cat2, Cat3, Cat4, Review
 from .widgets import CustomClearableFileInput
 
 
@@ -23,3 +23,13 @@ class ProductForm(forms.ModelForm):
         self.fields['category'].choices = friendly_names
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = (
+            'user_profile',
+            'rating',
+            'title',
+            'body',
+                )

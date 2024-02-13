@@ -42,17 +42,20 @@
                         </a>
                     </p>
                     {% endif %}
-                    {% if product.rating %}
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
-                    {% else %}
-                        <small class="text-muted">No Rating</small>
-                    {% endif %}
-                    {% if request.user.is_superuser %}
-                        <small class="ml-3">
-                        <a href="{% url 'edit_product' product.id %}">Edit</a>
-                        <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
-                        </small>
-                    {% endif %}
+                    <div>
+                        <meter class="average-rating" min="0" max="5" value = {{product.rating}}
+                            title="reviews out of 5"><a class="text-info" href="#ratings"> </meter>
+                               <p>({% if num_reviews == 0 %}No {% else %}{{ num_reviews }} {% endif %} Review{% if num_reviews != 1 %}s{% endif %})
+                    </div>
+                    <small>
+                        {% if request.user.is_superuser %}
+                            <a href="{% url 'edit_product' product.id %}">Edit</a>
+                            <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+                        {% endif %}
+                        {% if request.user.is_authenticated %}
+                            <a class="text-info" href="">Review</a>
+                        {% endif %}
+                    </small></p>
                     <p class="mt-3">{{ product.description }}</p>
                     <form class="form" action="{% url 'add_to_basket' product.id %}" method="POST">
                         {% csrf_token %}
@@ -80,10 +83,10 @@
                                                     <i class="fas fa-plus"></i>
                                                 </span>
                                             </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                        </div> <!-- end class input-group-append -->
+                                    </div> <!-- end class input-group -->
+                                </div> <!-- end class form-group -->
+                            </div>  <!-- end class col-12 -->
 
                             <div class="col-12">
                                 <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">
@@ -93,15 +96,32 @@
                                     <span class="text-uppercase">Keep Shopping</span>
                                 </a>
                                 <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Basket">
-                            </div>
+                            </div> <!-- end div col-12 -->
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                        </div> <!-- end div form-row -->
+                    </form> <!-- end quantity add to basket/checkout form -->
+                </div>  <!-- end class product-details-container mb-5 mt-md-5 -->
+                
+                <div id = "product-ratings" class="product-ratings-container mb-5 mt-md-5">
+                    {% if reviews %}    
+                        <p class = "logo-font font-weight-bold nav-link text-black mr-5"> PRODUCT REVIEWS</p>
+                        <hr>
+                        {% for review in reviews %}
+                            <span class="text-muted "><img class="reviewer-image" src="{{ review.user_profile.profile_image.url }}" alt="Reviewers avatar logo">
+                             {{ review.user_profile }} {{ review.created_on }}</span>
+                            <meter id="review1-rating" min="0" max="5" value = "3"
+                            title="reviews out of 5"> </meter>
+                             <p>{{ review.title }}</p>
+                            <p>{{review.body }}</p>
+                        {% endfor %}    
+                    {% endif %}
+                </div> <!-- ratings-container mb-5 mt-md-5 -->
+              
+            </div> <!-- end class col-12 col-md-6 col-lg-4 -->  
+            
+        </div> <!-- end class row (of product detail)-->
+    </div> <!-- end class container-fluid -->
+</div> <!-- end class overlay -->
 {% endblock %}
 
 {% block postloadjs %}

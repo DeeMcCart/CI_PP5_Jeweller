@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
+import statistics
 
-from .models import Product, Category, Cat1, Cat2, Cat3, Cat4
+from .models import Product, Category, Cat1, Cat2, Cat3, Cat4, Review
 from .forms import ProductForm
 from django.contrib.auth.decorators import login_required
 
@@ -70,13 +71,30 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
+    num_reviews = 0
+    avg_rating = 0
+
+    # getting all reviews
+    reviews = Review.objects.filter(product=product_id)
+    if (reviews):
+        # calculate average rating (Do I calculate this on the fly every time a product is retrieved?)
+        avg_rating = 0
+        #    avg_rating = Avg('reviews__rating')
+        
+        product.rating = avg_rating
+        num_reviews = reviews.count()
+        print(f'found ',num_reviews, ' reviews, rating ', product.rating )
+        print(f'reviews are', reviews )
 
     context = {
         'product': product,
+        'reviews': reviews, 
+        'num_reviews' : num_reviews,
     }
-
+    
     return render(request, 'products/product_detail.html', context)
 
+    
 # DMcC 09/02/24 Add @login_required decorator to ensure user logged in
 # before executing the view (otherwise redirects them to login)
 @login_required
@@ -162,4 +180,29 @@ def display_cat_names(request):
     disp_names=Catname.filter(default_display=True).nice_name
     print(f'Eligible catnames are ', disp_names)
     return disp_names
-    
+
+@login_required
+def review(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+
+    if request.method == 'POST': 
+        review_form = ReviewForm(request.POST)
+        print(review_form)
+        if review_form.is_valid():
+            print(review_form)
+            review_form.save()
+            messages.success(request, 'Successfully reviewed product')
+            return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(request, 'Failed to add product. \
+                Please check the form data is correct')
+    else:
+        review_form = ReviewForm()
+        print(review_form)
+
+    template = 'shop/product_detail.html'
+    context = {
+        'review_form': review_form,
+    }
+
+    return render(request, template, context)

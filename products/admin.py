@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Product, Category, Cat0, Cat1, Cat2, Cat3, Cat4, Cat5, Cat6, Catname
+from .models import Product, Category, Cat0, Cat1, Cat2, Cat3, Cat4, Cat5, Cat6, Catname, Review
+from profiles.models import UserProfile
 
 # Register your models here.
 
@@ -43,3 +44,4 @@ admin.site.register(Cat3)
 admin.site.register(Cat4)
 admin.site.register(Cat5)
 admin.site.register(Cat6)
+admin.site.register(Review)

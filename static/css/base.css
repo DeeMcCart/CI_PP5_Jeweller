@@ -141,7 +141,10 @@ a.category-badge > span.badge:hover {
     max-height: auto;
 }
 
-
+/* For product detail image make it not clickable */
+.image-container {
+    pointer-events: none;
+}
 
 /* navbar styling */
 #navbarText {
@@ -149,7 +152,8 @@ a.category-badge > span.badge:hover {
     flex-grow: 0;
 }
 
-.navbar-image {
+.navbar-image,
+.reviewer-image {
     display: inline-block;
     max-width: 150px;
     max-height: 50px;
@@ -352,6 +356,54 @@ footer {
     border-color: var(--color-danger);
     border-radius: 0;
 }
+
+.product-rating,
+.average-rating,
+#review1-rating,
+#review2-rating {
+    position: relative;
+    appearance: none;
+    color: transparent;
+    width: auto;
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+.average-rating::before,
+.product-rating::before,
+#review1-rating::before,
+#review2-rating::before {
+    font-family: "Font Awesome 5 Free";
+    --percent: calc(2/5*100%);
+    content: '\f006 \f006 \f006 \f006 \f006';
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: rgba(0, 0, 0, 0.2);
+    background:
+        linear-gradient(90deg, gold var(--percent), rgba(0, 0, 0, 0.2) var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+#review1-rating::before,
+#review2-rating::before {
+    --percent: calc(5/5*100%);
+    font-family: "Font Awesome 5 Free";
+    content: '\f006 \f006 \f006 \f006 \f006';
+    /* content: '★★★★★'; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: rgba(0, 0, 0, 0.2);
+    background:
+        linear-gradient(90deg, gold var(--percent), rgba(0, 0, 0, 0.2) var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 
 /* -------------------------------- Media Queries */
 

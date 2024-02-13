@@ -725,6 +725,8 @@ Goldmark facebook page
 * https://docs.allauth.org/en/latest/account/advanced.html extending the AllAuth User model
 * https://docs.djangoproject.com/en/dev/topics/auth/customizing/ extending the AllAuth User model
 * Django 4 by Example: Build Powerful and Reliable web Applications from Scratch, Author:  XXXXXX
+* https://stackoverflow.com/questions/77293705/i-am-building-a-product-review-app-in-my-django-ecommerce-project-i-cant-get-m
+* https://www.youtube.com/watch?v=UgEVC7oJDHI Author:Desphisx, Creating Reviews and Star Rating Feature in Django
 * https://www.conventionalcommits.org/en/v1.0.0/#specification commit messages (recommendation from PP4 assessment team)
 
 ### Agile implementation in github

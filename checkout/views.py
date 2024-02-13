@@ -9,6 +9,7 @@ from products.models import Product
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from basket.contexts import basket_contents
+from profiles.views import profile_detail
 
 import stripe
 import json

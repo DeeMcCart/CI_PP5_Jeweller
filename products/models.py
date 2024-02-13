@@ -1,5 +1,5 @@
 from django.db import models
-
+from profiles.models import UserProfile
 # Create your models here.
 
 class Category(models.Model):
@@ -95,3 +95,16 @@ class Cat6(models.Model):
     def __str__(self):
         return f'{self.cat6_value}'
 
+class Review(models.Model):
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True, related_name='reviews') 
+    product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE, related_name='reviews')
+    title = models.CharField(max_length=30, null=False, blank=False)
+    body = models.CharField(max_length=254, null=False, blank=False)
+    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True) 
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return f"Review {self.rating} {self.body} by {self.user_profile}"

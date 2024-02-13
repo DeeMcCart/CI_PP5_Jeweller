@@ -45,7 +45,7 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID=1
 
-# ACCOUT_FORMS: Used to override the builtin forms. (Otherwise forms are found in templates/allauth/account Defaults to:
+# ACCOUNT_FORMS: Used to override the builtin forms. (Otherwise forms are found in templates/allauth/account Defaults to:
 ACCOUNT_FORMS = {
 'signup': 'jeweller.forms.CustomSignupForm',
 }
@@ -223,7 +223,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
-
+# DMcC 12/02/24 double check this statement while investigating deployment problems
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticCloudinaryStorage'
 # STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
