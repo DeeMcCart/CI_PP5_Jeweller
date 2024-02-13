@@ -7,6 +7,7 @@
     --color-danger: #dc3545;
     --color-button-foreground: white;
     --color-button-background: black; 
+    --product-detail-rating: 5;
 }
 
 html {
@@ -132,6 +133,7 @@ a.category-badge > span.badge:hover {
 }
 
 .btt-link {
+    z-index: 99;
     cursor: pointer;
 }
 
@@ -360,7 +362,8 @@ footer {
 .product-rating,
 .average-rating,
 #review1-rating,
-#review2-rating {
+#review2-rating,
+#review3-rating {
     position: relative;
     appearance: none;
     color: transparent;
@@ -369,12 +372,14 @@ footer {
     vertical-align: baseline;
 }
 
-.average-rating::before,
+
 .product-rating::before,
+.average-rating::before,
 #review1-rating::before,
-#review2-rating::before {
+#review2-rating::before,
+#review3-rating::before {
     font-family: "Font Awesome 5 Free";
-    --percent: calc(2/5*100%);
+    --percent: calc(var(--product-detail-rating)/5*100%);
     content: '\f006 \f006 \f006 \f006 \f006';
     position: absolute;
     top: 0;
@@ -386,10 +391,9 @@ footer {
     -webkit-text-fill-color: transparent;
 }
 
-
-
 #review1-rating::before,
-#review2-rating::before {
+#review2-rating::before,
+#review3-rating::before {
     --percent: calc(5/5*100%);
     font-family: "Font Awesome 5 Free";
     content: '\f006 \f006 \f006 \f006 \f006';
