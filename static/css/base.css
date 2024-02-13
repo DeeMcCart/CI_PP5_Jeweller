@@ -133,7 +133,6 @@ a.category-badge > span.badge:hover {
 }
 
 .btt-link {
-    z-index: 99;
     cursor: pointer;
 }
 
