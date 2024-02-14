@@ -24,7 +24,9 @@
                 <th>Name</th>
                 <th>Price</th>
                 <th>Promo</th>
-                <th>Ratg</th>
+                <th>Stock</th>
+                <th>LT(days)</th>
+                <th>Rate</th>
                 <th>Added</th>
                 <th>Image</th>
                 </tr>
@@ -42,6 +44,8 @@
                         {{product.promotion}}
                     {% endif %}
                 </td>
+                <td></td>
+                <td></td>
                 <td>{% if product.rating %}
                         {{product.rating}}
                     {% endif %}
@@ -66,6 +70,14 @@
                     <td>{{product.price}}</td>
                     <td>{% if product.promotion %}
                             {{product.promotion}}
+                        {% endif %}
+                    </td>
+                    <td>{% if product.cat6_value %}
+                        {{product.cat6_value}}
+                        {% endif %}
+                    </td>
+                    <td>{% if product.lead_time %}
+                        {{product.lead_time}}
                         {% endif %}
                     </td>
                     <td>{% if product.rating %}

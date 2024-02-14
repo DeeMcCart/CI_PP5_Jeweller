@@ -20,20 +20,28 @@ class Product(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
-    image_url = models.URLField(max_length=1024, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
-    cat5_value = models.ForeignKey('Cat5', null=True, blank=True, on_delete=models.SET_NULL)
-    cat6_value = models.ForeignKey('Cat6', null=True, blank=True, on_delete=models.SET_NULL)
-    created_on = models.DateTimeField(auto_now_add=True)
-    promotion = models.CharField(max_length=10, null=True, blank = True)
     hide_display = models.BooleanField(default = False)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    cat6_value = models.ForeignKey('Cat6', null=True, blank=True, on_delete=models.SET_NULL)
+    item_lead_time = models.IntegerField(default=0)
+    promotion = models.CharField(max_length=10, null=True, blank = True)
+    image = models.ImageField(null=True, blank=True)
+    image_url = models.URLField(max_length=1024, null=True, blank=True)
+    description = models.TextField()
+    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
-
+    
+    def lead_time(self):
+        """ return lead time for product, if not set """ 
+        """ on product use from category leadtime """
+        if self.item_lead_time != 0:
+            return (self.item_lead_time)    
+        else:
+            return (self.cat6_value.default_lead_time)
+            
 class Catname(models.Model):
     cat_num = models.IntegerField()
     cat_name = models.CharField(max_length=15)
@@ -46,37 +54,6 @@ class Catname(models.Model):
     def get_nice_name(self):
         return self.nice_name
 
-class Cat0(models.Model):
-    cat0_value = models.CharField(max_length=30, null=True, blank=True)
-
-    def __str__(self):
-        return f'{self.cat0_value}'
-
-
-class Cat1(models.Model):
-    cat1_value = models.CharField(max_length=30, null=True, blank=True)
-
-    def __str__(self):
-        return f'{self.cat1_value}'
-        
-class Cat2(models.Model):
-    cat2_value = models.CharField(max_length=30, null=True, blank=True)
-
-    def __str__(self):
-        return f'{self.cat2_value}'
-
-class Cat3(models.Model):
-    cat3_value = models.CharField(max_length=30, null=True, blank=True)
-
-    def __str__(self):
-        return f'{self.cat3_value}'
-
-
-class Cat4(models.Model):
-    cat4_value = models.CharField(max_length=30, null=True, blank=True)
-
-    def __str__(self):
-        return f'{self.cat4_value}'
 
 class Cat5(models.Model):
     cat5_value = models.CharField(max_length=30, null=True, blank=True)
@@ -84,11 +61,21 @@ class Cat5(models.Model):
     def __str__(self):
         return f'{self.cat5_value}'
 
-class Cat6(models.Model):
-    cat6_value = models.CharField(max_length=30, null=True, blank=True)
+class StockType(models.Model):
+    stock_type = models.CharField(max_length=30, null=True, blank=True)
+    default_lead_time = models.IntegerField()
 
     def __str__(self):
-        return f'{self.cat6_value}'
+        return f'{self.stock_type}'
+
+
+class Cat6(models.Model):
+    cat6_value = models.CharField(max_length=30, null=True, blank=True)
+    stock_type = models.CharField(max_length=30, null=True, blank=True, default='STOCK')
+    default_lead_time = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.stock_type}'
 
 class Review(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True, related_name='reviews') 

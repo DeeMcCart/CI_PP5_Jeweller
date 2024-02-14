@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 import statistics
 
-from .models import Product, Category, Cat1, Cat2, Cat3, Cat4, Review
+from .models import Product, Category, Review
 from .forms import ProductForm
 from django.contrib.auth.decorators import login_required
 
@@ -66,6 +66,18 @@ def all_products(request):
 
     return render(request, 'products/products.html', context)
 
+
+def maint_categories(request):
+    """ This is a sysadmin view to show all products, 
+    and allow the sysadmin to edit/delete """
+    print('In view maint_categories')
+    categories = Category.objects.all()
+    
+    context = {
+        'categories': categories,
+    }
+
+    return render(request, 'products/maint_categories.html', context)
 
 def maint_products(request):
     """ This is a sysadmin view to show all products, 

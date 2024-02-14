@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+{% if request.user.is_superuser %}
+    <div class="overlay"></div>
+    <div class="container-fluid" id="products-container">
+        <table class="table table-bordered table-hover ">
+            <thead class="table-success">
+                <tr>
+                <th></th>
+                <th></th>
+                <th>Cat</th>
+                <th>Value</th>
+                <th>Value</th>
+                </tr>
+            </thead>
+            <!-- Place one blank line at top of grid for Product Add-->
+            <tr class="text-muted">
+                <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/add/" title="Maintain product types"><i class="far fa-add icon-edit"></i></a></td>
+                <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/" title="Add new category value">Add</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            {% for cat in categories %}
+                <tr class="text-muted">
+                    <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/" title="Edit existing product"><i class="far fa-edit icon-edit"></i></a></td>
+                    <td><a class="text-muted" href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/" target="_blank"></a></td>
+                    <td>{{cat.field1}}</td>
+                    <td>{{cat.field2}}</td>
+                    <td>{{cat.field3}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div> <!-- end class container-fluid -->
+
+    <!-- DMcC 13/02/24 scroll-up button at end of reviews -->
+    <div class="btt-button shadow-sm rounded-0 border border-black">
+        <a class="btt-link d-flex h-100">
+            <i class="scroll-arrow fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>	
+    </div>
+{% endif %}
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <!-- JS to permit page upscroll to top of page -->
+    <script type="text/javascript">
+		$('.btt-link').click(function(e) {
+			window.scrollTo(0,0)
+		})
+	</script>
+    
+{% endblock %}
