@@ -13,11 +13,11 @@ from django.contrib.auth.decorators import login_required
 def all_products(request):
     """ This is the engine of searching, sorting and filtering """
     """ A view to show all products, including sorting and search queries """
-    """ DMcC 01.02.24 Extended to allow searching by new cat1..cat4 values """
-    """ not yet successful """
+    """ DMcC 14/02/24 Note that products with hide_display =True will not be returned"""
+    
 
     products = Product.objects.all()
-    
+    products = products.filter(hide_display=False)
     query = None
     categories = None
     sort = None
@@ -66,6 +66,21 @@ def all_products(request):
 
     return render(request, 'products/products.html', context)
 
+
+def maint_products(request):
+    """ This is a sysadmin view to show all products, 
+    and allow the sysadmin to edit/delete """
+    print('In view maint_products')
+    products = Product.objects.all()
+    
+    # sort by SKU in order asc/desc
+    products = products.order_by('sku')
+    
+    context = {
+        'products': products,
+    }
+
+    return render(request, 'products/maint_products.html', context)
 
 def product_detail(request, product_id):
     """ A view to show individual product details """

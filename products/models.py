@@ -25,19 +25,14 @@ class Product(models.Model):
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
-    cat0_value = models.ForeignKey('Cat0', null=True, blank=True, on_delete=models.SET_NULL)
-    cat1_value = models.ForeignKey('Cat1', null=True, blank=True, on_delete=models.SET_NULL)
-    cat2_value = models.ForeignKey('Cat2', null=True, blank=True, on_delete=models.SET_NULL)
-    cat3_value = models.ForeignKey('Cat3', null=True, blank=True, on_delete=models.SET_NULL)
-    cat4_value = models.ForeignKey('Cat4', null=True, blank=True, on_delete=models.SET_NULL)
     cat5_value = models.ForeignKey('Cat5', null=True, blank=True, on_delete=models.SET_NULL)
     cat6_value = models.ForeignKey('Cat6', null=True, blank=True, on_delete=models.SET_NULL)
     created_on = models.DateTimeField(auto_now_add=True)
-    dummy_field = models.CharField(max_length=10, null=True, blank = True)
+    promotion = models.CharField(max_length=10, null=True, blank = True)
+    hide_display = models.BooleanField(default = False)
 
     def __str__(self):
         return self.name
-
 
 class Catname(models.Model):
     cat_num = models.IntegerField()

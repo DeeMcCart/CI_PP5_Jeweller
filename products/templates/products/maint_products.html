@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+{% if request.user.is_superuser %}
+    <div class="overlay"></div>
+    <div class="container-fluid" id="products-container">
+        <table class="table table-bordered table-hover ">
+            <thead class="table-success">
+                <tr>
+                <th></th>
+                <th></th>
+                <th>SKU</th>
+                <th>Added</th>
+                <th>Cat</th>
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Hide?</th>
+                <th>Promo</th>
+                <th>Image</th>
+                <th>Price</th>
+                </tr>
+            </thead>
+            {% for product in products %}
+                <tr class="text-muted">
+                    <td><a href="{% url 'edit_product' product.id %}"><i class="far fa-edit icon-edit"></i></a></td>
+                    <td><a href="{% url 'delete_product' product.id %}"><i class='far fa-trash-alt icon-delete text-danger'></i></a></td>
+                    <td><a class="text-muted" href="{% url 'product_detail' product.id %}" target="_blank">{{product.sku}}</a></td>
+                    <td class="date">{{product.created_on|date:"d/m/y"}}</td>
+                    <td class="p-3">{{product.category}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.rating}}</td>
+                    <td>{{product.hide_display|yesno:"Y,N"}}</td>
+                    <td>{{product.promotion}}</td>
+                    <td class="p-3 w-auto max-vw-10">
+                    <!-- DMcC 13/02/24 temporarily remove product images as taking a huge width-->    
+                    <!-- {% if product.image %}
+                        <img class="img-thumbnail rounded image-grid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    {% else %} -->
+                        <img class="rounded image-grid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                    <!-- {% endif %} -->
+                    <td>{{product.price}}</td>
+                        
+                    </td>
+                    
+                </tr>
+            {% endfor %}
+        </table>
+    </div> <!-- end class container-fluid -->
+
+    <!-- DMcC 13/02/24 scroll-up button at end of reviews -->
+    <div class="btt-button shadow-sm rounded-0 border border-black">
+        <a class="btt-link d-flex h-100">
+            <i class="scroll-arrow fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>	
+    </div>
+{% endif %}
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <!-- JS to permit page upscroll to top of page -->
+    <script type="text/javascript">
+		$('.btt-link').click(function(e) {
+			window.scrollTo(0,0)
+		})
+	</script>
+    
+{% endblock %}

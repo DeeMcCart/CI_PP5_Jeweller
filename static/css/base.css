@@ -146,6 +146,12 @@ a.category-badge > span.badge:hover {
     max-height: auto;
 }
 
+/* Reduce image size further for maintenance grid */
+.image-grid {
+    max-width: 10%;
+   /* max-height: auto; */
+}
+
 /* For product detail image make it not clickable */
 .image-container {
     pointer-events: none;
@@ -540,6 +546,12 @@ button:hover {
 .review p {
     margin: 0;
 }
+
+/*--------------------  Product Maintenance Forms */
+.input-form {
+    border-radius: 5px;
+    padding: 20px;
+  }
 
 
 /* -------------------------------- Media Queries */
