@@ -171,9 +171,25 @@ def edit_product(request, product_id):
         'product': product,
     }
 
-    return render(request, template, context)    
+    return render(request, template, context)
     
+        
+@login_required
+def delete_confirm(request, product_id):
+    """ Confirm the (admin) user definitely wishes to """ 
+    """ Delete a product from the store """
+    # If not a superuser kick user out of function
+    if not request.user.is_superuser:
+        messages.error(request,'Restricted: Must have SysAdmin rights to Delete Products!')
+        return redirect(reverse('home'))
 
+    product = get_object_or_404(Product, pk=product_id)
+    template = 'products/delete_confirm.html'
+    context = {
+        'product': product,
+    }
+    return render(request, template, context)
+    
 
 # DMcC 09/02/24 Add @login_required decorator to ensure user logged in
 @login_required

@@ -146,11 +146,20 @@ a.category-badge > span.badge:hover {
     max-height: auto;
 }
 
-/* Reduce image size further for maintenance grid */
-.image-grid {
-    max-width: 10%;
-   /* max-height: auto; */
-}
+/* Product maintenance grid - Reduce image size */
+.img-thumbnail.rounded-circle {
+    max-width: 40px; 
+  }
+
+/* Product maintenance grid - make thumbnail zoom when hovered over */
+  .img-zoom {
+    transition: transform 0.3s ease-in-out; /* Smooth transition effect */
+  }
+  
+  /* Product maintenance grid */
+  .img-zoom:hover {
+    transform: scale(5); /* Increase image size on hover */
+  }
 
 /* For product detail image make it not clickable */
 .image-container {

@@ -19,38 +19,67 @@
                 <th></th>
                 <th></th>
                 <th>SKU</th>
-                <th>Added</th>
+                <th>Hide?</th>
                 <th>Cat</th>
                 <th>Name</th>
-                <th>Rating</th>
-                <th>Hide?</th>
-                <th>Promo</th>
-                <th>Image</th>
                 <th>Price</th>
+                <th>Promo</th>
+                <th>Ratg</th>
+                <th>Added</th>
+                <th>Image</th>
                 </tr>
             </thead>
+            <!-- Place one blank line at top of grid for Product Add-->
+            <tr class="text-muted">
+                <td><a href="{% url 'add_product' %}" title="Add new product"><i class="far fa-add icon-edit"></i></a></td>
+                <td><a href="{% url 'add_product' %}" title="Add new product">Add</a></td>
+                <td></td>
+                <td></td>
+                <td class="p-3"></td>
+                <td></td>
+                <td></td>
+                <td>{% if product.promotion %}
+                        {{product.promotion}}
+                    {% endif %}
+                </td>
+                <td>{% if product.rating %}
+                        {{product.rating}}
+                    {% endif %}
+                </td>
+                <td class="date"></td>
+                <td class="p-0 align-middle">
+                    {% if product.image %}
+                        <img class="img-thumbnail rounded-circle img-zoom" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    {% else %} 
+                        <img class="img-thumbnail rounded-circle img-zoom" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                    {% endif %}
+                </td>
+            </tr>
             {% for product in products %}
                 <tr class="text-muted">
-                    <td><a href="{% url 'edit_product' product.id %}"><i class="far fa-edit icon-edit"></i></a></td>
-                    <td><a href="{% url 'delete_product' product.id %}"><i class='far fa-trash-alt icon-delete text-danger'></i></a></td>
+                    <td><a href="{% url 'edit_product' product.id %}" title="Edit existing product"><i class="far fa-edit icon-edit"></i></a></td>
+                    <td><a href="{% url 'delete_confirm' product.id %}" title="Delete existing product"><i class='far fa-trash-alt icon-delete text-danger'></i></a></td>
                     <td><a class="text-muted" href="{% url 'product_detail' product.id %}" target="_blank">{{product.sku}}</a></td>
-                    <td class="date">{{product.created_on|date:"d/m/y"}}</td>
+                    <td>{{product.hide_display|yesno:"Y,N"}}</td>
                     <td class="p-3">{{product.category}}</td>
                     <td>{{product.name}}</td>
-                    <td>{{product.rating}}</td>
-                    <td>{{product.hide_display|yesno:"Y,N"}}</td>
-                    <td>{{product.promotion}}</td>
-                    <td class="p-3 w-auto max-vw-10">
-                    <!-- DMcC 13/02/24 temporarily remove product images as taking a huge width-->    
-                    <!-- {% if product.image %}
-                        <img class="img-thumbnail rounded image-grid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                    {% else %} -->
-                        <img class="rounded image-grid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                    <!-- {% endif %} -->
                     <td>{{product.price}}</td>
-                        
+                    <td>{% if product.promotion %}
+                            {{product.promotion}}
+                        {% endif %}
                     </td>
-                    
+                    <td>{% if product.rating %}
+                            {{product.rating}}
+                        {% endif %}
+                    </td>
+                    <td class="date">{{product.created_on|date:"d/m/y"}}</td>
+                    <td class="p-0 align-middle">
+                        {% if product.image %}
+                            <img class="img-thumbnail rounded-circle img-zoom" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% else %} 
+                            <img class="img-thumbnail rounded-circle img-zoom" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
         </table>
