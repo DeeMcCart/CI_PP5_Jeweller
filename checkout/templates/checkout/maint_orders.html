@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+{% if request.user.is_superuser %}
+    <div class="overlay"></div>
+    <div class="container-fluid" id="orders-container">
+        <table class="table table-bordered table-hover ">
+            <thead class="table-success">
+                <tr>
+                <th></th>
+                <th>Order</th>
+                <th>Status</th>
+                <th>Late?</th>
+                <th>DelMeth</th>
+                <th>Trace</th>
+                <th>PromisedShip</th>
+                <th>Fullname</th>
+                <th>Ph</th>
+                <th>Addr1</th>
+                <th>Addr2</th>
+                <th>Addr3</th>
+                <th>Eircode</th>
+                <th>User</th>
+                <th>CreatedOn</th>
+                </tr>
+            </thead>
+            <!-- Place one blank line at top of grid for Product Add-->
+            {% for order in orders %}
+                <tr class="text-muted">
+                    <td><a href="" title="Edit existing order"><i class="far fa-edit icon-edit"></i></a></td>
+                    <td><a class="text-info" href="" target="_blank">{{order.order_number}}</a></td>
+                    <td id="order-status" class="text-info">{{order.order_status}}</td>
+                    <td id="order-late" class="text-info">{{ order_late }}</td>
+                    <td>{{order.delivery_method}}</td>
+                    <td>{% if order.delivery_method == "REGPOST" and order.delivery_track != "" %}
+                        <a href="https://www.anpost.com/Post-Parcels/Track/History?item={{order.delivery_track}}" title="Trace" target="_blank">
+                            <i class="far fa-van icon-track"></i>{{order.delivery_track}}</a>
+                        {% else %}
+                            {{order.delivery_track}}
+                        {% endif %}
+                    </td>
+                    <td {% if order.order_late %} class="date text-warning" 
+                        {% else %} class="date" 
+                        {% endif %}> 
+                        {{order.planned_ship_date|date:"d/m/y"}}</td>
+                    <td>{{order.full_name}}</td>
+                    <td>{{order.phone_number}}</td>
+                    <td>{{order.street_address1}}</td>
+                    <td>{{order.street_address2}}</td>
+                    <td>{{order.town_or_city}}</td>
+                    <td>{{order.postcode}}</td>
+                    <td>{{order.user_profile}}</td>
+                    <td class="date">{{order.created_on|date:"d/m/y"}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div> <!-- end class container-fluid -->
+
+    <!-- DMcC 13/02/24 scroll-up button at end of orders page -->
+    <div class="btt-button shadow-sm rounded-0 border border-black">
+        <a class="btt-link d-flex h-100">
+            <i class="scroll-arrow fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>	
+    </div>
+{% endif %}
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <!-- JS to permit page upscroll to top of page -->
+    <script type="text/javascript">
+		$('.btt-link').click(function(e) {
+			window.scrollTo(0,0)
+		})
+	</script>
+    
+{% endblock %}

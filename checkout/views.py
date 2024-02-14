@@ -218,3 +218,36 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
+
+
+    
+def maint_orders(request):
+    """ This is a sysadmin view to show all orders, 
+    and allow the sysadmin to edit/delete """
+    print('In view maint_orders')
+    orders = Order.objects.all()
+    
+    # sort by SKU in order asc/desc
+    orders = orders.order_by('-order_number')
+    
+
+    context = {
+        'orders': orders,
+    }
+
+    return render(request, 'checkout/maint_orders.html', context)
+
+    def order_late(self):
+        """ determine if an order is late in shipping """
+        """ based on order status and promised_ship_date """
+        """ DMcC 14/02/24 Moved this from the Models area as constantly recalculating"""
+        now = timezone.now()
+        order_late=False
+        order_promised_ship = self.order_ship_date()
+        print(f'order_promised_ship', order_promised_ship)
+        print(f'now', now)
+        if ((self.order_status in ['ORDERED', 'PACKED'])
+            and (order_promised_ship < now)):
+            order_late = True
+        print(f'Order ', self.order_number, ' is ', order_late, ' late')
+        return order_late

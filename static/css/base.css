@@ -8,6 +8,7 @@
     --color-button-foreground: white;
     --color-button-background: black; 
     --product-detail-rating: 5;
+    --font-percent: 20;
 }
 
 html {
@@ -159,6 +160,12 @@ a.category-badge > span.badge:hover {
   /* Product maintenance grid */
   .img-zoom:hover {
     transform: scale(5); /* Increase image size on hover */
+  }
+
+  /* Product/ order maintenance grid - reduce font size */
+  #orders-container,
+  #products-container {
+    font-size-adjust: 20%;
   }
 
 /* For product detail image make it not clickable */

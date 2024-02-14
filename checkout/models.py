@@ -3,8 +3,21 @@ from products.models import Product
 from profiles.models import UserProfile
 from django.conf import settings
 from django.db.models import Sum, Max
-
+from django.utils import timezone
+from datetime import timedelta
 from django_countries.fields import CountryField
+
+ORDER_STATUS_CHOICES = [
+    ('ORDERED', 'Ordered'),
+    ('PACKED', 'Packed'),
+    ('SHIPPED', 'Shipped'),
+    ('RECEIVED', 'Received'),
+]
+
+DELIVERY_METHODS = [
+    ('REGPOST', 'RegisteredPost'),
+    ('COLLECT', 'Click & Collect'),
+]
 
 # Create your models here.
 class Order(models.Model):
@@ -21,6 +34,10 @@ class Order(models.Model):
     country = CountryField(blank_label='Country *', null=False, blank=False)
     postcode = models.CharField(max_length=20, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
+    planned_ship_date = models.DateTimeField(default=timezone.now().replace(year=2024, month=2, day=28))
+    delivery_method = models.CharField(max_length=7, choices=DELIVERY_METHODS, default='REGPOST')
+    delivery_track = models.CharField(max_length=13, null=True, blank=True)
+    order_status = models.CharField(max_length=10, choices=ORDER_STATUS_CHOICES, default='ORDERED')
     delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
@@ -68,6 +85,12 @@ class Order(models.Model):
     def __str__(self):
         return self.order_number
 
+    def order_ship_date(self):
+        """ calculate the order shipping date based on the """ 
+        """ latest order line ship date    """
+        now = timezone.now()
+        latest_line_ship_date = self.lineitems.aggregate(Max('line_ship_date'))['line_ship_date__max'] 
+        return latest_line_ship_date or now + timedelta(days=1)
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
@@ -77,6 +100,7 @@ class OrderLineItem(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     category = models.CharField(max_length=30, null=True, blank=True)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    line_ship_date = models.DateTimeField(default=(timezone.now()+ timedelta(days=1)))
 
     def save(self, *args, **kwargs):
         """
@@ -110,6 +134,13 @@ class OrderLineItem(models.Model):
             
         return str(next_line_number)
 
+    def item_ship_date(self):
+        now = timezone.now()
+        product_delta = int(self.product.lead_time)
+        print(f'Product lead_time is ', product_delta)
+        return now + timedelta(days=product_delta) 
+
+        
 class OrderAddress(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_address")
     address_type =  models.CharField(max_length=4, null=False, editable=True, default='BILL')
