@@ -13,31 +13,56 @@
 {% if request.user.is_superuser %}
     <div class="overlay"></div>
     <div class="container-fluid" id="products-container">
+        <h3>Categories (Click to expand)</h3> 
         <table class="table table-bordered table-hover ">
             <thead class="table-success">
                 <tr>
                 <th></th>
-                <th></th>
-                <th>Cat</th>
-                <th>Value</th>
-                <th>Value</th>
+                <th>Name</th>
+                <th>Nicename</th>
                 </tr>
             </thead>
             <!-- Place one blank line at top of grid for Product Add-->
             <tr class="text-muted">
-                <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/add/" title="Maintain product types"><i class="far fa-add icon-edit"></i></a></td>
-                <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/" title="Add new category value">Add</a></td>
-                <td></td>
-                <td></td>
+                <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/add/" title="Maintain product types" target="_blank"><i class="far fa-add icon-edit"></i></a></td>
+                <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/add" title="Add new category value" target="_blank">Add</a></td>
                 <td></td>
                 
             {% for cat in categories %}
                 <tr class="text-muted">
-                    <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/" title="Edit existing product"><i class="far fa-edit icon-edit"></i></a></td>
-                    <td><a class="text-muted" href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/" target="_blank"></a></td>
-                    <td>{{cat.field1}}</td>
-                    <td>{{cat.field2}}</td>
-                    <td>{{cat.field3}}</td>
+                    <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/{{cat.id}}/change" title="Edit categories" target="_blank"><i class="far fa-edit icon-edit"></i></a></td>
+                    <td>{{cat.name}}</td>
+                    <td>{{cat.friendly_name}}</td>
+                    
+                    
+                </tr>
+            {% endfor %}
+        </table>
+
+
+
+        <h3>Product Source & Lead Time (Click to expand)</h3> 
+        <table class="table table-bordered table-hover ">
+            <thead class="table-success">
+                <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Nicename</th>
+                </tr>
+            </thead>
+            <!-- Place one blank line at top of grid for Product Add-->
+            <tr class="text-muted">
+                <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/add/" title="Maintain product types" target="_blank"><i class="far fa-add icon-edit"></i></a></td>
+                <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/add" title="Add new category value" target="_blank">Add</a></td>
+                <td></td>
+                
+            {% for cat in categories %}
+                <tr class="text-muted">
+                    <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/{{cat.id}}/change" title="Edit categories" target="_blank"><i class="far fa-edit icon-edit"></i></a></td>
+                    <td>{{cat.name}}</td>
+                    <td>{{cat.friendly_name}}</td>
+                    
+                    
                 </tr>
             {% endfor %}
         </table>
