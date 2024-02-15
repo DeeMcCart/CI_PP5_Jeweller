@@ -1,12 +1,34 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib import messages
 from django.views.generic import TemplateView
 from django.template import RequestContext
-
 from django.http import HttpResponseRedirect
+from .models import AboutSection, AboutText
 
 # Create your views here.
+
+def about(request):
+    """ This controls the display of text for the About page """
+    """ Text typically is About / FAQ/ Enquiries """
+    """ The model is designed to allow administrator to update """
+    """ or periodically add to the displayed text """
+    """ DMcC 14/02/24 Note that text with hide_display =True will not be returned"""
+    
+    about_sections = AboutSection.objects.filter(hide_display=False)
+    about_text = AboutText.objects.filter(hide_display=False)
+    
+    context = {
+        'about_sections': about_sections,
+        'about_text': about_text,
+        'return_to': 'About',
+    }
+
+    return render(request, 'home/about.html', context)
+
+
 def index(request):
     return render(request, 'home/index.html')
+
 
 def error_400(request, exception):
     data = {}

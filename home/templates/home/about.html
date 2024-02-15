@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="overlay"></div>
+
+{% for topic in about_sections %}
+  <div class="container-fluid" id="{{topic.section}}">
+  <h3>{{topic.section_title}}</h3>
+      {% for texty in about_text %}
+        <h5>{% if texty.section.section == topic.section %}{{texty.text_title}}{% endif %}</h5>
+        <p>{% if texty.section.section == topic.section %}{{texty.text_body}}{% endif %}</p>
+      {% endfor %}
+   </div>       
+{% endfor %}
+
+
+<div class="container-fluid" id="Enquiry">
+    <div class="container mt-5">
+        <h1>Share Your Feedback</h1>
+        <form id="feedback-form">
+          <div class="row mb-3">
+            <label for="name" class="col-sm-2 col-form-label">Name (Optional)</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="name" name="name">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="email" class="col-sm-2 col-form-label">Email (Optional)</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="email" name="email">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="feedback" class="col-sm-2 col-form-label">Enquiry</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" id="feedback" name="feedback" rows="5"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div> <!-- end div mt-5-->
+</div> <!-- end div id "Enquiry"-->
+
+<!-- DMcC 13/02/24 scroll-up button at end of page -->
+<div class="btt-button shadow-sm rounded-0 border border-black">
+    <a class="btt-link d-flex h-100">
+        <i class="scroll-arrow fas fa-arrow-up text-black mx-auto my-auto"></i>
+    </a>	
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <!-- JS to permit page upscroll to top of page -->
+    <script type="text/javascript">
+		$('.btt-link').click(function(e) {
+			window.scrollTo(0,0)
+		})
+	</script>
+{% endblock %}
