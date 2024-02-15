@@ -71,4 +71,34 @@ def order_history(request, order_number):
     }
 
     return render(request, template, context)
+
+def add_profile(request):
+    """ On registration:  Create a new user profile """
+    
+    if request.method == 'POST':
+        print(f"In profiles/views/add_profile")
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save()
+            # DMcC 08/02/24 hmm need to think about this as want to return an informative success message
+            messages.success(request, f'Successfully added user profile { request.user.user_profile }, {request.user.user_profile.phone_number1}')
             
+            # instead of returning a blank add-product form, return redirect(reverse('add_product'))
+            # go to the new product detail where sysadmin can visually confiirm correct add
+            context = {
+            'form': profile_form,
+            'on_profile_page': True,
+            }
+
+            return render(request, template, context)
+        else:
+            messages.error(request, 'Failed to add profile. Please ensure the form is valid.')
+    else:
+          
+        template = 'profiles/profile.html'
+        context = {
+            'form': profile_form,
+            'on_profile_page': True,
+        }
+
+        return render(request, template, context)

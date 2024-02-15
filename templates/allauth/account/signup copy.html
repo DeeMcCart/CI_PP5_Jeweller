@@ -1,0 +1,34 @@
+{% extends "account/base.html" %}
+{% load crispy_forms_tags %}
+<!--- DMcC 15/02/24 this is a safe copy of the signup form as i want to experiment -->
+<!-- with the displayed fields on the form -->
+{% load i18n %}
+
+{% block title %}{% trans "Signup" %}{% endblock %}
+
+{% block inner_content %}
+<div class="container text-center">
+
+  <hr>
+  <h2 class="logo-font mb-4">Goldmark - User {% trans "Sign Up" %}</h2>
+  <hr>
+  <p> You can browse this site as a guest user.  To track your orders, please register.</p>
+
+  <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+  <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+    <p> This is a custom signup form modified for GoldMark</p>
+    {% csrf_token %}
+    {% for field in form %}
+       {{{field.label}}} {{ field | as_crispy_field }}
+    {% endfor %}
+
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <a class="btn btn-outline-black rounded-0" href="{% url 'account_login' %}">Back to Login</a>
+    <button type="submit" class="btn btn-signup right">{% trans "Sign Up" %}</button>
+  </form>
+
+</div> <!-- end div container text-center -->
+{% endblock %}
