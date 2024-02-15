@@ -13,62 +13,70 @@
 {% if request.user.is_superuser %}
     <div class="overlay"></div>
     <div class="container-fluid" id="products-container">
-        <h3>Categories (Click to expand)</h3> 
-        <table class="table table-bordered table-hover ">
-            <thead class="table-success">
-                <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Nicename</th>
-                </tr>
-            </thead>
-            <!-- Place one blank line at top of grid for Product Add-->
-            <tr class="text-muted">
-                <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/add/" title="Maintain product types" target="_blank"><i class="far fa-add icon-edit"></i></a></td>
-                <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/add" title="Add new category value" target="_blank">Add</a></td>
-                <td></td>
-                
-            {% for cat in categories %}
+        <h3>Product Categories:</h3> 
+        <input type="button" class="btn btn-outline-black rounded-0" id="show-hide-b1" value = "Show" onclick="show_hide1()">
+        <div class="container-fluid hide-div" id="container1"> <!-- a show/hide container -->
+            <table class="table table-bordered table-hover ">
+                <thead class="table-secondary">
+                    <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Nicename</th>
+                    </tr>
+                </thead>
+                <!-- Place one blank line at top of grid for Product Add-->
                 <tr class="text-muted">
-                    <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/{{cat.id}}/change" title="Edit categories" target="_blank"><i class="far fa-edit icon-edit"></i></a></td>
-                    <td>{{cat.name}}</td>
-                    <td>{{cat.friendly_name}}</td>
+                    <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/add/" title="Maintain product types" target="_blank"><i class="far fa-add icon-edit"></i></a></td>
+                    <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/add" title="Add new category value" target="_blank">Add</a></td>
+                    <td></td>
                     
-                    
-                </tr>
-            {% endfor %}
-        </table>
+                {% for cat in categories %}
+                    <tr class="text-muted">
+                        <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/{{cat.id}}/change" title="Edit categories" target="_blank"><i class="far fa-edit icon-edit"></i></a></td>
+                        <td>{{cat.name}}</td>
+                        <td>{{cat.friendly_name}}</td>
+                        
+                        
+                    </tr>
+                {% endfor %}
+            </table>
+        </div> <!-- end id container1 (Categories table)-->
 
 
+        <h3>Product Source & Lead Times:</h3> 
+        <input type="button" class="btn btn-outline-black rounded-0" id="show-hide-b2" value = "Show" onclick="show_hide2()">
+                                
+        <div class="container-fluid hide-div" id="container2"> <!-- a show/hide container -->
+            <table class="table table-bordered table-hover ">
+                <thead class="table-secondary">
+                    <tr>
+                    <th></th>
+                    <th>Source</th>
+                    <th>Source</th>
+                    <th>Default LeadTime (Days)</th>
+                    </tr>
+                </thead>
 
-        <h3>Product Source & Lead Time (Click to expand)</h3> 
-        <table class="table table-bordered table-hover ">
-            <thead class="table-success">
-                <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Nicename</th>
-                </tr>
-            </thead>
-            <!-- Place one blank line at top of grid for Product Add-->
-            <tr class="text-muted">
-                <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/add/" title="Maintain product types" target="_blank"><i class="far fa-add icon-edit"></i></a></td>
-                <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/add" title="Add new category value" target="_blank">Add</a></td>
-                <td></td>
-                
-            {% for cat in categories %}
+                <!-- Place one blank line at top of grid for Product Add-->
                 <tr class="text-muted">
-                    <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/category/{{cat.id}}/change" title="Edit categories" target="_blank"><i class="far fa-edit icon-edit"></i></a></td>
-                    <td>{{cat.name}}</td>
-                    <td>{{cat.friendly_name}}</td>
+                    <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/cat6/add/" title="Maintain product types" target="_blank"><i class="far fa-add icon-edit"></i></a></td>
+                    <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/cat6/add" title="Add new category value" target="_blank">Add</a></td>
+                    <td></td>
                     
-                    
-                </tr>
-            {% endfor %}
-        </table>
+                {% for source in sources %}
+                    <tr class="text-muted">
+                        <td><a href="https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io/admin/products/cat6/{{source.id}}/change" title="Edit categories" target="_blank"><i class="far fa-edit icon-edit"></i></a></td>
+                        <td>{{source.cat6_value}}</td>
+                        <td>{{source.stock_type}}</td>
+                        <td>{{source.default_lead_time}}</td>
+                        
+                    </tr>
+                {% endfor %}
+            </table>
+        </div> <!-- end id container2 (Sources table) -->
     </div> <!-- end class container-fluid -->
 
-    <!-- DMcC 13/02/24 scroll-up button at end of reviews -->
+    <!-- DMcC 13/02/24 scroll-up button at end of table maintenance -->
     <div class="btt-button shadow-sm rounded-0 border border-black">
         <a class="btt-link d-flex h-100">
             <i class="scroll-arrow fas fa-arrow-up text-black mx-auto my-auto"></i>
@@ -85,5 +93,30 @@
 			window.scrollTo(0,0)
 		})
 	</script>
-    
+    <script type="text/javascript">
+        function show_hide1() {
+        show_button1 = document.getElementById("show-hide-b1");
+        if (show_button1.value == "Show") {
+            document.getElementById("container1").classList.remove("hide-div");
+            show_button1.value="Hide";
+            }  
+        else 
+            {
+            document.getElementById("container1").classList.add("hide-div");
+            show_button1.value="Show";
+            }  
+        }
+        function show_hide2() {
+        show_button2 = document.getElementById("show-hide-b2");
+        if (show_button2.value == "Show") {
+            document.getElementById("container2").classList.remove("hide-div");
+            show_button2.value="Hide";
+            }  
+        else 
+            {
+            document.getElementById("container2").classList.add("hide-div");
+            show_button2.value="Show";
+            }  
+        }
+    </script>
 {% endblock %}

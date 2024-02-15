@@ -569,6 +569,13 @@ button:hover {
     padding: 20px;
   }
 
+/* Below are some classes used for the catalog maintenance template */
+/* These are used in conjucntion with some js code to set/unset element classes to pickup display attributes */
+
+.hide-field,
+.hide-div {
+    display: none;
+}
 
 /* -------------------------------- Media Queries */
 

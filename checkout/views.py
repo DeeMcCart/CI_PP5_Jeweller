@@ -50,6 +50,7 @@ def checkout(request):
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
             'phone_number': request.POST['phone_number'],
+            'delivery_method': request.POST['delivery_method'],
             'country': request.POST['country'],
             'postcode': request.POST['postcode'],
             'town_or_city': request.POST['town_or_city'],
@@ -112,45 +113,46 @@ def checkout(request):
             messages.error(request, "There's nothing in your basket at the moment")
             return redirect(reverse('products'))
 
-        current_basket = basket_contents(request)
-        total = current_basket['grand_total']
-        stripe_total = round(total * 100)
-        stripe.api_key = stripe_secret_key
-        intent = stripe.PaymentIntent.create(
-            amount=stripe_total,
-            currency=settings.STRIPE_CURRENCY,
-        )
+    current_basket = basket_contents(request)
+    total = current_basket['grand_total']
+    stripe_total = round(total * 100)
+    stripe.api_key = stripe_secret_key
+    intent = stripe.PaymentIntent.create(
+        amount=stripe_total,
+        currency=settings.STRIPE_CURRENCY,
+    )
 
     # DMcC 07/02/24 copy the default delivery address from the user to the order (if exists)
     # DMcC 07/02/24 This will reuire more work to distinguish between ship and BILL addresses
     # But lets assume BILL address for now.  Ref = Profile App Part 8
-        if request.user.is_authenticated:
-            try:
-                bill_address=None
-                profile = UserProfile.objects.get(user=request.user)
-                if profile:
-                    addresses = profile.user_address.filter(address_type="BILL")
-                    if addresses:
-                        bill_address = addresses[0]
-                if bill_address:
-                    print(f'Found billing address ', bill_address)
-                    order_form = OrderForm(initial={
-                        'full_name': profile.user.get_full_name(),
-                        'email': profile.user.email,
-                        'phone_number': profile.phone_number1,
-                        'street_address1': bill_address.address1,
-                        'street_address2': bill_address.address2,
-                        'town_or_city': bill_address.town_or_city,
-                        'county': bill_address.county,
-                        'postcode': bill_address.postcode,
-                        'country': bill_address.country,
-                        })
-                else:
-                    order_form = OrderForm()
-            except UserProfile.DoesNotExist:
+    if request.user.is_authenticated:
+        try:
+            bill_address=None
+            profile = UserProfile.objects.get(user=request.user)
+            if profile:
+                addresses = profile.user_address.filter(address_type="BILL")
+                if addresses:
+                    bill_address = addresses[0]
+            if bill_address:
+                print(f'Found billing address ', bill_address)
+                order_form = OrderForm(initial={
+                    'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                    'phone_number': profile.phone_number1,
+                    'delivery_method': 'REGPOST',
+                    'street_address1': bill_address.address1,
+                    'street_address2': bill_address.address2,
+                    'town_or_city': bill_address.town_or_city,
+                    'county': bill_address.county,
+                    'postcode': bill_address.postcode,
+                    'country': bill_address.country,
+                    })
+            else:
                 order_form = OrderForm()
-        else:
-          order_form = OrderForm()
+        except UserProfile.DoesNotExist:
+            order_form = OrderForm()
+    else:
+        order_form = OrderForm()
 
 
     if not stripe_public_key:

@@ -49,14 +49,41 @@
 
                     <div class="row">
                         <div class="col-12 col-md-4">
+                            <p class="mb-0 text-black font-weight-bold">Status</p>
+                        </div>
+                        <div class="col-12 col-md-8 text-md-right">
+                            <p class="mb-0">{{ order.order_status }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <p class="mb-0 text-black font-weight-bold">Delivery Method</p>
+                        </div>
+                        <div class="col-12 col-md-8 text-md-right">
+                            <p class="mb-0">{{ order.delivery_method }}</p>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <p class="mb-0 text-black font-weight-bold">
+                                {% if order.delivery_method == "COLLECT" %}Collection {% else %}Planned Despatch {% endif %}Date</p>
+                        </div>
+                        <div class="col-12 col-md-8 text-md-right">
+                            <p class="mb-0">{{ order.planned_ship_date }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12 col-md-4">
                             <p class="mb-0 text-black font-weight-bold">Order Date</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
                             <p class="mb-0">{{ order.date }}</p>
                         </div>
                     </div>
-
-                    
                     <div class="row">
                         <div class="col">
                             <small class="text-muted">Deliver To:</small>

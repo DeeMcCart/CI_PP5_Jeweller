@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 import statistics
 
-from .models import Product, Category, Review
+from .models import Product, Category, Cat6, Review
 from .forms import ProductForm
 from django.contrib.auth.decorators import login_required
 
@@ -72,9 +72,11 @@ def maint_categories(request):
     and allow the sysadmin to edit/delete """
     print('In view maint_categories')
     categories = Category.objects.all()
-    
+    sources = Cat6.objects.all()
+
     context = {
         'categories': categories,
+        'sources': sources,
     }
 
     return render(request, 'products/maint_categories.html', context)
