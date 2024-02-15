@@ -14,7 +14,7 @@
     <div class="overlay"></div>
     <div class="container-fluid" id="orders-container">
         <table class="table table-bordered table-hover ">
-            <thead class="table-success">
+            <thead class="table-secondary">
                 <tr>
                 <th></th>
                 <th>Order</th>
@@ -37,7 +37,7 @@
             {% for order in orders %}
                 <tr class="text-muted">
                     <td><a href="" title="Edit existing order"><i class="far fa-edit icon-edit"></i></a></td>
-                    <td><a class="text-info" href="" target="_blank">{{order.order_number}}</a></td>
+                    <td><a class="text-info" href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}" target="_blank">{{ order.order_number|truncatechars:6 }}</a></td>
                     <td id="order-status" class="text-info">{{order.order_status}}</td>
                     <td id="order-late" class="text-info">{{ order_late }}</td>
                     <td>{{order.delivery_method}}</td>
@@ -82,5 +82,8 @@
 			window.scrollTo(0,0)
 		})
 	</script>
-    
+    <!-- JS to prevent display of delivery-banner-->
+    <script>    
+         document.getElementById("delivery-banner").classList.add("hide-div");
+    </script>
 {% endblock %}

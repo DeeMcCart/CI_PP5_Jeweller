@@ -59,7 +59,7 @@
                     {% if request.user.is_superuser %}
                         <small>
                         <a href="{% url 'edit_product' product.id %}">Edit</a>
-                        <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+                        <a class="text-danger" href="{% url 'delete_confirm' product.id %}">Delete</a>
                         </small>
                     {% endif %}
                     {% if request.user.is_authenticated %}

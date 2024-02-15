@@ -102,6 +102,7 @@
                             <tr>
                                 <th>Order Number</th>
                                 <th>Date</th>
+                                <th>Status</th>
                                 <th>Items</th>
                                 <th>Order Total</th>
                             </tr>
@@ -118,6 +119,10 @@
                                 <td>
                                     {{ order.date}}
                                 </td>
+                                <td>
+                                    {{ order.status}}
+                                </td>
+                                
                                 <td>
                                     <ul class="list-unstyled">
                                         {% for item in order.lineitems.all %}

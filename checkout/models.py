@@ -64,14 +64,23 @@ class Order(models.Model):
         """
         Update grand total each time a line item is added,
         accounting for delivery costs.
+        DMcC 15/02/24 would like this only to apply when status = ORDERED or PACKED.
+        As deleting a historical product master can mean the order total 
+        recalculates for historical orders
         """
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
-        if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
-            self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
+        print(f'In receiver order.update_total, order ', self.order_number)
+        if self.order_status not in ['SHIPPED', 'RECEIVED']:
+            print(f'Order at status ',self.order_status, 'will not be affected by product removal')
+            self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+            if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
+                self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
+            else:
+                self.delivery_cost = 0
+            self.grand_total = self.order_total + self.delivery_cost
+            self.save()
         else:
-            self.delivery_cost = 0
-        self.grand_total = self.order_total + self.delivery_cost
-        self.save()
+            print(f'Order at status ',self.order_status, 'will not be affected by product removal')
+        
 
     def save(self, *args, **kwargs):
         """
