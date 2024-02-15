@@ -17,9 +17,9 @@
             <thead class="table-secondary">
                 <tr>
                 <th></th>
+                <th></th>
                 <th>Order</th>
                 <th>Status</th>
-                <th>Late?</th>
                 <th>DelMeth</th>
                 <th>Trace</th>
                 <th>PromisedShip</th>
@@ -36,10 +36,12 @@
             <!-- Place one blank line at top of grid for Product Add-->
             {% for order in orders %}
                 <tr class="text-muted">
-                    <td><a href="" title="Edit existing order"><i class="far fa-edit icon-edit"></i></a></td>
+                    <td><a href="" title="View order"><i class="fa-solid fa-magnifying-glass icon-edit"></i></a></td>
+                    <!-- Trigger the modal with a button -->
+                    <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#update-status-popup">{% if order.order_status == "ORDERED" %}PACK {% else %} SHIP {% endif %}</button></td>
+                    <!-- <td><a href="" title="Update order Status" onclick="show_update_modal()"><i class="far fa-edit icon-edit"  ></i></a></td>-->
                     <td><a class="text-info" href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}" target="_blank">{{ order.order_number|truncatechars:6 }}</a></td>
                     <td id="order-status" class="text-info">{{order.order_status}}</td>
-                    <td id="order-late" class="text-info">{{ order_late }}</td>
                     <td>{{order.delivery_method}}</td>
                     <td>{% if order.delivery_method == "REGPOST" and order.delivery_track != "" %}
                         <a href="https://www.anpost.com/Post-Parcels/Track/History?item={{order.delivery_track}}" title="Trace" target="_blank">
@@ -61,6 +63,35 @@
                     <td>{{order.user_profile}}</td>
                     <td class="date">{{order.created_on|date:"d/m/y"}}</td>
                 </tr>
+                <!-- DMcC 15/02/24:  Add a modal for order status update thank you Gemini -->
+                <div id="update-status-popup" class="modal fade" tabindex="-1" aria-labelledby="updateStatusModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="updateStatusModalLabel">Update Order Status</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form id="update-status-form">
+                            <div class="mb-3">
+                              <label for="order-id" class="form-label">Order ID:</label>
+                              <input type="text" class="form-control" id="order-id" value = {{order.order_number}} readonly>
+                            </div>
+                            <div class="mb-3">
+                              <label for="new-status" class="form-label">Next Status:</label>
+                              <select class="form-select" id="new-status">
+                                <option value="PACKED">Packed</option>
+                                <option value="SHIPPED">Shipped</option>
+                                <option value="RECEIVED">Received</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
             {% endfor %}
         </table>
     </div> <!-- end class container-fluid -->
@@ -84,6 +115,24 @@
 	</script>
     <!-- JS to prevent display of delivery-banner-->
     <script>    
-         document.getElementById("delivery-banner").classList.add("hide-div");
+        document.getElementById("delivery-banner").classList.add("hide-div");
     </script>
+    <script>
+        function show_update_modal() {
+            console.log("In function show_update_modal()");
+            show_modal = document.getElementById("update-status-popup");
+            console.log("current value of show/hide button is " + show_comments_button.value);
+            if (show_comments_button.value == "Show Resp") {
+                document.getElementById("comments-container").classList.remove("hide-div");
+                console.log("Removed class hide-div from comments-container")
+                show_comments_button.value="Hide Resp";
+                }  
+            else 
+                {
+                document.getElementById("comments-container").classList.add("hide-div");
+                console.log("Added class hide-div to comments-container")
+                show_comments_button.value="Show Resp";
+                }  
+            }
+        </script>
 {% endblock %}

@@ -36,10 +36,10 @@
             </a>
         </a>
         <div class="dropdown-menu border-0" aria-labelledby="specials-link">
-            <a href="" class="dropdown-item">Cat4Val1 e.g. New Arrivals</a>
-            <a href="" class="dropdown-item">Cat4Val2 e.g. Deals</a>
-            <a href="" class="dropdown-item">Cat4Val3 e.g. Clearance</a>
-            <a href="" class="dropdown-item">Cat4Val4 e.g. All Specials</a>
+            <a href="{% url 'products' %}?sort=created_on&direction=desc" class="dropdown-item">New Arrivals</a>
+            <a href="{% url 'products' %}" class="dropdown-item">Deals</a>
+            <a href="{% url 'products' %}" class="dropdown-item">Clearance</a>
+            <a href="{% url 'products' %}" class="dropdown-item">All Specials</a>
         </div>
         </li>
 
