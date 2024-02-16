@@ -15,7 +15,13 @@ class Category(models.Model):
     def get_friendly_name(self):
         return self.friendly_name
 
-
+ITEM_SOURCE_CHOICES = [
+    ('STOCK', 'Stocked Item'),
+    ('MTO', 'Make-to-Order'),
+    ('COMM', 'Comission/ One-off'),
+    ('SERV', 'Service'),
+    ('PERS', 'Personalisation')
+]
 class Product(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     sku = models.CharField(max_length=254, null=True, blank=True)
@@ -23,6 +29,7 @@ class Product(models.Model):
     hide_display = models.BooleanField(default = False)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     cat6_value = models.ForeignKey('Cat6', null=True, blank=True, on_delete=models.SET_NULL)
+    source = models.CharField(max_length=5, choices=ITEM_SOURCE_CHOICES, default='STOCK')
     item_lead_time = models.IntegerField(default=0)
     promotion = models.CharField(max_length=10, null=True, blank = True)
     image = models.ImageField(null=True, blank=True)

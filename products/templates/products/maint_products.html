@@ -25,6 +25,7 @@
                 <th>Price</th>
                 <th>Promo</th>
                 <th>Source</th>
+                <th>Source</th>
                 <th>LT(days)</th>
                 <th>Rate</th>
                 <th>Added</th>
@@ -74,6 +75,10 @@
                     </td>
                     <td>{% if product.cat6_value %}
                         {{product.cat6_value}}
+                        {% endif %}
+                    </td>
+                    <td>{% if product.source %}
+                        {{product.source}}
                         {% endif %}
                     </td>
                     <td>{% if product.lead_time %}

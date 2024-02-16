@@ -14,8 +14,11 @@ Your order will be packed and ready on {{order.planned_ship_date}}, for {% if or
 collection from GoldMark, 125 Tullow Street, Carlow R93 EA89, Tel 059 9140122.  Please bring ID & proof of purchase for collection.
 {% else %}shipping to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.country }}.{% endif %}
 
-    
-We've got your phone number on file as {{ order.phone_number }}.
+Registered user?  Track your order status by logging in at https://jeweller-bd1caeb15bbd.herokuapp.com/.  
+But don't worry we will send you another email when your order is packed and ready for {% if order.delivery_method == "COLLECT" %}
+collection {% else %}shipping!{% endif %}
+  
+We've got your phone number on file as {{ order.phone_number }}.  
 
 If you have any questions, feel free to contact us at {{ contact_email }}.
 

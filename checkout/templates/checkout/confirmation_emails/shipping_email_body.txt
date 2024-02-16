@@ -1,0 +1,20 @@
+Hi {{ order.full_name }}!
+
+Your order is packed and {% if order.delivery_method == "COLLECT" %}
+ready for collection at GoldMark, 125 Tullow Street, Carlow R93 EA89, Tel 059 9140122. (Please bring ID & proof of purchase for collection.)  {% else %}has been sent for delivery.{% endif %}
+
+Delivery method: {{order.delivery_method}}
+{% if order.delivery_method == "REGPOST" %}Tracking ID {order.delivery_track}, 
+trackable at "https://www.anpost.com/Post-Parcels/Track/History?item={{order.delivery_track}}"{% endif %}
+
+Registered user?  Track your order status by logging in at https://jeweller-bd1caeb15bbd.herokuapp.com/.  
+  
+We've got your phone number on file as {{ order.phone_number }}.  
+
+If you have any questions, feel free to contact us at {{ contact_email }}.
+
+Thank you for your order!
+
+Sincerely,
+
+Derek Egan & Marie Cronin

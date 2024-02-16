@@ -36,18 +36,18 @@
             <!-- Place one blank line at top of grid for Product Add-->
             {% for order in orders %}
                 <tr class="text-muted">
-                    <td><a href="" title="View order"><i class="fa-solid fa-magnifying-glass icon-edit"></i></a></td>
+                    <td><a href="{% url 'order_history' order.order_number %}" title="View order"><i class="fa-solid fa-magnifying-glass icon-edit"></i></a></td>
                     <!-- Trigger the modal with a button -->
                     <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#update-status-popup">{% if order.order_status == "ORDERED" %}PACK {% else %} SHIP {% endif %}</button></td>
                     <!-- <td><a href="" title="Update order Status" onclick="show_update_modal()"><i class="far fa-edit icon-edit"  ></i></a></td>-->
                     <td><a class="text-info" href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}" target="_blank">{{ order.order_number|truncatechars:6 }}</a></td>
                     <td id="order-status" class="text-info">{{order.order_status}}</td>
                     <td>{{order.delivery_method}}</td>
-                    <td>{% if order.delivery_method == "REGPOST" and order.delivery_track != "" %}
+                    <td>{% if order.delivery_method == "REGPOST" and order.delivery_track > "" %}
                         <a href="https://www.anpost.com/Post-Parcels/Track/History?item={{order.delivery_track}}" title="Trace" target="_blank">
                             <i class="far fa-van icon-track"></i>{{order.delivery_track}}</a>
                         {% else %}
-                            {{order.delivery_track}}
+                            not tracked
                         {% endif %}
                     </td>
                     <td {% if order.order_late %} class="date text-warning" 
@@ -61,7 +61,7 @@
                     <td>{{order.town_or_city}}</td>
                     <td>{{order.postcode}}</td>
                     <td>{{order.user_profile}}</td>
-                    <td class="date">{{order.created_on|date:"d/m/y"}}</td>
+                    <td class="date">{{order.date|date:"d/m/y"}}</td>
                 </tr>
                 <!-- DMcC 15/02/24:  Add a modal for order status update thank you Gemini -->
                 <div id="update-status-popup" class="modal fade" tabindex="-1" aria-labelledby="updateStatusModalLabel" aria-hidden="true" >
