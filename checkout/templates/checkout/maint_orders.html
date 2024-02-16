@@ -20,13 +20,12 @@
                 <th></th>
                 <th>Order</th>
                 <th>Status</th>
-                <th>DelMeth</th>
+                <th>Ship?</th>
                 <th>Trace</th>
                 <th>PromisedShip</th>
                 <th>Fullname</th>
                 <th>Ph</th>
                 <th>Addr1</th>
-                <th>Addr2</th>
                 <th>Addr3</th>
                 <th>Eircode</th>
                 <th>User</th>
@@ -38,7 +37,12 @@
                 <tr class="text-muted">
                     <td><a href="{% url 'order_history' order.order_number %}" title="View order"><i class="fa-solid fa-magnifying-glass icon-edit"></i></a></td>
                     <!-- Trigger the modal with a button -->
-                    <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#update-status-popup">{% if order.order_status == "ORDERED" %}PACK {% else %} SHIP {% endif %}</button></td>
+                    <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#update-status-popup">
+                        {% if order.order_status == "ORDERED" %} PACK 
+                        {% elif order.order_status == "PACKED" %} SHIP 
+                        {% elif order.order_status == "SHIPPED" %} CONF 
+                        {% elif order.order_status == "DELIVERED" %}CLOSE
+                        {% endif %}</button></td>
                     <!-- <td><a href="" title="Update order Status" onclick="show_update_modal()"><i class="far fa-edit icon-edit"  ></i></a></td>-->
                     <td><a class="text-info" href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}" target="_blank">{{ order.order_number|truncatechars:6 }}</a></td>
                     <td id="order-status" class="text-info">{{order.order_status}}</td>
@@ -47,7 +51,7 @@
                         <a href="https://www.anpost.com/Post-Parcels/Track/History?item={{order.delivery_track}}" title="Trace" target="_blank">
                             <i class="far fa-van icon-track"></i>{{order.delivery_track}}</a>
                         {% else %}
-                            not tracked
+                            n/a
                         {% endif %}
                     </td>
                     <td {% if order.order_late %} class="date text-warning" 
@@ -57,7 +61,6 @@
                     <td>{{order.full_name}}</td>
                     <td>{{order.phone_number}}</td>
                     <td>{{order.street_address1}}</td>
-                    <td>{{order.street_address2}}</td>
                     <td>{{order.town_or_city}}</td>
                     <td>{{order.postcode}}</td>
                     <td>{{order.user_profile}}</td>
