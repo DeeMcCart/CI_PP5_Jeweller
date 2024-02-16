@@ -28,6 +28,7 @@ class OrderForm(forms.ModelForm):
             'street_address1': 'Street Address 1',
             'street_address2': 'Street Address 2',
             'county': 'County, State or Locality',
+            'country': 'IE'
         }
         # first focus is on the full name field when the page is loaded
         self.fields['full_name'].widget.attrs['autofocus'] = True

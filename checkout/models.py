@@ -6,6 +6,7 @@ from django.db.models import Sum, Max
 from django.utils import timezone
 from datetime import timedelta
 from django_countries.fields import CountryField
+import datetime
 
 ORDER_STATUS_CHOICES = [
     ('ORDERED', 'Ordered'),
@@ -34,7 +35,7 @@ class Order(models.Model):
     country = CountryField(blank_label='Country *', null=False, blank=False)
     postcode = models.CharField(max_length=20, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    planned_ship_date = models.DateTimeField(default=timezone.now().replace(year=2024, month=2, day=28))
+    planned_ship_date = models.DateField(default=datetime.datetime(2024, 2, 28, 0, 0, 0))
     delivery_method = models.CharField(max_length=7, choices=DELIVERY_METHODS, default='REGPOST')
     delivery_track = models.CharField(max_length=13, null=True, blank=True)
     order_status = models.CharField(max_length=10, choices=ORDER_STATUS_CHOICES, default='ORDERED')
@@ -48,9 +49,7 @@ class Order(models.Model):
         """
         Generate a next number for the order based on determining the last order number written to file, and using it
         Else, if no orders on table, then use the  FIRST_ORDER_NUMBER from settings
-        """
-        
-        
+        """       
         if ( Order.objects.all().order_by('order_number').last()):
             max_order_number = Order.objects.all().order_by('order_number').last().order_number
             next_order_number = int(max_order_number) + 1
@@ -97,9 +96,8 @@ class Order(models.Model):
     def order_ship_date(self):
         """ calculate the order shipping date based on the """ 
         """ latest order line ship date    """
-        now = timezone.now()
         latest_line_ship_date = self.lineitems.aggregate(Max('line_ship_date'))['line_ship_date__max'] 
-        return latest_line_ship_date or now + timedelta(days=1)
+        return latest_line_ship_date or datetime.date(2024, 2, 28).time(0, 0, 0)
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
@@ -109,7 +107,7 @@ class OrderLineItem(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     category = models.CharField(max_length=30, null=True, blank=True)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-    line_ship_date = models.DateTimeField(default=(timezone.now()+ timedelta(days=1)))
+    line_ship_date = models.DateField(default= (datetime.date.today() + timedelta(days=5)))
 
     def save(self, *args, **kwargs):
         """
@@ -137,16 +135,16 @@ class OrderLineItem(models.Model):
             print(f"highest line # on this order is ", max_line_number)
             next_line_number = int(max_order_number) + 10
             print(f"next line # on this order is ", next_line_number)
-            
         else:
             next_line_number = settings.FIRST_LINE_NUMBER
             
         return str(next_line_number)
 
     def item_ship_date(self):
-        now = timezone.now()
+        now = timezone.now().time(0, 0, 0)
         product_delta = int(self.product.lead_time)
-        print(f'Product lead_time is ', product_delta)
+        print(f'Product ', self.product, 'lead_time is ', product_delta)
+        print(f'Product shipping date would be calculated as ', now + timedelta(days=product_delta))
         return now + timedelta(days=product_delta) 
 
         
