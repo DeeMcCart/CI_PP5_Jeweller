@@ -3,20 +3,17 @@ Hi {{ order.full_name }}!
 This is a confirmation of your order at Goldmark Jewellers Carlow. Your order information is below:
 
 Order Number: {{ order.order_number }}
-Order Date: {{ order.date }}
+Order Date: {{ order.date }}, status {{ order.order_status }}
 
 Order Total: €{{ order.order_total }}
 Delivery: €{{ order.delivery_cost }}
 Grand Total: €{{ order.grand_total }}
+Delivery method: {{order.delivery_method}}
 
-Your order will be packed and ready on {{order.planned_ship_date}} 
+Your order will be packed and ready on {{order.planned_ship_date}}, for {% if order.delivery_method == "COLLECT" %}
+collection from GoldMark, 125 Tullow Street, Carlow R93 EA89, Tel 059 9140122.  Please bring ID & proof of purchase for collection.
+{% else %}shipping to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.country }}.{% endif %}
 
-{% if order.delivery_method !="COLLECT" %}
-    Shipping to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.country }}.
-    Delivery method is {{order.delivery_method}}
-{% else %}
-    for collection from GoldMark, 125 Tullow Street, Carlow R93 EA89, Tel 059 9140122.
-    Please bring ID & proof of purchase for collection.
     
 We've got your phone number on file as {{ order.phone_number }}.
 

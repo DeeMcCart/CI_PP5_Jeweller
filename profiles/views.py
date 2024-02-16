@@ -23,7 +23,8 @@ def profile_detail(request, profile_id):
 
         current_profile = get_object_or_404(UserProfile, id=profile_id)
         current_user = get_object_or_404(User, username=current_profile.user)
-        messages.info(request, (f'Editing user profile for {current_profile.user}'))
+        # removed the message below as it appears only when the button is pressed, and is confusing to the user
+        # messages.info(request, (f'Editing user profile for {current_profile.user}'))
         
         if request.method == 'POST':
             # user_form = CustomSignupForm(request.POST, request.FILES or None, instance=current_user)
