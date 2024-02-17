@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import UserProfile
-from checkout.models import Order
+from .models import UserProfile, UserAddress
 from .forms import UserProfileForm
+from checkout.models import Order
 from jeweller.forms import CustomSignupForm
 from django.contrib.auth.decorators import login_required
 

@@ -24,10 +24,10 @@ class UserProfile(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user.username
+        return str(self.user)
 
     class Meta:
-        """ set ordering of user profiles to most recent first """
+        """ order by recently created """
         ordering = ['-created_on']
         
 # DMcC 07/02/24: Below is a signal this will ensure that whenever 

@@ -46,6 +46,11 @@ SITE_ID = 1
 
 # ACCOUNT_FORMS: Used to override the builtin forms.
 # (Otherwise forms are found in templates/allauth/account Defaults to:
+# DMcC 17/02/24 am removing the custom signup form as think its actually causing some confusion.abs
+# This has already been handled in BA walkthrough - registration creates user with signal to create UserProfile with default settings
+# The signed-in person can then modify their UserProfile
+# Actually - reinstating as I want to capture firstname and lastname if possible on the UP
+#
 ACCOUNT_FORMS = {
                 'signup': 'jeweller.forms.CustomSignupForm',
                 }
@@ -190,19 +195,18 @@ print('Database setting is ', DATABASES)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': ('django.contrib.auth.password_validation.'
+        'NAME': (f'django.contrib.auth.password_validation.'
         + 'UserAttributeSimilarityValidator'),
     },
     {
-        'NAME': ('django.contrib.auth.password_validation.'
-                + 'MinimumLengthValidator'),
+        'NAME': (f'django.contrib.auth.password_validation.MinimumLengthValidator'),
     },
     {
-        'NAME': ('django.contrib.auth.password_validation.'
-                + ' CommonPasswordValidator'),
+        'NAME': (f'django.contrib.auth.password_validation.'
+                 +'CommonPasswordValidator'),
     },
     {
-        'NAME': ('django.contrib.auth.password_validation.'
+        'NAME': (f'django.contrib.auth.password_validation.'
                 + 'NumericPasswordValidator'),
     },
 ]

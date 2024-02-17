@@ -728,7 +728,9 @@ Goldmark facebook page
 * https://stackoverflow.com/questions/77293705/i-am-building-a-product-review-app-in-my-django-ecommerce-project-i-cant-get-m
 * https://www.youtube.com/watch?v=UgEVC7oJDHI Author:Desphisx, Creating Reviews and Star Rating Feature in Django
 * https://www.geeksforgeeks.org/create-a-product-review-and-rating-system-using-html-css-and-javascript/ For product review entry & display
+* Codemy.com used for YouTube learning re Extending the user model in Django python
 * https://www.conventionalcommits.org/en/v1.0.0/#specification commit messages (recommendation from PP4 assessment team)
+
 
 
 ### Agile implementation in github
