@@ -17,8 +17,8 @@ import json
 
 @require_POST
 def cache_checkout_data(request):
-    # To be used before we call the confor card payent method in stripe js
-    # We will mae a post request to this view, giving it the client secret
+    # To be used before we call the confirm card payent method in stripe js
+    # We will make a post request to this view, giving it the client secret
     # from the payment intent, which we can parse to extract intent ID (pid) 
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
@@ -63,7 +63,7 @@ def checkout(request):
             order = order_form.save(commit=False)
             # parse out the payment id from Stripe
             pid = request.POST.get('client_secret').split('_secret')[0]
-            order.strip_pid= pid
+            order.stripe_pid= pid
             order.original_basket = json.dumps(basket)
             order.save()
             # DMcC 06/02/24:  Current line number starts at 10
