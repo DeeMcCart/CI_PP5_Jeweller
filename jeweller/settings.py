@@ -283,6 +283,7 @@ STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 if 'DEV_EMAIL' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'Jewellery@example.com'
+    DEFAULT_CC_EMAIL = os.environ.get('DEFAULT_CC_EMAIL')
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True
@@ -291,3 +292,4 @@ else:
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+    DEFAULT_CC_EMAIL = os.environ.get('DEFAULT_CC_EMAIL')

@@ -14,7 +14,7 @@ class StripeWH_Handler:
     """Handle Stripe webhooks"""
     """ These webhooks are 'signals' sent securely from Stripe to a URL we specify 
         This tells our app that something is happening in Stripe and prevents 
-        an orphaned Stripe transaction (payment without an assoicated order)
+        an orphaned Stripe transaction (payment without an associated order)
     """  
 
     def __init__(self, request):
@@ -30,11 +30,13 @@ class StripeWH_Handler:
             'checkout/confirmation_emails/confirmation_email_body.txt',
             {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
         
+        # send_email extended to include CC to shop's email address
         send_mail(
             subject,
             body,
             settings.DEFAULT_FROM_EMAIL,
-            [cust_email]
+            [cust_email],
+            cc=[settings.DEFAULT_CC_EMAIL,]
         )        
 
     def handle_event(self, event):
