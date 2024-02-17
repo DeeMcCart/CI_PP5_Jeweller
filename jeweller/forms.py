@@ -11,13 +11,21 @@ from products.widgets import CustomClearableFileInput
 class CustomSignupForm(SignupForm):
     """ Gather additional fields first & last name for allauth user
     """
-    # phone_number_1 = forms.CharField(max_length=15, label='Mobile')
     # DMcC 09/02/24:  Apply our lovely widget to improve clunky apperance of image
-    first_name = forms.CharField(max_length=30, label='First Name')
-    last_name = forms.CharField(max_length=30, label='Last Name')
+    first_name = forms.CharField(max_length=15, label='First Name')
+    last_name = forms.CharField(max_length=15, label='Last Name')
+    phone_number_1 = forms.CharField(max_length=15, label='Mobile')
     # profile_image = forms.ImageField(label='Image', required=False,
     #                                 widget=CustomClearableFileInput)
-    # newsletter_signup = forms.BooleanField(label='Newsletter')
+    newsletter_signup = forms.TypedChoiceField(
+        label='Sign up for Newsletter?',
+        choices = ((1, "Yes"), (0, "No")),
+        coerce = lambda x: bool(int(x)),
+        widget = forms.RadioSelect,
+        initial = '0',
+        required = True,
+    )
+
 
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)
@@ -26,23 +34,23 @@ class CustomSignupForm(SignupForm):
         user.save()
         print(f'User ', user.first_name, ' ', user.last_name, ' created')
 
-#       DMcC 06/02/24 getting a WSGI error on new user profile creation
-#       (but it is getting created with default values )
-#       Try delaying the commit to see if this makes a difference
-
 #        user_profile = UserProfileForm.save(request)
 #       create_or_update_user_profile(User, user, True)
 #       Pass the sender, instance and created flag
-#       user_profile = get_object_or_404(UserProfile, user=user)
-
+ 
 #        user_profile.user = self.cleaned_data['username']
-#        user_profile.phone_number1 = self.cleaned_data['phone_number1']
+
+#       DMcC 17/02/24:
+#       Retrieve user profile (auto created by signal using default values)
+#       when User is created
+        user_profile = get_object_or_404(userProfile, user=user)
+#       Add in the phone number data from the form field
+        user_profile.phone_number1 = self.cleaned_data['phone_number1']
+        user_profile.save()       
 #        user_profile.phone_number2 = self.cleaned_data['phone_number1']
 #        user_profile.profile_image = self.cleaned_data['profile_image']
 #        user_profile.newsletter_signup = False
-#        user_profile.save()       
-#        add_profile(request)
-        return user
+#        add_profile(request)        return user
 
     class Meta:
         model = User

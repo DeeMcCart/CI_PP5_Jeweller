@@ -61,7 +61,7 @@ ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 # The user must link an email address when signing up.
 ACCOUNT_EMAIL_REQUIRED = True
 # Email verification at signup – mandatory/ optional/none
-ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # When signing up, require emailx2?
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
 # When signing up, force the user to type in their password x2?

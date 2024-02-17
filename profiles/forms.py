@@ -14,7 +14,16 @@ class UserProfileForm(forms.ModelForm):
     # DMcC 09/02/24:  Apply widget to improve clunky apperance of image
     profile_image = forms.ImageField(label='ProfileImage', required=False,
                                      widget=CustomClearableFileInput)
-  
+
+    newsletter_signup = forms.TypedChoiceField(
+        label='Sign up for Newsletter?',
+        choices = ((1, "Yes"), (0, "No")),
+        coerce = lambda x: bool(int(x)),
+        widget = forms.RadioSelect,
+        initial = '0',
+        required = True,
+    )
+
     def __init__(self, *args, **kwargs):
         """
         Add placeholders and classes, remove auto-generated
@@ -41,7 +50,7 @@ class UserProfileForm(forms.ModelForm):
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = ('border-black rounded-0'
                                                         +' profile-form-input')
-            self.fields[field].label = False
+        #    self.fields[field].label = False
 
 
 class UserAddressForm(forms.ModelForm):

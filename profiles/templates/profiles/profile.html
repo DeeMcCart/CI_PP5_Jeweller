@@ -56,6 +56,8 @@
                     </div>
                 </form>
                 <hr>
+                <!-- Only show the addresses section if the customer has at least one saved address -->
+                {% if addresses %}
                 <table class ="table table-sm table-borderless">
                     <thead>
                         <tr>
@@ -88,11 +90,14 @@
                         {% endfor %}
                     </tbody>
                 </table>
+                {% endif %}
             </div> <!-- end div class="col-12 col-lg-4" -->
             
             <div class="col-12 col-lg-2">
             </div>
-
+            
+            <!-- Only show the addresses section if the customer has at least one saved Order -->
+            {% if orders %}
             <div class="col-12 col-lg-6">
                 <p class="text-muted">Order History</p>
                 <!-- something weird about the order-history class it makes the orders disappear -->    
@@ -146,6 +151,7 @@
                     </table>
                 </div> <!-- end div class = "order-history table-responsive" -->
             </div> <!-- end div class class="col-12 col-lg-6" -->
+            {% endif %}
         </div> <!-- end div class="row" -->
     </div> <!-- end div class = "container" -->
 {% endblock %}
