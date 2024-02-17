@@ -23,89 +23,95 @@
 
         <div class="row">
             <div class="col">
+                <!-- if a basket exists -->
                 {% if basket_items %}
-                <!-- add grid display to increase display control for mobile devices -->
-                    <div class="d-block d-md-none">
-                        <div class="row">
-                            <div class="col">
-                                {% include "basket/basket-total.html" %}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                {% include "basket/checkout-buttons.html" %}
-                                <p class="text-muted mb-5">A summary of your basket contents is below</p>
-                            </div>
-                        </div>
-                    </div> <!-- end div class "d-block d-md-none"-->
+                <!--                                       -->
+                <!-- for mobile devices:  use grid display -->
+                <!--                                       -->
+                <div class="d-block d-md-none">
+                    <div class="row">
+                        <div class="col">
+                            {% include "basket/basket-total.html" %}
+                        </div> <!-- end div class "col"-->
+                    </div> <!-- end div class "row"-->
+                    <div class="row">
+                        <div class="col">
+                            {% include "basket/checkout-buttons.html" %}
+                            <p class="text-muted mb-5">A summary of your basket contents is below</p>
+                        </div> <!-- end div class "col"-->
+                    </div> <!-- end div class "row"-->
                     {% for item in basket_items %}
-                        <div class="row">
-                            <div class="col-12 col-sm-6 mb-2">
-                                {% include "basket/product-image.html" %}
-                            </div>
-                            <div class="col-12 col-sm-6 mb-2">
-                                {% include "basket/product-info.html" %}
-                            </div>
-                            <div class="col-12 col-sm-6 order-sm-last">
-                                <p class="my-0">Unit Price: €{{ item.product.price }}</p>
-                                <p><strong>Subtotal: </strong>€{{ item.product.price | calc_subtotal:item.quantity }}</p>
-                            </div>
-                            <div class="col-12 col-sm-6 mb-2">
-                                {% include "basket/quantity-form.html" %}
-                            </div>
-                        </div> <!-- end div class = "row" -->
-                        <div class="row"><div class="col"><hr></div></div>
+                    <div class="row">
+                        <div class="col-12 col-sm-6 mb-2">
+                            {% include "basket/product-image.html" %}
+                        </div> <!-- end div class "col"-->
+                        <div class="col-12 col-sm-6 mb-2">
+                            {% include "basket/product-info.html" %}
+                        </div> <!-- end div class "col"-->
+                        <div class="col-12 col-sm-6 order-sm-last">
+                            <p class="my-0">Unit Price: €{{ item.product.price }}</p>
+                            <p><strong>Subtotal: </strong>€{{ item.product.price | calc_subtotal:item.quantity }}</p>
+                        </div> <!-- end div class "col"-->
+                        <div class="col-12 col-sm-6 mb-2">
+                            {% include "basket/quantity-form.html" %}
+                        </div> <!-- end div class "col"-->
+                    </div> <!-- end div class = "row" -->
+                    <div class="row">
+                        <div class="col"><hr></div>
+                    </div> <!-- end div class "row"-->
                     {% endfor %}
                     <div class="btt-button shadow-sm rounded-0 border border-black">
                         <a class="btt-link d-flex h-100">
                             <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
                         </a>	
-                    </div>
-                </div> <!-- end div class= ??-->
-                    <div class="table-responsive rounded d-none d-md-block">
-                        <table class="table table-sm table-borderless">
-                            <thead class="text-black">
-                                <tr>
-                                    <th scope="col">Product Info</th>
-                                    <th scope="col"></th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Qty</th>
-                                    <th scope="col">Subtotal</th>
-                                </tr>
-                            </thead>
-
-                            {% for item in basket_items %}
-                                <tr>
-                                    <td class="p-3 w-25">
-                                        {% include "basket/product-image.html" %}
-                                    </td>
-                                    <td class="py-3">
-                                        {% include "basket/product-info.html" %}
-                                    </td>
-                                    <td class="py-3">
-                                        <p class="my-0">€{{ item.product.price }}</p>
-                                    </td>
-                                    <td class="py-3 w-25">
-                                        {% include "basket/quantity-form.html" %}        <a class="update-link text-info"><small>Update</small></a>
-                                        <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><small>Remove</small></a>
-                                    </td>
-                                    <td class="py-3">
-                                        <p class="my-0" id="sub_total"> €{{ item.product.price | calc_subtotal:item.quantity }}</p>
-                                    </td>
-                                </tr>
-                            {% endfor %}
+                    </div> <!-- end div class "btt-button" (back-to-top arrow )-->
+                </div> <!-- end div class "d-block d-md-none"--> 
+                <!--                                                               -->
+                <!-- for screen size med and upwards: use responsive table display -->
+                <!--                                                               -->
+                <div class="table-responsive rounded d-none d-md-block">
+                    <table class="table table-sm table-borderless">
+                        <thead class="text-black">
                             <tr>
-                                <td colspan="5" class="pt-5 text-right">
-                                    {% include "basket/basket-total.html" %}
-                                </td>
+                                <th scope="col">Product Info</th>
+                                <th scope="col"></th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Subtotal</th>
                             </tr>
-                            <tr>
-                                <td colspan="5" class="text-right">
-                                    {% include "basket/checkout-buttons.html" %}
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                        </thead>
+                        {% for item in basket_items %}
+                        <tr>
+                            <td class="p-3 w-25">
+                                {% include "basket/product-image.html" %}
+                            </td>
+                            <td class="py-3">
+                                {% include "basket/product-info.html" %}
+                            </td>
+                            <td class="py-3">
+                                <p class="my-0">€{{ item.product.price }}</p>
+                            </td>
+                            <td class="py-3 w-25">
+                                {% include "basket/quantity-form.html" %}        <a class="update-link text-info"><small>Update</small></a>
+                                <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><small>Remove</small></a>
+                            </td>
+                            <td class="py-3">
+                                <p class="my-0" id="sub_total"> €{{ item.product.price | calc_subtotal:item.quantity }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="5" class="pt-5 text-right">
+                                {% include "basket/basket-total.html" %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="text-right">
+                                {% include "basket/checkout-buttons.html" %}
+                            </td>
+                        </tr>
+                    </table>
+                </div> <!-- end div "table-responsive rounded d-none d-md-block" -->
                 {% else %}
                     <p class="lead mb-5">Your basket is empty.</p>
                     <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
@@ -129,10 +135,7 @@
 {% block postloadjs %}
 {{ block.super }}
 
-<!-- DMcC 1/02/24 directly include quantity_input_script functionality below as doesnt seem to be activating -->
-<!-- this script activates the decrement / increment arrows under the item's basket quantity -->
-<!-- oops I think I see the problem, I had already edited this to remove size parameters??? -->
-<!-- Moving this script directly into here as can't understand why its sitting as a html file under the product/.../include -->
+<!-- Moved quantity_input_script script directly -->
 <!-- rather than within the basket function -->
 <script type="text/javascript">
 

@@ -16,7 +16,7 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-print(f'Base dir is ',BASE_DIR)
+print('Base dir is ', BASE_DIR)
 
 
 # gain access to env.py file:
@@ -25,7 +25,6 @@ if os.path.exists('env.py'):
     import env
 else:
     print('env.py does not exist within os.path')
-    
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -36,54 +35,57 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
-   'django.contrib.auth.backends.ModelBackend',
+                          'django.contrib.auth.backends.ModelBackend',
     # `allauth` specific authentication methods, such as login by email
-    'allauth.account.auth_backends.AuthenticationBackend',]
+                            'allauth.account.auth_backends.AuthenticationBackend',
+                            ]
 
-SITE_ID=1
+SITE_ID = 1
 
-# ACCOUNT_FORMS: Used to override the builtin forms. (Otherwise forms are found in templates/allauth/account Defaults to:
+# ACCOUNT_FORMS: Used to override the builtin forms.
+# (Otherwise forms are found in templates/allauth/account Defaults to:
 ACCOUNT_FORMS = {
-'signup': 'jeweller.forms.CustomSignupForm',
-}
+                'signup': 'jeweller.forms.CustomSignupForm',
+                }
 
-# DMcC 05/02/24 Think ACCOUNT_VERIRFICAION_METHOD now replaced by 
-ACCOUNT_VERIFICATION_METHOD="username_email"
-# DMcC ACCOUNT_AUTHENTICATION_METHOD:  specifies login method to use -userame/email/either (AllAuth 0.60.0)
-ACCOUNT_AUTHENTICATION_METHOD="username_email"
-# The user is required to hand over an email address when signing up.
-ACCOUNT_EMAIL_REQUIRED=True
-# Determines the email verification method during signup – choose one of mandatory/ optional/none
-ACCOUNT_EMAIL_VERIFICATION="none"
-# When signing up, let the user type in their email address twice to avoid typo’s.
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE=False
-# When signing up, force the user to type in their password twice to avoid typo’s.
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE=False
+ACCOUNT_VERIFICATION_METHOD = "username_email"
+# Login method to use -userame/email/either (AllAuth 0.60.0)
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+# The user must link an email address when signing up.
+ACCOUNT_EMAIL_REQUIRED = True
+# Email verification at signup – mandatory/ optional/none
+ACCOUNT_EMAIL_VERIFICATION = "none"
+# When signing up, require emailx2?
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
+# When signing up, force the user to type in their password x2?
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 
 # An integer specifying the minimum allowed length of a username.
-ACCOUNT_USERNAME_MIN_LENGTH=4
-LOGIN_URL='/accounts/login/'
-LOGIN_REDIRECT_URL='/'
-# Controls the life time of the session. Set to None to ask the user (“Remember me?”), False to not remember, and True to always remember.
-ACCOUNT_SESSION_REMEMBER=None
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+# Controls the life time of the session.
+# Set to None to ask the user (“Remember me?”),
+# False to not remember, and True to always remember.
+ACCOUNT_SESSION_REMEMBER = None
 
-MESSAGE_STORAGE='django.contrib.messages.storage.session.SessionStorage'
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
-ALLOWED_HOSTS = ['8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io', 
+ALLOWED_HOSTS = ['8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io',
                 'https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io/',
-                '8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io',    
+                '8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io',
                  '.jeweller-bd1caeb15bbd.herokuapp.com',
                  'https://jeweller-bd1caeb15bbd.herokuapp.com/',
-                ]
+                 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io', 
-                        'https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io',    
-                        'https://jeweller-bd1caeb15bbd.herokuapp.com/'
-                ]
+CSRF_TRUSTED_ORIGINS = [
+                       'https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io',
+                       'https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io',
+                       'https://jeweller-bd1caeb15bbd.herokuapp.com/'
+                       ]
 
 # Application definition
 
@@ -105,7 +107,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'whitenoise',
     'gunicorn',
-    
+
     # Apps
     'home',
     'profiles',
@@ -131,12 +133,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    
+
     # Add the account middleware:
     "allauth.account.middleware.AccountMiddleware",
     # DMcC 06/02/24 Add debug toolbar middleware
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    
 ]
 
 ROOT_URLCONF = 'jeweller.urls'
@@ -157,9 +158,9 @@ TEMPLATES = [
                 'basket.contexts.basket_contents',
             ],
         'builtins': [
-            'crispy_forms.templatetags.crispy_forms_tags',
-            'crispy_forms.templatetags.crispy_forms_field',
-             ],
+                    'crispy_forms.templatetags.crispy_forms_tags',
+                    'crispy_forms.templatetags.crispy_forms_field',
+                    ],
         },
     },
 ]
@@ -175,13 +176,13 @@ if 'DATABASE_URL' in os.environ:
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 else:
-   DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.sqlite3',
-           'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-       }
-   }
-print(f'Database setting is ', DATABASES)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+print('Database setting is ', DATABASES)
 
 
 # Password validation
@@ -189,16 +190,20 @@ print(f'Database setting is ', DATABASES)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        + 'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                + 'MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                + ' CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                + 'NumericPasswordValidator',
     },
 ]
 
@@ -216,36 +221,23 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
-# DMcC 12/02/24 double check this statement while investigating deployment problems
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticCloudinaryStorage'
-# STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-#CLOUDINARY_STORAGE = {
-#    'CLOUD_NAME': os.environ['CLOUDINARY_CLOUD_NAME'],
-#    'API_KEY': os.environ['CLOUDINARY_API_KEY'],
-#    'API_SECRET': os.environ['CLOUDINARY_API_SECRET'],
-#}
-
-# DMcC 09/02/24:  Restore reference to whitenoise as Amaxon deployment didnt pickup all static files
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-print(f'Media root is ', MEDIA_ROOT)
+print('Media root is ', MEDIA_ROOT)
 
 if 'USE_AWS' in os.environ:
-   # Cache control
+    # Cache control
     AWS_S3_OBJECT_PARAMETERS = {
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
         'CacheControl': 'max-age=94608000',
-   }
+        }
 
     # Bucket Config
     AWS_STORAGE_BUCKET_NAME = 'ci-pp5-jeweller'
@@ -270,13 +262,13 @@ if 'USE_AWS' in os.environ:
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-MESSAGE_STORAGE='django.contrib.messages.storage.session.SessionStorage'
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 FREE_DELIVERY_THRESHOLD = 100
 SITE_CURRENCY = "EUR"
-SITE_CURRENCY_SYMBOL ="€"
+SITE_CURRENCY_SYMBOL = "€"
 STANDARD_DELIVERY_PERCENTAGE = 10
 STANDARD_DELIVERY_AMOUNT = 7
 FIRST_ORDER_NUMBER = 24004

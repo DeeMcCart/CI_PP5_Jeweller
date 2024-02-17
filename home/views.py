@@ -16,7 +16,7 @@ def about(request):
     
     about_sections = AboutSection.objects.filter(hide_display=False)
     about_text = AboutText.objects.filter(hide_display=False)
-    
+
     context = {
         'about_sections': about_sections,
         'about_text': about_text,
@@ -32,15 +32,18 @@ def index(request):
 
 def error_400(request, exception):
     data = {}
-    return render(request,'400.html', data)
+    return render(request, '400.html', data)
+
 
 def error_403(request, exception):
     data = {}
-    return render(request,'403.html', data)
+    return render(request, '403.html', data)
+
 
 def error_404(request, exception):
     data = {}
-    return render(request,'404.html', data)
+    return render(request, '404.html', data)
+
 
 def error_500(request, *args, **argv):
-    return render(request,'500.html', status=500)
+    return render(request, '500.html', status=500)

@@ -53,9 +53,13 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 # addresses - fraud risk), but could have multiple SHIP addresses
 # 
 class UserAddress(models.Model):
-    user_profile = models.ForeignKey(UserProfile, null = False, on_delete=models.CASCADE, related_name="user_address")
-    address_type =  models.CharField(max_length=4, null=False, editable=True, default='BILL')
-    address_id = models.CharField(max_length=4, null=False, editable=False, default='HOME')
+    user_profile = models.ForeignKey(UserProfile, null = False,
+                                     on_delete=models.CASCADE,
+                                     related_name="user_address")
+    address_type =  models.CharField(max_length=4, null=False, editable=True,
+                                    default='BILL')
+    address_id = models.CharField(max_length=4, null=False, editable=False,
+                                  default='HOME')
     address_label = models.CharField(max_length=25, null=True, blank=True)
     address1 = models.CharField(max_length=80, null=True, blank=True)
     address2 = models.CharField(max_length=80, null=True, blank=True)
@@ -69,10 +73,11 @@ class UserAddress(models.Model):
         return self.user_profile.user.username
     
     def __str__(self):
-        return f'{self.user_profile}__{self.address_type}__{self.address_id}__{self.address_label}__{self.address1}__{self.address2}__{self.postcode}__{self.created_on};'
-        ordering(self.user_profile, self.address_type)      
-
+        return f('{self.user_profile}__{self.address_type}__{self.address_id}'+
+                 '{self.address_label}__{self.address1}__{self.address2}__'+
+                 '{self.postcode}__{self.created_on};')
 
     class Meta:
-         """ returns addresses sorted on user then address_id, then  as tie-breaker """
-         ordering = ['user_profile', 'address_id', 'created_on']        
+        """ returns addresses sorted on user then address_id """
+        ordering = ['user_profile', 'address_id', 'created_on']
+        

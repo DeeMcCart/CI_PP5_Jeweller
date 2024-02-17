@@ -1,14 +1,17 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
+from django.shortcuts import (render, redirect, reverse, HttpResponse,
+                              get_object_or_404)
 from django.contrib import messages
 from products.models import Product
 import time
 
 # Create your views here.
 
+
 def view_basket(request):
     """ A view that renders the basket contents page """
 
     return render(request, 'basket/basket.html')
+
 
 def add_to_basket(request, item_id):
     """ Add a quantity of the specified product to the shopping basket """
@@ -23,7 +26,8 @@ def add_to_basket(request, item_id):
         basket[item_id] += quantity
         print(f'Product {product.name} added to basket')
         time.sleep(1)
-        messages.success(request, f'Added another {product.name} to your basket')
+        messages.success(request, f'Added another {product.name} '
+                         +'to your basket')
         time.sleep(1)
     else:
         basket[item_id] = quantity

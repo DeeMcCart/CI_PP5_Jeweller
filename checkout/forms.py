@@ -15,7 +15,7 @@ class OrderForm(forms.ModelForm):
         Add placeholders and classes, remove auto-generated
         labels and set autofocus on first field
         """
-        # call the default init method to set up the form as it would be by default
+        # call the default init method to set up the form
         super().__init__(*args, **kwargs)
         # set placeholders as prompts for entry
         placeholders = {

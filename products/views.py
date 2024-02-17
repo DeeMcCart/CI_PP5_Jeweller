@@ -226,6 +226,7 @@ def display_cat_names(request):
     print(f'Eligible catnames are ', disp_names)
     return disp_names
 
+
 @login_required
 def review(request, product_id):
     product = get_object_or_404(Product, pk=product_id)

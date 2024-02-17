@@ -1,0 +1,8 @@
+[flake8]
+exclude =
+    # Paths to exclude (relative to root dir)
+    # path/to/exclude1
+    ./profiles/migrations
+    # You can use globs:
+    **/migrations/*
+    #*.swp
