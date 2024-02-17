@@ -32,7 +32,7 @@ class Order(models.Model):
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
     county = models.CharField(max_length=80, null=True, blank=True)
     # note * is used on Country to indicate it is a required field 
-    country = CountryField(blank_label='Country *', null=False, blank=False)
+    country = CountryField(blank_label='Country *', default='IE', null=False, blank=False)
     postcode = models.CharField(max_length=20, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     planned_ship_date = models.DateField(default=datetime.datetime(2024, 2, 28, 0, 0, 0))
