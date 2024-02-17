@@ -73,7 +73,9 @@ class UserAddress(models.Model):
         return self.user_profile.user.username
     
     def __str__(self):
-        return f('{self.user_profile}__{self.address_type}__{self.address_id}')
+        return (f'{self.user_profile}__{self.address_type}__{self.address_id}'+
+                f'{self.address_label}__{self.address1}__{self.address2}__'+
+                f'{self.postcode}__{self.created_on};')
 
     class Meta:
         """ returns addresses sorted on user then address_id """
