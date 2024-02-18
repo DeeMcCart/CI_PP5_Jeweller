@@ -24,7 +24,6 @@
                 </button>
             </div>
             {% if item.product.has_sizes %}
-                <p>Item product has sizes, hidden input field to populate with {{ item.size }}</p>
                 <input type="hidden" name="product_size" value="{{ item.size }}">
             {% endif %}
         </div>
