@@ -15,6 +15,22 @@ ORDER_STATUS_CHOICES = [
     ('RECEIVED', 'Received'),
 ]
 
+RING_SIZE_CHOICES = [
+    ('H', 'Ring size H'),
+    ('I', 'Ring size I'),
+    ('J', 'Ring size J'),
+    ('K', 'Ring size K'),
+    ('L', 'Ring size L'),
+    ('M', 'Ring size M'),
+    ('N', 'Ring size N'),
+    ('O', 'Ring size O'),
+    ('P', 'Ring size P'),
+    ('Q', 'Ring size Q'),
+    ('R', 'Ring size R'),
+    ('S', 'Ring size S'),
+    ('', 'Not set'),
+]    
+
 DELIVERY_METHODS = [
     ('REGPOST', 'RegisteredPost'),
     ('COLLECT', 'Click & Collect'),
@@ -103,9 +119,13 @@ class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     line_number = models.IntegerField(default=10) 
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
+    sku = models.CharField(max_length=20, null=True, blank=True)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     category = models.CharField(max_length=30, null=True, blank=True)
+    ring_size = models.CharField(max_length=1, choices=RING_SIZE_CHOICES, default=' ')
+    can_be_engraved = models.BooleanField(default = False)
+    engrave_text = models.CharField(max_length=100, null=True, blank=True)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
     line_ship_date = models.DateField(default= (datetime.date.today() + timedelta(days=5)))
 

@@ -38,7 +38,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 class StockTypeAdmin(admin.ModelAdmin):
     list_display = (
-        'stock_type',
+        'source',
         'default_lead_time',
         )
 
