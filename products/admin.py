@@ -24,6 +24,8 @@ class ProductAdmin(admin.ModelAdmin):
         'sku',
         'name',
         'category',
+        'ring_size_min',
+        'ring_size_max',
         'item_lead_time',
         'price',
         'rating',

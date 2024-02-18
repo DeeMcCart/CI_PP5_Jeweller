@@ -113,7 +113,6 @@ def product_detail(request, product_id):
         product.rating = avg_rating
         num_reviews = reviews.count()
         print(f'found ',num_reviews, ' reviews, rating ', product.rating )
-        print(f'reviews are', reviews )
 
     context = {
         'product': product,

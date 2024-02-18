@@ -69,7 +69,15 @@ class Product(models.Model):
             return (self.item_lead_time)    
         else:
             return (self.cat6_value.default_lead_time)
-            
+
+    def has_sizes(self):
+        cat_name = str(self.category)
+        if cat_name.strip() == "ring":
+            return True
+        else:
+            return False
+
+
 class Catname(models.Model):
     cat_num = models.IntegerField()
     cat_name = models.CharField(max_length=15)

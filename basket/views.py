@@ -17,22 +17,35 @@ def add_to_basket(request, item_id):
     """ Add a quantity of the specified product to the shopping basket """
 
     product = get_object_or_404(Product, pk=item_id)
-    print(f'Product found')
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
+    size = None
+    if 'product_size' in request.POST:
+        size = request.POST['product_size'].strip()
+        print(f'in basket/views/add_to_basket: Requested product size for add to basket is ',size)
+    
     basket = request.session.get('basket', {})
 
-    if item_id in list(basket.keys()):
-        basket[item_id] += quantity
-        print(f'Product {product.name} added to basket')
-        time.sleep(1)
-        messages.success(request, f'Added another {product.name} '
-                         +'to your basket')
-        time.sleep(1)
+    # if product already in basket, increment product quantity only if not sized
+    # (rings to be sized will need to be stored on separate lines) 
+    if size:
+        if item_id in list(basket.keys()):
+            if size in basket[item_id]['items_by_size'].keys():
+                basket[item_id]['items_by_size'][size] += quantity
+                messages.success(request, f'Updated size {size.upper()} {product.name} quantity to {basket[item_id]["items_by_size"][size]}')
+            else:
+                basket[item_id]['items_by_size'][size] = quantity
+                messages.success(request, f'Added size {size.upper()} {product.name} to your basket')
+        else:
+            basket[item_id] = {'items_by_size': {size: quantity}}
+            messages.success(request, f'Added size {size.upper()} {product.name} to your basket')
     else:
-        basket[item_id] = quantity
-        print(f'Product {product.name} added to basket')
-        messages.success(request, f'Added {product.name} to your basket')
+        if item_id in list(basket.keys()):
+            basket[item_id] += quantity
+            messages.success(request, f'Updated {product.name} quantity to {basket[item_id]}')
+        else:
+            basket[item_id] = quantity
+            messages.success(request, f'Added {product.name} to your basket')
 
     request.session['basket'] = basket
     return redirect(redirect_url)
