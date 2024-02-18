@@ -26,6 +26,7 @@ class ProductAdmin(admin.ModelAdmin):
         'category',
         'ring_size_min',
         'ring_size_max',
+        'can_be_engraved',
         'item_lead_time',
         'price',
         'rating',
