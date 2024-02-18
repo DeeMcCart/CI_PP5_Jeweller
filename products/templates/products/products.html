@@ -50,6 +50,8 @@
                         </p>
                     </div>
                 </div>
+                <!-- display a 'row' of products -->
+                <!-- note that the width of a 'row' will vary with screen size -->
                 <div class="row">
                     {% for product in products %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
@@ -65,7 +67,7 @@
                                 {% endif %}
                                 <div class="card-body pb-0">
                                     <p class="mb-0">{{ product.name }}</p>
-                                </div>
+                                </div> <!--end div "card-body pb-0"-->
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
                                         <div class="col">
@@ -92,35 +94,40 @@
                                             {% endif %}
                                             </small>
                                         </div> <!-- end div "col" -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                    </div> <!-- end div "row"-->
+                                </div> <!-- end div "card-footer bg-white pt-0 border-0 text-left ""-->
+                            </div> <!-- end div "card h-100 border-0"-->
+                        </div> <!-- end div "col-sm-6 col-md-6 col-lg-4 col-xl-3" -->
+                        
+                        <!-- for smallest screens, 1 product represents end of row -->
                         {% if forloop.counter|divisibleby:1 %}
                             <div class="col-12 d-sm-none mb-5">
                                 <hr>
                             </div>
                         {% endif %}                        
+                        <!-- for .... screens, 2 product represents end of row -->
                         {% if forloop.counter|divisibleby:2 %}
                             <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
                                 <hr>
                             </div>
                         {% endif %}
+                        <!-- for .... screens, 3 product represents end of row -->
                         {% if forloop.counter|divisibleby:3 %}
                             <div class="col-12 d-none d-lg-block d-xl-none mb-5">
                                 <hr>
                             </div>
                         {% endif %}
+                        <!-- for .... screens, 4 products represents end of row -->
                         {% if forloop.counter|divisibleby:4 %}
                             <div class="col-12 d-none d-xl-block mb-5">
                                 <hr>
                             </div>
                         {% endif %}
                     {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
+                </div> <!-- end div "row" (inner row, all products) -->
+            </div> <!-- end div "product-container col-10 offset-1"--> 
+        </div> <!-- end div "row" (outer row)-->
+    </div> <!-- end div "container-fluid" -->
     <div class="btt-button shadow-sm rounded-0 border border-black">
         <a class="btt-link d-flex h-100">
             <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>

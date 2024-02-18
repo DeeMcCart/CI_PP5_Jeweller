@@ -69,14 +69,24 @@
 </head>
 
 <body>
-    <header class="container-fluid fixed-top"></header>
+    <header class="container-fluid fixed-top">
         <!-- the nav class is used to control display of this section only if large screen-->    
         <!-- <nav class="navbar navbar-expand-lg navbar-light bg-white justify-content-end"> --> 
         <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
+            
             <!-- responsive logo display -->
-            {% include 'includes/nav-logo.html' %}
+            <div id="logo" class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+                {% include 'includes/nav-logo.html' %}
+            </div> <!-- end div logo -->
 
-            {% include 'includes/nav-search.html' %}    
+            <!-- search-the-site function displays as large field on bigger screens, 
+            and as icon with drop-down menu on smaller screens -->
+            <!-- DMcC 18/02/24 check this <div id="search-field" class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-block"> -->
+            <div id="search-field" class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                {% include 'includes/nav-search.html' %}    
+            </div> <!-- end div search-field -->
+
+
             <!-- navbar links -->
             <!-- search field display, this diplays only on L and XL screens  -->    
             <div id="navbar-links" class="col-12 col-lg-4 my-auto py-1 py-lg-0">
@@ -90,7 +100,7 @@
         </div> <!-- end div id = topnav which holds navigation elements -->
 
         <!-- New row for the secondary header (category searches) -->
-        <div class="row bg-beige">
+        <div class="row bg-white">
             <nav class="navbar navbar-expand-lg navbar-light w-100">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -98,7 +108,7 @@
                 <!-- nav-mobile reduces the searchbar display to an icon with drop-down rather than full field width for XS S M screens-->
                 {% include 'includes/nav-mobile.html' %}
                 <!-- nav-secondary shows a secondary navbar which is used to offer/apply filters on products displayed -->
-                {% include 'includes/nav-secondary.html' %}
+                {% include 'includes/nav-main.html' %}
             </nav>
         </div> <!-- end div row -->
         <!-- delivery threshold banner -->
@@ -107,7 +117,6 @@
                 <h4 class="logo-font my-2" id="banner-message">Free delivery on orders over €{{ free_delivery_threshold }}!</h4>                
             </div>            
         </div> <!-- end div delivery-banner -->
-        <!-- </nav> -->
     </header>
 
     {% if messages %}
@@ -135,8 +144,11 @@
     {% block content %}
     {% endblock %}
     
-
-    {% include 'includes/footer.html' %}
+    <div class="footer-container">
+        {% include 'includes/footer.html' %}
+    </div>
+    
+    
     
     {% block postloadjs %}
     <script type="text/javascript">
