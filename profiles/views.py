@@ -32,7 +32,7 @@ def profile_detail(request, profile_id):
             if profile_form.is_valid():
                 profile_form.save()
                 messages.success(request, 'Profile updated successfully')
-                return redirect(reverse('profile_detail', 
+                return redirect(reverse('profile_detail',
                                         args=[current_profile.id]))
             else:
                 messages.error(request, 'Update failed. Please ensure '
@@ -86,9 +86,10 @@ def add_profile(request):
         if profile_form.is_valid():
             profile = profile_form.save()
             # return an informative success message
-            messages.success(request, f'Successfully added user profile',
-                             {request.user.user_profile},
-                             {request.user.user_profile.phone_number1})
+            stringy = (f'Successfully added user profile '
+                       + f'{request.user.user_profile},'
+                       + f'{request.user.user_profile.phone_number1}')
+            messages.success(request, stringy)
             # show new product so sysadmin can visually confirm
             template = 'profiles/profile.html'
             context = {'form': profile_form,

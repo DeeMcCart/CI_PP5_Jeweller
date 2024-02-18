@@ -8,11 +8,11 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = '__all__'
-       
+
     # DMcC 09/02/24:  Apply widget to improve clunky apperance of image
     image = forms.ImageField(label='Image', required=False,
                              widget=CustomClearableFileInput)
-   
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         categories = Category.objects.all()

@@ -2,19 +2,17 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
-import statistics
-
 from .models import Product, Category, Cat6, Review
-from .forms import ProductForm
+from .forms import ProductForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+
 def all_products(request):
     """ This is the engine of searching, sorting and filtering """
     """ A view to show all products, including sorting and search queries """
-    """ DMcC 14/02/24 Note that products with hide_display =True will not be returned"""
-    
+    """ DMcC 14/02/24 Products with hide_display =True will not be returned"""
 
     products = Product.objects.all()
     products = products.filter(hide_display=False)
@@ -38,23 +36,24 @@ def all_products(request):
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             products = products.order_by(sortkey)
-        
+
         # filter by category, e.g. ring, pendant, earrings
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
 
-       # search using the wildcard search field
+        # search using the wildcard search field
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                stringy = "You didn't enter any search criteria!"
+                messages.error(request, stringy)
                 return redirect(reverse('products'))
-            
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            query1 = Q(name__icontains=query)
+            queries = query1 | Q(description__icontains=query)
             products = products.filter(queries)
-            
+
     current_sorting = f'{sort}_{direction}'
 
     context = {
@@ -68,7 +67,7 @@ def all_products(request):
 
 
 def maint_categories(request):
-    """ This is a sysadmin view to show all products, 
+    """ This is a sysadmin view to show all products,
     and allow the sysadmin to edit/delete """
     print('In view maint_categories')
     categories = Category.objects.all()
@@ -81,20 +80,21 @@ def maint_categories(request):
 
     return render(request, 'products/maint_categories.html', context)
 
+
 def maint_products(request):
-    """ This is a sysadmin view to show all products, 
+    """ This is a sysadmin view to show all products,
     and allow the sysadmin to edit/delete """
     print('In view maint_products')
     products = Product.objects.all()
-    
+
     # sort by SKU in order asc/desc
     products = products.order_by('sku')
-    
     context = {
         'products': products,
     }
 
     return render(request, 'products/maint_products.html', context)
+
 
 def product_detail(request, product_id):
     """ A view to show individual product details """
@@ -106,23 +106,22 @@ def product_detail(request, product_id):
     # getting all reviews
     reviews = Review.objects.filter(product=product_id)
     if (reviews):
-        # calculate average rating (Do I calculate this on the fly every time a product is retrieved?)
+        # calculate average rating
         avg_rating = 0
         #    avg_rating = Avg('reviews__rating')
-        
+
         product.rating = avg_rating
         num_reviews = reviews.count()
-        print(f'found ',num_reviews, ' reviews, rating ', product.rating )
 
     context = {
         'product': product,
-        'reviews': reviews, 
-        'num_reviews' : num_reviews,
+        'reviews': reviews,
+        'num_reviews': num_reviews,
     }
-    
+
     return render(request, 'products/product_detail.html', context)
 
-    
+
 # DMcC 09/02/24 Add @login_required decorator to ensure user logged in
 # before executing the view (otherwise redirects them to login)
 @login_required
@@ -130,21 +129,24 @@ def add_product(request):
     """ Sysadmin:  Add a product to the store """
     # If not a superuser kick user out of function
     if not request.user.is_superuser:
-        messages.error(request,'Restricted: Must have SysAdmin rights to Add Products!')
+        messages.error(request, 'Restricted: Must have SysAdmin rights'
+                       + ' to Add Products!')
         return redirect(reverse('home'))
 
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save()
-            # DMcC 08/02/24 hmm need to think about this as want to return an informative success message
-            messages.success(request, f'Successfully added product SKU { product.sku }, {product.name}!!')
-            
-            # instead of returning a blank add-product form, return redirect(reverse('add_product'))
-            # go to the new product detail where sysadmin can visually confiirm correct add
+            stringy = f'Successfully added product SKU { product.sku },'
+            + f'{ product.name }.'
+            messages.success(request, stringy)
+
+            # return redirect(reverse('add_product'))
+            # go to the new product detail - sysadmin can check result
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+            messages.error(request, 'Failed to add product.'
+                           + ' Please ensure the form is valid.')
     else:
         form = ProductForm()
     template = 'products/add_product.html'
@@ -161,19 +163,21 @@ def edit_product(request, product_id):
     """ Edit a product in the store """
     # If not a superuser kick user out of function
     if not request.user.is_superuser:
-        messages.error(request,'Restricted: Must have SysAdmin rights to edit Products!')
-        
+        messages.error(request, 'Restricted: Must have SysAdmin rights '
+                       + 'to edit Products!')
         return redirect(reverse('home'))
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
-        
+
         if form.is_valid():
             form.save()
-            messages.success(request, f'Successfully updated SKU { product.sku }, {product.name}!')
+            stringy = f'Successfully updated SKU{product.sku }, {product.name}'
+            messages.success(request, stringy)
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+            messages.error(request, 'Failed to update product.'
+                           + ' Please ensure the form is valid.')
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')
@@ -185,15 +189,16 @@ def edit_product(request, product_id):
     }
 
     return render(request, template, context)
-    
-        
+
+
 @login_required
 def delete_confirm(request, product_id):
-    """ Confirm the (admin) user definitely wishes to """ 
+    """ Confirm the (admin) user definitely wishes to """
     """ Delete a product from the store """
     # If not a superuser kick user out of function
     if not request.user.is_superuser:
-        messages.error(request,'Restricted: Must have SysAdmin rights to Delete Products!')
+        messages.error(request, 'Restricted: Must have SysAdmin rights'
+                       + ' to Delete Products!')
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
@@ -202,7 +207,7 @@ def delete_confirm(request, product_id):
         'product': product,
     }
     return render(request, template, context)
-    
+
 
 # DMcC 09/02/24 Add @login_required decorator to ensure user logged in
 @login_required
@@ -210,27 +215,23 @@ def delete_product(request, product_id):
     """ Delete a product from the store """
     # If not a superuser kick user out of function
     if not request.user.is_superuser:
-        messages.error(request,'Restricted: Must have SysAdmin rights to Delete Products!')
-        
+        messages.error(request, 'Restricted: Must have SysAdmin rights'
+                       + ' to Delete Products!')
+
         return redirect(reverse('home'))
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
-    messages.success(request, f'Product { product.sku }, {product.name} deleted!')
+    messages.success(request, f'Product { product.sku },'
+                              + ' {product.name} deleted!')
 
     return redirect(reverse('products'))
-
-
-def display_cat_names(request):
-    disp_names=Catname.filter(default_display=True).nice_name
-    print(f'Eligible catnames are ', disp_names)
-    return disp_names
 
 
 @login_required
 def review(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
 
-    if request.method == 'POST': 
+    if request.method == 'POST':
         review_form = ReviewForm(request.POST)
         print(review_form)
         if review_form.is_valid():

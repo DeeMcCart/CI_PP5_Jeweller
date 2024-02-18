@@ -1,14 +1,15 @@
 from django.contrib import admin
-from .models import Product, Category, Cat5, Cat6, StockType, Catname, Review
-from profiles.models import UserProfile
+from .models import Product, Category, Cat6, StockType, Catname, Review
 
 # Register your models here.
+
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'friendly_name',
     )
+
 
 class CatnameAdmin(admin.ModelAdmin):
     list_display = (
@@ -17,7 +18,8 @@ class CatnameAdmin(admin.ModelAdmin):
         'nice_name',
         )
 
-    ordering=('cat_num',)
+    ordering = ('cat_num',)
+
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
@@ -39,11 +41,13 @@ class ProductAdmin(admin.ModelAdmin):
 
     ordering = ('sku',)
 
+
 class StockTypeAdmin(admin.ModelAdmin):
     list_display = (
         'source',
         'default_lead_time',
         )
+
 
 class Cat6Admin(admin.ModelAdmin):
     list_display = (
@@ -51,7 +55,8 @@ class Cat6Admin(admin.ModelAdmin):
         'stock_type',
         'default_lead_time',
     )
-    
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Catname, CatnameAdmin)
