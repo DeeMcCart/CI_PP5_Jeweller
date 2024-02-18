@@ -55,17 +55,26 @@ def adjust_basket(request, item_id):
     """Adjust the quantity of the specified product to the specified amount"""
 
     product = get_object_or_404(Product, pk=item_id)
-    print(f"retrieved product ", product, " to adjust basket")
     quantity = int(request.POST.get('quantity'))
+    size = None
     basket = request.session.get('basket', {})
 
-    if quantity > 0:
-        basket[item_id] = quantity
-        messages.success(request, f'{product.name} quantity updated to {quantity}')
-
+    if size:
+        if quantity > 0:
+            basket[item_id]['items_by_size'][size] = quantity
+            messages.success(request, f'Updated size {size.upper()} {product.name} quantity to {basket[item_id]["items_by_size"][size]}')
+        else:
+            del basket[item_id]['items_by_size'][size]
+            if not basket[item_id]['items_by_size']:
+                basket.pop(item_id)
+            messages.success(request, f'Removed size {size.upper()} {product.name} from your basket')
     else:
-        basket.pop(item_id)
-        messages.success(request, f'{product.name} removed from your basket')
+        if quantity > 0:
+            basket[item_id] = quantity
+            messages.success(request, f'{product.name} quantity updated to {quantity}')
+        else:
+            basket.pop(item_id)
+            messages.success(request, f'{product.name} removed from your basket')
 
     request.session['basket'] = basket
     return redirect(reverse('view_basket'))
@@ -75,13 +84,23 @@ def remove_from_basket(request, item_id):
     """Remove the item from the shopping basket"""
 
     try:
+        product = get_object_or_404(Product, pk=item_id)
         size = None
         basket = request.session.get('basket', {})
-        product = get_object_or_404(Product, pk=item_id)
 
-        basket.pop(item_id)
-        messages.success(request, f'{product.name} removed from your basket')
-        # DMcC 01/02/24 note - seems to reach this point but not to re-dispay 
+        if 'product_size' in request.POST:
+            size = request.POST['product_size']
+        basket = request.session.get('basket', {})
+
+        if size:
+            del basket[item_id]['items_by_size'][size]
+            if not basket[item_id]['items_by_size']:
+                basket.pop(item_id)
+            messages.success(request, f'Removed size {size.upper()} {product.name} from your bag')
+        
+        else:
+            basket.pop(item_id)
+            messages.success(request, f'{product.name} removed from your basket')
         
         request.session['basket'] = basket
         return HttpResponse(status=200)

@@ -12,19 +12,25 @@ def basket_contents(request):
     product_count = 0
     basket = request.session.get('basket', {})
 
+    # DMcC 18/02/24 troubleshooting
+    print(f'basket items are ', basket.items)
+
     for item_id, item_data in basket.items():
         if isinstance(item_data, int):
+            # Product is not sized
+            print('Item ','has item_data', item_data)
             product = get_object_or_404(Product, pk=item_id)
             total += item_data * product.price
             product_count += item_data
             basket_items.append({
                 'item_id': item_id,
-                'quantity': quantity,
+                'quantity': item_data,
                 'product': product,
                 'price': product.price,
-                'lineitem_total': quantity * product.price,
+                'lineitem_total': item_data * product.price,
             })
         else:
+            # Product is sized
             product = get_object_or_404(Product, pk=item_id)
             for size, quantity in item_data['items_by_size'].items():
                 total += quantity * product.price
