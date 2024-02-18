@@ -5,28 +5,29 @@ This is a confirmation of your order at Goldmark Jewellers Carlow. Your order in
 Order Number: {{ order.order_number }}
 Order Date: {{ order.date }}, status {{ order.order_status }}
 
+Order Details:
+------------------------------------
+{% for item in order.lineitems.all %}
+{{ item.quantity }} {{ item.product.name }}{% if item.product_size %} - Size {{ item.product_size|upper }}{% endif %}  @ €{{ item.product.price }} each
+{% endfor %}
+------------------------------------
 Order Total: €{{ order.order_total }}
 Delivery: €{{ order.delivery_cost }}
 Grand Total: €{{ order.grand_total }}
+
 Delivery method: {{order.delivery_method}}
+  
+Phone number: {{ order.phone_number }}.  
 
 Your order will be packed and ready on {{order.planned_ship_date}}, for {% if order.delivery_method == "COLLECT" %}
 collection from GoldMark, 125 Tullow Street, Carlow R93 EA89, Tel 059 9140122.  Please bring ID & proof of purchase for collection.
 {% else %}shipping to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.country }}.{% endif %}
 
-Registered user?  Track your order status by logging in at [Goldmark]https://jeweller-bd1caeb15bbd.herokuapp.com/.  
+If you have any questions, feel free to contact us at {{ contact_email }}.
+
+Registered user?  Track your order status by logging in at Goldmark[https://jeweller-bd1caeb15bbd.herokuapp.com/].  
 We will send you another email when your order is packed and ready for {% if order.delivery_method == "COLLECT" %}
 collection {% else %}shipping!{% endif %}
-  
-We've got your phone number on file as {{ order.phone_number }}.  
-
-Order Details:
---------------
-{% for item in order.lineitems.all %}
-{{ item.quantity }} {{ item.product.name }}{% if item.product_size %} - Size {{ item.product_size|upper }}{% endif %}  @ €{{ item.product.price }} each</p>
-{% endfor %}
-
-If you have any questions, feel free to contact us at {{ contact_email }}.
 
 Thank you for your order!
 
