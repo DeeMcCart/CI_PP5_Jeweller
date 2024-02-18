@@ -77,6 +77,8 @@ def checkout(request):
                             # DMcC 06/02/24 line should be an increment of existing line #s
                             line_number=current_line_number, 
                             product=product,
+                            sku = product.sku,
+                            category = product.category,
                             quantity=item_data,
                             # DMcC 06/02/24 added line item price and total to model
                             price = product.price,

@@ -123,7 +123,7 @@ class OrderLineItem(models.Model):
     quantity = models.IntegerField(null=False, blank=False, default=0)
     price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     category = models.CharField(max_length=30, null=True, blank=True)
-    ring_size = models.CharField(max_length=1, choices=RING_SIZE_CHOICES, default=' ')
+    product_size = models.CharField(max_length=1, choices=RING_SIZE_CHOICES, default=' ')
     can_be_engraved = models.BooleanField(default = False)
     engrave_text = models.CharField(max_length=100, null=True, blank=True)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
