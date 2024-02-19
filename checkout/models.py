@@ -218,4 +218,4 @@ class OrderAddress(models.Model):
 
     class Meta:
         """ returns addresses sorted on order# address_id,created_on """
-        ordering = ['order', 'addreess_type', 'address_id', 'created_on']
+        ordering = ['order', 'address_type', 'address_id', 'created_on']

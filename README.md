@@ -8,14 +8,18 @@ Testing the ability to create links that open in a new window:
 
 Below is a link that will open on the same tab:
 <a href="URL" target="_blank">Text description</a>
+
 Example:
-<a href="https://github.com/users/DeeMcCart/projects/5" target="_blank">Kanban Board</a>
+<a href="https://github.com/users/DeeMcCart/projects/5" target="_blank">Verified 19/02/24 - this link works & opens the image/site in same tab when its clicked on</a>
 
-Example 2 style
-[Kanban Board]() {target="_blank"}
+Example 2 style - descriptor text in square brackets, url link in circular brackets & no quotes, followed by target blank
+[Kanban Board](https://github.com/DeeMcCart/CI_PP5_Jeweller/blob/main/docs/readme_images/rtm-ftu-p1.png){target="_blank"}
 
-Example 3 style
-![Site image](./django_financial_planner/docs/readme_images/val-responsive.png?raw=true "Site image (responsive view)")
+Example 2.1 style - as above but with a leading !
+![Kanban Board](https://github.com/DeeMcCart/CI_PP5_Jeweller/blob/main/docs/readme_images/rtm-ftu-p1.png){target="_blank"}
+
+Example 3 style - check this
+![Table image](![https://github.com/DeeMcCart/CI_PP5_Jeweller/blob/main/docs/readme_images/rtm-ftu-p1.png]?raw=true "Site image (responsive view)")
 
 Example 4 style (drill into an image, progressive reveal)
 <details><summary>Create a basket</summary>
