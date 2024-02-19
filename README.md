@@ -700,40 +700,68 @@ The structure of the log is shown here:
 There are a number of smaller responsiveness issues still open at the time of writing (icon alignment on mobile phone)
 
 
-## Deployment
-<br>
-* The site architecture requires git, Cloudinary, ElephantSQL to support PostGres database, Heroku and is therefore more complex.
+## Deployment - ECOMMERCE APPLICATION
 
- The steps to setup are as follows:
+### Deployment Approach:
+
+CI_PP5_Jeweller code is stored in a github repository. 
+Github Integrated Development Environment was used to build & test the DEVELOPMENT environment.
+Sqlite was used as the development database with a local install on my PC.
+Python Django and libraries were installed into a DEV github workspace and configuration variables stored in a local/hidden .env file 
+The DEV environment was connected to Stripe DEV environment which accepted transactions using dummy credit card details.
+
+This allows local environment & installation setup in a github workspace (captured in a .env file and installed programs within the workspace).
+
+For deployment (providing a stable public-facing website with supporting database) the architecture was transferred to:
+Heroku website hosting (with configuration variables set in alignment with .env file in DEV environment)
+With linked ElephantSQL database to hold app records.
+And Amazon S3 storage to hold static (e.g. CSS) files and media images
+The PROD environment was connected to Stripe TEST using a new endpoint (verified channel)
+And depended on a linked gmail account for python send_mail processing.
+
+Certain email, error pages) could not be fully tested in the DEV environment, therefore it made sense to deploy early (sprint 1 of 5) for some parallel testing.
+
+#### Keeping DEV & PROD environments in sync after initial deploy
+The project's settings.py file was set, after initial deployment, to be environment-sensitive, so it would use either the DEV .env file or Heroku config file to pickup environment-specific variables.  A github workspace keeps track of installed python libraries, and, using 'freeze', these installations and versions are were copied to the requirements.txt file.  When deploying & building the app, Heroku seeks to implement the libraries and versions specified within requirements.TXT to ensure PROD install matches DEV.
+
+Database model changes were made after initial deploy.  These changes were made and tested (using 'buildmigrations' and 'migrate' commands) in DEV (which involves building and applying migration changes to the database).  Periodically, to keep DEV and PROD database structures in sync, the DEV github environment was re-connected to the Production database. Django 'showmigrations' command was then used to identify any migrations not yet applied to the PROD database, these were applied to PROD using the normal 'Migrate' command.  This meant that ongoing code changes could be tested in both environments during Sprint3, 4 & 5.
+
+#### Keeping DEV & PROD data in sync after initial deploy
+Data is stored independently in DEV sqlite and PROD Elephant Postgres databases.
+I had expected this would require re-keying of all testing/demo data into Prod, but Tutor Support helped by flagging that a json data dump could be done from DEV and imported into PROD using the loaddta command.  This worked for 'product' (products & categories) and 'home' (contents of 'about' page) but did not work for all data models as some had inter-app dependencies (e.g. products-reviews app had a dependency on User/UserProfile so this import failed).  The DEV json data dump/ PROD json data import was used just once (Sprint3) and the data was then allowed to grow indepdently on both sites.  
+
+For the jeweller project there were multiple staged deployments over the project duration:
+* First deploy:  https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/8 (Partial success only, because I hadnt fully read the instructions & missed some installs, errr including not installing the ElephantSQL database)
+* MVP deploy Sprint3:  https:// github.com/DeeMcCart/CI_PP5_Jeweller/issues/9 (Systematic approach, more successful but issues with media files & static files)
+These issues documented with follow-up on https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/56
+* 
+### Creating a Django DEV environment using github:
+The steps to setup are as follows:
  
- #### Install the Django environment in a workspace created with the CI template:
+ #### First step - Install the Django environment in a workspace created with the CI template:
+Assumptions - 
+- the DEV environment is up & running with project and apps installed;
+- A Stripe test account has been created and used successfully withn the DEV environment
+- A gmail account exists which can be used as the 'system owner' account for testing.
 
+Additional installs needed to DEV environment for deployment:
 - pip3 install 'django<4'gunicorn (installs Django 3.2)
 - pip3 install dj-database-url===0.5.0 psycopg2
-- pip3 install dj3-cloudinary-storage
 - pip3 install urllib==1.26.15
 - pip3 freeze --locaL>requirements.txt
-- django-admin startproject django_financial_planner
-- python3 manage.py startapp fp_blog (creates new app in project)
-- settings.py INSTALLED_APPS = [..'appname'...]
-- python3 manage.py migrate (migrate changes)
+- django-admin startproject CI_PP5_Jeweller
+- python3 manage.py startapp products, profiles, home, basket, checkout (creates new app in project)??
+- settings.py INSTALLED_APPS = [..'appname'...]  
+- python3 manage.py migrate (migrate changes) ??
 - python3 manage.py runserver (1st run of server to test)
 - settings.py ALLOWED_HOSts = [...'8000-address'..]
 
-##### Create a new external database:
+This is the DEV environment and can be used for local host testing on port 8000.
+The locally hosted site can be made public for demonstration to other people, but will only be active while the runserver command is active in the development environment.
+The .env file can be used to hold private configuration variables (e.g. Stripe handshaking variables) 
 
-- ElephantSQL - setup a/c if needed
-- create a new instance
-- Click on created database and copy URL
-
-#### Create the Heroku app:
-
-- login to Heroku
-- create a new app
-- In settings tab, reveal cofig vars and add newDATABASE_URL = save link
-
+( CHECK IF THE BELOW STEPS ARE STILL RELEVANT - USED ON PREVIOUS PROJECT ):
 #### Attach the database:
-
 In dev environment root dir add env.py
 import os
 os.environ['DATABASE_URL']=['pasted URL from elephant']
@@ -747,55 +775,103 @@ if os.path.isfile("env.py"): import env
 SECRET_KEY = os.eviron.get(SECRET_KEY)
 DATABASES = {'default':dj-database-url,parse(os.environ.get("DATABASE_URL"))}
 Save all files and migrate
+(  END CHECK )
 
-#### Get our static and media files stored on Cloudinary
+#### Connect to & Build ElephantSQL Database:
 
-Create cloudinary account (if not already done)
-Pickup the API config variable from the cloudinary dashboard
-env.py:
-add os.environ["CLOUDINARY_URL"]="urlpath"
+- ElephantSQL - setup a/c if needed
+- Create a new database instance
+- In DEV environment, install psycopg2, dj_database_url - and freeze requirements
+- Export data from existing database: python3 manage.py dumpdata APPNAME > APPNAME.json, e.g. python3 manage.py dumpdata products > products.json
+- Settings.py: import dj_database_url. Commment out existing DATABASES = and replace with DATABASES= { default: dj_database_url(<my_database_url_from_elephant>)}
+- python3 manage.py showmigrations - should see a list of migrations to be applied to the database I am now connected to (the elephantsql database)
+- python3 manage.py migrate - to apply all the DEV database Models & Admin to the new database
+- IF USING FIXTURES to load JSON data: python3 manage.py loaddata categories; python3 manage.py loaddata APPNAME;
+- create database superuser(s)
+- revert database settings in settings.py, remove URL to new ElephantSQL database and save/commit
+- Click on created database and copy URL
 
-Heroku: add CLOUDINARY_RL to config vars
-add DISABLE_COLLECTSTATIC (for testing phase only)
+#### Load Data into PROD ElephantSQL Database:
+- Check migrations in ElephantSQL - open up the ElephantSQL console
+- Browser - table queries - auth user - execute - should see superuser(s) setup in previous task
+- May need to verify email for any new user
+- Data can now be keyed into the ElephantSQL database as it will have the model structures in place.
+- Alternatively can use JSON loaddta to import APP-specific data (handy for Products-type data).
 
-settings.py: Add Cloudinary to installeed apps
-STATICFILES_STORAGE = 'cloudinary-storage.storage.staticHashedCloudinaryStorage'
-STATICFILES_DIRS
-STATIC_ROOT
-MEDIA_URL
-DEFAULT_FILE_STORAGE
-BASEDIR..... TEMPLATES_DIR
-TEMPLATES
-ALLOWED_HOSTS
+#### Create the Heroku app:
+- login to Heroku
+- create a new app
+- In settings tab, reveal config vars and add new DATABASE_URL = save link
 
-create the following root-level folders: media, static, template
+#### Prepare to Deploy
+ - Add Stripe fields to config variables in Heroku
+ - If not already done, add a conditional statement into settings.py to link to appropriate database depending on env settings
+ - Ensure gunicorn is installed to act as web server & freeze
+ - set Heroku config DISABLE_COLLECTSTATIC to 1 to prevent Heroku from trying to collect static files when we deploy
+ - create Procfile in root directory to tell Heroku to treat this as a python app/ create a web dyno: web: gunicorn jeweller.wsgi --log-file -
+ - settings.py ALLOWED_HOSTS = ... Heroku_deployment_name
+ - commit changes and attempt to build from Heroku
+
+#### Build & Test (without static)
+- BUILD IN HEROKU:
+- Usual craic with deploy - build
+- Use the 'activity' tab to see the build in progress, and investigate any problems with the build log
+- It may make sense to have DEBUG set on in the PROD environment for now, just so long as it is turned off before finalisation.  Meanwhile it gives better access to meaningful errors and log files.
+
+#### Configure AWS for Static files
+ - Create S3 bucket,set to public access
+ - Properties tab - scroll to bottom - static - enable, set default index.html error.html, Save Changes (This gives a new endpoint accessible from internet)
+ - Permissions tab - scroll to CORS , set to below, then Save Changes
+[{"AllowedHeaders": ["Authorization"],
+"AllowedMethods": ["GET"],
+"AllowedOrigins": ["*"],
+"ExposeHeaders": []}]
+ - Permissions tab - Bucket Policy - Edit - Policy generator: type S3 Bucket policy; Allow all Principals *; Action: GetObject; ARN: (paste from other tab); AddStatement button; SaveChanges button; GeneratePolicy button; (copy to other tab); insert */ at end of Resource string; SaveChanges button.
+ - Permissions tab - ACL - Edit - Grant Public: ListAccess; override message; SaveChanges
+ 
+#### SET AWS IAM (Identity and Access Management)
+- Create Group
+- Create Access Policy, attach policy to Group,
+- Create user, attach user to Group
+- Generate keys
+
+#### TRANSFER STATIC FILES FROM DEV TO PROD
+ - Install boto and django-storages, freeze and add 'storages' to installed apps
+ - Configure settings.py to use AWS for static and media storage
+ - Create file custom_storages.py and add some content...
+ - Commit, build deployment
+
+#### AMAZON S3 - Load media images
+- In the S3 bucket, Create the following root-level folders: media, static, template
+- Upload the products and profiles images into the media folder..... ensure that Access 'Public - Read' is set on upload, otherwise the images will be loaded but not picked up by the website.
 
 Create a procfile (process file)
 commit
 From Heroku panel, deploy from main & test.
 
-#### Crack on with development
-Thereafter you are into building models, forms, templates etc
+#### TEST
+Note that the development and production sites may have small operating differences, for example when testing I ran into difficulty with static paths which worked in DEV but required removing to be picked up in PROD.  Similarly I had some commented-out python code in one of my DEV templates which ran without difficulty, but the PROD environment failed on trying to process the commented-out code.  Keeping DEBUG on in the Production environment during initial testing will help with getting to the bottom of these errors.
 
-### Deploy to Heroku
-If you wish the site CSS to be picked up by Heroku (it is possible to deploy without this, and the functionality will be loaded to Heroku app & database can be tested  -but the apperance will not be good)
-but anyway when you want to check appearance
-settings.py
-DEBUG = False
-Heroku
-remove the config var for static files 
+### Link PROD website to Stripe TEST/Developer environment
+When you first connect, Stripe will only be aware of the DEV site endpoint.  This is used when the Stripe webhook needs to create an order in the database.  So it makes sense to create an endpoint for the PROD database.  This can still connect to the Stripe test/developer environment, and can still be used with test credit card numbers until ready to bring Stripe live.  There are some Heroku config settings needed for Stripe to interconnect with the PROD website. 
 
+#### Configure Email processing
+- Configure email processing to send emails generated in the PROD app via sent from a gmail address
 
 #### To re-deploy
-Can set automatic redeployment in Heroku, this will refresh the app at every commit - useful for consistency checks
+- Once the deployment is stable:
+- Can set automatic redeployment in Heroku, this will refresh the app at every commit - useful for consistency checks
+- Remember if there are model changes in DEV to apply these to PROD periodically so the two database structures stay in sync and any updated code which depends on the database structure will work in PROD as well as in DEV.
 
 #### To fork the repository:
 - Go to the GitHub repository
 - Click on Fork button in the upper right hand corner
 
-* To clone the repository:
+#### To clone the repository:
+You can clone a repository from GitHub.com to your local computer to make it easier to fix merge conflicts, add or remove files, and push larger commits.
 - Go to the GitHub repository
-- Locate the Coe button above the list of files and click it
+- Click on the 'Code' tab
+- Locate the Clone button above the list of files and click it
 - Select if you prefer to clone using HTTPS, SSH, or Github CLI and click the copy button to copy the URL to you clipboard
 - Open Git Bash
 - Change the current working directory to the one where you want the cloned directory
