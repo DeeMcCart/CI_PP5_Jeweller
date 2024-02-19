@@ -262,27 +262,27 @@ Written in the format 'As a **role** I want to **action** to achieve **desired o
 
 ### Wireframes
 <details><summary>Landing Page, search & filter functionality </summary>
-<img src="./jeweller/docs/readme_images/wireframe-01.png">
+<img src="./jeweller/docs/readme_images/wf1-landing-pg.png">
+</details>
+
+<details><summary>Product Search</summary>
+<img src="./jeweller/docs/readme_images/wf2-products-search.png">
+</details>
+
+<details><summary>Product detail</summary>
+<img src="./jeweller/docs/readme_images/wf3-product-detail.png">
 </details>
 
 <details><summary>Create a basket</summary>
-<img src="./jeweller/docs/readme_images/wireframe-02-basket.png">
+<img src="./jeweller/docs/readme_images/wf4-basket.png">
 </details>
 
-<details><summary>Checkout & additional services</summary>
-<img src="./jeweller/docs/readme_images/wireframe-03.png">
+<details><summary>Checkout - additional selections</summary>
+<img src="./jeweller/docs/readme_images/wf5-checkout-1.png">
 </details>
 
 <details><summary>Checkout - address page/action tracker</summary>
-<img src="./jeweller/docs/readme_images/wireframe-04-checkout-address.png">
-</details>
-
-<details><summary>Checkout - payment page/action tracker</summary>
-<img src="./jeweller/docs/readme_images/wireframe-05-checkout-payment.png">
-</details>
-
-<details><summary>About/ Feedback page</summary>
-<img src="./jeweller/docs/readme_images/wireframe-06-about-feedback.png">
+<img src="./jeweller/docs/readme_images/wf6-checkout-2.png">
 </details>
   
 ### Fonts Chosen
