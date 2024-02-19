@@ -5,9 +5,12 @@ Testing the ability to create links that open in a new window:
 
 [Link Text](Link URL) {target="_blank"}
 
-Visit Google: https://www.google.com {target="_blank"}
+<a href="URL" target="_blank">Text description</a>
 
-[Kanban Board](https://github.com/users/DeeMcCart/projects/5) {target="_blank"}
+<a href=(https://github.com/users/DeeMcCart/projects/5) target="_blank">Kanban Board</a>
+
+
+[Kanban Board]() {target="_blank"}
 
 
 ![Site image](./django_financial_planner/docs/readme_images/val-responsive.png?raw=true "Site image (responsive view)")
@@ -127,8 +130,7 @@ User feedback form to handle/encourage enquiries
 
 ### UX Design Strategy Analysis of Competitors
 The following websites were reviewed as part of an assessment of features:
-Bramleys
-Douglas Jewellers
+Two local jeweller's websites
 Simone XXXXX Australian jeweller.
 Generally the websites in this space tend to be strong on imagery and imagination, but perhaps somewhat lacking in personality and features.  The website Simone XXXX australian jeweller stands out as having some very interesting and relatable features such as an asynchronous 'chatbot' approach to FAQ.
 
@@ -468,6 +470,14 @@ Example 'child' task: https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/17
 * This project is quite comprehensive and contains a LOT of user stories!!!  In practice, as part of each end-of-sprint ceremony, I created Issues for the user stories to be done in that sprint.  That helped as it just meant the KanBan board didnt become overwhelming.
   
 ## Features 
+The site includes 21 features, these are cross-referenced to the user stories as per the screen captures below:
+
+Requirements Traceability Matrix - First-time Users
+
+
+
+Requirements Traceability Matrix - Returning Users and System/Shop Owner
+
 
 
 F01  Clarity of purpose and navigation
