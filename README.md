@@ -1,5 +1,7 @@
 # Jeweller 
 Developer:  **Deirdre McCarthy**, Feb 2024
+[Link Text](Link URL) {target="_blank"}
+
 
 ![Site image](./django_financial_planner/docs/readme_images/val-responsive.png?raw=true "Site image (responsive view)")
 
@@ -510,7 +512,8 @@ Some of the site ideas and features needed only really became clear as I played 
 There were quite a few 'false starts' when I tried to implement functionality and then found that it just didnt work in practice.  
 
 Examples were:
-* I envisaged building a rich cross-reference of product characteristics using category codes e.g. to store metal type (gold, silver, platinum etc); type of stone (diamond, tanzanite, garnet etc) and other characteristics which could be built into a search matrix, with dropdown searches per category for the customer.  However when I implemented this, I found it REALLY clunky to edit a product and to maintain the categories, and I also realised that the python q search functionality actually did a really good job of this type of searching (picks up any word or characters from product name/description).  So I backtracked and reversed out this detail.  I simplified the Product model as a result.  See https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/31 
+* I envisaged building a rich cross-reference of product characteristics using category codes e.g. to store metal type (gold, silver, platinum etc); type of stone (diamond, tanzanite, garnet etc) and other characteristics which could be built into a search matrix, with dropdown searches per category for the customer.  However when I implemented this, I found it REALLY clunky to edit a product and to maintain the categories, and I also realised that the python q search functionality actually did a really good job of this type of searching (picks up any word or characters from product name/description).  So I backtracked and reversed out this detail.  I simplified the Product model as a result.  See .  [Link Text]([Link URL](https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/31)) {target="_blank"}
+
 
 * I intended do more with user addresses, and give the user the option to choose a shipping address, as I could see from the Stripe console that it had the concept of a billing & shipping address.  I modified the User Profile and Order data models to include an inline Address.  However when I looked at the order creation process, which is mirrored by a webhook, I could see that the order was being validated against a single-address model in Stripe's database.  This might be a future development with more time.  
 
