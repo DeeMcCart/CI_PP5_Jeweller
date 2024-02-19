@@ -69,7 +69,7 @@ Jeweller is a system which is designed for a real-life retail Jewellery business
 
 The Jeweller business offers four lines of business:
 * retail jewellery, brand-name watches, zippo lighters, accessories - off the shelf;
-* customised retail jewellery, e.g. engraved lighters or hip flasks.
+* personalised retail jewellery, e.g. engraved lighters or hip flasks.
 * retail jewellery - custom-made (this process generally begins with the customer making an enquiry as to a particular design, or wishing to re-use and re-fashion their own gold jewellery items);
 * retail services - repairs, watch batteries and valuations;
 * trade repairs (on behalf of other jewellery retailers);
@@ -85,9 +85,9 @@ As a family-owned and -operated business the unique selling points are:
 The challenges of the current business model (which may be partly addressed with a fresh ecommerce strategy) are:
 * Existing customer base is aging, need to reach a newer generation & persuade them of the value offering
 * Competition from online retailers (the 'low cost' model)
-* Retail business is staff-heavy and takes staff away from more profitable back-room tasks
+* Retail business is staff-heavy and takes skilled staff away from more profitable back-room tasks
 * Need to differentiate vs. local jewellers
-* Retailer not willing unwilling to stock certain popular brand names, due to restrictive to merchandising constraints 
+* Shop owner unwilling to stock certain popular brand names, due to restrictive to merchandising constraints 
 
 **This Jeweller e-commerce offering** is:
 * a website
