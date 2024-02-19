@@ -1,6 +1,13 @@
 # Jeweller 
 Developer:  **Deirdre McCarthy**, Feb 2024
+
+Testing the ability to create links that open in a new window:
+
 [Link Text](Link URL) {target="_blank"}
+
+Visit Google: https://www.google.com {target="_blank"}
+
+[Kanban Board](https://github.com/users/DeeMcCart/projects/5) {target="_blank"}
 
 
 ![Site image](./django_financial_planner/docs/readme_images/val-responsive.png?raw=true "Site image (responsive view)")
