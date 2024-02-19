@@ -470,7 +470,78 @@ Example 'child' task: https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/17
 * This project is quite comprehensive and contains a LOT of user stories!!!  In practice, as part of each end-of-sprint ceremony, I created Issues for the user stories to be done in that sprint.  That helped as it just meant the KanBan board didnt become overwhelming.
   
 ## Features 
-The site includes 21 features, these are cross-referenced to the user stories as per the screen captures below:
+The site includes over 20 features, these are cross-referenced to the user stories as per the screen captures below:
+
+### F01 LOGON	
+### F02 SECURITY	
+There are currently 4 levels of access to the Financial Planner App.  
+Permissions are granted to database objects as follows:
+
+N = No Acceess
+C = Create
+R = Read
+U = Update
+D = Delete
+| User Type            | Description              | UserID                                         | User Profile                                | Article | Article Approval | Article Like | Article Bookmark | Article Task | Article Comment |  Comment Approval | Personal Task |
+| -------------------- | ------------------------ | ---------------------------------------------- | ------------------------------------------- | ------- | ---------------- | ------------ | ---------------- | ------------ | --------------- | ----------------- | ------------- |
+| **First Time User**      | Never registered on site | none                                           | N - link disabled                           | R       | N                | N            | N                | R            | R               | N                 | N             |
+| **Registering user**     |                          |  Creates allauth 'User' account by registering | C (by adding profile photo once registered) | Read    | N                | CRUD         | CRUD             | CRUD         | CR              | N                 | CRUD          |
+|                      |
+| **Registered user**      | returning user           | R                                              | R                                           | R       | R                |  CRUD        | CRUD             | R (and copy) | CR              | N                 | CRUD          |
+| **Site admin (backend)** | Django 'staff' users     | CRUD                                           | CRUD                                        | CRUD    | CRUD             | CRUD         | CRUD             | CRUD         | CRUD            | CRUD              | CRUD          |
+|                      |
+|                      |
+
+
+
+
+### F03 RESPONSIVENESS	
+
+### F04 NAVIGATION	
+Screenprint - navbar - consistent
+
+Meets requirements:
+* FTU_01  As a **First-Time User** I want to **quickly understand the site purpose** so I **can decide whether to spend time exploring and discovering the site**
+* FTU_02  As a **First-Time User** I want to **easily navigate the site** so I **don't become frustrated and leave**
+
+
+### F05 CLEAR SITE PURPOSE/ EASE OF USE	
+Screenprint - Landing page - clear call-to-action
+
+### F06 USER FEEDBACK - TOASTS, EMAILS, SCREEN PROGRESSION	
+Consistent use of logos, message styles and pop-ups
+Screenprints:  Toast Messaging
+
+Meets requirements:
+* FTU_03 As a **First-Time User** I want to **receive feedback at each step on the site** so that I **understand what I am doing, and, if I'm in a multi-step process, I understand how far along I am in the processs**
+
+### F03 Responsiveness:
+Meets requirement:  * FTU_04 As a **First-Time User** I want to **access this site on a device of my choosing (mobile, tablet, laptop, desktop)** so that I can **access by a method and at a time that is convenient and accessible to me**
+
+### F04 Ability to navigate the site without login
+
+* FTU_05 As a **First-Time User** I want to **navigate the site without mandatory login** so **I can discover site features before deciding whether to commit to using site**
+* SOXX Want to use the site as a shop window and welcome browsers who will complete the purchase pysically at the shop
+
+### F07 - VIEW / SEARCH PRODUCTS	
+### F08 - FILTER PRODUCTS	
+### F09 - SORT PRODUCTS	
+### F10 - PRODUCT DETAILS	
+### F11 - PRODUCT REVIEWS	
+### F12 - ABOUT PAGE/ USER FEEDBACK FORM	
+### F13 - CREATE SHOPPING BASKET	
+### F14 - CREATE ORDER FROM SHOPPING BASKET, including choosing delivery method	
+### F15 - STRIPE PAYMENTS (WITH RESILIIENCE)	
+### F16 - ORDER LIFECYCLE TRACKING, including ANPOST Tracking	
+### F17 - PRODUCT LEAD TIMES	
+### F18 - USER PROFILE CREATION & MAINTENANCE	
+### F19 - EMAIL INTEGRATION	
+### F20 - SYSADMIN PRODUCT MAINTENANCE	
+### F21 - SYSADMIN - ORDER MAINTENANCE	
+### F22 - NEWSLETTER & MARKETING, SOCIAL LINKS	
+### F23 - SEARCH ENGINE OPTIMISTAION
+### F24 - ERROR PAGES
+
 
 Requirements Traceability Matrix - First-time Users
 
@@ -478,37 +549,6 @@ Requirements Traceability Matrix - First-time Users
 
 Requirements Traceability Matrix - Returning Users and System/Shop Owner
 
-
-
-F01  Clarity of purpose and navigation
-Screenprint - Landing page - clear call-to-action
-Screenprint - navbar - consistent
-
-Meets requirements:
-* FTU_01  As a **First-Time User** I want to **quickly understand the site purpose** so I **can decide whether to spend time exploring and discovering the site**
-* FTU_02  As a **First-Time User** I want to **easily navigate the site** so I **don't become frustrated and leave**
-
-F02  Consistent use of logos, message styles and pop-ups
-Screenprints:  Toast Messaging
-
-Meets requirements:
-* FTU_03 As a **First-Time User** I want to **receive feedback at each step on the site** so that I **understand what I am doing, and, if I'm in a multi-step process, I understand how far along I am in the processs**
-
-F03 Responsiveness:
-Meets requirement:  * FTU_04 As a **First-Time User** I want to **access this site on a device of my choosing (mobile, tablet, laptop, desktop)** so that I can **access by a method and at a time that is convenient and accessible to me**
-
-F04 Ability to navigate the site without login
-
-* FTU_05 As a **First-Time User** I want to **navigate the site without mandatory login** so **I can discover site features before deciding whether to commit to using site**
-* SOXX Want to use the site as a shop window and welcome browsers who will complete the purchase pysically at the shop
-F05
-F06
-F07
-F08
-F09
-F10
-F11
-F12  
 
 ### Features in Scope 
 
