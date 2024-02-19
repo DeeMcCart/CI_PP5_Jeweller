@@ -3,17 +3,24 @@ Developer:  **Deirdre McCarthy**, Feb 2024
 
 Testing the ability to create links that open in a new window:
 
+
 [Link Text](Link URL) {target="_blank"}
 
+Below is a link that will open on the same tab:
 <a href="URL" target="_blank">Text description</a>
+Example:
+<a href="https://github.com/users/DeeMcCart/projects/5" target="_blank">Kanban Board</a>
 
-<a href=(https://github.com/users/DeeMcCart/projects/5) target="_blank">Kanban Board</a>
-
-
+Example 2 style
 [Kanban Board]() {target="_blank"}
 
-
+Example 3 style
 ![Site image](./django_financial_planner/docs/readme_images/val-responsive.png?raw=true "Site image (responsive view)")
+
+Example 4 style (drill into an image, progressive reveal)
+<details><summary>Create a basket</summary>
+<img src="./jeweller/tree/main/docs/readme_images/wf4-basket.png">
+</details>
 
 
 # Table of Contents:
@@ -262,23 +269,23 @@ Written in the format 'As a **role** I want to **action** to achieve **desired o
 
 ### Wireframes
 <details><summary>Landing Page, search & filter functionality </summary>
-<img src="./jeweller/docs/readme_images/wf1-landing-pg.png">
+<img src="./jeweller/tree/main/docs/readme_images/wf1-landing-pg.png">
 </details>
 
 <details><summary>Product Search</summary>
-<img src="./jeweller/docs/readme_images/wf2-products-search.png">
+<img src="./jeweller/tree/main/docs/readme_images/wf2-products-search.png">
 </details>
 
 <details><summary>Product detail</summary>
-<img src="./jeweller/docs/readme_images/wf3-product-detail.png">
+<img src="./jeweller/tree/main/docs/readme_images/wf3-product-detail.png">
 </details>
 
 <details><summary>Create a basket</summary>
-<img src="./jeweller/docs/readme_images/wf4-basket.png">
+<img src="./jeweller/tree/main/docs/readme_images/wf4-basket.png">
 </details>
 
 <details><summary>Checkout - additional selections</summary>
-<img src="./jeweller/docs/readme_images/wf5-checkout-1.png">
+<img src="./jeweller/tree/main/docs/readme_images/wf5-checkout-1.png">
 </details>
 
 <details><summary>Checkout - address page/action tracker</summary>
