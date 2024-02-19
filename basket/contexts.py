@@ -12,9 +12,6 @@ def basket_contents(request):
     product_count = 0
     basket = request.session.get('basket', {})
 
-    # DMcC 18/02/24 troubleshooting
-    print(f'basket items are ', basket.items)
-
     for item_id, item_data in basket.items():
         if isinstance(item_data, int):
             # Product is not sized

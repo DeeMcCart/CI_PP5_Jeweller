@@ -15,10 +15,9 @@ def profile_detail(request, profile_id):
     """ A view to return a specific profile id """
     if (request.user.is_authenticated
         and (profile_id == request.user.userprofile.id)
-        or (request.user.is_superuser)):
+            or (request.user.is_superuser)):
 
         current_profile = get_object_or_404(UserProfile, id=profile_id)
-        current_user = get_object_or_404(User, username=current_profile.user)
         # removed the message below as it appears only when the button is
         # pressed, and is confusing to the user
         # messages.info(request, (f'Editing user profile
@@ -86,9 +85,8 @@ def add_profile(request):
         if profile_form.is_valid():
             profile = profile_form.save()
             # return an informative success message
-            stringy = (f'Successfully added user profile '
-                       + f'{request.user.user_profile},'
-                       + f'{request.user.user_profile.phone_number1}')
+            profilestr = f'{request.user.user_profile}'
+            stringy = ('Successfully added user profile ', profilestr)
             messages.success(request, stringy)
             # show new product so sysadmin can visually confirm
             template = 'profiles/profile.html'

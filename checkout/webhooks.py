@@ -7,12 +7,13 @@ from checkout.webhook_handler import StripeWH_Handler
 
 import stripe
 # webhooks.py contains a webhook function which takes a request
-# code comes mostly from Stripe, just using wh_secret instead of endpoint_secret
+# code comes mostly from Stripe, just wh_secret instead of endpoint_secret
 # and a generic exception handler
 
 # the @require_POST means this view requires a POST request
 # and won't accept a GET request
 #
+
 @require_POST
 # Stripe won't send a csrf token so mark as exempt:
 @csrf_exempt
@@ -29,8 +30,7 @@ def webhook(request):
 
     try:
         event = stripe.Webhook.construct_event(
-        payload, sig_header, wh_secret
-        )
+        payload, sig_header, wh_secret)
     except ValueError as e:
         # Invalid payload
         return HttpResponse(status=400)

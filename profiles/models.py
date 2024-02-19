@@ -2,22 +2,21 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from cloudinary.models import CloudinaryField
 from django_countries.fields import CountryField
 from django.core.files.storage import FileSystemStorage
-from PIL import Image
 
-    
+
 # Create your models here.
 class UserProfile(models.Model):
     """ UserProfile class extends allauth User models
-    includes profile_image, can be linked to delivery addresses 
+    includes profile_image, can be linked to delivery addresses
     and order history """
-    # DMcC 05/02/24 troubleshooting user profile creation using custom jeweller/forms.py/CustomerSignupForm
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number1 = models.CharField(max_length=15, null=True, blank=True, default='08X1111111')
+    phone_number1 = models.CharField(max_length=15, null=True, blank=True,
+                                     default='08X1111111')
     phone_number2 = models.CharField(max_length=15, null=True, blank=True)
-    profile_image = models.ImageField(upload_to='images', default='placeholder.png')
+    profile_image = models.ImageField(upload_to='images',
+                                      default='placeholder.png')
     newsletter_signup = models.BooleanField(default=False)
     # DMcC removed birth_month as FUTURE feature
     # birth_month = models.CharField(max_length=9, null=True, blank=True)
@@ -29,17 +28,18 @@ class UserProfile(models.Model):
     class Meta:
         """ order by recently created """
         ordering = ['-created_on']
-        
-# DMcC 07/02/24: Below is a signal this will ensure that whenever 
+
+# DMcC 07/02/24: Below is a signal this will ensure that whenever
 # a User is created, a UserProfile is also created.
 # Effectively this acts as a database trigger on save of User
 # Note that this would normally sit in a separate signals.py file but
 # incorporated here as relatively small code snippet
-#     
+
+
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
-    Create or update the user profile    
+    Create or update the user profile
     """
 
     if created:
@@ -47,16 +47,17 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     # Existing users: just save the profile
     instance.userprofile.save()
 
-# UserAddress is a child of UserProfile, and it has the ability to store 
-# multiple addresses per UserProfile.  Business logic is that only 1 
-# address_type BILL is linked to a user profile (want to avoid multiple billing 
+# UserAddress is a child of UserProfile, and it has the ability to store
+# multiple addresses per UserProfile.  Business logic is that only 1
+# address_type BILL is linked to a user profile (want to avoid multiple billing
 # addresses - fraud risk), but could have multiple SHIP addresses
-# 
+
+
 class UserAddress(models.Model):
-    user_profile = models.ForeignKey(UserProfile, null = False,
+    user_profile = models.ForeignKey(UserProfile, null=False,
                                      on_delete=models.CASCADE,
                                      related_name="user_address")
-    address_type =  models.CharField(max_length=4, null=False, editable=True,
+    address_type = models.CharField(max_length=4, null=False, editable=True,
                                     default='BILL')
     address_id = models.CharField(max_length=4, null=False, editable=False,
                                   default='HOME')
@@ -66,18 +67,14 @@ class UserAddress(models.Model):
     town_or_city = models.CharField(max_length=40, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=True)
     postcode = models.CharField(max_length=20, null=True, blank=True)
-    country = CountryField(blank_label='Country *', null=True, blank=True) 
+    country = CountryField(blank_label='Country *', null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user_profile.user.username
-    
-    def __str__(self):
-        return (f'{self.user_profile}__{self.address_type}__{self.address_id}'+
-                f'{self.address_label}__{self.address1}__{self.address2}__'+
-                f'{self.postcode}__{self.created_on};')
+        return (f'{self.user_profile}__{self.address_type}__{self.address_id}'
+                + f'{self.address_label}__{self.address1}__{self.address2}__'
+                + f'{self.postcode}__{self.created_on};')
 
     class Meta:
         """ returns addresses sorted on user then address_id """
         ordering = ['user_profile', 'address_id', 'created_on']
-        

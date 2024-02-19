@@ -16,8 +16,6 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-print('Base dir is ', BASE_DIR)
-
 
 # gain access to env.py file:
 if os.path.exists('env.py'):
@@ -62,7 +60,7 @@ ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 # Email verification at signup – mandatory/ optional/none
 # 18/02/24 DMcC tried setting to mandatory but it just seems to prevent User creation 
-ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_VERIFICATION = "optional"
 # When signing up, require emailx2?
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
 # When signing up, force the user to type in their password x2?
@@ -235,7 +233,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-print('Media root is ', MEDIA_ROOT)
 
 if 'USE_AWS' in os.environ:
     # Cache control

@@ -1,8 +1,6 @@
 from django import forms
 from .models import UserProfile, UserAddress
 from django.contrib.auth.models import User
-from allauth.account.forms import SignupForm
-from django.conf import settings
 from .widgets import CustomClearableFileInput
 
 
@@ -17,11 +15,11 @@ class UserProfileForm(forms.ModelForm):
 
     newsletter_signup = forms.TypedChoiceField(
         label='Sign up for Newsletter?',
-        choices = ((1, "Yes"), (0, "No")),
-        coerce = lambda x: bool(int(x)),
-        widget = forms.RadioSelect,
-        initial = '0',
-        required = True,
+        choices=((1, "Yes"), (0, "No")),
+        coerce=lambda x: bool(int(x)),
+        widget=forms.RadioSelect,
+        initial='0',
+        required=True,
     )
 
     def __init__(self, *args, **kwargs):
@@ -29,9 +27,6 @@ class UserProfileForm(forms.ModelForm):
         Add placeholders and classes, remove auto-generated
         labels and set autofocus on first field
         """
-        # DMcC troubleshooting 05/02/24 - appears the init function 
-        # working OK as getting a placeholder image for new User Profiles
-        # however not getting the values from here into the form 
         super().__init__(*args, **kwargs)
         placeholders = {
             'user': 'user',
@@ -41,15 +36,15 @@ class UserProfileForm(forms.ModelForm):
             'newsletter_signup': False,
              }
         # self.fields['phone_number1'].widget.attrs['autofocus'] = True
-        
+
         for field in self.fields:
             if self.fields[field].required:
-                    placeholder = f'{placeholders[field]} *'
+                placeholder = f'{placeholders[field]} *'
             else:
                 placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = ('border-black rounded-0'
-                                                        +' profile-form-input')
+                                                        + ' profile-form-input')
         #    self.fields[field].label = False
 
 
@@ -57,7 +52,7 @@ class UserAddressForm(forms.ModelForm):
     class Meta:
         model = UserAddress
         fields = ('user_profile', 'address_type', 'address_label', 'address1')
-               
+
     def __init__(self, *args, **kwargs):
         """
         Add placeholders and classes, remove auto-generated
@@ -83,6 +78,6 @@ class UserAddressForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = ('border-black rounded-0' 
-                                                        +'profile-form-input')
+            self.fields[field].widget.attrs['class'] = ('border-black rounded-0'
+                                                        + 'profile-form-input')
             self.fields[field].label = False

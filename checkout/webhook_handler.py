@@ -10,12 +10,13 @@ import json
 import time
 import stripe
 
+
 class StripeWH_Handler:
     """Handle Stripe webhooks"""
-    """ These webhooks are 'signals' sent securely from Stripe to a URL we specify 
-        This tells our app that something is happening in Stripe and prevents 
+    """ These webhooks are 'signals' sent from Stripe to a specified URL
+        This tells our app that something is happening in Stripe and prevents
         an orphaned Stripe transaction (payment without an associated order)
-    """  
+    """
 
     def __init__(self, request):
         self.request = request
@@ -24,21 +25,20 @@ class StripeWH_Handler:
         """Send the user a confirmation email"""
         cust_email = order.email
         cc_email = settings.DEFAULT_CC_EMAIL
-        print(f'CC email is ',settings.DEFAULT_CC_EMAIL) 
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
             {'order': order})
         body = render_to_string(
             'checkout/confirmation_emails/confirmation_email_body.txt',
             {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
-        
+
         # send_email extended to include CC to shop's email address
         send_mail(
             subject,
             body,
             settings.DEFAULT_FROM_EMAIL,
             [cust_email],
-        )        
+        )
 
     def handle_event(self, event):
         """
@@ -55,7 +55,7 @@ class StripeWH_Handler:
         intent = event.data.object
         # print out the payment intent coming from Stripe
         print(intent)
-        
+
         pid = intent.id
         # DMcC 06/02/24 Changed 'bag' to 'basket' in next line:
         basket = intent.metadata.basket
@@ -63,15 +63,14 @@ class StripeWH_Handler:
 
         # Get the Charge object
         stripe_charge = stripe.Charge.retrieve(
-        intent.latest_charge
-        )
+                        intent.latest_charge)
 
-        billing_details = stripe_charge.billing_details #updated as per lesson stripe part 15
+        billing_details = stripe_charge.billing_details
         shipping_details = intent.shipping
-        grand_total = round(stripe_charge.amount / 100, 2) #updated as per lesson stripe part 15
+        grand_total = round(stripe_charge.amount / 100, 2)
 
-        # Clean data in the shipping details, distinguish between Stripe blank string
-        # and null value we want to store in our database
+        # Clean data in the shipping details, distinguish between Stripe
+        # blank string and null value we want to store in our database
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
@@ -82,8 +81,8 @@ class StripeWH_Handler:
         # note that we are taking 5 attempts to check if the order exists
         # just because there could be a delay in asynch processing
         while attempt <= 5:
-            # check if the order exists already 
-            # (based on exact match to the order details.... hmmm)
+            # check if the order exists already
+            # (based on exact match to the order details....)
             try:
                 order = Order.objects.get(
                     full_name__iexact=shipping_details.name,
@@ -127,7 +126,7 @@ class StripeWH_Handler:
                     original_basket=basket,
                     stripe_pid=pid,
                 )
-                ## DMcC 06/02/24 think the below needs to be json.loads(basket).items():
+                # DMcC 06/02/24 think the below needs to be json.loads(basket).items():
                 for item_id, item_data in json.loads(basket).items():
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
@@ -156,7 +155,6 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)
-
 
     def handle_payment_intent_payment_failed(self, event):
         """

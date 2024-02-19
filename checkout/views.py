@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (render, redirect, reverse,
+                              get_object_or_404, HttpResponse)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -19,7 +20,7 @@ import json
 def cache_checkout_data(request):
     # To be used before we call the confirm card payent method in stripe js
     # We will make a post request to this view, giving it the client secret
-    # from the payment intent, which we can parse to extract intent ID (pid) 
+    # from the payment intent, which we can parse to extract intent ID (pid)
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -28,7 +29,7 @@ def cache_checkout_data(request):
             # NB save_info reflects the user's choice to save the address info
             'save_info': request.POST.get('save_info'),
             'username': request.user,
-            # DMcC 06/02/24 Add field 'description' here as placeholder for order #
+            # DMcC 06/02/24 Add field 'description' as placeholder for order #
             'description': 99999,
         })
         return HttpResponse(status=200)
@@ -63,42 +64,42 @@ def checkout(request):
             order = order_form.save(commit=False)
             # parse out the payment id from Stripe
             pid = request.POST.get('client_secret').split('_secret')[0]
-            order.stripe_pid= pid
+            order.stripe_pid = pid
             order.original_basket = json.dumps(basket)
             order.save()
             # DMcC 06/02/24:  Current line number starts at 10
-            current_line_number=10
+            current_line_number = 10
             for item_id, item_data in basket.items():
                 try:
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
                             order=order,
-                            # DMcC 06/02/24 line should be an increment of existing line #s
-                            line_number=current_line_number, 
+                            # DMcC 06/02/24 line#: increment of existg line #s
+                            line_number=current_line_number,
                             product=product,
-                            sku = product.sku,
-                            category = product.category,
+                            sku=product.sku,
+                            category=product.category,
                             quantity=item_data,
-                            # DMcC 06/02/24 added line item price and total to model
-                            price = product.price,
-                            lineitem_total = item_data,
+                            # Added line item price and total to model
+                            price=product.price,
+                            lineitem_total=item_data,
                             )
                         order_line_item.save()
                     else:
                         for size, quantity in item_data['items_by_size'].items():
                             order_line_item = OrderLineItem(
                                 order=order,
-                                line_number=current_line_number, 
+                                line_number=current_line_number,
                                 product=product,
                                 quantity=quantity,
                                 product_size=size,
                             )
                             order_line_item.save()
-                    current_line_number+=10
+                    current_line_number += 10
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "One of the products in your basket wasn't found in our database. "
+                        "One of the products in your basket wasn't found. "
                         "Please call us for assistance!")
                     )
                     order.delete()
@@ -124,19 +125,19 @@ def checkout(request):
         currency=settings.STRIPE_CURRENCY,
     )
 
-    # DMcC 07/02/24 copy the default delivery address from the user to the order (if exists)
-    # DMcC 07/02/24 This will reuire more work to distinguish between ship and BILL addresses
+    # DMcC 07/02/24 copy delivery address from user to order (if exists)
+    # DMcC 07/02/24 Needs more work to distinguish between ship and BILL addr
     # But lets assume BILL address for now.  Ref = Profile App Part 8
     if request.user.is_authenticated:
         try:
-            bill_address=None
+            bill_address = None
             profile = UserProfile.objects.get(user=request.user)
             if profile:
                 addresses = profile.user_address.filter(address_type="BILL")
                 if addresses:
                     bill_address = addresses[0]
             if bill_address:
-                print(f'Found billing address ', bill_address)
+                print(f'Found billing address ', {bill_address})
                 order_form = OrderForm(initial={
                     'full_name': profile.user.get_full_name(),
                     'email': profile.user.email,
@@ -155,7 +156,6 @@ def checkout(request):
             order_form = OrderForm()
     else:
         order_form = OrderForm()
-
 
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
@@ -191,9 +191,13 @@ def checkout_success(request, order_number):
         # save the user's info
         if save_info:
             # save the order information into default fields
-            # DMcC 06/02/24 May need to re-look at the below as wish to choose which delivery address this saves to for the user
-            # DMcC 07/02/24 Think this needs to save to the default shipping address for the user?  Actually, think need to look more
-            # closely at the checkout process and determine where the shipping and billing addresses are being asssigned
+            # DMcC 06/02/24 May need to re-look at the below as wish to
+            # choose which delivery address this saves to for the user
+            # DMcC 07/02/24 Think this needs to save to the default
+            # shipping address for the user?  Actually, think need to
+            # look more
+            # closely at the checkout process and determine where the
+            # shipping and billing addresses are being asssigned
             profile_data = {
                 'default_phone_number': order.phone_number,
                 'default_country': order.country,
@@ -204,14 +208,13 @@ def checkout_success(request, order_number):
                 'default_county': order.county,
             }
             user_profile_form = UserProfileForm(profile_data, instance=profile)
-            print(f'Attempting to update default delivery adddress for customer profile')
+            print('Updating default delivery adddress for user profile')
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-
     messages.success(request, f'Order successfully processed! \
-        Your order number is {order_number}, total value {order.order_total}. A confirmation \
-        email will be sent to {order.email}.')
+        Your order is {order_number}, total value {order.order_total}. \
+         A confirmation email will be sent to {order.email}.')
 
     if 'basket' in request.session:
         del request.session['basket']
@@ -224,34 +227,31 @@ def checkout_success(request, order_number):
     return render(request, template, context)
 
 
-    
 def maint_orders(request):
-    """ This is a sysadmin view to show all orders, 
+    """ This is a sysadmin view to show all orders,
     and allow the sysadmin to edit/delete """
     print('In view maint_orders')
     orders = Order.objects.all()
-    
+
     # sort by SKU in order asc/desc
     orders = orders.order_by('-order_number')
-    
-
     context = {
         'orders': orders,
     }
 
     return render(request, 'checkout/maint_orders.html', context)
 
-    def order_late(self):
+    def order_late(request, order_id):
         """ determine if an order is late in shipping """
         """ based on order status and promised_ship_date """
-        """ DMcC 14/02/24 Moved this from the Models area as constantly recalculating"""
+        """ DMcC 14/02/24 Moved from Models as constantly recalculating"""
         now = timezone.now()
-        order_late=False
+        order_late = False
         order_promised_ship = self.order_ship_date()
         print(f'order_promised_ship', order_promised_ship)
-        print(f'now', now)
+        print(f'now', {now})
         if ((self.order_status in ['ORDERED', 'PACKED'])
-            and (order_promised_ship < now)):
+             and (order_promised_ship < now)):
             order_late = True
-        print(f'Order ', self.order_number, ' is ', order_late, ' late')
+        print(f'Order ', {self.order_number}, ' is ', {order_late}, ' late')
         return order_late
