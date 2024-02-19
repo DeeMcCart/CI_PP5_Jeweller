@@ -301,7 +301,7 @@ An Agile approach was followed in plannning this project.  Github Issues and Pro
 * Project fields: Prioritities P0 = top triority, P1, P2
 * Project fields: T-shirt Sizing used when grooming backlog at end each sprint
 * Project fields: Estimated Story Points (time); actual SPs - used for end-of-spring analysis   
-
+The entire approach was covered under the EPIC 'Agile' and can be seen under this link: https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/10
 
 ### Following an Agile process during development:
 * Timeboxing each Sprint is challenge.  Attempts to 'just finish' a task by extending the iteration by a day or two, needed to be curbed.  Instead, I had to (will have to) train myself to end the sprint, then assess which work had been completed or not.
@@ -393,13 +393,13 @@ Sprint1 Retrospective: Issue # https://github.com/DeeMcCart/CI_PP5_Jeweller/issu
 
 Sprint2 Retrospective: Issue # https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/38
 
-Sprint3 Retrospective: Issue # 
+Sprint3 Retrospective: Issue # https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/54
 
-Sprint4 Retrospective: Issue #
+Sprint4 Retrospective: Issue # https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/65
 
 Sprint5 Retrospective: Issue #
 
-As each weekly sprint progressed, I became more fluent with the insights/ burndown charts and started to develop to include actual time logged, a useful metric
+The insights/ burndown charts were useful to track the actual time logged, a useful metric
 
 
 ### Issue Lifeycle
@@ -499,12 +499,32 @@ It was helpful to create this as a separate document, as it is also offered to u
 
 ### Implementation Decisions
 Incremental delivery, 
-deployed early 
-followed & adapted the Boutique walkthrough
-refereced additional Django walkthroughs and other materials
+Deployed early, 
+Followed & adapted the Boutique walkthrough
+Referenced additional Django walkthroughs and other materials
+Used real-life verification from an Jewellery shop owner, who was clear on the features they prioritised
+
 <br>  
-Some of the site ideas and features needed only really became clear as I played with the site as it was delivered, and experienced frustration or spotted opportunites or elements that were worth adding. So the site grew organically as time went on.
+Some of the site ideas and features needed only really became clear as I played with the site as it was delivered, and experienced frustration or spotted opportunites or elements that were worth adding. So the site grew organically as time went on.  The Agile approach with weekly sprints suits incremental development, as it encouraged weekly analysis of what had been done, and how it might progress.
 <br>
+There were quite a few 'false starts' when I tried to implement functionality and then found that it just didnt work in practice.  
+
+Examples were:
+* I envisaged building a rich cross-reference of product characteristics using category codes e.g. to store metal type (gold, silver, platinum etc); type of stone (diamond, tanzanite, garnet etc) and other characteristics which could be built into a search matrix, with dropdown searches per category for the customer.  However when I implemented this, I found it REALLY clunky to edit a product and to maintain the categories, and I also realised that the python q search functionality actually did a really good job of this type of searching (picks up any word or characters from product name/description).  So I backtracked and reversed out this detail.  I simplified the Product model as a result.  See https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/31 
+
+* I intended do more with user addresses, and give the user the option to choose a shipping address, as I could see from the Stripe console that it had the concept of a billing & shipping address.  I modified the User Profile and Order data models to include an inline Address.  However when I looked at the order creation process, which is mirrored by a webhook, I could see that the order was being validated against a single-address model in Stripe's database.  This might be a future development with more time.  
+
+* I implemented a model-based approach for the 'About' section, with sysadmin-editable inline text snippets (section -> title & seq# -> text body).  Originally I had thought that these might be edited using Summernote, which would allow for a rich 'About' and 'FAQ' section however summernote implementation is tricky for inline data structures so had to be moved outside the scope of the project.  The data models are in place and remain in use however they're just not as beautiful as i had hoped.
+
+* Shipping lead time.  I wanted to implement some funtionality whereby  the user would be notified as to the likely despatch date for their order, and the concept of prioritising orders based on their shipping date, and to flagging up 'late' orders falling behind schedule.  I added a default lead time based on product source (stock = 1 day between order creation and shipping, make-to-order = 7 days, commisioned item = 21 days etc) with an editable value per product. Based in this i intended to calculate order/line shipping dates.  I added a method on the order model to determine if the order was 'late'.  This had to be backtracked as it was constantly re-evaluating 'late'ness of an order, and kept prompting as a changed order on every migration.
+Shipping lead time is partially implemented witin the delivererd solution.
+
+
+
+
+
+
+
 
 ### Features Left to Implement
 * FTU_28 (Future): As a **First-Time User** I would like to  **make an appointment for engagement rings** in order to **elevate a high value buying decision**
@@ -530,8 +550,11 @@ Some of the site ideas and features needed only really became clear as I played 
 * Canva: used to create some infographic content
 * Leonardo AI: used to create some of the site images
 
-### Python Libraries
+
+### Python Libraries/ Other external tools
 The following additional python libraries were used:
+* Bootstrap
+* Allauth - code user authentication (extended)
 
 
 ### Third-Party Libraries
@@ -539,6 +562,11 @@ The following additional python libraries were used:
 
 
 ## Validation 
+
+### Python Linting
+There are 5 apps plus a project so approx 30 python files involved.  The approach taken to identifying and resolving python linting errors was to work through module-by-module using a command such as 'python3 -m flake8 APPNAME --exclude=APPNAME/migrations/'.  That way it was possible to systematically work through each of the app files and tick off each of the identified errors.
+Of course, following the linting process means introducing more errors so it is a somewhat cyclical process.
+Code not written directly by me (e.g. migrations within each app, Stripe snippets re-used) was not included in the linting validation, as not relevant for migrations which tend to have ultra-long lines and I was cautious about editing some of the template coding.
 
 ### HTML Validation 
 - HTML
