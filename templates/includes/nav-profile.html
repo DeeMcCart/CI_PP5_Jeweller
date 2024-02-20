@@ -4,27 +4,27 @@
 
 <!-- settings dropdown menu (only visible to signed-in Admin users) -->
 {% if request.user.is_authenticated and request.user.is_superuser %}
-<li id="sysmaint-link" class="list-inline-item dropdown">
-    <a class="text-black nav-link" href="#" id="sysmaint-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <div class="text-center">
-        <div><i class="fas fa-gear fa-lg"></i></div>
-        <p class="my-0">SysMaint</p>
-    </div>
-    </a>
-    <div class="dropdown-menu border-0" aria-labelledby="user-options">
-        <a href="{% url 'maint_categories' %}"  class="dropdown-item">Categories-admin</a>
-        <a href="{% url 'maint_products' %}"  class="dropdown-item">Products-admin</a>
-        <a href="{% url 'maint_orders' %}" class="dropdown-item">Orders-admin</a>
-        <!-- DMcC 15/02/24:  Temporarily hide these options as not yet functional -->
-        <!-- <a href="{% url 'maint_users' }" class="dropdown-item">Users-admin</a>
-        <a href="" class="dropdown-item">Promotions-admin</a> -->
-    </div>
-    {% endif %}
-</li>
+    <li id="sysmaint-link" class="list-inline-item dropdown">
+        <a class="text-black nav-link" href="#" id="sysmaint-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="text-center">
+            <div><i class="fas fa-gear fa-lg"></i></div>
+            <p class="my-0">SysMaint</p>
+        </div>
+        </a>
+        <div class="dropdown-menu border-0" aria-labelledby="user-options">
+            <a href="{% url 'maint_categories' %}"  class="dropdown-item">Categories-admin</a>
+            <a href="{% url 'maint_products' %}"  class="dropdown-item">Products-admin</a>
+            <a href="{% url 'maint_orders' %}" class="dropdown-item">Orders-admin</a>
+            <!-- DMcC 15/02/24:  Temporarily hide these options as not yet functional -->
+            <!-- <a href="{% url 'maint_users' }" class="dropdown-item">Users-admin</a>
+            <a href="" class="dropdown-item">Promotions-admin</a> -->
+        </div>
+    </li>
+{% endif %}
             
-<li class="list-inline-item dropdown profile-link">
 {% if request.user.is_authenticated %}
 <!-- signed in & user profile exists-->
+<li class="list-inline-item dropdown profile-link">
     <a class="text-black nav-link user-options" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
             <!-- display profile image -->
@@ -41,13 +41,13 @@
 {% else %}
 <!-- not signed in -->
 <li class="list-inline-item dropdown profile-link">
-    <a class="text-black nav-link user-options" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a id="user-options-large-display" class="text-black nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
             <div><i class="fas fa-user fa-lg"></i></div>
             <p class="my-0">Profile</p>
         </div>
     </a>
-    <div class="dropdown-menu border-0" aria-labelledby="user-options">
+    <div class="dropdown-menu border-0" aria-labelledby="user-options-large-display">
         <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
         <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
     </div>
