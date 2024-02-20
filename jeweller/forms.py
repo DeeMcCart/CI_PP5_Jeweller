@@ -26,6 +26,13 @@ class CustomSignupForm(SignupForm):
             'password1',            
             )
     
+    # Added init method to assign/show default values and save screen space 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.initial['first_name'] = 'First'
+        self.initial['last_name'] = 'Last'
+        self.initial['phone_number']='Tel'
+        
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)
         user.first_name = self.cleaned_data['first_name']

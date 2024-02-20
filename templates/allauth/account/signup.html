@@ -24,7 +24,9 @@
               <label class="form-check-label" for="newsletter">Sign up for Newsletter?</label> 
             </div> -->
           {% else %}
-            {{field.label}}{{ field | as_crispy_field }}
+          <!-- DMcC 20/02/24 issuelog #92 - field labels displaying twice on smaller screens - try removing field label from display here-->
+          <!--{{field.label}}{{ field | as_crispy_field }} -->
+            {{ field | as_crispy_field }}
           {% endif %}
         {% endfor %}
 
