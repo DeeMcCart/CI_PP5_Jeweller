@@ -57,7 +57,6 @@ body
 }
 
 .logo-font {
-    text-transform: bold;
     text-transform: uppercase;
 }
 
@@ -145,7 +144,6 @@ a.category-badge > span.badge:hover {
 /* Reduce image size for basket */
 .image-basket {
     max-width: 30%;
-    max-height: auto;
 }
 
 /* Product maintenance grid - Reduce image size */
@@ -163,10 +161,10 @@ a.category-badge > span.badge:hover {
     transform: scale(5); /* Increase image size on hover */
   }
 
-  /* Product/ order maintenance grid - reduce font size */
+  /* Product/ order maintenance grid - reduce font size. */
   #orders-container,
   #products-container {
-    font-size-adjust: 20%;
+    color: grey;
   }
 
 /* For product detail image make it not clickable */
@@ -643,7 +641,7 @@ button:hover {
     }
 
     .nav-link i.fa-lg {
-        font-size: 1 rem;
+        font-size: 1rem;
     }
     
     .navbar-toggler {

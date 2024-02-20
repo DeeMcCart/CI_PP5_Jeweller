@@ -28,9 +28,6 @@
     </div>
 </li>
 
-<!-- use d-block to display on XS S screens and d-lg-none to prevent display on L XL screens -->
-<!-- DMcC 20/02/24 removed as cannot have div within ul <div id="profile-display" class="d-block d-lg-none"> -->
-
 {% if request.user.is_authenticated and request.user.is_superuser %}
 <li id="sysmaint-link" class="list-inline-item dropdown">
     <a class="text-black nav-link d-block d-lg-none" href="#" id="sysmaint-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

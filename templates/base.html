@@ -8,7 +8,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <!-- DMcC remove shrink-to-fit below as it is possibly distorting the display , shrink-to-fit=no-->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="Independent Jeweller in Carlow Town, Ireland">
         <meta name="keywords"
         content="carlow, carlow town, tullow street, celtic jewellery, celtic jewelry, family business, jewellery, jewelry, craft, watch, watches, lighter, lighters, ring, rings, pendant, pendants, ogham, engraving, engrave, customised jewellery, remodelled jewellery, jewellery repairs, dolmen">
@@ -160,8 +160,12 @@
     <script>
         setTimeout(function () {
             let messages = document.getElementById('msg');
-            let alert = new bootstrap.Alert(messages);
-            alert.close();
+            if (messages) {
+                let alert = new bootstrap.Alert(messages);
+                alert.close();}
+            else {
+                console.warn('Element with ID "msg" not found');
+            }
         }, 5000);
     </script>
     
