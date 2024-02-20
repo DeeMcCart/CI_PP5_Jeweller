@@ -70,32 +70,29 @@
         {% block extra_title %}
         {% endblock %}
     </title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="container-fluid fixed-top">
-        <!-- the nav class is used to control display of this section only if large screen-->    
-        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-white justify-content-end"> --> 
+        <!-- display of this section only if large screen-->    
         <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
-            
             <!-- responsive logo display -->
             <div id="logo" class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 {% include 'includes/nav-logo.html' %}
             </div> <!-- end div logo -->
 
-            <!-- search-the-site function displays as large field on bigger screens, 
-            and as icon with drop-down menu on smaller screens -->
-            <!-- DMcC 18/02/24 check this <div id="search-field" class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-block"> -->
+            <!-- search-the-site function displays as large field on bigger screens, --> 
+            <!-- and as icon with drop-down menu on smaller screens -->
             <div id="search-field" class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 {% include 'includes/nav-search.html' %}    
             </div> <!-- end div search-field -->
-
 
             <!-- navbar links -->
             <!-- search field display, this diplays only on L and XL screens  -->    
             <div id="navbar-links" class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <!-- Responsivenes: display the profile and grand total within this ul on large and XL screens -->
-                <ul class="list-inline list-unstyled text-center text-lg-right my-0 d-none d-lg-block">
+                <!-- 20/02/24 DMcC altered line from <ul class="list-inline list-unstyled text-center text-lg-right my-0 d-none d-lg-block"> -->
+                <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     {% include 'includes/nav-profile.html' %}
                     <!-- if basket exists, show total -->
                     {% include 'includes/nav-grand-total.html' %}
@@ -110,7 +107,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <!-- nav-mobile reduces the searchbar display to an icon with drop-down rather than full field width for XS S M screens-->
-                {% include 'includes/nav-mobile.html' %}
+                {% include 'includes/mobile-top-header.html' %}
                 <!-- nav-secondary shows a secondary navbar which is used to offer/apply filters on products displayed -->
                 {% include 'includes/nav-main.html' %}
             </nav>
@@ -118,7 +115,7 @@
         <!-- delivery threshold banner -->
         <div id="delivery-banner" class="row text-center">
             <div class="col bg-black text-white">
-                <h4 class="logo-font my-2" id="banner-message">Free delivery on orders over €{{ free_delivery_threshold }}!</h4>                
+                <h4 class="logo-font my-1" id="banner-message">Free delivery on orders over €{{ free_delivery_threshold }}!</h4>                
             </div>            
         </div> <!-- end div delivery-banner class="row text-center"-->
     </header>
@@ -158,9 +155,6 @@
     <script type="text/javascript">
         $('.toast').toast('show');
     </script>
-    <!-- DMcC 06/02/24 Add stripe coding to each html page to assist in fraud prevention -->
-    <!-- DMcC 14/02/24 note that the stripe elements seem to be throwing 404 errors and slowing down the page load -->
-    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
     
     <!-- DMcC 14/02/24 Add script to fade the Toast messages after suitable time display -->
     <script>
@@ -172,7 +166,6 @@
     </script>
     
     {% endblock %}
-    
 
-    </body>
+  </body>
 </html>

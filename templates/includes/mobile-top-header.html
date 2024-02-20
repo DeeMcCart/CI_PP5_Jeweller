@@ -1,0 +1,104 @@
+<!-- nav-mobile.html exists to compress the search bar on smaller screens -->
+<!-- For smaller screens, the list item for search button is reduced to an icon with dropdown search field,  
+    rather than full search-field display -->
+
+<!-- use d-block to display on XS S M screens and d-lg-none to prevent display on L XL screens -->
+<!-- note that the smaller search icon is treated as a list item in navlinks -->
+
+<li class="list-inline-item">
+    <a class="text-black nav-link d-block d-lg-none" href="#" id="mobile-search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="text-center">
+            <div><i class="fas fa-search fa-lg"></i></div>
+            <p class="my-0">Search</p>
+        </div>
+    </a>
+    <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0" aria-labelledby="mobile-search">
+        <form class="form" method="GET" action="{% url 'products' %}"></form>>
+            <div class="input-group w-100">
+                <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
+                <div class="input-group-append">
+                    <button class="form-control form-control btn btn-black border border-black rounded-0" type="submit">
+                        <span class="icon">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</li>
+
+<!-- use d-block to display on XS S screens and d-lg-none to prevent display on L XL screens -->
+<!-- DMcC 20/02/24 removed as cannot have div within ul <div id="profile-display" class="d-block d-lg-none"> -->
+
+{% if request.user.is_authenticated and request.user.is_superuser %}
+<li id="sysmaint-link" class="list-inline-item dropdown">
+    <a class="text-black nav-link d-block d-lg-none" href="#" id="sysmaint-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="text-center">
+        <div><i class="fas fa-gear fa-lg"></i></div>
+        <p class="my-0">SysMaint</p>
+    </div>
+    </a>
+    <div class="dropdown-menu border-0" aria-labelledby="user-options">
+        <a href="{% url 'maint_categories' %}"  class="dropdown-item">Categories-admin</a>
+        <a href="{% url 'maint_products' %}"  class="dropdown-item">Products-admin</a>
+        <a href="{% url 'maint_orders' %}" class="dropdown-item">Orders-admin</a>
+        <!-- DMcC 15/02/24:  Temporarily hide these options as not yet functional -->
+        <!-- <a href="{% url 'maint_users' }" class="dropdown-item">Users-admin</a>
+        <a href="" class="dropdown-item">Promotions-admin</a> -->
+    </div>
+    {% endif %}
+</li>
+            
+<li class="list-inline-item dropdown profile-link">
+{% if request.user.is_authenticated %}
+<!-- signed in & user profile exists-->
+    <a class="text-black nav-link user-options d-block d-lg-none" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="text-center">
+            <!-- display profile image -->
+            <span class="navbar-text text-muted "><img class="navbar-image" src="{{ request.user.userprofile.profile_image.url }}" alt="Users avatar logo"></span>
+            <p class="my-0">Welcome, {{ request.user }}!</p>    
+        </div>
+    </a>
+            
+    <div class="dropdown-menu border-0" aria-labelledby="user-options">       
+            <a href="{% url 'profile_detail' request.user.userprofile.id %}" class="dropdown-item">My Profile</a>
+            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+    </div>
+</li> <!-- end li class = list-inline-item dropdown profile-link -->
+{% else %}
+<!-- not signed in -->
+<li class="list-inline-item dropdown profile-link">
+    <a class="text-black nav-link user-options" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="text-center">
+            <div><i class="fas fa-user fa-lg"></i></div>
+            <p class="my-0">Profile</p>
+        </div>
+    </a>
+    <div class="dropdown-menu border-0" aria-labelledby="user-options">
+        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+    </div>
+</li>    
+{% endif %}
+
+
+<!-- </div>  -->
+
+<!-- use d-block to display on XS S screens and d-lg-none to prevent display on M L XL screens -->
+<!-- DMcC 20/02/24 removed as cannot have div wiithin ul <div id="grand-total-display" class="d-block d-lg-none"> -->
+<li class="list-inline-item">
+    <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-black{% endif %} nav-link d-block d-lg-none" href="{% url 'view_basket' %}">
+        <div class="text-center">
+            <div><i class="fas fa-basket-shopping fa-lg"></i></div>
+            <p class="my-0">
+                {% if grand_total %}
+                    €{{ grand_total|floatformat:2 }}
+                {% else %}
+                    €0.00
+                {% endif %}
+            </p>
+        </div>
+    </a>
+</li>    
+<!--- </div> --> 
