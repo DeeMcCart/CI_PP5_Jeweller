@@ -2,19 +2,16 @@
     which varies depending on whether the user is logged in/registered or not, 
     and whether the logged-in user is superuser -->
 
-{% load static %}
-
-{% if request.user.is_authenticated and request.user.is_superuser %}
 <!-- settings dropdown menu (only visible to signed-in Admin users) -->
-<li id="sysmaint-link" class = "list-inline-item dropdown">
+{% if request.user.is_authenticated and request.user.is_superuser %}
+<li id="sysmaint-link" class="list-inline-item dropdown">
     <a class="text-black nav-link" href="#" id="sysmaint-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <div class="text-center">
         <div><i class="fas fa-gear fa-lg"></i></div>
         <p class="my-0">SysMaint</p>
     </div>
+    </a>
     <div class="dropdown-menu border-0" aria-labelledby="user-options">
-        <!-- <a href="" class="dropdown-item">Catalog-admin</a> -->
-        <!--<a href="{% url 'add_product' %}" class="dropdown-item">Product-add</a>-->
         <a href="{% url 'maint_categories' %}"  class="dropdown-item">Categories-admin</a>
         <a href="{% url 'maint_products' %}"  class="dropdown-item">Products-admin</a>
         <a href="{% url 'maint_orders' %}" class="dropdown-item">Orders-admin</a>
@@ -22,8 +19,8 @@
         <!-- <a href="{% url 'maint_users' }" class="dropdown-item">Users-admin</a>
         <a href="" class="dropdown-item">Promotions-admin</a> -->
     </div>
+    {% endif %}
 </li>
-{% endif %}
             
 <li id="profile-link" class="list-inline-item dropdown">
 {% if request.user.is_authenticated %}
@@ -32,8 +29,6 @@
     <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
             <!-- display profile image -->
-            <!-- DMcC the below changed 10/02/24 a thorwing an error whenn interpreted by AWS static -->
-            <!-- <span class="navbar-text text-muted "><img class="navbar-image" src="{{request.user.userprofile.profile_image.url}}" alt="Users avatar logo"></span>-->
             <span class="navbar-text text-muted "><img class="navbar-image" src="{{ request.user.userprofile.profile_image.url }}" alt="Users avatar logo"></span>
             <p class="my-0">Welcome, {{ request.user }}!</p>    
         </div>

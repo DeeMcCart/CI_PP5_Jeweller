@@ -15,7 +15,7 @@
         </div>
     </a>
     <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0" aria-labelledby="mobile-search">
-        <form class="form" method="GET" action="">
+        <form class="form" method="GET" action="{% url 'products' %}"></form>>
             <div class="input-group w-100">
                 <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
                 <div class="input-group-append">
@@ -31,12 +31,12 @@
 </li>
 
 <!-- use d-block to display on XS S screens and d-lg-none to prevent display on L XL screens -->
-<div id="profile-display" class="d-block d-lg-none">
+<!-- DMcC 20/02/24 removed as cannot have div within ul <div id="profile-display" class="d-block d-lg-none"> -->
     {% include 'includes/nav-profile.html' %}
-</div>
+<!-- </div>  -->
 
 <!-- use d-block to display on XS S screens and d-lg-none to prevent display on M L XL screens -->
-<div id="grand-total-display" class="d-block d-lg-none">
+<!-- DMcC 20/02/24 removed as cannot have div wiithin ul <div id="grand-total-display" class="d-block d-lg-none"> -->
     {% include 'includes/nav-grand-total.html' %}   
-</div> 
+<!--- </div> --> 
 </ul>  <!-- end enclosing ul -->    

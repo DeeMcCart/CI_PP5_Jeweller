@@ -25,7 +25,7 @@
             integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> 
         <!-- DMcC 28/01/24 Replaced with v 5.3.2 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap-grid.min.css" 
-        integrity="sha512-ZuRTqfQ3jNAKvJskDAU/hxbX1w25g41bANOVd1Co6GahIe2XjM6uVZ9dh0Nt3KFCOA061amfF2VeL60aJXdwwQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-ZuRTqfQ3jNAKvJskDAU/hxbX1w25g41bANOVd1Co6GahIe2XjM6uVZ9dh0Nt3KFCOA061amfF2VeL60aJXdwwQ==" crossorigin="anonymous" referrerpolicy="no-referrer" >
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +41,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" 
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <!-- DMcC 02/02/24 added in this extra link as my js functions are not being picked up.  I used this on BA walkthrough -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     
         <!-- Bootstrap Option 2: Separate Popper and Bootstrap JS -->
     
@@ -101,7 +101,7 @@
                     {% include 'includes/nav-grand-total.html' %}
                 </ul>   <!-- end ul of navbar items-->
             </div> <!-- end div id=navbar-links -->
-        </div> <!-- end div id = topnav which holds navigation elements -->
+        </div> <!-- end div id = topnav class="row bg-white pt-lg-2 d-none d-lg-flex" -->
 
         <!-- New row for the secondary header (category searches) -->
         <div class="row bg-white">
@@ -120,7 +120,7 @@
             <div class="col bg-black text-white">
                 <h4 class="logo-font my-2" id="banner-message">Free delivery on orders over €{{ free_delivery_threshold }}!</h4>                
             </div>            
-        </div> <!-- end div delivery-banner -->
+        </div> <!-- end div delivery-banner class="row text-center"-->
     </header>
 
     {% if messages %}
