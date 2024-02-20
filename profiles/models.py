@@ -13,7 +13,8 @@ class UserProfile(models.Model):
     and order history """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number1 = models.CharField(max_length=15, null=True, blank=True)
-    phone_number2 = models.CharField(max_length=15, null=True, blank=True)
+    # DMcC 20/02/24 remove phone_number2 as its a spurious field
+    #     phone_number2 = models.CharField(max_length=15, null=True, blank=True)
     profile_image = models.ImageField(upload_to='images',
                                       default='placeholder.png')
     newsletter_signup = models.BooleanField(default=False)

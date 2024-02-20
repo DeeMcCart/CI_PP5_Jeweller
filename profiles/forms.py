@@ -30,17 +30,19 @@ class UserProfileForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         placeholders = {
             'user': 'user',
-            'phone_number1': 'Phone',
-            # DMcC 20/02/24 Remove 'phone_number2': 'Alt Phone', IssueNum 95
-            'profile_image': "../../static/images/placeholder.png",
+            'phone_number1': 'Tel',
+            # change label for profile_image from 'profile_image': "../../static/images/placeholder.png",
+            'profile_image': 'My Piccie',
             'newsletter_signup': False,
              }
-        # self.fields['phone_number1'].widget.attrs['autofocus'] = True
+        self.fields['phone_number1'].widget.attrs['autofocus'] = True
 
         for field in self.fields:
             if self.fields[field].required:
+                print(f'field ',field, ' is required')
                 placeholder = f'{placeholders[field]} *'
             else:
+                print(f'field ',field, 'not required')
                 placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = ('border-black rounded-0'
