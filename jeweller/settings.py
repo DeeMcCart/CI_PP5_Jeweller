@@ -51,8 +51,10 @@ ACCOUNT_FORMS = {
                 'signup': 'jeweller.forms.CustomSignupForm',
                 }
 
+# DMcC 20/02/24 do I need the below account_verification_method?
 ACCOUNT_VERIFICATION_METHOD = "username_email"
 # Login method to use -userame/email/either (AllAuth 0.60.0)
+# DMcC 20/02/24 thihnking about modifying this from "username_email" ref issuelog num95
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 # The user must link an email address when signing up.
 ACCOUNT_EMAIL_REQUIRED = True
@@ -61,7 +63,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 # 18/02/24 DMcC changed it back to optional
 # 20/02/24 DMcC reverted this to none as still have an issue since 18/02 that user registration hangs after pressing signup button also
 # the admin console shows emails without the link to user
-ACCOUNT_EMAIL_VERIFICATION = "none"
+# DMcC 20/02/24 identified the problem with user signup - related to a hidden mandatory field - so attempting to reinstate the mandatory verification below
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # When signing up, require emailx2?
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
 # When signing up, force the user to type in their password x2?
