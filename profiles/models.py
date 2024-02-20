@@ -12,8 +12,7 @@ class UserProfile(models.Model):
     includes profile_image, can be linked to delivery addresses
     and order history """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number1 = models.CharField(max_length=15, null=True, blank=True,
-                                     default='08X1111111')
+    phone_number1 = models.CharField(max_length=15, null=True, blank=True)
     phone_number2 = models.CharField(max_length=15, null=True, blank=True)
     profile_image = models.ImageField(upload_to='images',
                                       default='placeholder.png')

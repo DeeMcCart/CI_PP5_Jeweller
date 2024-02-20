@@ -16,10 +16,10 @@ class UserProfileAdmin(admin.ModelAdmin):
 
     readonly_fields = ('created_on',)
 
-    fields = ('user', 'phone_number1', 'phone_number2',
+    fields = ('user', 'phone_number1', 
               'profile_image', 'newsletter_signup',)
 
-    list_display = ('user', 'phone_number1', 'phone_number2',
+    list_display = ('user', 'phone_number1', 
                     'profile_image', 'newsletter_signup', 'created_on',)
 
     ordering = ('user',)

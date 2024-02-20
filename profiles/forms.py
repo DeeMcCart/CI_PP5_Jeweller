@@ -25,13 +25,13 @@ class UserProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         """
         Add placeholders and classes, remove auto-generated
-        labels and set autofocus on first field
+        labels and replace with placeholders, and set autofocus on first field
         """
         super().__init__(*args, **kwargs)
         placeholders = {
             'user': 'user',
-            'phone_number1': 'Phone Number',
-            'phone_number2': 'Alt Phone',
+            'phone_number1': 'Phone',
+            # DMcC 20/02/24 Remove 'phone_number2': 'Alt Phone', IssueNum 95
             'profile_image': "../../static/images/placeholder.png",
             'newsletter_signup': False,
              }
