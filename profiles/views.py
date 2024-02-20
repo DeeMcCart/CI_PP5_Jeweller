@@ -13,8 +13,8 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def profile_detail(request, profile_id):
     """ A view to return a specific profile id """
-    if (request.user.is_authenticated
-        and (profile_id == request.user.userprofile.id)
+    if ((request.user.is_authenticated  
+        and (profile_id == request.user.userprofile.id))
             or (request.user.is_superuser)):
 
         current_profile = get_object_or_404(UserProfile, id=profile_id)
@@ -77,6 +77,9 @@ def order_history(request, order_number):
 
 
 def add_profile(request):
+    # DMcC 20/02/24 Think this is no longer required as the receiver 
+    # in profiles/models.py takes care of creating a user profile
+    # when a User is added
     """ On registration:  Create a new user profile """
 
     if request.method == 'POST':

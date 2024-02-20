@@ -47,7 +47,7 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     # Existing users: just save the profile
     instance.userprofile.save()
 
-# UserAddress is a child of UserProfile, and it has the ability to store
+# DMcC UserAddress is a child of UserProfile, and it has the ability to store
 # multiple addresses per UserProfile.  Business logic is that only 1
 # address_type BILL is linked to a user profile (want to avoid multiple billing
 # addresses - fraud risk), but could have multiple SHIP addresses

@@ -35,19 +35,17 @@ DEBUG = 'DEVELOPMENT' in os.environ
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
-                          'django.contrib.auth.backends.ModelBackend',
+                        'django.contrib.auth.backends.ModelBackend',
     # `allauth` specific authentication methods, such as login by email
-                            'allauth.account.auth_backends.AuthenticationBackend',
+                        'allauth.account.auth_backends.AuthenticationBackend',
                             ]
 
 SITE_ID = 1
 
 # ACCOUNT_FORMS: Used to override the builtin forms.
 # (Otherwise forms are found in templates/allauth/account Defaults to:
-# DMcC 17/02/24 am removing the custom signup form as think its actually causing some confusion.abs
 # This has already been handled in BA walkthrough - registration creates user with signal to create UserProfile with default settings
 # The signed-in person can then modify their UserProfile
-# Actually - reinstating as I want to capture firstname and lastname if possible on the UP
 #
 ACCOUNT_FORMS = {
                 'signup': 'jeweller.forms.CustomSignupForm',
@@ -60,7 +58,10 @@ ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 # Email verification at signup – mandatory/ optional/none
 # 18/02/24 DMcC tried setting to mandatory but it just seems to prevent User creation 
-ACCOUNT_EMAIL_VERIFICATION = "optional"
+# 18/02/24 DMcC changed it back to optional
+# 20/02/24 DMcC reverted this to none as still have an issue since 18/02 that user registration hangs after pressing signup button also
+# the admin console shows emails without the link to user
+ACCOUNT_EMAIL_VERIFICATION = "none"
 # When signing up, require emailx2?
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
 # When signing up, force the user to type in their password x2?
@@ -194,19 +195,16 @@ print('Database setting is ', DATABASES)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': (f'django.contrib.auth.password_validation.'
-        + 'UserAttributeSimilarityValidator'),
+        'NAME': ('django.contrib.auth.password_validation.UserAttributeSimilarityValidator'),
     },
     {
-        'NAME': (f'django.contrib.auth.password_validation.MinimumLengthValidator'),
+        'NAME': ('django.contrib.auth.password_validation.MinimumLengthValidator'),
     },
     {
-        'NAME': (f'django.contrib.auth.password_validation.'
-                 +'CommonPasswordValidator'),
+        'NAME': ('django.contrib.auth.password_validation.CommonPasswordValidator'),
     },
     {
-        'NAME': (f'django.contrib.auth.password_validation.'
-                + 'NumericPasswordValidator'),
+        'NAME': ('django.contrib.auth.password_validation.NumericPasswordValidator'),
     },
 ]
 
