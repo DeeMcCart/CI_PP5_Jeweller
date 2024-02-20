@@ -22,11 +22,11 @@
     {% endif %}
 </li>
             
-<li id="profile-link" class="list-inline-item dropdown">
+<li class="list-inline-item dropdown profile-link">
 {% if request.user.is_authenticated %}
 <!-- signed in & user profile exists-->
             
-    <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="text-black nav-link user-options" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
             <!-- display profile image -->
             <span class="navbar-text text-muted "><img class="navbar-image" src="{{ request.user.userprofile.profile_image.url }}" alt="Users avatar logo"></span>
@@ -38,11 +38,11 @@
             <a href="{% url 'profile_detail' request.user.userprofile.id %}" class="dropdown-item">My Profile</a>
             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
     </div>
-</li> <!-- end li profile-link -->
+</li> <!-- end li class = list-inline-item dropdown profile-link -->
 {% else %}
 <!-- not signed in -->
-<li id="profile-link" class="list-inline-item dropdown">
-    <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<li class="list-inline-item dropdown profile-link">
+    <a class="text-black nav-link user-options" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
             <div><i class="fas fa-user fa-lg"></i></div>
             <p class="my-0">Profile</p>

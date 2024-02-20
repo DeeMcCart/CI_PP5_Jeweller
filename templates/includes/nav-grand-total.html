@@ -1,6 +1,6 @@
 <!-- this logic calculates the basket grand total and associates it with a list item for the navbar -->
 {% if grand_total %}
-<li id="basket-link" class="list-inline-item">
+<li class="list-inline-item basket-link">
     <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_basket' %}">
         <div class="text-center">
             <div><i class="fas fa-basket-shopping fa-lg"></i></div>
@@ -9,10 +9,10 @@
             </p>
         </div> <!-- end div class = text-center-->
     </a>
-</li> <!-- end li basket-link-->
+</li> <!-- end li class="list-inline-item basket-link" -->
 {% else %}
 <!-- DMcC 28/01/24 keep this section in for testing, but eventually remove the basket symmbol if theres nothing in it -->
-<li id="basket-link" class="list-inline-item">
+<li class="list-inline-item basket-link">
     <a class="text-black nav-link" href="">
     <div class="text-center">
         <div><i class="fas fa-basket-shopping fa-lg"></i></div>
@@ -21,5 +21,5 @@
         </p>
     </div> <!-- end div class = text-center-->
     </a>
-</li> <!-- end li basket-link-->
+</li> <!-- end li class="list-inline-item basket-link" -->
 {% endif %}
