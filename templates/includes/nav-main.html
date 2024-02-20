@@ -5,10 +5,9 @@
             Home
         </a></li>
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5 all-products-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a id="all-products-link" class="logo-font font-weight-bold nav-link text-black mr-5 " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 All Products
             </a>
-            <!-- DMcC 31/01/24 the below tested and works OK, except tha the searches seem to be in descending order H->L rather than ascending?-->
             <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
                 <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
                 <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
@@ -19,10 +18,10 @@
         </li>
 
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5 all-products-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a id ="products-by-category" class="logo-font font-weight-bold nav-link text-black mr-5" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 By Type
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
+            <div class="dropdown-menu border-0" aria-labelledby="products-by-category">
                 <a href="{% url 'products' %}?category=ring" class="dropdown-item">Ring</a>
                 <a href="{% url 'products' %}?category=pendant,pendant(set)" class="dropdown-item">Pendant</a>
                 <a href="{% url 'products' %}?category=earrings,earrings(set)" class="dropdown-item">Earrings</a>
@@ -38,7 +37,7 @@
                 <!-- FilterCat2 --> Promotions
             </a>
         </a>
-        <div class="dropdown-menu border-0" aria-labelledby="specials-link">
+        <div class="dropdown-menu border-0" aria-labelledby="promotions-link">
             <a href="{% url 'products' %}?sort=created_on&direction=desc" class="dropdown-item">New Arrivals</a>
             <a href="{% url 'products' %}" class="dropdown-item">Deals</a>
             <a href="{% url 'products' %}" class="dropdown-item">Clearance</a>
