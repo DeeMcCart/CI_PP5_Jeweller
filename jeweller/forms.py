@@ -6,6 +6,7 @@ from django.contrib import messages
 from profiles.models import UserProfile, create_or_update_user_profile
 from django.contrib.auth.models import User
 from allauth.account.forms import SignupForm
+import time
 
 class CustomSignupForm(SignupForm):
     """ Gather additional fields first & last name for allauth User
@@ -38,9 +39,12 @@ class CustomSignupForm(SignupForm):
    
     #       Add in the phone number data from the form field
             user_profile.phone_number1 = self.cleaned_data['phone_number']
-            user_profile.save()              
-            messages.success(request, f'User {user.username} \
-                                        {user_profile.phone_number1} \
-                                        created') 
+            # DMcC 20/02/24 introduced small time delay before save is attempted
+            time.sleep(1)
+            user_profile.save()   
+            user_profile_upd = get_object_or_404(UserProfile, user=user)           
+            messages.success(request, f'UserProfile {user.username} \
+                                        {user_profile_upd.phone_number1} \
+                                        created')                             
         return user
 
