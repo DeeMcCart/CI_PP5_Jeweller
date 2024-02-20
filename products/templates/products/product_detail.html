@@ -50,11 +50,14 @@
                     </p>
                     {% endif %}
                     <div>
-                        <meter class="average-rating" min="0" max="5" value = "4"
-                            title="reviews out of 5"></meter>
+                        <a href="#review-container">
+                            <meter class="average-rating" min="0" max="5" value = "4"
+                                title="reviews out of 5"></meter>
                             <p>({% if num_reviews == 0 %}No 
-                                {% else %}{{ num_reviews }} 
-                                {% endif %} Review{% if num_reviews != 1 %}s{% endif %})</p></a>
+                                    {% else %}{{ num_reviews }} 
+                                    {% endif %} Review{% if num_reviews != 1 %}s{% endif %})
+                            </p>
+                        </a>
                     </div>
                     
                     <p class="mt-3">{{ product.description }}</p>
@@ -126,9 +129,9 @@
                                <!-- add logic to deal with engraving/personalisation -->
                                <div class="col-12">
                                 {% with product.can_be_engraved as e %}
-                                <p class="mt-3"><strong>Engraving (optional):</strong>
                                 {% if e %}
-                                        <select class="form-control rounded-0 w-50" name="engrave_text" id='id_engrave_text'>
+                                    <p class="mt-3"><strong>Engraving (optional):</strong>
+                                    <select class="form-control rounded-0 w-50" name="engrave_text" id='id_engrave_text'>
                                             <option value="MUM">Mum</option>
                                             <option value="DAD">Dad</option>
                                             <option value="SON">Son</option>
@@ -144,20 +147,21 @@
                 
                 <p class = "logo-font font-weight-bold nav-link text-black mr-5"> PRODUCT REVIEWS</p>
                 <hr>
-                {% if request.user.is_authenticated %}
+                <!-- DMcC 20/02/24 remove - doesnt add value
+                    {% if request.user.is_authenticated %}
                     <small>
-                    <a class="text-info" href="">Review</a>
+                    <a class="text-info" href="#review-container">Review</a>
                     </small>
-                {% endif %}
+                {% endif %} -->
                 
                 <div id = "product-ratings" class="product-ratings-container mb-5 mt-md-5">
                     {% if reviews %}    
                         {% for review in reviews %}
                             <span class="text-muted "><img class="reviewer-image" src="{{ review.user_profile.profile_image.url }}" alt="Reviewers avatar logo">
-                             {{ review.user_profile }} {{ review.created_on }}</span>
+                            {{ review.user_profile }} {{ review.created_on }}</span>
                             <meter id="review1-rating" min="0" max="5" value = "3"
                             title="reviews out of 5"> </meter>
-                             <p>{{ review.title }}</p>
+                            <p>{{ review.title }}</p>
                             <p>{{review.body }}</p>
 
                         {% endfor %}    
@@ -165,7 +169,7 @@
                     
                     <!-- Only permit registered users to leave product reviews -->
                     {% if request.user.is_authenticated %}
-                        <div class="review-container">
+                        <div id="review-container" class="review-container">
                             <!-- <div class="review-rating">
                                 <span id="review-rating">0</span>/5
                             </div>  -->
@@ -185,7 +189,7 @@
                             </div>
                         </div>  <!-- end div class "review-container" -->
                     {% endif %}                  
-                </div> <!-- ratings-container mb-5 mt-md-5 -->
+                </div> <!-- id=ratings-container mb-5 mt-md-5 -->
             </div> <!-- end class col-12 col-md-6 col-lg-4 -->  
         </div> <!-- end class row (of product detail)-->
     </div> <!-- end class container-fluid -->
