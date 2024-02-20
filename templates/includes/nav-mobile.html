@@ -4,6 +4,9 @@
 
 <!-- use d-block to display on XS S M screens and d-lg-none to prevent display on L XL screens -->
 <!-- note that the smaller search icon is treated as a list item in navlinks -->
+
+<ul>   <!-- DMcC 20/02/24 Picked up missing list enclosure from html validation-->
+
 <li class="list-inline-item d-block d-lg-none">
     <a class="text-black nav-link" href="{% url 'products' %}" id="mobile-search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
@@ -26,6 +29,7 @@
         </form>
     </div>
 </li>
+
 <!-- use d-block to display on XS S screens and d-lg-none to prevent display on L XL screens -->
 <div id="profile-display" class="d-block d-lg-none">
     {% include 'includes/nav-profile.html' %}
@@ -35,4 +39,4 @@
 <div id="grand-total-display" class="d-block d-lg-none">
     {% include 'includes/nav-grand-total.html' %}   
 </div> 
-      
+</ul>  <!-- end enclosing ul -->    
