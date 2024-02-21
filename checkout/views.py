@@ -68,6 +68,8 @@ def checkout(request):
             order.original_basket = json.dumps(basket)
             order.save()
             # DMcC 06/02/24:  Current line number starts at 10
+            # Note additional fields added for Jeweller:
+            # line_number, sku, category, size, total
             current_line_number = 10
             for item_id, item_data in basket.items():
                 try:
@@ -81,7 +83,7 @@ def checkout(request):
                             sku=product.sku,
                             category=product.category,
                             quantity=item_data,
-                            # Added line item price and total to model
+                            product_size='Not set',
                             price=product.price,
                             lineitem_total=item_data,
                             )
@@ -92,8 +94,12 @@ def checkout(request):
                                 order=order,
                                 line_number=current_line_number,
                                 product=product,
+                                sku=product.sku,
+                                category=product.category,
                                 quantity=quantity,
                                 product_size=size,
+                                price=product.price,
+                                lineitem_total=item_data,
                             )
                             order_line_item.save()
                     current_line_number += 10

@@ -9,9 +9,24 @@
         <meta charset="utf-8">
         <!-- DMcC remove shrink-to-fit below as it is possibly distorting the display , shrink-to-fit=no-->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Independent Jeweller in Carlow Town, Ireland">
+        <meta name="description" content="Independent Jeweller in Carlow Town, Ireland.  On-premises jewellery retail, design, creation, repairs, and customisation, at keen prices, in a customer-friendly business serving the south-east Ireland population for 35 years">
         <meta name="keywords"
-        content="carlow, carlow town, tullow street, celtic jewellery, celtic jewelry, family business, jewellery, jewelry, craft, watch, watches, lighter, lighters, ring, rings, pendant, pendants, ogham, engraving, engrave, customised jewellery, remodelled jewellery, jewellery repairs, dolmen">
+        content=" jewellery, jewelry, jewellers, jewellery Ireland, jewelry Ireland, jewellers carlow, carlow town, tullow street, dolmen, ducketts grove, Ireland Jeweller, Irish jewellery, celtic jewellery, celtic jewelry, 
+        engagement ring, engagement ring carlow, wedding ring, wedding rings, carlow wedding rings,
+        silver, gold, yellow gold, white gold, platinum, 
+        claddagh ring, celtic knot, celtic jewellery, tie-pin, tiepin, brooch, earrings,  
+        silver pendant, silver rings, diamond, pearl, garnet, cubic zirconia, cubic zircona,   
+        family business, jewellery, jewelry Ireland, craft, bespoke jewellery, 
+        watch, watches, watch strap carlow, watch battery, watch batteries, watch repairs, same-day service, same day,
+        lighter, lighters, ring, rings, pendant, pendants,
+        jewellery repairs, fix broken chain,
+        jewellery engraving,  ogham, engrave, customised jewellery, remodelled jewellery, handmade jewellery, rhodium plating rings,"
+        
+        <meta property="og:title" content="Goldmark Jewellers | Carlow">
+        <meta property="og:description" content="Independent Jeweller in Carlow Town, Ireland.  On-premises jewellery retail, design, creation, repairs, and customisation, at competitive prices, in a customer-friendly business serving the south-east Ireland population for 35 years">
+        <meta property="og:url" content="{{ request.build_absolute_uri }}">
+         <!--Favicon-->
+        <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     {% endblock %}
 
     {% block extra_meta %}
@@ -29,7 +44,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
-        <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     {% endblock %}
     
     {% block extra_css %}
@@ -64,11 +78,12 @@
     {% block extra_js %}
     {% endblock %}
     
-    <title>Goldmark Jewellers 
+    <title>Goldmark Jewellers | Carlow Town
         {% block extra_title %}
         {% endblock %}
     </title>
   </head>
+
 
   <body>
     <header class="container-fluid fixed-top">

@@ -10,7 +10,6 @@ import json
 import time
 import stripe
 
-
 class StripeWH_Handler:
     """Handle Stripe webhooks"""
     """ These webhooks are 'signals' sent from Stripe to a specified URL
@@ -126,25 +125,44 @@ class StripeWH_Handler:
                     original_basket=basket,
                     stripe_pid=pid,
                 )
-                # DMcC 06/02/24 think the below needs to be json.loads(basket).items():
+                # DMcC 21/02/24:  Add logic to include project-specific fields
+                # in order line item build so that webhook built order lines follow
+                # the same logic as 'mainstream' order lines => line_number,
+                # sku, unit price, category
+                # Order line numbr to start at 10 and increment by 10
+                current_line_number = 10
                 for item_id, item_data in json.loads(basket).items():
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
                             order=order,
+                            # assign line number
+                            line_number=current_line_number,
                             product=product,
+                            sku=product.sku,
+                            category=product.category,
                             quantity=item_data,
+                            product_size='Not set',
+                            price=product.price,
+                            lineitem_total=item_data
                         )
                         order_line_item.save()
+                        current_line_number +=10
                     else:
                         for size, quantity in item_data['items_by_size'].items():
                             order_line_item = OrderLineItem(
                                 order=order,
+                                line_number=current_line_number,
                                 product=product,
+                                sku=product.sku,
+                                category=product.category,
                                 quantity=quantity,
                                 product_size=size,
+                                price=product.price,
+                                lineitem_total=item_data,
                             )
                             order_line_item.save()
+                            current_line_number +=10
             except Exception as e:
                 if order:
                     order.delete()
