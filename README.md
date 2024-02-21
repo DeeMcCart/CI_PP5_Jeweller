@@ -10,6 +10,11 @@ https://jeweller-bd1caeb15bbd.herokuapp.com/
     1. [UX Design - Strategy ](#ux-design-strategy) 
     2. [UX Design - Strategy - Competitor Portals](#ux-design-strategy-analysis-of-competitors)
     3. [UX Design - Strategy - Target Audience](#ux-design-strategy-target-audience)
+3. [Ecommerce and Markting Stagtegy](#ecommerce-strategy)
+    1. [Ecommerce Business Model](#e-commerce-business-model)
+    2. [Business impacts of adopting an ecommerce strategy](#business-impacts)
+    3. [Customer Profiles](#customer-profiles)
+    4. [Marketing Strategy](#marketing-strategy)
 3. [UX Design - Scope](#ux-design-scope)
     1. [UX Design - Scope - User Requirements and Expectations](#ux-design-scope-user-requirements-and-expectations)
     2. [UX Design - Scope - Data](#ux-design-scope-data)
@@ -90,7 +95,7 @@ The challenges of the current business model (which may be partly addressed with
 * Competition from online retailers (the 'low cost' model)
 * Retail business is staff-intensive and can take skilled staff away from more profitable back-room tasks
 * Need to differentiate vs. local jewellers
-* Shop owners don't wish to stock certain popular brand names, due to restrictive merchandising constraints 
+* Shop owners unwilling to stock certain popular brand names, due to restrictive merchandising constraints 
 
 **This Jeweller e-commerce offering** is:
 * a B2C website
@@ -102,7 +107,7 @@ The site is built, with the help of Bootstrap & CSS media queries, to be largely
 It is anticipated that certain system admin tasks such as adding or maintaining products, maintaining customer orders, will be performed on a mid to large screen device - a tablet or desktop.  The shop currently has several laptops for performing admin tasks.
 
 <details><summary>Responsive Mockup</summary>
-<img src="./jeweller/docs/readme_images/val-responsive.png">
+<img src="./docs/readme_images/val-responsive.png">
 </details>
 
 ## Project Goals
@@ -115,20 +120,23 @@ It is anticipated that certain system admin tasks such as adding or maintaining 
   
 ### UX Design Strategy
 
-Good navigation is key.
-Good quality imagery for product photos.  
-Flexible site with good search and filter capabilities.
-User feedback form to handle/encourage enquiries
+* Good navigation is key.
+* Good quality imagery for product photos.  
+* Flexible site with good search and filter capabilities.
+* User feedback form to handle/encourage enquiries
 
 ### UX Design Strategy Analysis of Competitors
+
 The following websites were reviewed as part of an assessment of features:
 Two local jeweller's websites;
 The existing website ([Goldmark.ie](https://goldmark.ie/))
 ([Simone Walsh](https://simonewalsh.com/collections)) Australian jeweller 
 Other Irish retailers such as ([House of Lor](e.g. https://houseoflor.com/))
+I also took inspiration from ([Brooks Running](https://www.brooksrunning.com/en_gb)) for good product categorisation and strong visual display.
 
-Generally the websites in this space tend to be strong on imagery and imagination, but perhaps somewhat lacking in personality and features.  The website Simone Walsh australian jeweller stands out as having some very interesting and relatable features such as an asynchronous 'chatbot' approach to FAQ.
-The Jeweller website delivered in this project is functional and provides a strong e-commerce solution with good functionality and features, but needs further UX work to implement some of the very visually appealing design approaches that elevate a site and encourage users to spend more time browsing and admiring products.
+Generally the websites in this space tend to be strong on imagery and imagination, but perhaps somewhat lacking in personality and features.  The jewellery website Simone Walsh australian jeweller stands out as having some very interesting and relatable features such as an asynchronous 'chatbot' approach to FAQ.
+
+The Jeweller website delivered in this project is functional and, provides a strong e-commerce solution with good functionality and features, but needs further UX work to implement some of the very visually appealing design approaches that elevate a site and encourage users to spend more time browsing and admiring products.
 
 ### UX Design Strategy Target Audience
 Target audience is people who might not otherwise make it across the threshold
@@ -142,17 +150,91 @@ g. Who have some purchasing power
 h. Who are based in Ireland
 i. And possibly have a connection to Carlow Town
 
+## Ecommerce Strategy
+---------------------------------
+
+### E-Commerce Business Model
+Jeweller is a B2C platform whose goal is to extend the reach of the existing physical business and increase awareness beyond the current customer base.  
+High-value products are offered for sale, which the customer can browse annonymously without feeling social pressure to complete a purchase.
+
+The retailer is keen to continue to promote physical presence - jewellery tends to be a very personalised purchase, with the customer keen to see and touch the product before committing.
+Therefore a 'click and collect' option has been added to encourage site visitors to physcially come and make their purchase.
+
+### Business Impacts
+The benefits for the business owners are: 
+1. Extends the shop window
+2. Makes people aware of jewellery products for sale 
+3. Allows users to raise enquiries outside 9:30-5:30x 6 days opening hours
+4. Promotes awareness of services provided such as cleaning, repairs, watch batteries, refashioning of personal jewellery into a new creation.
+5. High gain for relatively low cost through use of in-house web design and low-cost promotions/campaign management using MailChimp.
+6. Enourage customer to physically visit to collect click&collect purchases
+7. Use of 'lead times' allows the Jeweller to manage ebb & flow of work
+8. Automated emailed notifications to customers save time rather than needing to call or text
+9. Less time on phone called inquiries
+10.  Greatly increased visibility of buying patterns
+
+The challenges for the business owners are:
+1. Additional enquiries must be reponded to, and are perhaps less likely to result in a sale than in-person inquiries
+2. Reduced opportunities for up-/cross-selling compared to a physical visit (this should be improved in future Jeweller versions )
+3. Overhead in maintaining the website and keeping it 'fresh'
+4. Overhead in generating newsletter and blog content
+5. Concern about customer returns* and increased business costs as a result
+6. Concerns about needing to deal with lost or missing deliveries
+
+(*) The business owners pointed out that consumer rights for online purchases are heavily weighted towards the consumer particularly with no fault/ change of mind returns.  With physical purchases, change of mind customers are legally entitled to a credit note/exchange, whereas online purchases can result in a refund and a loss to the retailer of packaging/restocking/shipping costs.   
+
+
+### Customer Profiles
+
+User 1: It is anticipated that a typcial site user will be from the existing customer base, female aged 30 to 60.  
+This person will likely be making a purchase for themselves, in which case customised jewellery is of particular interest.
+They may alternatively be giting and seeking a present for a specific occasion.  They may have spotted an item of interest on fb or Instragram and want to follow up with a purchase, but lead busy lives and may prefer the convenience of online enquiries/ online ordering.
+
+User 2: Female aged between 50 and 90 (or above).  This customer may likely use the website as a 'shop window' and physically come into the shop to create or complete their purchase.  This customer typically has both time and money, and will react to affinity marketing, likes to feel close to the brand and to feel a personal connection with the shop owners.   
+
+User 3: Couples getting engaged or married who need engagement and/or wedding rings.  
+
+User 4: Males seeking gifts for close females in their life.  These purchasers are likely to be suggestible (so newsletter prompts to purchase certain occasion items can act as a nudge to purchase) as they are unsure of what their partner would like.
+
+User 5:  Persons (male or female) with a strong interest in celtic jewellery, particularly when it is personalised for them (sizing, engraving, one-off-modifications)
+
+### Jeweller Marketing Strategy
+
+The plan for jeweller going forward is to:
+1. Continue what is already being done on facebook and Instragram (which generally gathers up to 20 likes and comments per post), extend it by always including a website link in the marketing content.  Similarly link from the website to these social media platforms.
+2. Build content in the 'about' section of the website (it is designed to be quite maintainable from the admin console) to build the website's credibility and increase awareness and alignment with potential customers.  Fresh, regularly updated website content should increase SEO rankings.
+3. Build text in individual product descriptions using SEO keywords  
+4. Encourage customers to leave reviews, and dedicate time to moderating and curating these reviews.
+5. Encourage customer feedback and consider customer questinos and suggestions when introducing or modifying products
+6. Gain subscribers through the mailchimp application and track response rates; tune the product offerings accordingly.  Each newsletter should include a call-to-action 
+
+### SEO Keywords
+By looking at competitor websites, and gaining some understanding of the Jeweller's business strategy, certain keywords were chosen.  Because of the range of products offered, it is quite a long list.  The american spelling jewelery (one l as opposed to two) was included as american tourists often have a strong interest in celtic or heritage jewellery.
+
+Short-tail jewellery, jewelry, jewellers, jewellery Ireland, jewelry Ireland, jewellers carlow, carlow town, tullow street, dolmen, ducketts grove, Ireland Jeweller, Irish jewellery, celtic jewellery, celtic jewelry, 
+        engagement ring, engagement ring carlow, wedding ring, wedding rings, carlow wedding rings,
+        silver, gold, yellow gold, white gold, platinum, 
+        claddagh ring, celtic knot, celtic jewellery, tie-pin, tiepin, brooch, earrings,  
+        silver pendant, silver rings, diamond, pearl, garnet, cubic zirconia, cubic zircona,   
+        family business, jewellery, jewelry Ireland, craft, bespoke jewellery, 
+        watch, watches, watch strap carlow, watch battery, watch batteries, watch repairs, same-day service, same day,
+        lighter, lighters, ring, rings, pendant, pendants,
+        jewellery repairs, fix broken chain,
+        jewellery engraving,  ogham, engrave, customised jewellery, remodelled jewellery, handmade jewellery, rhodium plating rings,
+
+Long-tail
+
+### Sitemap.xml
+
+A sitemap was generated using the Free Online Sitemap Generator www.xml-sitemaps.com, and added to the site, which will help Google to search the site effectively.
+
+### Robots.txt
+
+A robots.txt file was created which points to the sitemap allowing google to crawl the site.  I blocked the account pages as these are generic and not unique to this site.
+
+
 ## UX Design Scope
 ----------------
-### UX Design Scope - Geographical & shipping constraints:
-Currently interested in orders to be shipped within Ireland only.
-Due to concerns about fraud, shipping will be done to verified customers only.  
-If the customer is not known to the shop, their first online order must be collected in-person.
-Thereafter, shipping is to customers home address only (credit card address).
-
-### UX Design Scope - Data
-Initial themes loaded 
-    and displayed will be based on ROI (Republic of Ireland) datasets
 
 ### UX Design Scope - User Requirements and Expectations
 <ul>MVP Requirements:
@@ -162,18 +244,29 @@ Initial themes loaded
     <li>Accessible - no ad display & no paywall</li>
     <li>Easy search & filter</li>
     <li>Images quick to load</li>
-    <li> order processing straightforward and intuitive</li>
+    <li>Order processing straightforward and intuitive</li>
 </ul>
 <br>
 <ul>Requirements - Desirable:
     <li>Should have administrator portal which allow for:</li>
-    <li>  creation and maintenance of product catgories</li>
-    <li>  easy creation and maintenance of products, with defaults coming from parent category</li>
-    <li>   easy upload of product images</li>
+    <li> creation and maintenance of product catgories</li>
+    <li> easy creation and maintenance of products, with defaults coming from parent category</li>
+    <li> easy upload of product images</li>
     <li> a means of integrating blogs</li>
-    <li> a means of identifying date-based promotions</li>
+    <li> a means of integrating date-based promotions</li>
 </ul>
 
+### UX Design Scope - Geographical & shipping constraints:
+Currently interested in orders to be shipped within Ireland only.
+The business is comfortable using registered mail as a shipping method.
+The business would ideally prefer to implement 'click and collect' and largely use the website as an extension of the physical shop window.
+
+### UX Design Scope - Data
+To build this project, product images and details from the jeweller's facebook posts over the last 3 years was harvested, and formed into a Google sheets database, which was used to control initial manual dataload into the DEV environment.
+Once loaded it was possible to transfer these test products via json export/import into the PROD database.
+Products are now maintained directly in the PROD database.
+
+Test customers (with real email accounts) and test payment details ONLY have been used during validation and initial user testing.
 
 ## User Goals/ User Stories
 ----------------
