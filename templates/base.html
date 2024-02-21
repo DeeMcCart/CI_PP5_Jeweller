@@ -69,17 +69,28 @@
     
     <script src="https://kit.fontawesome.com/a5acd5b07c.js" crossorigin="anonymous"></script>
      <!-- Stripe -->
-     <script src="https://js.stripe.com/v3/"></script>
+     <!-- DMcC 21/02/24 knowcking this off base site as affeting performance -->
+     <!-- <script src="https://js.stripe.com/v3/"></script>  -->
     
     {% endblock %}
     
     {% block extra_js %}
+    <script id="mcjs">
+    !function(c,h,i,m,p){
+        m=c.createElement(h),
+        p=c.getElementsByTagName(h)[0],
+        m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}
+        (document,"script","https://chimpstatic.com/mcjs-connected/js/users/3095f5133c8fb214ae4838fd6/5ff454733cf87d3d030cf7ecd.js");
+    </script>
     {% endblock %}
     
     <title>Goldmark Jewellers | Carlow Town
         {% block extra_title %}
         {% endblock %}
     </title>
+
+
+
   </head>
 
 
@@ -113,7 +124,8 @@
 
         <!-- New row for the secondary header (category searches) -->
         <div class="row bg-white">
-            <ul class="navbar navbar-expand-lg navbar-light w-100">
+            <!-- DMcC 21/02/24 apply ul rather than navbar -->
+            <ul class="navbar navbar-expand-lg navbar-light w-100"> 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
