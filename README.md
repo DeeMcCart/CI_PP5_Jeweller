@@ -650,18 +650,18 @@ HTML validation was performed for the various site pages as follows:  Render the
 ![W3C Validator - index page](./jeweller/docs/readme_images/validation-w3c-index-html.png?raw=true "W3C validator (index page)")
 
 
-![W3C validator - XX template ](./jeweller/docs/readme_images/validation-w3c-XXXX-html.png?raw=true "W3C validator (my planner page)")
+![W3C validator - XX template ](./docs/readme_images/validation-w3c-XXXX-html.png?raw=true "W3C validator (my planner page)")
 
-![W3C validator - YY  template ](./jeweller/docs/readme_images/validation-w3c-XXXX-html.png?raw=true "W3C validator (my actions page)") 
+![W3C validator - YY  template ](./docs/readme_images/validation-w3c-XXXX-html.png?raw=true "W3C validator (my actions page)") 
 
-![W3C validator - my_user page](./jeweller/docs/readme_images/validation-w3c-XXXX-html.png?raw=true "W3C validator (my actions page)") 
+![W3C validator - my_user page](./docs/readme_images/validation-w3c-XXXX-html.png?raw=true "W3C validator (my actions page)") 
 
 ### CSS Validation
 
 No errors returned when passing through the official Jigsaw validator.  
 
-- ![(Jigaw) CSS Validator - base.css)](./jeweller/docs/readme_images/val-jigsaw-base-css-by-file-upload.png?raw=true "CSS validator") 
-- ![(Jigaw) CSS Validator - profiles/style.css)](./jeweller/docs/readme_images/val-jigsaw-style-css-by-file-upload.png?raw=true "CSS validator") 
+- ![(Jigaw) CSS Validator - base.css](./jeweller/docs/readme_images/val-jigsaw-base-css-by-file-upload.png?raw=true "CSS validator") 
+- ![(Jigaw) CSS Validator - profiles/style.css](./jeweller/docs/readme_images/val-jigsaw-style-css-by-file-upload.png?raw=true "CSS validator") 
 
 
 ### Performance
