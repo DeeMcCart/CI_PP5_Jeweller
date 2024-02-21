@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://jeweller-bd1caeb15bbd.herokuapp.com//sitemap.xml
