@@ -2,12 +2,11 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
-from .models import Product, Category, Cat6, Review
+from .models import Product, Category, Cat6, Review, StockType
 from .forms import ProductForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
 
 def all_products(request):
     """ This is the engine of searching, sorting and filtering """
@@ -72,10 +71,12 @@ def maint_categories(request):
     print('In view maint_categories')
     categories = Category.objects.all()
     sources = Cat6.objects.all()
+    source_lead_times = StockType.objects.all
 
     context = {
         'categories': categories,
         'sources': sources,
+        'source_lead_times': source_lead_times,
     }
 
     return render(request, 'products/maint_categories.html', context)
