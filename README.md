@@ -1,31 +1,8 @@
 # Jeweller 
 Developer:  **Deirdre McCarthy**, Feb 2024
 
-Testing the ability to create links that open in a new window:
-
-
-[Link Text](Link URL) {target="_blank"}
-
-Below is a link that will open on the same tab:
-<a href="URL" target="_blank">Text description</a>
-
-Example:
-<a href="https://github.com/users/DeeMcCart/projects/5" target="_blank">Verified 19/02/24 - this link works & opens the image/site in same tab when its clicked on</a>
-
-Example 2 style - descriptor text in square brackets, url link in circular brackets & no quotes, followed by target blank
-[Kanban Board](https://github.com/DeeMcCart/CI_PP5_Jeweller/blob/main/docs/readme_images/rtm-ftu-p1.png){target="_blank"}
-
-Example 2.1 style - as above but with a leading !
-![Kanban Board](https://github.com/DeeMcCart/CI_PP5_Jeweller/blob/main/docs/readme_images/rtm-ftu-p1.png){target="_blank"}
-
-Example 3 style - check this
-![Table image](![https://github.com/DeeMcCart/CI_PP5_Jeweller/blob/main/docs/readme_images/rtm-ftu-p1.png]?raw=true "Site image (responsive view)")
-
-Example 4 style (drill into an image, progressive reveal)
-<details><summary>Create a basket</summary>
-<img src="./jeweller/tree/main/docs/readme_images/wf4-basket.png">
-</details>
-
+### Live webpage link
+https://jeweller-bd1caeb15bbd.herokuapp.com/
 
 # Table of Contents:
 1. [About](#about)
@@ -88,13 +65,16 @@ Example 4 style (drill into an image, progressive reveal)
 
 ## About
 ---------
-Jeweller is a system which is designed for a real-life retail Jewellery business.  This business built a first website 4 years ago (https://goldmark.ie/), but it was not integrated with the retail business or everyday processes, and was not successfully implemented.  It remains in use as a 'shop window' for off-the-shelf items, but is not maintained, with most products showing as 'out of stock', and online orders discouraged.  The business owners are, quite active on facebook for (free) advertising and organic marketing - marketing to existing customers and friends of the business.  Facebook is used to  showcase custom-made products, and to prompt time-based purchases, e.g. Valentines Day, Communion, Mothers Day, Confirmation, Fathers Day, monthly birth-stone, Christmas.   The business operates in a medium sized town in the south-east of Ireland, and currently makes all sales in-person, relying on the customer to physically visit.  (Often this will begin with an enquiry phonecall) .  There are two competing jewellers in close proximity.
+Jeweller is a system which is designed for a real-life retail Jewellery business.  This business built a first website 4 years ago, but it was not integrated with the retail business or everyday processes, and was never successfully implemented.  
+The existing website remains in use as a 'shop window' for off-the-shelf items, but is not actively maintained, with many products showing as 'out of stock', and online orders discouraged.  The business owners are, however, quite active on social media (facebook and Instagram) for (free) advertising and organic marketing - marketing to existing customers and friends of the business.  
 
-The Jeweller business offers four lines of business:
+Facebook is used to  showcase custom-made products, and to prompt time/event-based purchases, e.g. Valentines Day, Communion, Mothers Day, Confirmation, Fathers Day, monthly birth-stone, Christmas.   The business operates in a medium sized town in the south-east of Ireland, and currently makes all sales in-person, relying on the customer to physically visit.  (Often this will begin with an enquiry phonecall) .  There are two competing jewellers in close proximity.
+
+The Jeweller business offers four retail (B2C) & 1 trade (B2B) line of business:
 * retail jewellery, brand-name watches, zippo lighters, accessories - off the shelf;
 * personalised retail jewellery, e.g. engraved lighters or hip flasks.
 * retail jewellery - custom-made (this process generally begins with the customer making an enquiry as to a particular design, or wishing to re-use and re-fashion their own gold jewellery items);
-* retail services - repairs, watch batteries and valuations;
+* retail services - repairs, watch batteries, watch straps and valuations;
 * trade repairs (on behalf of other jewellery retailers);
 
 As a family-owned and -operated business the unique selling points are:
@@ -108,24 +88,22 @@ As a family-owned and -operated business the unique selling points are:
 The challenges of the current business model (which may be partly addressed with a fresh ecommerce strategy) are:
 * Existing customer base is aging, need to reach a newer generation & persuade them of the value offering
 * Competition from online retailers (the 'low cost' model)
-* Retail business is staff-heavy and takes skilled staff away from more profitable back-room tasks
+* Retail business is staff-intensive and can take skilled staff away from more profitable back-room tasks
 * Need to differentiate vs. local jewellers
-* Shop owner unwilling to stock certain popular brand names, due to restrictive to merchandising constraints 
+* Shop owners don't wish to stock certain popular brand names, due to restrictive merchandising constraints 
 
 **This Jeweller e-commerce offering** is:
-* a website
+* a B2C website
 * proposed integration with the Jeweller's business processes
 * an integrated marketing strategy with example content 
 
 ### Responsiveness
-The site is built, with the help of Bootstrap 5, to be fully responsive so it can be used on a range of devices.
+The site is built, with the help of Bootstrap & CSS media queries, to be largely responsive so it can be used on a range of devices.
+It is anticipated that certain system admin tasks such as adding or maintaining products, maintaining customer orders, will be performed on a mid to large screen device - a tablet or desktop.  The shop currently has several laptops for performing admin tasks.
 
 <details><summary>Responsive Mockup</summary>
 <img src="./jeweller/docs/readme_images/val-responsive.png">
 </details>
-
-### Live webpage link
-https://jeweller-bd1caeb15bbd.herokuapp.com/
 
 ## Project Goals
 ----------------
@@ -136,14 +114,21 @@ https://jeweller-bd1caeb15bbd.herokuapp.com/
 5. And is accessible, responsive and relevant.
   
 ### UX Design Strategy
-Good navigation is key  Good quality imagery for product photos.  Flexible site with good search and filter capabilities.
+
+Good navigation is key.
+Good quality imagery for product photos.  
+Flexible site with good search and filter capabilities.
 User feedback form to handle/encourage enquiries
 
 ### UX Design Strategy Analysis of Competitors
 The following websites were reviewed as part of an assessment of features:
-Two local jeweller's websites
-Simone XXXXX Australian jeweller.
-Generally the websites in this space tend to be strong on imagery and imagination, but perhaps somewhat lacking in personality and features.  The website Simone XXXX australian jeweller stands out as having some very interesting and relatable features such as an asynchronous 'chatbot' approach to FAQ.
+Two local jeweller's websites;
+The existing website ([Goldmark.ie](https://goldmark.ie/))
+([Simone Walsh](https://simonewalsh.com/collections)) Australian jeweller 
+Other Irish retailers such as ([House of Lor](e.g. https://houseoflor.com/))
+
+Generally the websites in this space tend to be strong on imagery and imagination, but perhaps somewhat lacking in personality and features.  The website Simone Walsh australian jeweller stands out as having some very interesting and relatable features such as an asynchronous 'chatbot' approach to FAQ.
+The Jeweller website delivered in this project is functional and provides a strong e-commerce solution with good functionality and features, but needs further UX work to implement some of the very visually appealing design approaches that elevate a site and encourage users to spend more time browsing and admiring products.
 
 ### UX Design Strategy Target Audience
 Target audience is people who might not otherwise make it across the threshold
@@ -167,26 +152,28 @@ Thereafter, shipping is to customers home address only (credit card address).
 
 ### UX Design Scope - Data
 Initial themes loaded 
+    and displayed will be based on ROI (Republic of Ireland) datasets
 
 ### UX Design Scope - User Requirements and Expectations
 <ul>MVP Requirements:
-<li>Must be intuitive to use</li>
-<li>Must be easy to learn</li>
-<li>Good for first time or returning users</li>
-<li>Accessible - no ad display & no paywall</li>
-<li>Easy search & filter</li>
-<li>Images quick to load</li>
-<li> order processing straightforward and intuitive</li>
+    <li>Must be intuitive to use</li>
+    <li>Must be easy to learn</li>
+    <li>Good for first time or returning users</li>
+    <li>Accessible - no ad display & no paywall</li>
+    <li>Easy search & filter</li>
+    <li>Images quick to load</li>
+    <li> order processing straightforward and intuitive</li>
 </ul>
 <br>
 <ul>Requirements - Desirable:
-<li>Should have administrator portal which allow for:</li>
-<li>  creation and maintenance of product catgories</li>
-<li>  easy creation and maintenance of products, with defaults coming from parent category</li>
-<li> easy upload of product images</li>
-<li> a means of integrating blogs</li>
-<li> a means of identifying date-based promotions</li>
-  and displayed will be based on ROI (Republic of Ireland) datasets
+    <li>Should have administrator portal which allow for:</li>
+    <li>  creation and maintenance of product catgories</li>
+    <li>  easy creation and maintenance of products, with defaults coming from parent category</li>
+    <li>   easy upload of product images</li>
+    <li> a means of integrating blogs</li>
+    <li> a means of identifying date-based promotions</li>
+</ul>
+
 
 ## User Goals/ User Stories
 ----------------
