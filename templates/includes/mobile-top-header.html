@@ -46,38 +46,37 @@
     </div>
     {% endif %}
 </li>
-            
-<li class="list-inline-item dropdown profile-link">
-{% if request.user.is_authenticated %}
-<!-- signed in & user profile exists-->
-    <a id="user-options-small-display" class="text-black nav-link d-block d-lg-none" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <div class="text-center">
-            <!-- display profile image -->
-            <span class="navbar-text text-muted "><img class="navbar-image" src="{{ request.user.userprofile.profile_image.url }}" alt="Users avatar logo"></span>
-            <p class="my-0">Welcome, {{ request.user }}!</p>    
+
+<li class="list-inline-item dropdown profile-link d-block d-lg-none">
+    {% if request.user.is_authenticated %}
+    <!-- signed in & user profile exists-->
+        <a id="user-options-small-display" class="text-black nav-link d-block d-lg-none" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="text-center">
+                <!-- display profile image -->
+                <span class="navbar-text text-muted "><img class="navbar-image" src="{{ request.user.userprofile.profile_image.url }}" alt="Users avatar logo"></span>
+                <p class="my-0">Welcome, {{ request.user }}!</p>    
+            </div>
+        </a>
+                
+        <div class="dropdown-menu border-0" aria-labelledby="user-options-small-display">       
+                <a href="{% url 'profile_detail' request.user.userprofile.id %}" class="dropdown-item">My Profile</a>
+                <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
         </div>
-    </a>
-            
-    <div class="dropdown-menu border-0" aria-labelledby="user-options-small-display">       
-            <a href="{% url 'profile_detail' request.user.userprofile.id %}" class="dropdown-item">My Profile</a>
-            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-    </div>
-</li> <!-- end li class = list-inline-item dropdown profile-link -->
-{% else %}
-<!-- not signed in -->
-<li class="list-inline-item dropdown profile-link">
-    <a id="user-options-not-signed-in" class="text-black nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <div class="text-center">
-            <div><i class="fas fa-user fa-lg"></i></div>
-            <p class="my-0">Profile</p>
+    </li> <!-- end li class = list-inline-item dropdown profile-link -->
+    {% else %}
+    <!-- not signed in -->
+        <a id="user-options-not-signed-in" class="text-black nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="text-center">
+                <div><i class="fas fa-user fa-lg"></i></div>
+                <p class="my-0">Profile</p>
+            </div>
+        </a>
+        <div class="dropdown-menu border-0" aria-labelledby="user-options-not-signed-in">
+            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
         </div>
-    </a>
-    <div class="dropdown-menu border-0" aria-labelledby="user-options-not-signed-in">
-        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-    </div>
+    {% endif %}
 </li>    
-{% endif %}
 
 
 <!-- </div>  -->

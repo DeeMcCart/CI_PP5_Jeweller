@@ -660,7 +660,8 @@ HTML validation was performed for the various site pages as follows:  Render the
 
 No errors returned when passing through the official Jigsaw validator.  
 
-- ![(Jigaw) CSS Validator)](./jeweller/docs/readme_images/val-css.png?raw=true "CSS validator") 
+- ![(Jigaw) CSS Validator - base.css)](./jeweller/docs/readme_images/val-jigsaw-base-css-by-file-upload.png?raw=true "CSS validator") 
+- ![(Jigaw) CSS Validator - profiles/style.css)](./jeweller/docs/readme_images/val-jigsaw-style-css-by-file-upload.png?raw=true "CSS validator") 
 
 
 ### Performance
