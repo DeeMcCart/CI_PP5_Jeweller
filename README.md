@@ -204,7 +204,7 @@ The plan for jeweller going forward is to:
 1. Continue what is already being done on facebook and Instragram (which generally gathers up to 20 likes and comments per post), extend it by always including a website link in the marketing content.  Similarly link from the website to these social media platforms.
 2. Build content in the 'about' section of the website (it is designed to be quite maintainable from the admin console) to build the website's credibility and increase awareness and alignment with potential customers.  Fresh, regularly updated website content should increase SEO rankings.
 3. Build text in individual product descriptions using SEO keywords  
-4. Encourage customers to leave reviews, and dedicate time to moderating and curating these reviews.
+4. Encourage customers to create profiles and leave reviews, and dedicate time to moderating, responding to, and curating these reviews. Encourage customers to create a photo for their profile, this personalises the experience and promotes brand affinity & a sense of 'belonging'. 
 5. Encourage customer feedback and consider customer questinos and suggestions when introducing or modifying products
 6. Gain subscribers through the mailchimp application and track response rates; tune the product offerings accordingly.  Each newsletter should include a call-to-action 
 
@@ -353,27 +353,27 @@ Written in the format 'As a **role** I want to **action** to achieve **desired o
 
 ### Wireframes
 <details><summary>Landing Page, search & filter functionality </summary>
-<img src="./jeweller/tree/main/docs/readme_images/wf1-landing-pg.png">
+<img src="/readme_images/wf1-landing-pg.png">
 </details>
 
 <details><summary>Product Search</summary>
-<img src="./jeweller/tree/main/docs/readme_images/wf2-products-search.png">
+<img src="/readme_images/wf2-products-search.png">
 </details>
 
 <details><summary>Product detail</summary>
-<img src="./jeweller/tree/main/docs/readme_images/wf3-product-detail.png">
+<img src="/readme_images/wf3-product-detail.png">
 </details>
 
 <details><summary>Create a basket</summary>
-<img src="./jeweller/tree/main/docs/readme_images/wf4-basket.png">
+<img src="/readme_images/wf4-basket.png">
 </details>
 
 <details><summary>Checkout - additional selections</summary>
-<img src="./jeweller/tree/main/docs/readme_images/wf5-checkout-1.png">
+<img src="/readme_images/wf5-checkout-1.png">
 </details>
 
 <details><summary>Checkout - address page/action tracker</summary>
-<img src="./jeweller/docs/readme_images/wf6-checkout-2.png">
+<img src="/readme_images/wf6-checkout-2.png">
 </details>
   
 ### Fonts Chosen
@@ -413,13 +413,13 @@ The entire approach was covered under the EPIC 'Agile' and can be seen under thi
 ### Project
 A github project was created within the Jeweller repo.  At a high level the project details are very simple really just a name and description.
 <details><summary>GitHub Project Setup</summary>
-<img src="./jeweller/docs/readme_images/agile-overview-of-project.png">
+<img src="./readme_images/agile-overview-of-project.png">
 </details>
 
 
 ### Issue Template
 <details><summary>Issue template - User Story</summary>
-<img src="./jeweller/docs/readme_images/agile-issues-template.png">
+<img src="readme_images/agile-issues-template.png">
 </details>
     
 At the outset, an issue template was created specifically for user stories.  This holds 5 sections:  
@@ -434,12 +434,12 @@ At the outset, an issue template was created specifically for user stories.  Thi
 Issues were created to track planned end-to-end work in Financial_Planner, using the issue template for consistent appearance and content.   
 Financial_Planner project scope includes UX design tasks, agile project setup, development tasks, documentation,  and testing.
 <details><summary>Example issue - user story</summary>
-<img src="./django_financial_planner/docs/readme_images/agile-issue-example-user-story.png">
+<img src="/readme_images/agile-issue-example-user-story.png">
 </details>
 
 Some of the issues created were in fact tasks, which underpinned several user stories:
 <details><summary>Example issue - task</summary>
-<img src="./django_financial_planner/docs/readme_images/agile-issue-example-task.png">
+<img src="/readme_images/agile-issue-example-task.png">
 </details>
 
 ### EPICs
@@ -447,7 +447,7 @@ An epic in agile is a large body of work that can be broken down into a number o
 The Financial_Planner project uses custom fields to hold the epic name, some initial high-level epics:  Agile, UX, Docs, MVP.
 For clarity EPIC is also listed at the top of each issue.
 <details><summary>EPICs</summary>
-<img src="./django_financial_planner/docs/readme_images/agile-epics.png">
+<img src="/readme_images/agile-epics.png">
 </details>
 
 ### MoSCoW prioritisation
@@ -458,7 +458,7 @@ For prioritising user stories and known tasks, I assigned a label to each issue,
 * Won't have (perhaps its a never, or perhaps this just means 'not at this release')
 To make selection easier (ensure that these appeared at top of label list in the order above) I preceded each label with a number as shown:
 <details><summary>MoSCow labels</summary>
-<img src="./django_financial_planner/docs/readme_images/agile-issues-moscow-prioritization.png">
+<img src="/readme_images/agile-issues-moscow-prioritization.png">
 </details>
 
 ### Estimated & Actual Story Points
@@ -474,7 +474,7 @@ Three project milestones were used:
 This'deploy-early' approach meant the software could be delivered incrementally, with successive releases building on proven, working software.  
 
 <details><summary>Milestones</summary>
-<img src="./jeweller/docs/readme_images/agile-milestones.png">
+<img src="/readme_images/agile-milestones.png">
 </details>
 
 ### Sprints and Iterations
@@ -499,7 +499,7 @@ Sprint3 Retrospective: Issue # https://github.com/DeeMcCart/CI_PP5_Jeweller/issu
 
 Sprint4 Retrospective: Issue # https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/65
 
-Sprint5 Retrospective: Issue #
+Sprint5 Retrospective: Issue # https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/70
 
 The insights/ burndown charts were useful to track the actual time logged, a useful metric
 
