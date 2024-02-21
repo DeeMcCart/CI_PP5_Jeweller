@@ -8,8 +8,8 @@ Order Date: {{ order.date }}, status {{ order.order_status }}
 Order Details:
 ------------------------------------
 {% for item in order.lineitems.all %}
-{{ item.quantity }} {{ item.product.name }}{% if item.product_size %} - Size {{ item.product_size|upper }}{% endif %}  @ €{{ item.product.price }} each
-{% endfor %}
+{{ item.quantity }} {{ item.product.name }}{% if item.product_size !="" %} - Size {{ item.product_size|upper }}{% endif %}  @ €{{ item.product.price }} each
+
 ------------------------------------
 Order Total: €{{ order.order_total }}
 Delivery: €{{ order.delivery_cost }}
