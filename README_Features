@@ -14,6 +14,9 @@ There are 3 site areas where a user may identify themselves to the system, refle
 * Mailchimp signup - this requires a verified(*) email address, and is managed in mailchimp database external to the Jeweller system.  This allows the customer to receive newsletters. 
 
 !([Mailchimp signup](f01-subscribe-to-mailing-list.png))
+<details><summary>Responsive Mockup</summary>
+<img src="./docs/readme_images/val-responsive.png">
+</details>
 
 
 * Register - a user who wishes to track their purchases may register, meaning that they assign themmselves a username and email adddress, a first and last name, and a default telephone number.  The email address must be verified(*).
