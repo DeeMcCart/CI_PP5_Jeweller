@@ -13,15 +13,7 @@ class UserProfileForm(forms.ModelForm):
     profile_image = forms.ImageField(label='ProfileImage', required=False,
                                      widget=CustomClearableFileInput)
 
-    newsletter_signup = forms.TypedChoiceField(
-        label='Sign up for Newsletter?',
-        choices=((1, "Yes"), (0, "No")),
-        coerce=lambda x: bool(int(x)),
-        widget=forms.RadioSelect,
-        initial='0',
-        required=True,
-    )
-
+    
     def __init__(self, *args, **kwargs):
         """
         Add placeholders and classes, remove auto-generated
@@ -33,8 +25,7 @@ class UserProfileForm(forms.ModelForm):
             'phone_number1': 'Tel',
             # change label for profile_image from 'profile_image': "../../static/images/placeholder.png",
             'profile_image': 'My Piccie',
-            'newsletter_signup': False,
-             }
+            }
         self.fields['phone_number1'].widget.attrs['autofocus'] = True
 
         for field in self.fields:

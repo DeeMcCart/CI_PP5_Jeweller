@@ -91,7 +91,7 @@ def add_profile(request):
             profilestr = f'{request.user.user_profile}'
             stringy = ('Successfully added user profile ', profilestr)
             messages.success(request, stringy)
-            # show new product so sysadmin can visually confirm
+            # show profile to visually confirm
             template = 'profiles/profile.html'
             context = {'form': profile_form,
                        'on_profile_page': True,

@@ -17,7 +17,8 @@ class UserProfile(models.Model):
     #     phone_number2 = models.CharField(max_length=15, null=True, blank=True)
     profile_image = models.ImageField(upload_to='images',
                                       default='placeholder.png')
-    newsletter_signup = models.BooleanField(default=False)
+    # DMcC 21/02/24 removed newsletter_signup as its been replaced by mailchimp
+    # newsletter_signup = models.BooleanField(default=False)
     # DMcC removed birth_month as FUTURE feature
     # birth_month = models.CharField(max_length=9, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -48,9 +49,7 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     instance.userprofile.save()
 
 # DMcC UserAddress is a child of UserProfile, and it has the ability to store
-# multiple addresses per UserProfile.  Business logic is that only 1
-# address_type BILL is linked to a user profile (want to avoid multiple billing
-# addresses - fraud risk), but could have multiple SHIP addresses
+# multiple addresses per UserProfile.
 
 
 class UserAddress(models.Model):
