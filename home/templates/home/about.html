@@ -13,6 +13,10 @@
 
 <div class="overlay"></div>
 
+<!-- This page provides a dynamic load of content modifiable -->
+<!-- by sysadmin within the Django database structure-->
+<!-- content is structured into sections, then seqenced text within each -->
+<!-- e.g. About-text, FAQ, Blog etc-->
 {% for topic in about_sections %}
   <div class="container-fluid" id="{{topic.section}}">
   <h3>{{topic.section_title}}</h3>
@@ -27,28 +31,41 @@
 <div class="container-fluid" id="Enquiry">
     <div class="container mt-5">
         <h1>Share Your Feedback</h1>
-        <form id="feedback-form">
-          <div class="row mb-3">
-            <label for="name" class="col-sm-2 col-form-label">Name (Optional)</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="name" name="name">
-            </div>
+        <form id="contact-form">
+          <div class="row">
+              <div class="col-lg-6 col-md-6">
+                  <label for="from_name">First name:</label>
+                  <input type="text" name="from_name" id="from_name" class="form-control" required />
+                  <br>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                  <label for="from_lname">Last name:</label>
+                  <input type="text" name="from_lname" id="from_lname" class="form-control" required />
+              </div>
           </div>
-          <div class="row mb-3">
-            <label for="email" class="col-sm-2 col-form-label">Email (Optional)</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control" id="email" name="email">
-            </div>
+          <div class="row">
+              <div class="col-lg-6 col-md-6">
+                  <label for="from_email">Email:</label>
+                  <input type="email" name="from_email" id="from_email" class="form-control" required />
+              </div>
+              <div class="col-lg-6 col-md-6">
+                  <label for="file">Attachment:</label>
+                  <br>
+                  <input type="file" name="file" id="file" class="form-control"
+                      accept=".pdf, .doc, .docx, .jpg, .jpeg, .png">
+
+              </div>
           </div>
-          <div class="row mb-3">
-            <label for="feedback" class="col-sm-2 col-form-label">Enquiry</label>
-            <div class="col-sm-10">
-              <textarea class="form-control" id="feedback" name="feedback" rows="5"></textarea>
-            </div>
+          <br>
+          <label for="file">Message:</label>
+          <textarea rows="5" name="message" id="message" class="form-control" required></textarea>
+          <br>
+          <div class="form-row text-center">
+              <div class="col">
+                  <input type="submit" class="submit-button" id="button">
+              </div>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
+      </form>
     </div> <!-- end div mt-5-->
 </div> <!-- end div id "Enquiry"-->
 
@@ -62,8 +79,37 @@
 
 {% block postloadjs %}
     {{ block.super }}
+
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  
+  
+  <script type="text/javascript">
+    // CONTACT FORM - content below from emailjs:
+    const btn = document.getElementById('button');
+
+    document.getElementById('form')
+    .addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    btn.value = 'Sending...';
+
+    const serviceID = 'default_service';
+    const templateID = 'template_lqq1mif';
+
+    emailjs.sendForm(serviceID, templateID, this)
+      .then(() => {
+        btn.value = 'Send Email';
+        alert('Sent!');
+      }, (err) => {
+        btn.value = 'Send Email';
+        alert(JSON.stringify(err));
+      });
+    });
+  </script>
+
     <!-- JS to permit page upscroll to top of page -->
-    <script type="text/javascript">
+  <script type="text/javascript">
 		$('.btt-link').click(function(e) {
 			window.scrollTo(0,0)
 		})
