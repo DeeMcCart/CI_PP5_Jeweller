@@ -138,7 +138,6 @@
 
 <script type="text/javascript">
     // Update quantity on click
-    // event listner for what fuk=cking link
     $('.update-link').click(function(e) {
         console.log('Update button pressed!!')
         // in the context below:
@@ -150,7 +149,7 @@
 
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
-        console.log('About to remove item from baseket!!')
+        console.log('About to remove item from basket!!')
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];
         console.log(itemId)

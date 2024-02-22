@@ -1,10 +1,12 @@
 <script type="text/javascript">
 
-    // Disable +/- buttons outside 1-99 range
+    // Disable +/- buttons outside 1-5 (rather than 99) range
+    // jewellery = high value items cant add more than 5 to same orderline
     function handleEnableDisable(itemId) {
         var currentValue = parseInt($(`#id_qty_${itemId}`).val());
         var minusDisabled = currentValue < 2;
-       var plusDisabled = currentValue > 98;
+        // jewellery = cant add more than 5 to same orderline
+        var plusDisabled = currentValue > 5;
         $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
         $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
     }
