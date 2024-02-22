@@ -208,6 +208,8 @@ The plan for jeweller going forward is to:
 5. Encourage customer feedback and consider customer questinos and suggestions when introducing or modifying products
 6. Gain subscribers through the mailchimp application and track response rates; tune the product offerings accordingly.  Each newsletter should include a call-to-action 
 
+Note that, the business does have an active facebook page at https://www.facebook.com/goldmarkjewellerscarlow.jewellers/, however for the purpose of this project a specially-created facebook page was created at https://www.facebook.com/profile.php?id=61556652324443, and this link is used on the Jeweller version1 website. 
+
 ### SEO Keywords
 By looking at competitor websites, and gaining some understanding of the Jeweller's business strategy, certain keywords were chosen.  Because of the range of products offered, it is quite a long list.  The american spelling jewelery (one l as opposed to two) was included as american tourists often have a strong interest in celtic or heritage jewellery.
 
