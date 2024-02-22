@@ -1,10 +1,8 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
-from django.contrib.auth.models import User
 from .models import UserProfile, UserAddress
 from .forms import UserProfileForm
 from checkout.models import Order
-from jeweller.forms import CustomSignupForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -13,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def profile_detail(request, profile_id):
     """ A view to return a specific profile id """
-    if ((request.user.is_authenticated  
+    if ((request.user.is_authenticated
         and (profile_id == request.user.userprofile.id))
             or (request.user.is_superuser)):
 
@@ -74,38 +72,3 @@ def order_history(request, order_number):
     }
 
     return render(request, template, context)
-
-
-def add_profile(request):
-    # DMcC 20/02/24 Think this is no longer required as the receiver 
-    # in profiles/models.py takes care of creating a user profile
-    # when a User is added
-    """ On registration:  Create a new user profile """
-
-    if request.method == 'POST':
-        print("In profiles/views/add_profile")
-        profile_form = ProfileForm(request.POST, request.FILES)
-        if profile_form.is_valid():
-            profile = profile_form.save()
-            # return an informative success message
-            profilestr = f'{request.user.user_profile}'
-            stringy = ('Successfully added user profile ', profilestr)
-            messages.success(request, stringy)
-            # show profile to visually confirm
-            template = 'profiles/profile.html'
-            context = {'form': profile_form,
-                       'on_profile_page': True,
-                       }
-
-            return render(request, template, context)
-        else:
-            messages.error(request, 'Failed to add profile.'
-                           + 'Please ensure the form is valid.')
-    else:
-        template = 'profiles/profile.html'
-        context = {
-            'form': profile_form,
-            'on_profile_page': True,
-        }
-
-        return render(request, template, context)

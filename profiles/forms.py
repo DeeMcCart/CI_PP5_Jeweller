@@ -1,6 +1,5 @@
 from django import forms
 from .models import UserProfile, UserAddress
-from django.contrib.auth.models import User
 from .widgets import CustomClearableFileInput
 
 
@@ -13,7 +12,6 @@ class UserProfileForm(forms.ModelForm):
     profile_image = forms.ImageField(label='ProfileImage', required=False,
                                      widget=CustomClearableFileInput)
 
-    
     def __init__(self, *args, **kwargs):
         """
         Add placeholders and classes, remove auto-generated
@@ -23,21 +21,18 @@ class UserProfileForm(forms.ModelForm):
         placeholders = {
             'user': 'user',
             'phone_number1': 'Tel',
-            # change label for profile_image from 'profile_image': "../../static/images/placeholder.png",
-            'profile_image': 'My Piccie',
+            'profile_image': 'profile_image',
             }
         self.fields['phone_number1'].widget.attrs['autofocus'] = True
 
         for field in self.fields:
             if self.fields[field].required:
-                print(f'field ',field, ' is required')
                 placeholder = f'{placeholders[field]} *'
             else:
-                print(f'field ',field, 'not required')
                 placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = ('border-black rounded-0'
-                                                        + ' profile-form-input')
+            field_format = ('border-black rounded-0 profile-form-input')
+            self.fields[field].widget.attrs['class'] = (field_format)
         #    self.fields[field].label = False
 
 
@@ -71,6 +66,6 @@ class UserAddressForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = ('border-black rounded-0'
-                                                        + 'profile-form-input')
+            field_format = 'border-black rounded-0 profile-form-input'
+            self.fields[field].widget.attrs['class'] = (field_format)
             self.fields[field].label = False

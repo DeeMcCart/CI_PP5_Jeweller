@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django_countries.fields import CountryField
-from django.core.files.storage import FileSystemStorage
 
 
 # Create your models here.
@@ -13,14 +12,8 @@ class UserProfile(models.Model):
     and order history """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number1 = models.CharField(max_length=15, null=True, blank=True)
-    # DMcC 20/02/24 remove phone_number2 as its a spurious field
-    #     phone_number2 = models.CharField(max_length=15, null=True, blank=True)
     profile_image = models.ImageField(upload_to='images',
                                       default='placeholder.png')
-    # DMcC 21/02/24 removed newsletter_signup as its been replaced by mailchimp
-    # newsletter_signup = models.BooleanField(default=False)
-    # DMcC removed birth_month as FUTURE feature
-    # birth_month = models.CharField(max_length=9, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
