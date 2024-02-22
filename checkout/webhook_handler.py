@@ -162,7 +162,7 @@ class StripeWH_Handler:
                                 lineitem_total=item_data,
                             )
                             order_line_item.save()
-                            current_line_number +=10
+                            current_line_number += 10
             except Exception as e:
                 if order:
                     order.delete()

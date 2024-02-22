@@ -14,6 +14,7 @@ import stripe
 # and won't accept a GET request
 #
 
+
 @require_POST
 # Stripe won't send a csrf token so mark as exempt:
 @csrf_exempt
