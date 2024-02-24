@@ -71,12 +71,14 @@ def maint_categories(request):
     print('In view maint_categories')
     categories = Category.objects.all()
     sources = Cat6.objects.all()
+    stocktypes = StockType.objects.all()
     source_lead_times = StockType.objects.all
 
     context = {
         'categories': categories,
         'sources': sources,
         'source_lead_times': source_lead_times,
+        'stock_types': stocktypes,
     }
 
     return render(request, 'products/maint_categories.html', context)

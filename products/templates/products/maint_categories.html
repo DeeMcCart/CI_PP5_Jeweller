@@ -12,7 +12,7 @@
 {% block content %}
 {% if request.user.is_superuser %}
     <div class="overlay"></div>
-    <div class="container-fluid" id="products-container">
+    <div class="container-fluid mb-4" id="products-container">
         <h3>Product Categories:</h3> 
         <input type="button" class="btn btn-outline-black rounded-0" id="show-hide-b1" value = "Show" onclick="show_hide1()">
         <div class="container-fluid hide-div" id="container1"> <!-- a show/hide container -->
@@ -42,11 +42,40 @@
             </table>
         </div> <!-- end id container1 (Categories table)-->
 
-
-        <h3>Product Source & Lead Times:</h3> 
+        <h3>Product Source - Lead Times:</h3> 
         <input type="button" class="btn btn-outline-black rounded-0" id="show-hide-b2" value = "Show" onclick="show_hide2()">
                                 
         <div class="container-fluid hide-div" id="container2"> <!-- a show/hide container -->
+            <table class="table table-bordered table-hover ">
+                <thead class="table-secondary">
+                    <tr>
+                    <th></th>
+                    <th>StockType/ Source</th>
+                    <th>Default LeadTime (Days)</th>
+                    </tr>
+                </thead>
+
+                <!-- Place one blank line at top of grid for Product Add-->
+                <tr class="text-muted">
+                    <td><a href="/admin/products/stocktype/" title="Maintain stock types" target="_blank"><i class="far fa-add icon-edit"></i></a></td>
+                    <td><a href="/admin/products/atocktype/add" title="Add new stocktype" target="_blank">Add</a></td>
+                    <td></td>
+                    
+                {% for stock_type in stock_types %}
+                    <tr class="text-muted">
+                        <td><a href="/admin/products/stocktype/{{stock_type.id}}/change" title="Edit categories" target="_blank"><i class="far fa-edit icon-edit"></i></a></td>
+                        <td>{{stock_type.source}}</td>
+                        <td>{{stock_type.default_lead_time}}</td>
+                        
+                    </tr>
+                {% endfor %}
+            </table>
+        </div> <!-- end id container2 (Sources table) -->
+    
+        <h3>Product Source & Lead Times:</h3> 
+        <input type="button" class="btn btn-outline-black rounded-0" id="show-hide-b3" value = "Show" onclick="show_hide3()">
+                                
+        <div class="container-fluid hide-div" id="container3"> <!-- a show/hide container -->
             <table class="table table-bordered table-hover ">
                 <thead class="table-secondary">
                     <tr>
@@ -59,7 +88,7 @@
 
                 <!-- Place one blank line at top of grid for Product Add-->
                 <tr class="text-muted">
-                    <td><a href="/admin/products/cat6/add/" title="Maintain product types" target="_blank"><i class="far fa-add icon-edit"></i></a></td>
+                    <td><a href="/admin/products/stocktype/add/" title="Maintain product types" target="_blank"><i class="far fa-add icon-edit"></i></a></td>
                     <td><a href="/admin/products/cat6/add" title="Add new category value" target="_blank">Add</a></td>
                     <td></td>
                     
@@ -73,7 +102,7 @@
                     </tr>
                 {% endfor %}
             </table>
-        </div> <!-- end id container2 (Sources table) -->
+        </div> <!-- end id container3 (Sources table) -->
     </div> <!-- end class container-fluid -->
 
     <!-- DMcC 13/02/24 scroll-up button at end of table maintenance -->

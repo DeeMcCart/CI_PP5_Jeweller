@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-4">
             <div class="col">
                 <!-- if a basket exists -->
                 {% if basket_items %}
@@ -105,7 +105,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="5" class="text-right">
+                            <td colspan="5" class="text-right" >
                                 {% include "basket/checkout-buttons.html" %}
                             </td>
                         </tr>
@@ -119,6 +119,7 @@
                         </span>
                         <span class="text-uppercase">Keep Shopping</span>
                     </a>
+                    <br>
                 {% endif %}
             </div> <!-- end div class = "col"-->
         </div> <!-- end div class = row" -->
