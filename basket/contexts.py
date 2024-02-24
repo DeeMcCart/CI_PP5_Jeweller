@@ -23,6 +23,7 @@ def basket_contents(request):
                 'item_id': item_id,
                 'quantity': item_data,
                 'product': product,
+                'engrave-text': 'No engraving',
                 'price': product.price,
                 'lineitem_total': item_data * product.price,
             })
@@ -36,6 +37,7 @@ def basket_contents(request):
                     'item_id': item_id,
                     'quantity': quantity,
                     'product': product,
+                    'engrave-text': 'No sized engraving',
                     'size': size,
                     'price': product.price,
                     'lineitem_total': quantity * product.price,
