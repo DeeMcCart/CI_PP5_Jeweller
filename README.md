@@ -128,11 +128,11 @@ It is anticipated that certain system admin tasks such as adding or maintaining 
 ### UX Design Strategy Analysis of Competitors
 
 The following websites were reviewed as part of an assessment of features:
-Two local jeweller's websites;
-The existing website ([Goldmark.ie](https://goldmark.ie/))
-([Simone Walsh](https://simonewalsh.com/collections)) Australian jeweller 
-Other Irish retailers such as ([House of Lor](e.g. https://houseoflor.com/))
-I also took inspiration from ([Brooks Running](https://www.brooksrunning.com/en_gb)) for good product categorisation and strong visual display.
+* Two local jeweller's websites;
+* The existing website ([Goldmark.ie](https://goldmark.ie/))
+* ([Simone Walsh](https://simonewalsh.com/collections)) Australian jeweller 
+* Other Irish retailers such as ([House of Lor](e.g. https://houseoflor.com/))
+* I also took inspiration from ([Brooks Running](https://www.brooksrunning.com/en_gb)) for good product categorisation and strong visual display.
 
 Generally the websites in this space tend to be strong on imagery and imagination, but perhaps somewhat lacking in personality and features.  The jewellery website Simone Walsh australian jeweller stands out as having some very interesting and relatable features such as an asynchronous 'chatbot' approach to FAQ.
 
