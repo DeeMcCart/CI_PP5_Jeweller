@@ -140,15 +140,15 @@ The Jeweller website delivered in this project is functional and, provides a str
 
 ### UX Design Strategy Target Audience
 Target audience is people who might not otherwise make it across the threshold
-a. Individuals with an interest in Celtic jewellery
-b. Individual with an interest in personalised jewellery (e.g engraved)
-c. Individuals who have a unique or unusual requirement e.g. fainne badges
-d. Individuals who seek unique custom-made jewellery to be made with jeweller-provided stones and metals
-e. Individuals who seek unique custom-made jewellery to be re-made from their existing jewellery items
-f. Local people who are not aware of the services on offer (particularly repairs)
-g. Who have some purchasing power
-h. Who are based in Ireland
-i. And possibly have a connection to Carlow Town
+* Individuals with an interest in Celtic jewellery
+* Individuals with an interest in personalised jewellery (e.g engraved)
+* Individuals who have a unique or unusual requirement e.g. fainne badges
+* Individuals who seek unique custom-made jewellery to be made with jeweller-provided stones and metals
+* Individuals who seek unique custom-made jewellery to be re-made from their existing jewellery items
+* Local people who are not aware of the services on offer (particularly repairs)
+* Who have some purchasing power
+* Who are based in Ireland
+* And possibly have a connection to Carlow Town
 
 ## Ecommerce Strategy
 ---------------------------------
