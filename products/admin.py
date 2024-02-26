@@ -26,13 +26,10 @@ class ProductAdmin(admin.ModelAdmin):
         'sku',
         'name',
         'category',
-        'ring_size_min',
-        'ring_size_max',
         'can_be_engraved',
         'item_lead_time',
         'price',
         'rating',
-        'cat6_value',
         'created_on',
         'hide_display',
         'promotion',
@@ -57,9 +54,17 @@ class Cat6Admin(admin.ModelAdmin):
     )
 
 
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = (
+        'rating',
+        'product',
+        'title',
+        'approved',
+    )
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Catname, CatnameAdmin)
 admin.site.register(Cat6, Cat6Admin)
 admin.site.register(StockType, StockTypeAdmin)
-admin.site.register(Review)
+admin.site.register(Review, ReviewAdmin)

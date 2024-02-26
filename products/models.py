@@ -1,5 +1,8 @@
 from django.db import models
 from profiles.models import UserProfile
+from django.shortcuts import get_object_or_404
+from django.db.models import Avg
+
 # Create your models here.
 
 
@@ -45,18 +48,12 @@ RING_SIZE_CHOICES = [
 class Product(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True,
                                  on_delete=models.SET_NULL)
-    ring_size_min = models.CharField(max_length=1, choices=RING_SIZE_CHOICES,
-                                     default=' ')
-    ring_size_max = models.CharField(max_length=1, choices=RING_SIZE_CHOICES,
-                                     default=' ')
     sku = models.CharField(max_length=20, null=True, blank=True)
     name = models.CharField(max_length=254)
     hide_display = models.BooleanField(default=False)
     can_be_engraved = models.BooleanField(default=False)
     max_char_engrave = item_lead_time = models.IntegerField(default=0)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    cat6_value = models.ForeignKey('Cat6', null=True, blank=True,
-                                   on_delete=models.SET_NULL)
     source = models.CharField(max_length=5, choices=ITEM_SOURCE_CHOICES,
                               default='STOCK')
     item_lead_time = models.IntegerField(default=1)
@@ -72,21 +69,43 @@ class Product(models.Model):
         return self.name
 
     def lead_time(self):
-        """ return lead time for product, if not set """
-        """ on product use from category leadtime """
+        """ if lead time is set on product, return this value """
+        """ otherwise derive lead time from SourceType leadtime """
         if self.item_lead_time != 0:
             return (self.item_lead_time)
         else:
-            return (self.cat6_value.default_lead_time)
+            prod_source=self.source
+            source=get_object_or_404(StockType, source=prod_source)
+            lead_time = source.default_lead_time
+            return (lead_time)
 
     def has_sizes(self):
+        """ If the product is a ring then it has sizes """
         cat_name = str(self.category)
         if cat_name.strip() == "ring":
             return True
         else:
             return False
 
+    def reviews(self):
+        """ returns approved reviews for this product """
+        return(self.reviews.filter(approved=True))
+        
+    def num_reviews(self):
+        """ returns number of approved reviews for this product """
+        return (self.reviews.filter(approved=True).count())
 
+    def average_rating(self):
+        """ returns average rating of approved reviews """
+        approved_reviews = self.reviews.filter(approved=True)
+        if approved_reviews.exists():
+            avg_rating = approved_reviews.aggregate(Avg('rating'))['rating__avg']
+            avg_rating = round(avg_rating, 1)  # Round to one decimal place
+            return avg_rating
+        else:
+            print(f'No approved reviews found for average rating')
+            return None  # Handle the case of no approved reviews gracefully
+            
 class Catname(models.Model):
     cat_num = models.IntegerField()
     cat_name = models.CharField(max_length=15)
@@ -114,7 +133,7 @@ class StockType(models.Model):
     default_lead_time = models.IntegerField()
 
     def __str__(self):
-        return f'{self.source}'
+        return f'{self.source} {self.default_lead_time}'
 
 
 class Cat6(models.Model):
@@ -138,6 +157,7 @@ class Review(models.Model):
     body = models.CharField(max_length=254, null=False, blank=False)
     rating = models.DecimalField(max_digits=6, decimal_places=2,
                                  null=True, blank=True)
+    approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:

@@ -25,10 +25,13 @@ class ProductForm(forms.ModelForm):
 
 
 class ReviewForm(forms.ModelForm):
+    rating = forms.IntegerField(required=True)  
+
     class Meta:
         model = Review
         fields = (
             'user_profile',
+            'product',
             'rating',
             'title',
             'body',

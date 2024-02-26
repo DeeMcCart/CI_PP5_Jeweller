@@ -4,6 +4,7 @@
 
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -51,8 +52,9 @@
                     {% endif %}
                     <div>
                         <a href="#review-container">
-                            <meter class="average-rating" min="0" max="5" value = "4"
+                            <meter class="average-rating" min="0" max="5" value = {{product.average_rating}}
                                 title="reviews out of 5"></meter>
+                            <p>Average rating {{product.average_rating}}</p>
                             <p>({% if num_reviews == 0 %}No 
                                     {% else %}{{ num_reviews }} 
                                     {% endif %} Review{% if num_reviews != 1 %}s{% endif %})
@@ -146,13 +148,7 @@
                 
                 <p class = "logo-font font-weight-bold nav-link text-black mr-5"> PRODUCT REVIEWS</p>
                 <hr>
-                <!-- DMcC 20/02/24 remove - doesnt add value
-                    {% if request.user.is_authenticated %}
-                    <small>
-                    <a class="text-info" href="#review-container">Review</a>
-                    </small>
-                {% endif %} -->
-                
+                              
                 <div id = "product-ratings" class="product-ratings-container mb-5 mt-md-5">
                     {% if reviews %}    
                         {% for review in reviews %}
@@ -169,24 +165,32 @@
                     <!-- Only permit registered users to leave product reviews -->
                     {% if request.user.is_authenticated %}
                         <div id="review-container" class="review-container">
-                            <!-- <div class="review-rating">
-                                <span id="review-rating">0</span>/5
-                            </div>  -->
-                            <div class="review-stars" id="stars">
-                                <span class="review-star" data-value="1"><i class="fas fa-star mr-1"></i></span>
-                                <span class="review-star" data-value="2"><i class="fas fa-star mr-1"></i></span>
-                                <span class="review-star" data-value="3"><i class="fas fa-star mr-1"></i></span>
-                                <span class="review-star" data-value="4"><i class="fas fa-star mr-1"></i></span>
-                                <span class="review-star" data-value="5"><i class="fas fa-star mr-1"></i></span>
-                            </div>
-                            <p>Share your review:</p>
-                            <textarea id="review-rating"
-                                placeholder="Write your review here">
-                            </textarea>
-                            <button id="submit-review" class="btn btn-black rounded-0 text-uppercase mt-5">Post Review</button>
-                            <div class="reviews" id="reviews">
-                            </div>
-                        </div>  <!-- end div class "review-container" -->
+                            <form class="form" action="{% url 'review_product' product.id %}" method="POST">
+                                
+                                {% csrf_token %}
+                                <div class="review-rating">
+                                    <span id="review-rating">0</span>/5
+                                </div>
+                                <div class="review-stars" id="stars">
+                                    <span class="review-star" data-value="1"><i class="fas fa-star mr-1"></i></span>
+                                    <span class="review-star" data-value="2"><i class="fas fa-star mr-1"></i></span>
+                                    <span class="review-star" data-value="3"><i class="fas fa-star mr-1"></i></span>
+                                    <span class="review-star" data-value="4"><i class="fas fa-star mr-1"></i></span>
+                                    <span class="review-star" data-value="5"><i class="fas fa-star mr-1"></i></span>
+                                </div>
+                                <p>Share your review:</p>                                
+                                <textarea id="review-title" name="review-title"
+                                    placeholder="Review title">
+                                </textarea>
+                                <textarea id="review-body" name="review-body"
+                                    placeholder="Write your review here">
+                                </textarea>
+                                <button id="submit-review" class="btn btn-black rounded-0 text-uppercase mt-5">Post Review</button>
+                                <div class="reviews" id="reviews">
+                                </div>
+                            </form>
+                        </div> <!-- end div class "review-container" -->
+
                     {% endif %}                  
                 </div> <!-- id=ratings-container mb-5 mt-md-5 -->
             </div> <!-- end class col-12 col-md-6 col-lg-4 -->  
@@ -215,7 +219,8 @@
     <script type="text/javascript">
         const stars = document.querySelectorAll(".review-star");
         const rating = document.getElementById("review-rating");
-        const reviewText = document.getElementById("review");
+        const reviewTitle = document.getElementById("review-title");
+        const reviewText = document.getElementById("review-body");
         const submitBtn = document.getElementById("review-submit");
         const reviewsContainer = document.getElementById("reviews");
         

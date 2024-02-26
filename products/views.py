@@ -107,19 +107,18 @@ def product_detail(request, product_id):
     avg_rating = 0
 
     # getting all reviews
-    reviews = Review.objects.filter(product=product_id)
+    reviews = Review.objects.filter(product=product_id).filter(approved=True)
     if (reviews):
         # calculate average rating
-        avg_rating = 0
-        #    avg_rating = Avg('reviews__rating')
-
+        avg_rating = product.average_rating
         product.rating = avg_rating
-        num_reviews = reviews.count()
+        
 
     context = {
         'product': product,
         'reviews': reviews,
-        'num_reviews': num_reviews,
+        'num_reviews': product.num_reviews,
+        'review_form': ReviewForm(),
     }
 
     return render(request, 'products/product_detail.html', context)
@@ -231,27 +230,34 @@ def delete_product(request, product_id):
 
 
 @login_required
-def review(request, product_id):
+def review_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
 
     if request.method == 'POST':
-        review_form = ReviewForm(request.POST)
-        print(review_form)
+        print(f'In review_product, product_id is ', product_id, ' product is', product)
+        review_form = ReviewForm(data=request.POST)
+        print(f'Contents of review_form: ', review_form)
+        print(f'Contents of review_form are: title ', review_form.instance.title, ' body ', review_form.instance.body)
+        print('About to check if review_form is valid')
         if review_form.is_valid():
-            print(review_form)
+            print('Review form is valid')
+            rating = 3
+            review_form.instance.user_profile = request.user_profile
+            review_form.instance.product = product = product
             review_form.save()
             messages.success(request, 'Successfully reviewed product')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to add product. \
+            messages.error(request, 'Failed to add review. \
                 Please check the form data is correct')
+            return redirect(reverse('product_detail', args=[product.id]))
     else:
         review_form = ReviewForm()
-        print(review_form)
+        print(f'In review_product, method not POST')
 
-    template = 'shop/product_detail.html'
+    template = 'products/product_detail.html'
     context = {
-        'review_form': review_form,
+        'product': product,
     }
 
     return render(request, template, context)

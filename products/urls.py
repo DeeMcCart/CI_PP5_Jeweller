@@ -12,5 +12,5 @@ urlpatterns = [
          name='delete_confirm'),
     path('delete/<int:product_id>/', views.delete_product,
          name='delete_product'),
-    path('review/<int:product_id>/', views.review, name='review'),
+    path('review/<int:product_id>/', views.review_product, name='review_product'),
 ]
