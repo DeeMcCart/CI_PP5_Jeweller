@@ -7,6 +7,8 @@ from django.db.models import Avg
 
 
 class Category(models.Model):
+    """ category for products.  This sometimes has special meaning,
+    e.g. category 'ring' will always have sizing """ 
     name = models.CharField(max_length=30)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -46,6 +48,18 @@ RING_SIZE_CHOICES = [
 
 
 class Product(models.Model):
+    """ Product class, extended from Boutique Ado walkthrough
+    Extra fields:
+        sku: Stock Keeping Unit;
+        hide_display: prevent the product being
+        shown or selected;
+        can_be_engraved: indicates that a string of text up to length
+        max_char_engrave can be associated with this products orderline;
+        source: stock make-to-order, custom, service;
+        item_lead_time: normally product lead times (used to derive orderline
+        earliest ship dates) are calcualted based on the source, but an
+        override value can be given here;
+        promotion: if there is a promotion code linked to this product """ 
     category = models.ForeignKey('Category', null=True, blank=True,
                                  on_delete=models.SET_NULL)
     sku = models.CharField(max_length=20, null=True, blank=True)
@@ -105,7 +119,15 @@ class Product(models.Model):
         else:
             print(f'No approved reviews found for average rating')
             return None  # Handle the case of no approved reviews gracefully
-            
+    
+    def num_order_lines(self):
+        """" return count of order lines for product else 0 """
+        num_order_lines = 0
+        if self.orderlines.count():
+            return (self.orderlines.count())
+        else:
+            return (num_order_lines)         
+
 class Catname(models.Model):
     cat_num = models.IntegerField()
     cat_name = models.CharField(max_length=15)

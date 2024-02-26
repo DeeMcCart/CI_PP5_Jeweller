@@ -139,8 +139,8 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save()
-            stringy = f'Successfully added product SKU { product.sku },'
-            + f'{ product.name }.'
+            stringy = (f'Successfully added product SKU { product.sku },'
+                    + f'{ product.name }.')
             messages.success(request, stringy)
 
             # return redirect(reverse('add_product'))

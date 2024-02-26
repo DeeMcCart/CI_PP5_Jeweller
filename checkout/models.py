@@ -136,7 +136,8 @@ class OrderLineItem(models.Model):
                               related_name='lineitems')
     line_number = models.IntegerField(default=10)
     product = models.ForeignKey(Product, null=False, blank=False,
-                                on_delete=models.CASCADE)
+                                on_delete=models.CASCADE, 
+                                related_name='orderlines')
     sku = models.CharField(max_length=20, null=True, blank=True)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     price = models.DecimalField(max_digits=6, decimal_places=2,
