@@ -13,7 +13,9 @@
 {% if request.user.is_superuser %}
     <div class="overlay"></div>
     <div class="container-fluid" id="orders-container">
-        <table class="table table-bordered table-hover ">
+        <input type="button" class="btn btn-outline-black rounded-0" id="show-closed-orders" value = "Show Closed Orders" onclick="showClosedOrders()">
+
+        <table class="table table-bordered table-hover" id="order-table">
             <thead class="table-secondary">
                 <tr>
                 <th></th>
@@ -34,19 +36,33 @@
             </thead>
             <!-- Place one blank line at top of grid for Product Add-->
             {% for order in orders %}
-                <tr class="text-muted">
-                    <td><a href="{% url 'order_history' order.order_number %}" title="View order"><i class="fa-solid fa-magnifying-glass icon-edit"></i></a></td>
+                <tr class="text-muted order-row {{order.order_status}}">
+                    <td>
+                    <a href="{% url 'order_history' order.order_number %}" title="View order"><i class="fa-solid fa-magnifying-glass icon-edit"></i></a>
+                    </td>
+                <td>
+                    <!-- Pop up modal if shipping tracker# needed -->    
+                    <!-- DMcC 27/02/24 remove the below functionality for tracker# entry for now:
+                        {% if order.order_status == "PACKED" and order.delivery_method == "REGPOST" %} --> 
                     <!-- Trigger the modal with a button -->
-                    <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#update-status-popup">
+                    <!-- DMcC 26/02/24 No longer needed <td><a href="" title="Update order Status" onclick="show_update_modal( {{ order}} )"><i class="far fa-edit icon-edit"  ></i></a></td>-->
+                        <button type="button" class="btn btn-info btn-sm update-button" data-toggle="modal" data-target="#update-status-popup" id="{{order.order_number}}">
+                                TRACK#
+                        </button>
+                    <!-- DMcC 27/02/24 {% else %} -->    
+                        <a type="button" href="{% url 'next_status' order.id %}" title="Update order status" class="btn btn-info btn-sm update-button"  id="{{order.order_number}}">
                         {% if order.order_status == "ORDERED" %} PACK 
-                        {% elif order.order_status == "PACKED" %} SHIP 
-                        {% elif order.order_status == "SHIPPED" %} CONF 
-                        {% elif order.order_status == "DELIVERED" %}CLOSE
-                        {% endif %}</button></td>
-                    <!-- <td><a href="" title="Update order Status" onclick="show_update_modal()"><i class="far fa-edit icon-edit"  ></i></a></td>-->
+                        {% elif order.order_status == "PACKED" %} {% if order.delivery_method == "COLLECT" %} RECEIVE {% else %} SHIP {% endif %} 
+                        {% elif order.order_status == "SHIPPED" %} RECV 
+                        {% elif order.order_status == "RECEIVED" %} CLOSE 
+                        {% elif order.order_status == "CLOSED" %} CLOSED 
+                        {% endif %} </a>
+                        </td>
+                    <!-- DMcC 27/02/24 {% endif %} -->        
                     <td><a class="text-info" href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}" target="_blank">{{ order.order_number|truncatechars:6 }}</a></td>
-                    <td id="order-status" class="text-info">{{order.order_status}}</td>
-                    <td>{{order.delivery_method}}</td>
+                    <td id="st{{order.order_status}} " class="text-info">{{order.order_status}}</td>
+                    <!-- identify delivery mode with an id dm<order-number> -->
+                    <td id="dm{{ order.order_number }}">{{order.delivery_method}}</td>
                     <td>{% if order.delivery_method == "REGPOST" and order.delivery_track > "" %}
                         <a href="https://www.anpost.com/Post-Parcels/Track/History?item={{order.delivery_track}}" title="Trace" target="_blank">
                             <i class="far fa-van icon-track"></i>{{order.delivery_track}}</a>
@@ -72,13 +88,14 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" id="updateStatusModalLabel">Update Order Status</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
+                          <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>-->
+                          <button type="button" class="btn-close" data-toggle="modal" data-target="#update-status-popup">X</button> 
+                        </div> <!-- end div class="modal-header"-->
                         <div class="modal-body">
-                          <form id="update-status-form">
+                          <form id="update-status-form" >
                             <div class="mb-3">
-                              <label for="order-id" class="form-label">Order ID:</label>
-                              <input type="text" class="form-control" id="order-id" value = {{order.order_number}} readonly>
+                              <label for="order-num" class="form-label">Order:</label>
+                              <input type="text" class="form-control" id="order-num" value = {{order_number}} readonly>
                             </div>
                             <div class="mb-3">
                               <label for="new-status" class="form-label">Next Status:</label>
@@ -88,12 +105,18 @@
                                 <option value="RECEIVED">Received</option>
                                 </select>
                             </div>
+                            <div class="mb-3" class="hide-div">
+                                <label for="delivery-track" class="form-label">Delivery Tracker:</label>
+                                <input type="text" class="form-control" id="delivery-track">
+                            </div>
                             <button type="submit" class="btn btn-primary">Update</button>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                            <a href="{% url 'next_status' 24075 %}" title="Move to next status "><i class="far fa-add icon-edit"></i></a>
+ 
+                          </form> <!-- end form "update-status-form"-->
+                        </div> <!-- end div class="modal-body"-->
+                      </div> <!-- ed div class="modal-content" -->
+                    </div> <!-- end div class="modal-dialog modal-dialog-centered" -->
+                  </div> <!-- end div id="update-status-popup" -->
 
             {% endfor %}
         </table>
@@ -116,26 +139,77 @@
 			window.scrollTo(0,0)
 		})
 	</script>
+    
+    <script>
+        const elements = document.getElementsByClassName('CLOSED');
+        for (let i=0; i < elements.length; i++) {
+            elements[i].classList.add('hide-row');
+        }
+    </script>
+
+    <script>
+        function showClosedOrders() {
+            const elements = document.getElementsByClassName('CLOSED');
+
+            show_closed = document.getElementById("show-closed-orders");
+            if (show_closed.value == "Show Closed Orders") {
+                for (let i=0; i < elements.length; i++) {
+                elements[i].classList.remove('hide-row');}
+                show_closed.value="Hide Closed Orders";
+                }  
+            else 
+                {
+                for (let i=0; i < elements.length; i++) {
+                elements[i].classList.add('hide-row');}
+                show_closed.value="Show Closed Orders";
+                }  
+        }
+        
+
+
+       }
+    }
+    </script>
+
     <!-- JS to prevent display of delivery-banner-->
     <script>    
         document.getElementById("delivery-banner").classList.add("hide-div");
     </script>
+
+    
+    <!-- DMcC 27/02/24 JS to identify which row was clicked for modal tracker# entry-->
     <script>
-        function show_update_modal() {
-            console.log("In function show_update_modal()");
-            show_modal = document.getElementById("update-status-popup");
-            console.log("current value of show/hide button is " + show_comments_button.value);
-            if (show_comments_button.value == "Show Resp") {
-                document.getElementById("comments-container").classList.remove("hide-div");
-                console.log("Removed class hide-div from comments-container")
-                show_comments_button.value="Hide Resp";
-                }  
-            else 
-                {
-                document.getElementById("comments-container").classList.add("hide-div");
-                console.log("Added class hide-div to comments-container")
-                show_comments_button.value="Show Resp";
-                }  
-            }
-        </script>
+        const order_table = document.querySelector('#order-table')
+        order_table.addEventListener('click', (event) => {
+            // Check if the clicked element is an update-button
+            if (event.target.classList.contains('update-button')) {
+                const clickedButton = event.target;
+                // identify which order the button was clicked for
+                const clickedOrder = clickedButton.id;
+                // alert('ClickedOrder is: ' + clickedOrder );
+                const modalOrder2 = document.getElementById('order-num').value;
+                document.getElementById('order-num').value = clickedOrder;
+                const orderDM = ('dm'+clickedOrder)
+                // alert('deliveryModeID is: ' + orderDM );
+                const deliveryMode = document.getElementById(orderDM).innerHTML;
+                //alert('deliveryMode is: ' + deliveryMode );
+                }
+            else {
+                //alert('other button was pressed');
+            }    
+        });
+    </script>
+
+    <script>
+        form.addEventListener('submit', function(ev) {
+        ev.preventDefault();
+        card.update({ 'disabled': true});
+        $('#submit-button').attr('disabled', true);
+        $('#payment-form').fadeToggle(100);
+        $('#loading-overlay').fadeToggle(100);})
+    </script>
+
+
+    
+    
 {% endblock %}

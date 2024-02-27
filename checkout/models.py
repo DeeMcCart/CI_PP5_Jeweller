@@ -13,6 +13,7 @@ ORDER_STATUS_CHOICES = [
     ('PACKED', 'Packed'),
     ('SHIPPED', 'Shipped'),
     ('RECEIVED', 'Received'),
+    ('CLOSED', 'Closed'),
 ]
 
 RING_SIZE_CHOICES = [

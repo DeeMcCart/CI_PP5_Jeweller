@@ -33,7 +33,7 @@
                 </tr>
             </thead>
             <!-- Place one blank line at top of grid for Product Add-->
-            <tr class="text-muted">
+            <tr class="text-muted {{order.ordeer_status}}">
                 <td><a href="{% url 'add_product' %}" title="Add new product"><i class="far fa-add icon-edit"></i></a></td>
                 <td><a href="{% url 'add_product' %}" title="Add new product">Add</a></td>
                 <td></td>

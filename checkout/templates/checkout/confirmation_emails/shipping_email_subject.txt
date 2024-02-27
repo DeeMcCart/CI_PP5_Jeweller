@@ -1,1 +1,0 @@
-Goldmark Jewellers Carlow Update - Order Number {{ order.order_number }}

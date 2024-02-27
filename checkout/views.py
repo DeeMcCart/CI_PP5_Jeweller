@@ -3,7 +3,8 @@ from django.shortcuts import (render, redirect, reverse,
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
-
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 from products.models import Product
@@ -247,17 +248,83 @@ def maint_orders(request):
 
     return render(request, 'checkout/maint_orders.html', context)
 
-    def order_late(request, order_id):
-        """ determine if an order is late in shipping """
-        """ based on order status and promised_ship_date """
-        """ DMcC 14/02/24 Moved from Models as constantly recalculating"""
-        now = timezone.now()
-        order_late = False
-        order_promised_ship = self.order_ship_date()
-        print(f'order_promised_ship', order_promised_ship)
-        print(f'now', {now})
-        if ((self.order_status in ['ORDERED', 'PACKED'])
-             and (order_promised_ship < now)):
-            order_late = True
-        print(f'Order ', {self.order_number}, ' is ', {order_late}, ' late')
-        return order_late
+def order_late(request, order_id):
+    """ determine if an order is late in shipping """
+    """ based on order status and planned_ship_date """
+    """ DMcC 14/02/24 Moved from Models as constantly recalculating"""
+    now = timezone.now()
+    order_late = False
+    order=get_object_or_404(Order, pk=order_id)
+    print(f'order.planned_ship_date', order.planned_ship_date)
+    print(f'now', {now})
+    if ((self.order_status in ['ORDERED', 'PACKED'])
+        and (order.planned_ship_date < now)):
+        order_late = True
+    print(f'Order ', {self.order_number}, ' is ', {order_late}, ' late')
+    return order_late
+
+def send_update_email(request, order_id):
+    """Send the user a confirmation email"""
+    order=get_object_or_404(Order, pk=order_id)
+    cust_email = order.email
+    cc_email = settings.DEFAULT_CC_EMAIL
+    subject = render_to_string(
+        'checkout/confirmation_emails/update_email_subject.txt',
+        {'order': order})
+    body = render_to_string(
+        'checkout/confirmation_emails/update_email_body.txt',
+        {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+
+    # send_email extended to include CC to shop's email address
+    send_mail(
+        subject,
+        body,
+        settings.DEFAULT_FROM_EMAIL,
+        [cust_email],
+    )
+    return True
+        
+def next_status(request, order_id):
+    """ Next status varies depending on delivery method:
+    For COLLECT orders:
+    Status ORDERED -> PACKED -> RECEIVED
+    For REGPOST orders:
+    Status ORDERED -> PACKED -> SHIPPED -> RECEIVED
+    """
+    order = get_object_or_404(Order, pk=order_id)
+    current_status = order.order_status
+    next_status = 'CLOSED'
+    print(f'Order ', order.order_number, ' current status is ', current_status)
+    if (current_status == 'ORDERED'):
+       next_status = 'PACKED'
+    elif ((current_status == 'PACKED')
+          and (order.delivery_method == 'COLLECT')):
+        next_status = 'RECEIVED'
+    elif (current_status == 'PACKED'):
+        next_status = 'SHIPPED'
+    elif (current_status == 'SHIPPED'):
+        next_status = 'RECEIVED'
+    
+
+    order.order_status=next_status
+    order.save()
+    messages.success(request, f' Order {order.order_number}'
+                     + f' updated to status:{order.order_status}')
+    
+    # now send a message to the customer to tell them the order status has changed.
+    send_update_email(request, order.id)
+    
+    # need to think about the ability to move through several stages at once, only really want one email
+    # also need to gather tracker # for shipped items
+    # What do we redisplay afterards?  The whole maintenance screen?
+    # Should this be paginated?
+    #  
+    orders = Order.objects.all()
+
+    # sort by SKU in order asc/desc
+    orders = orders.order_by('-order_number')
+    context = {
+        'orders': orders,
+    }
+
+    return render(request, 'checkout/maint_orders.html', context)

@@ -582,8 +582,9 @@ button:hover {
 /* These are used in conjucntion with some js code to set/unset element classes to pickup display attributes */
 
 .hide-field,
-.hide-div {
-    display: none;
+.hide-div,
+.hide-row {
+    display: none !important;
 }
 
 /* -------------------------------- Media Queries */
