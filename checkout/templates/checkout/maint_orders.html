@@ -13,7 +13,7 @@
 {% if request.user.is_superuser %}
     <div class="overlay"></div>
     <div class="container-fluid" id="orders-container">
-        <input type="button" class="btn btn-outline-black rounded-0" id="show-closed-orders" value = "Show Closed Orders" onclick="showClosedOrders()">
+        <input type="button" class="btn btn-outline-black rounded-0" id="show-closed-orders" value = "Show Closed Orders" onclick="show_hide_closed()">
 
         <table class="table table-bordered table-hover" id="order-table">
             <thead class="table-secondary">
@@ -32,6 +32,7 @@
                 <th>Eircode</th>
                 <th>User</th>
                 <th>CreatedOn</th>
+                <th>Details</th>
                 </tr>
             </thead>
             <!-- Place one blank line at top of grid for Product Add-->
@@ -79,9 +80,20 @@
                     <td>{{order.street_address1}}</td>
                     <td>{{order.town_or_city}}</td>
                     <td>{{order.postcode}}</td>
-                    <td>{{order.user_profile}}</td>
+                    <td>{% if order.user_profile %}
+                        {{order.user_profile}} 
+                        {% else %}Guest  
+                        {% endif %}</td>
                     <td class="date">{{order.date|date:"d/m/y"}}</td>
+                    <td>{% for item in order.lineitems.all %}
+                            {% with stringy=item.product.name|add:" Size "|add:item.product_size|upper|add:" "|add:item.quantity|add:"@"|add:item.product.price %}
+                            {% endwith %}
+                        {% endfor %}
+                        {{stringy}}
+                    </td>
                 </tr>
+                <!-- DMcC 27/02/24 Add visibility of the ordered items -->
+                
                 <!-- DMcC 15/02/24:  Add a modal for order status update thank you Gemini -->
                 <div id="update-status-popup" class="modal fade" tabindex="-1" aria-labelledby="updateStatusModalLabel" aria-hidden="true" >
                     <div class="modal-dialog modal-dialog-centered">
@@ -148,7 +160,7 @@
     </script>
 
     <script>
-        function showClosedOrders() {
+        function show_hide_closed() {
             const elements = document.getElementsByClassName('CLOSED');
 
             show_closed = document.getElementById("show-closed-orders");
@@ -164,11 +176,6 @@
                 show_closed.value="Show Closed Orders";
                 }  
         }
-        
-
-
-       }
-    }
     </script>
 
     <!-- JS to prevent display of delivery-banner-->

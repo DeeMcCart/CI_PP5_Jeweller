@@ -1,17 +1,17 @@
 Hi {{ order.full_name }}!
 
-{% if order.status == "PACKED" %} Your order is packed
+{% if order.order_status == "PACKED" %} Your order is packed
     {% if order.delivery_method == "COLLECT" %} and ready for collection at GoldMark, 125 Tullow Street, Carlow R93 EA89, Tel 059 9140122. 
     Please bring ID & proof of purchase for collection.  
     {% else %} and pending despatch.
     {% endif %}
-{% elif order.status == "SHIPPED" %} Your order is shipped via {{order.delivery_method}}
+{% elif order.order_status == "SHIPPED" %} Your order is shipped via {{order.delivery_method}}
     {% if order.delivery_method == "REGPOST" %}Tracking ID {order.delivery_track}, 
     trackable at "https://www.anpost.com/Post-Parcels/Track/History?item={{order.delivery_track}}"
     {% endif %}
-{% elif order.status == "RECEIVED" %} Goldmark says - thank you for your order.
+{% elif order.order_status == "RECEIVED" %} Goldmark says - thank you for your order.
     We hope the contents delight you!
-{% elif order.status == "ORDERED" %} Your order is raised, but it hasn't been packed yet.
+{% elif order.order_status == "ORDERED" %} Your order is raised, but it hasn't been packed yet.
     Expected ship date is {{ order.planned_ship_date}}
 {% endif %}
 
