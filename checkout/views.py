@@ -283,7 +283,19 @@ def send_update_email(request, order_id):
         [cust_email],
     )
     return True
-        
+
+def order_lines_text(request, order_id):
+    """ Return a text string with order details """
+    order = get_object_or_404(Order, order_number=order_number)
+    stringy=""
+    for item in order.lineitems.all:
+        line_string = (f(item.product.name, " Size ", item.product_size|upper, " ", item.quantity, "@", item.product.price)) 
+        string += line_string
+        endwith
+    endfor
+    print(f" Order details string is ", stringy)
+    return stringy
+
 def next_status(request, order_id):
     """ Next status varies depending on delivery method:
     For COLLECT orders:

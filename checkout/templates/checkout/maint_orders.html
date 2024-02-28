@@ -14,6 +14,8 @@
     <div class="overlay"></div>
     <div class="container-fluid" id="orders-container">
         <input type="button" class="btn btn-outline-black rounded-0" id="show-closed-orders" value = "Show Closed Orders" onclick="show_hide_closed()">
+        <input type="button" class="btn btn-outline-black rounded-0" id="show-address" value = "Show Address" onclick="show_hide_address()">
+        <input type="button" class="btn btn-outline-black rounded-0" id="show-detail" value = "Show Details" onclick="show_hide_details()">
 
         <table class="table table-bordered table-hover" id="order-table">
             <thead class="table-secondary">
@@ -25,18 +27,22 @@
                 <th>Ship?</th>
                 <th>Trace</th>
                 <th>PromisedShip</th>
-                <th>Fullname</th>
-                <th>Ph</th>
-                <th>Addr1</th>
-                <th>Addr3</th>
-                <th>Eircode</th>
-                <th>User</th>
+                <th class="address">Fullname</th>
+                <th class="address">Ph</th>
+                <th class="address">Addr1</th>
+                <th class="address">Addr3</th>
+                <th class="address">Eircode</th>
+                <th class="address">User</th>
                 <th>CreatedOn</th>
-                <th>Details</th>
+                <th class="details">Details</th>
                 </tr>
             </thead>
             <!-- Place one blank line at top of grid for Product Add-->
             {% for order in orders %}
+                <!-- within each order, iterate through the line items -->
+
+                {% for item in order.lineitems.all %}
+                        
                 <tr class="text-muted order-row {{order.order_status}}">
                     <td>
                     <a href="{% url 'order_history' order.order_number %}" title="View order"><i class="fa-solid fa-magnifying-glass icon-edit"></i></a>
@@ -75,21 +81,21 @@
                         {% else %} class="date" 
                         {% endif %}> 
                         {{order.planned_ship_date|date:"d/m/y"}}</td>
-                    <td>{{order.full_name}}</td>
-                    <td>{{order.phone_number}}</td>
-                    <td>{{order.street_address1}}</td>
-                    <td>{{order.town_or_city}}</td>
-                    <td>{{order.postcode}}</td>
-                    <td>{% if order.user_profile %}
+                    <td class="address">{{order.full_name}}</td>
+                    <td class="address">{{order.phone_number}}</td>
+                    <td class="address">{{order.street_address1}}</td>
+                    <td class="address">{{order.town_or_city}}</td>
+                    <td class="address">{{order.postcode}}</td>
+                    <td class="address">{% if order.user_profile %}
                         {{order.user_profile}} 
                         {% else %}Guest  
                         {% endif %}</td>
                     <td class="date">{{order.date|date:"d/m/y"}}</td>
-                    <td>{% for item in order.lineitems.all %}
-                            {% with stringy=item.product.name|add:" Size "|add:item.product_size|upper|add:" "|add:item.quantity|add:"@"|add:item.product.price %}
-                            {% endwith %}
-                        {% endfor %}
-                        {{stringy}}
+                    <td>
+                            {{ order.id }}
+                            <!--{% with stringy=item.product.name|add:" Size "|add:item.product_size|upper|add:" "|add:item.quantity|add:"@"|add:item.product.price %}
+                            {% endwith %} -->
+                        {{stringy}} 
                     </td>
                 </tr>
                 <!-- DMcC 27/02/24 Add visibility of the ordered items -->
@@ -129,7 +135,7 @@
                       </div> <!-- ed div class="modal-content" -->
                     </div> <!-- end div class="modal-dialog modal-dialog-centered" -->
                   </div> <!-- end div id="update-status-popup" -->
-
+                {% endfor %}
             {% endfor %}
         </table>
     </div> <!-- end class container-fluid -->
@@ -176,6 +182,24 @@
                 show_closed.value="Show Closed Orders";
                 }  
         }
+        function show_hide_address() {
+            alert('In function show_hide_address()')
+            const elements = document.getElementsByClass('address');
+
+            show_address = document.getElementById("show-address");
+            if (show_address.value == "Show Address") {
+                for (let i=0; i < elements.length; i++) {
+                elements[i].classList.remove('hide-row');}
+                show_address.value="Hide Address";
+                }  
+            else 
+                {
+                for (let i=0; i < elements.length; i++) {
+                elements[i].classList.add('hide-row');}
+                show_address.value="Show Address";
+                }  
+        }
+    
     </script>
 
     <!-- JS to prevent display of delivery-banner-->
