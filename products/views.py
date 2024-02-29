@@ -6,6 +6,7 @@ from .models import Product, Category, Cat6, Review, StockType
 from .forms import ProductForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 
+
 # Create your views here.
 
 def all_products(request):

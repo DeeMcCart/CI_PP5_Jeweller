@@ -2,6 +2,8 @@ from django.db import models
 from profiles.models import UserProfile
 from django.shortcuts import get_object_or_404
 from django.db.models import Avg
+from datetime import date, timedelta
+
 
 # Create your models here.
 
@@ -126,7 +128,20 @@ class Product(models.Model):
         if self.orderlines.count():
             return (self.orderlines.count())
         else:
-            return (num_order_lines)         
+            return (num_order_lines)
+
+
+    def is_new(self):
+        """ A simple view to determine if a product is < 10 days old """
+        today = date.today()
+        ten_days_ago = today - timedelta(days=10)
+        date_created = self.created_on.date()
+        if date_created >= ten_days_ago:
+        # Product was created less than 10 days ago
+            return True
+        else:
+            return False
+        
 
 class Catname(models.Model):
     cat_num = models.IntegerField()
