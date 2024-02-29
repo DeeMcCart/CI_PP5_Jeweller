@@ -2,5 +2,5 @@
 <!-- have got as far as recognising that its item type ring and therefore should be sized -->
 <p class="my-0"><strong>{{ item.product.name }}</strong></p>
 <p class="my-0">{% if item.product.has_sizes %}<strong>Size: </strong>{{ item.size|upper }}{% endif %}</p>
-<p class="my-0">{% if item.engrave_text %}<strong>Engraving: </strong>{{ item.engrave_text }}{% endif %}</p>
+<p class="my-0">{% if item.product.can_be_engraved %}<strong>Engraving: </strong>{{ item.engrave_text }}{% endif %}</p>
 <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>

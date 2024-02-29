@@ -14,7 +14,7 @@ def basket_contents(request):
 
     for item_id, item_data in basket.items():
         if isinstance(item_data, int):
-            # Product is not sized
+            # Product is not sized or engraved
             print('Item ','has item_data', item_data)
             product = get_object_or_404(Product, pk=item_id)
             total += item_data * product.price
@@ -23,12 +23,12 @@ def basket_contents(request):
                 'item_id': item_id,
                 'quantity': item_data,
                 'product': product,
-                'engrave-text': 'No engraving',
                 'price': product.price,
                 'lineitem_total': item_data * product.price,
             })
-        else:
+        elif  isinstance(item_data, dict) and ("items_by_size" in item_data and isinstance(item_data["items_by_size"], dict)):
             # Product is sized
+            print(f'Item data is ', item_data)
             product = get_object_or_404(Product, pk=item_id)
             for size, quantity in item_data['items_by_size'].items():
                 total += quantity * product.price
@@ -37,13 +37,26 @@ def basket_contents(request):
                     'item_id': item_id,
                     'quantity': quantity,
                     'product': product,
-                    'engrave-text': 'No sized engraving',
                     'size': size,
                     'price': product.price,
                     'lineitem_total': quantity * product.price,
                 })
-
-
+        elif  isinstance(item_data, dict) and ("engrave_text" in item_data and isinstance(item_data["engrave_text"], dict)):
+            # Product is sized
+            print(f'Item data is ', item_data)
+            product = get_object_or_404(Product, pk=item_id)
+            for engrave_text, quantity in item_data['engrave_text'].items():
+                total += quantity * product.price
+                product_count += quantity
+                basket_items.append({
+                    'item_id': item_id,
+                    'quantity': quantity,
+                    'product': product,
+                    'engrave_text': engrave_text,
+                    'price': product.price,
+                    'lineitem_total': quantity * product.price,
+                })
+        
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total

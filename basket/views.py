@@ -20,26 +20,45 @@ def add_to_basket(request, item_id):
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     size = None
+    engrave_text = None
+    if 'engrave_text' in request.POST:
+        engrave_text = request.POST['engrave_text']
+        print(f'in basket/views/add_to_basket: Engrave text is  ', engrave_text)
+
     if 'product_size' in request.POST:
         size = request.POST['product_size'].strip()
         print(f'in basket/views/add_to_basket: Requested product size for add to basket is ',size)
-    
+ 
     basket = request.session.get('basket', {})
 
     # if product already in basket, increment product quantity only if not sized
     # (rings to be sized will need to be stored on separate lines) 
     if size:
+        # update to datavalue['items_by_size'] within basket[item]
         if item_id in list(basket.keys()):
             if size in basket[item_id]['items_by_size'].keys():
                 basket[item_id]['items_by_size'][size] += quantity
                 messages.success(request, f'Updated size {size.upper()} {product.name} quantity to {basket[item_id]["items_by_size"][size]}')
             else:
-                basket[item_id]['items_by_size'][size] = quantity
+                basket[item_id]['items_by_size'][size] = quantity                
                 messages.success(request, f'Added size {size.upper()} {product.name} to your basket')
         else:
             basket[item_id] = {'items_by_size': {size: quantity}}
             messages.success(request, f'Added size {size.upper()} {product.name} to your basket')
+    elif engrave_text:
+        # update to datavalue['engrave_text'] within basket[item]
+        if item_id in list(basket.keys()):
+            if engrave_text in basket[item_id]['engrave_text'].keys():
+                basket[item_id]['engrave_text'][engrave_text] += quantity
+                messages.success(request, f'Updated {product.name}, {engrave_text}, quantity to {basket[item_id]["engrave_text"][engrave_text]}')
+            else:
+                basket[item_id]['engrave_text'][engrave_text] = quantity                
+                messages.success(request, f'Added {product.name}, {engrave_text} to to your basket')
+        else:
+            basket[item_id] = {'engrave_text': {engrave_text: quantity}}               
+            messages.success(request, f'Added {engrave_text} {product.name} to to your basket')
     else:
+        # update to basket[item].quantity
         if item_id in list(basket.keys()):
             basket[item_id] += quantity
             messages.success(request, f'Updated {product.name} quantity to {basket[item_id]}')
@@ -57,10 +76,13 @@ def adjust_basket(request, item_id):
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     size = None
+    engrave_text = None
 
     # DMcC 22/02/24 Reinstated size check for basket issuenum 84
     if 'product_size' in request.POST:
         size = request.POST['product_size']
+    elif 'engrave_text' in request.POST:
+        engrave_text = request.POST['engrave_text']
 
     basket = request.session.get('basket', {})
 
