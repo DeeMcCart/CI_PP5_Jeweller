@@ -163,7 +163,7 @@
                         <div id="review-container" class="review-container">
                             <form class="form" action="{% url 'review_product' product.id %}" method="POST">
                                 {% csrf_token %}
-                                <div class="review-rating">
+                                <div class="review-rating hide-field">
                                     <span id="review-rating" name="review_rating">0</span>/5
                                 </div>
                                 <div class="review-stars" id="stars">

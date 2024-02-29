@@ -20,7 +20,7 @@ F14 - CREATE ORDER FROM SHOPPING BASKET, including choosing delivery method
 F15 - STRIPE PAYMENTS (WITH RESILIIENCE)
 F16 - ORDER LIFECYCLE TRACKING, including ANPOST Tracking
 F17 - PRODUCT LEAD TIMES
-F18 - USeR PROFILE CREATION & MAINTENANCE
+F18 - USER PROFILE CREATION & MAINTENANCE
 F19 - EMAIL INTEGRATION
 F20 - SYSADMIN PRODUCT MAINTENANCE
 F21 - SYSADMIN - ORDER MAINTENANCE
@@ -239,6 +239,14 @@ Can filter products seen based on category (rings, pendants etc)
 -----------------------
 Product details functionality has been extended from the walkthrough to include the following fields:
 
+<details><summary>Jeweller site - Product details</summary>
+<img src="./docs/readme_images/f10-product-details-p0.png">
+</details>
+
+
+
+
+
 
 * SO_01 As site owner I want to provide a platform where users can directly access useful resources to help with real-life financial decision making
 * SO_02 As site owner I want to largely (but not entirely) re-use/ connect to information from authoritative sources 
@@ -254,11 +262,11 @@ Customers who make a purchase are encouraged, once they've received the item, to
 
 Reviews are visible on the product detail page.  The average rating, and approved reviews count, is shown in the visible section of product detail screen, and liked to reviews towards the bottom of the page.  
 
-<details><summary>Product detail with average rating and link to reviews</summary>
+<details><summary>Products with visible rating</summary>
 <img src="./docs/readme_images/f11-average-rating-p0.png">
 </details>
 
-<details><summary>Product detail with average rating and link to reviews</summary>
+<details><summary>Product detail rating (average) and link to reviews</summary>
 <img src="./docs/readme_images/f11-average-rating-p1.png">
 </details>
 
@@ -266,34 +274,26 @@ Reviews are visible on the product detail page.  The average rating, and approve
 <img src="./docs/readme_images/f11-review-p1.png">
 </details>
 
-<details><summary>Approve review (Sysadmin)</summary>
+<details><summary>Confirmation message on submitting review</summary>
 <img src="./docs/readme_images/f11-review-p2.png">
 </details>
 
-<details><summary>Approved Reviews</summary>
+<details><summary>Approve review (Sysadmin)</summary>
 <img src="./docs/readme_images/f11-review-p3.png">
 </details>
 
-<details><summary>Updated Product Detail view</summary>
+<details><summary>Approved Reviews</summary>
 <img src="./docs/readme_images/f11-review-p4.png">
 </details>
-
-<details><summary>????Updated Product Detail view</summary>
-<img src="./docs/readme_images/f11-review-p4.png">
-</details>
-
 
 From a user perspective, this satisfies user stories FTU01, FTU_02, FTU_03 Site purpose, navigation & feedback; FTU_06, FTU_07, RU_01, RU_02 product selection and RU_13 create product reviews.
 
-From a site owner's perspective this contributes to user stories SO_03 using site's social links to promote engagement; SO_04 extending the 'shop window' via the site; 
-
-* SO_11 As site owner, I would like to encourague users to engage with each article's content, by providing suggested actions and next steps for the user to take 
-
+From a site owner's perspective this contributes to user stories SO_03 using site's social links to promote engagement; SO_04 extending the 'shop window' via the site; and contribues to an overall marketing approach which promotes user engagement. 
 
 ### F12 ABOUT PAGE/ USER FEEDBACK FORM
+
 ![About page](./django_financial_planner/docs/readme_images/f05-about-page.png?raw=true "about page")
 
-As the site developed it was realised that the site's 'About' page, while delivered as part of the functionality, is redudat becuase of the nature of this site - I think if would be preferable to add content that describes the site's purpose and to refer the user to that. rather than providing a static programmer-developed page.  The site admministrator can quite easily update and refresh article content, and this is actually a better approach.  To that end, several relevant articles have been created, these have all been associated with a tag of 'FinancialPlanner - About' so they can be retrieved from the LifeStage search.
 
 * FTU_04 As a first time user I would like to understand the acountability and trustability of information presented on the site - maybe via an 
 about page which clearly identifies information souces, information gathering/harvesting processes including moderation (flowchart would be good here).
