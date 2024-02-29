@@ -178,8 +178,9 @@
                     {% for item in order.lineitems.all %}
                     <div class="row">
                         <div class="col-12 col-md-8">
-                            <p class="small mb-0 text-black font-weight-bold">
-                                {{ item.product.name }}{% if item.product_size %} - Size {{ item.product_size|upper }}{% endif %}
+                            <p class="small mb-0 text-black">
+                                <strong>{{ item.product.name }}</strong>{% if item.product_size != 'Not set' %} - Size <strong>{{ item.product_size|upper }}</strong>{% endif %}
+                                {% if item.product.can_be_engraved %}Engraving: <strong>{{ item.engrave_text }}{% endif %}</strong>
                             </p>
                         </div>
                         <div class="col-12 col-md-4 text-md-right">

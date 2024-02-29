@@ -92,7 +92,11 @@
                         {% endif %}</td>
                     <td class="date">{{order.date|date:"d/m/y"}}</td>
                     <td class="details hide-field">
-                        Line{{item.line_number}}:  {{ item.product.name }} Size: {{item.product_size}} Qty {{item.quantity}} @ {{ item.price }} each
+                        Line{{item.line_number}}:  {{ item.product.name }} 
+                        <strong>Qty</strong> {{item.quantity}} @ {{ item.price }} each
+                        {% if item.product_size != 'Not set' %}<strong>Size</strong> {{ item.product_size|upper }}{% endif %} 
+                        {% if item.product.can_be_engraved %}<strong>Engraving: </strong>{{ item.engrave_text }}{% endif %}
+                        
                     </td>
                 </tr>
                 <!-- DMcC 27/02/24 Add visibility of the ordered items -->

@@ -148,7 +148,7 @@ class StripeWH_Handler:
                         )
                         order_line_item.save()
                         current_line_number +=10
-                    else:
+                    elif isinstance(item_data, dict) and ("items_by_size" in item_data and isinstance(item_data["items_by_size"], dict)):
                         for size, quantity in item_data['items_by_size'].items():
                             order_line_item = OrderLineItem(
                                 order=order,
@@ -163,6 +163,24 @@ class StripeWH_Handler:
                             )
                             order_line_item.save()
                             current_line_number += 10
+                    elif isinstance(item_data, dict) and ("engrave_text" in item_data and isinstance(item_data["engrave_text"], dict)):
+                        for engrave_text, quantity in item_data['engrave_text'].items():
+                            order_line_item = OrderLineItem(
+                            order=order,
+                            line_number=current_line_number,
+                            product=product,
+                            sku=product.sku,
+                            product_size='Not set',
+                            category=product.category,
+                            quantity=quantity,
+                            engrave_text = engrave_text,
+                            price=product.price,
+                            lineitem_total=item_data,
+                            )
+                            order_line_item.save()
+                            current_line_number += 10
+                            # end for 
+                 
             except Exception as e:
                 if order:
                     order.delete()
