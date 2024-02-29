@@ -56,7 +56,7 @@ class Cat6Admin(admin.ModelAdmin):
 
 class ReviewAdmin(admin.ModelAdmin):
     list_display = (
-        'rating',
+        'review_rating',
         'product',
         'title',
         'approved',

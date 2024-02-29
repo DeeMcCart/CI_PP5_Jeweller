@@ -235,30 +235,23 @@ def review_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
 
     if request.method == 'POST':
-        print(f'In review_product, product_id is ', product_id, ' product is', product)
-        review_form = ReviewForm(data=request.POST)
-        print(f'Contents of review_form: ', review_form)
-        print(f'Contents of review_form are: title ', review_form.instance.title, ' body ', review_form.instance.body)
-        print('About to check if review_form is valid')
+        review_form = ReviewForm(request.POST)
         if review_form.is_valid():
-            print('Review form is valid')
-            rating = 3
-            review_form.instance.user_profile = request.user_profile
-            review_form.instance.product = product = product
+            review_form.instance.user_profile = request.user.userprofile
+            review_form.instance.product = product
             review_form.save()
-            messages.success(request, 'Successfully reviewed product')
+            messages.success(request, 'Product review added, pending moderator approval')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(request, 'Failed to add review. \
                 Please check the form data is correct')
             return redirect(reverse('product_detail', args=[product.id]))
     else:
-        review_form = ReviewForm()
-        print(f'In review_product, method not POST')
+        review_form = ReviewForm(instace=product)
+        messsages.info(request, f'In review_product, method not POST')
 
-    template = 'products/product_detail.html'
-    context = {
-        'product': product,
-    }
-
-    return render(request, template, context)
+        template = 'products/product_detail.html'
+        context = {
+            'product': product,
+        }
+        return render(request, template, context)

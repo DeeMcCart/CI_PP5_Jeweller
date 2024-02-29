@@ -115,7 +115,7 @@ class Product(models.Model):
         """ returns average rating of approved reviews """
         approved_reviews = self.reviews.filter(approved=True)
         if approved_reviews.exists():
-            avg_rating = approved_reviews.aggregate(Avg('rating'))['rating__avg']
+            avg_rating = approved_reviews.aggregate(Avg('review_rating'))['review_rating__avg']
             avg_rating = round(avg_rating, 1)  # Round to one decimal place
             return avg_rating
         else:
@@ -192,7 +192,7 @@ class Review(models.Model):
                                 related_name='reviews')
     title = models.CharField(max_length=30, null=False, blank=False)
     body = models.CharField(max_length=254, null=False, blank=False)
-    rating = models.DecimalField(max_digits=6, decimal_places=2,
+    review_rating = models.DecimalField(max_digits=6, decimal_places=2,
                                  null=True, blank=True)
     approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -201,4 +201,4 @@ class Review(models.Model):
         ordering = ['created_on']
 
     def __str__(self):
-        return f"Review {self.rating} {self.body} by {self.user_profile}"
+        return f"Review {self.review_rating} {self.body} by {self.user_profile}"

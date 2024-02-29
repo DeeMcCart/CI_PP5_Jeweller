@@ -11,6 +11,7 @@ Hi {{ order.full_name }}!
     {% endif %}
 {% elif order.order_status == "RECEIVED" %} Goldmark says - thank you for your order.
     We hope the contents delight you!
+    If you can make the time we would very much appreciate a product review.
 {% elif order.order_status == "ORDERED" %} Your order is raised, but it hasn't been packed yet.
     Expected ship date is {{ order.planned_ship_date}}
 {% endif %}

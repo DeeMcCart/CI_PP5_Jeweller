@@ -162,10 +162,9 @@
                     {% if request.user.is_authenticated %}
                         <div id="review-container" class="review-container">
                             <form class="form" action="{% url 'review_product' product.id %}" method="POST">
-                                
                                 {% csrf_token %}
                                 <div class="review-rating">
-                                    <span id="review-rating">0</span>/5
+                                    <span id="review-rating" name="review_rating">0</span>/5
                                 </div>
                                 <div class="review-stars" id="stars">
                                     <span class="review-star" data-value="1"><i class="fas fa-star mr-1"></i></span>
@@ -175,12 +174,13 @@
                                     <span class="review-star" data-value="5"><i class="fas fa-star mr-1"></i></span>
                                 </div>
                                 <p>Share your review:</p>                                
-                                <textarea id="review-title" name="review-title"
+                                <input type=text id="review-title" name="title"
                                     placeholder="Review title">
-                                </textarea>
-                                <textarea id="review-body" name="review-body"
+                                </input>
+                                <textarea id="review-body" name="body"
                                     placeholder="Write your review here">
                                 </textarea>
+                         
                                 <button id="submit-review" class="btn btn-black rounded-0 text-uppercase mt-5">Post Review</button>
                                 <div class="reviews" id="reviews">
                                 </div>
@@ -210,7 +210,7 @@
 			window.scrollTo(0,0)
 		})
 	</script>
-    <!-- DMcC 13/02/24 following script is for handling of the product review entry (whilst avoiding 2 forms on one page)-->
+    <!-- DMcC 13/02/24 following script is for handling of the product review entry -->
     <!-- Credit to https://www.geeksforgeeks.org/create-a-product-review-and-rating-system-using-html-css-and-javascript/-->
     <script type="text/javascript">
         const stars = document.querySelectorAll(".review-star");
@@ -223,7 +223,7 @@
         stars.forEach((star) => {
             star.addEventListener("click", () => {
                 const value = parseInt(star.getAttribute("data-value"));
-                // rating.innerText = value;
+                rating.innerText = value;
         
                 // Remove all existing classes from stars
                 stars.forEach((s) => s.classList.remove("review-one", 
@@ -249,7 +249,7 @@
         
         submitBtn.addEventListener("click", () => {
             const review = reviewText.value;
-            const userRating = parseInt(review-rating.innerText);
+            const userRating = parseInt(rating.innerText);
         
             if (!userRating || !review) {
                 alert(

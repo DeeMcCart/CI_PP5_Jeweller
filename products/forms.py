@@ -24,15 +24,9 @@ class ProductForm(forms.ModelForm):
             field.widget.attrs['class'] = 'border-black rounded-0'
 
 
-class ReviewForm(forms.ModelForm):
-    rating = forms.IntegerField(required=True)  
-
+class ReviewForm(forms.ModelForm):  
+    """ Used to hold the product maintenance fields """
     class Meta:
         model = Review
-        fields = (
-            'user_profile',
-            'product',
-            'rating',
-            'title',
-            'body',
-                )
+        fields = ('user_profile', 'title', 'body', 'review_rating', 'approved')
+    
