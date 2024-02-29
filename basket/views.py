@@ -53,10 +53,10 @@ def add_to_basket(request, item_id):
                 messages.success(request, f'Updated {product.name}, {engrave_text}, quantity to {basket[item_id]["engrave_text"][engrave_text]}')
             else:
                 basket[item_id]['engrave_text'][engrave_text] = quantity                
-                messages.success(request, f'Added {product.name}, {engrave_text} to to your basket')
+                messages.success(request, f'Added engraving {product.name}, {engrave_text} to to your basket')
         else:
             basket[item_id] = {'engrave_text': {engrave_text: quantity}}               
-            messages.success(request, f'Added {engrave_text} {product.name} to to your basket')
+            messages.success(request, f'Added {product.name}, {engrave_text}  to to your basket')
     else:
         # update to basket[item].quantity
         if item_id in list(basket.keys()):
@@ -95,6 +95,15 @@ def adjust_basket(request, item_id):
             if not basket[item_id]['items_by_size']:
                 basket.pop(item_id)
             messages.success(request, f'Removed size {size.upper()} {product.name} from your basket')
+    elif engrave_text:
+        if quantity > 0:
+            basket[item_id]['engrave_text'][engrave_text] = quantity
+            messages.success(request, f'Updated  {product.name}, {engrave_text} quantity to {basket[item_id]["engrave_text"][engrave_text]}')
+        else:
+            del basket[item_id]['engrave_text'][engrave_text]
+            if not basket[item_id]['engrave_text']:
+                basket.pop(item_id)
+            messages.success(request, f'Removed engravable item {product.name}, {engrave_text} from your basket')
     else:
         if quantity > 0:
             basket[item_id] = quantity
@@ -113,18 +122,26 @@ def remove_from_basket(request, item_id):
     try:
         product = get_object_or_404(Product, pk=item_id)
         size = None
-        basket = request.session.get('basket', {})
-
+        engrave_text = None
+        
         if 'product_size' in request.POST:
             size = request.POST['product_size']
+        elif 'engrave_text' in request.POST:
+            engrave_text = request.POST['engrave_text']
+        
+        messages.info(request, f'Item to be deleted has size { size }, engrave_text { engrave_text }')
         basket = request.session.get('basket', {})
 
         if size:
             del basket[item_id]['items_by_size'][size]
             if not basket[item_id]['items_by_size']:
                 basket.pop(item_id)
-            messages.success(request, f'Removed size {size.upper()} {product.name} from your bag')
-        
+            messages.success(request, f'Removed size {size.upper()} {product.name} from your basket')
+        elif engrave_text:
+            del basket[item_id]['engrave_text'][engrave_text]
+            if not basket[item_id]['engrave_text']:
+                basket.pop(item_id)
+            messages.success(request, f'Removed size engravable item {product.name}, {engrave_text} from your basket')
         else:
             basket.pop(item_id)
             messages.success(request, f'{product.name} removed from your basket')

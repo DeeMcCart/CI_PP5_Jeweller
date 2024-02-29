@@ -27,12 +27,15 @@
                 <!-- DMcC 22/02/24 <p>data-item_id={{ item.item_id }}, id=increment-qty_{{item.item_id}}</p> -->
             </div>
             {% if item.product.has_sizes %}
+                <!-- Preserve size detail if modifying a sized basket item-->
                 <input type="hidden" name="product_size" value="{{ item.size }}">
-                <!-- DMcC 22/02/24 <p>product_size={{ item.size }}</p> -->
-
+            {% endif %}    
+            {% if item.product.can_be_engraved %}
+                <!-- Preserve engraving detail if modifying an engraveable basket item-->
+                <input type="hidden" name="engrave_text" value="{{ item.engrave_text }}">
             {% endif %}
         </div>
     </div>
 </form>
 <a class="update-link text-info"><small>Update</small></a>
-<a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><small>Remove</small></a>
+<a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}" data-engrave_text="{{ engrave_text }}"><small>Remove</small></a>

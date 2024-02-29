@@ -65,8 +65,7 @@ def basket_contents(request):
         free_delivery_delta = 0
     
     grand_total = delivery + total
-    print(f'contexts loaded, grand total loaded is ', grand_total)
-    
+     
     context = {
         'basket_items': basket_items,
         'total': total,

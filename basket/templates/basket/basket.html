@@ -150,13 +150,14 @@
 
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
-        console.log('About to remove item from basket!!')
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];
         console.log(itemId)
         var size = $(this).data('product_size');
+        var engrave_text = $(this).data('engrave_text');
+        alert('About to remove item ' + itemId + ', size ' + size +', engrave_text ' + engrave_text +' from basket!!')
         var url = `/basket/remove/${itemId}/`;
-        var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
+        var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size, 'engrave_text': engrave_text};
 
         $.post(url, data)
          .done(function() {
