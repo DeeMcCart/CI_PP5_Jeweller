@@ -44,29 +44,30 @@
                 {% for item in order.lineitems.all %}
                         
                 <tr class="text-muted order-row {{order.order_status}}">
-                    <td> {% if item.line_number == 10 %}
-                    <a href="{% url 'order_history' order.order_number %}" title="View order"><i class="fa-solid fa-magnifying-glass icon-edit"></i></a>
-                    {% endif %}
+                    <td> 
+                        {% if item.line_number == 10 %}
+                            <a href="{% url 'order_history' order.order_number %}" title="View order"><i class="fa-solid fa-magnifying-glass icon-edit"></i></a>
+                        {% endif %}
                     </td>
-                    <td>
-                    <!-- Pop up modal if shipping tracker# needed -->    
-                    <!-- DMcC 27/02/24 remove the below functionality for tracker# entry for now:
-                        {% if order.order_status == "PACKED" and order.delivery_method == "REGPOST" %} --> 
-                    <!-- Trigger the modal with a button -->
-                    <!-- DMcC 26/02/24 No longer needed <td><a href="" title="Update order Status" onclick="show_update_modal( {{ order}} )"><i class="far fa-edit icon-edit"  ></i></a></td>-->
-                        <button type="button" class="btn btn-info btn-sm update-button" data-toggle="modal" data-target="#update-status-popup" id="{{order.order_number}}">
-                                TRACK#
-                        </button>
-                    <!-- DMcC 27/02/24 {% else %} -->    
-                        <a type="button" href="{% url 'next_status' order.id %}" title="Update order status" class="btn btn-info btn-sm update-button"  id="{{order.order_number}}">
-                        {% if order.order_status == "ORDERED" %} PACK 
-                        {% elif order.order_status == "PACKED" %} {% if order.delivery_method == "COLLECT" %} RECEIVE {% else %} SHIP {% endif %} 
-                        {% elif order.order_status == "SHIPPED" %} RECV 
-                        {% elif order.order_status == "RECEIVED" %} CLOSE 
-                        {% elif order.order_status == "CLOSED" %} CLOSED 
-                        {% endif %} </a>
-                        </td>
-                    <!-- DMcC 27/02/24 {% endif %} -->        
+                    <td> 
+                       {% if item.line_number == 10 %}
+                        <!-- Pop up modal if shipping tracker# needed -->    
+                           {% if order.order_status == "PACKED" and order.delivery_method == "REGPOST" %} 
+                            <!-- Trigger the modal with a button -->
+                                <button type="button" class="btn btn-info btn-sm update-button" data-toggle="modal" data-target="#update-status-popup" id="{{order.order_number}}">TRACK#
+                                </button>
+                            {% else %}    
+                                <a type="button" href="{% url 'next_status' order.id %}" title="Update order status" class="btn btn-info btn-sm update-button"  id="{{order.order_number}}">
+                                {% if order.order_status == "ORDERED" %} PACK 
+                                {% elif order.order_status == "PACKED" %} {% if order.delivery_method == "COLLECT" %} RECEIVE {% else %} SHIP {% endif %} 
+                                {% elif order.order_status == "SHIPPED" %} RECV 
+                                {% elif order.order_status == "RECEIVED" %} CLOSE 
+                                {% elif order.order_status == "CLOSED" %} CLOSED 
+                                {% endif %} </a>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                            
                     <td><a class="text-info" href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}" target="_blank">{{ order.order_number|truncatechars:6 }}</a></td>
                     <td id="st{{order.order_status}} " class="text-info">{{order.order_status}}</td>
                     <!-- identify delivery mode with an id dm<order-number> -->
@@ -74,8 +75,6 @@
                     <td>{% if order.delivery_method == "REGPOST" and order.delivery_track > "" %}
                         <a href="https://www.anpost.com/Post-Parcels/Track/History?item={{order.delivery_track}}" title="Trace" target="_blank">
                             <i class="far fa-van icon-track"></i>{{order.delivery_track}}</a>
-                        {% else %}
-                            n/a
                         {% endif %}
                     </td>
                     <td {% if order.order_late %} class="date text-warning" 
