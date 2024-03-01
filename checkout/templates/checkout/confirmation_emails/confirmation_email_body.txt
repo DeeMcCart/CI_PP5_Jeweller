@@ -9,7 +9,7 @@ Order Details:
 ------------------------------------
 {% for item in order.lineitems.all %}
 {{ item.quantity }} {{ item.product.name }}{% if item.product_size %} - Size {{ item.product_size|upper }}{% endif %}{% if item.engrave_text %} Engraving: {{ item.engrave_text }}{% endif %}  @ €{{ item.product.price }} each
-
+{% endfor %}
 ------------------------------------
 Order Total: €{{ order.order_total }}
 Delivery: €{{ order.delivery_cost }}
