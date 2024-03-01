@@ -1,12 +1,27 @@
 Hi {{ order.full_name }}!
 
+Order Number: {{ order.order_number }}
+Order Date: {{ order.date }}, status {{ order.order_status }}
+
+Order Details:
+------------------------------------
+{% for item in order.lineitems.all %}
+{{ item.quantity }} {{ item.product.name }}{% if item.product_size %} - Size {{ item.product_size|upper }}{% endif %}{% if item.engrave_text %} Engraving: {{ item.engrave_text }}{% endif %}  @ €{{ item.product.price }} each
+
+------------------------------------
+Order Total: €{{ order.order_total }}
+Delivery: €{{ order.delivery_cost }}
+Grand Total: €{{ order.grand_total }}
+
+Delivery method: {{order.delivery_method}}
+
 {% if order.order_status == "PACKED" %} Your order is packed
     {% if order.delivery_method == "COLLECT" %} and ready for collection at GoldMark, 125 Tullow Street, Carlow R93 EA89, Tel 059 9140122. 
     Please bring ID & proof of purchase for collection.  
     {% else %} and pending despatch.
     {% endif %}
 {% elif order.order_status == "SHIPPED" %} Your order is shipped via {{order.delivery_method}}
-    {% if order.delivery_method == "REGPOST" %}Tracking ID {order.delivery_track}, 
+    {% if order.delivery_method == "REGPOST" %}Tracking ID {{order.delivery_track}}, 
     trackable at "https://www.anpost.com/Post-Parcels/Track/History?item={{order.delivery_track}}"
     {% endif %}
 {% elif order.order_status == "RECEIVED" %} Goldmark says - thank you for your order.

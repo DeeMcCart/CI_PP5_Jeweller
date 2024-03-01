@@ -131,6 +131,15 @@ D = Delete
 
 The site is designed with multiple layers of security, so that a user generally may be unaware that an option exists as (e.g. Sysadmin menu, user profile option) the menu options will be hidden.  If a user becomes familiar with the URLs within the site, the options within these URLs perform verification and identity checks to ensure the user is a) registered and b) authorised to use the function, e.g. administrator functions.
 
+<details><summary>User can edit their own profile, note the URL string</summary>
+<img src="./docs/readme_images/f02-security-can-edit-own-profile.png">
+</details>
+
+f02-security-can-edit-own-profile.png
+<details><summary>Attempt by user1 to modify the profile of user2 using direct URL e.g./profile/11/</summary>
+<img src="./docs/readme_images/f02-security-cannot-edit-other-profile.png">
+</details>
+
 This satisfies user stories FTU_02 feedback; FTU_05 navigation; RU_09-RU_10 User Profile Maintenance;  SO_01 Site feedback; SO_02 robust error handling; SO_06 Product administration, SO_10 Order administration.
 
 
@@ -139,9 +148,7 @@ This satisfies user stories FTU_02 feedback; FTU_05 navigation; RU_09-RU_10 User
 The site is designed to work on mobile tablet and other devices.  The screen will redraw based on the screen width of the viewing device, so can be used on a range of convenient devices.  This is largely achieved using bootstrap screen column handling, with some supplementary media queries.   The site is responsive and will re-draw based on the viewing device type
 While the front end tasks can be performed on a device of the user's choosing, tasks like sysadmin of orders and products is probably best done using a tablet or larger.
 
-<details><summary>Site responsiveness</summary>
-<img src="./docs/readme_images/f03-responsive.png">
-</details>
+<details><summary>Site responsiveness</summary><img src="./docs/readme_images/f03-responsive.png"></details>
 
 
 This satisfies FTU01 Ease of understanding; FTU02 Ease of navigation; FTU04 Access site on a device of my choosing; SO_02 Responsive site
@@ -180,28 +187,57 @@ Basket - encouraged to progress to checkout
 Checkout - single page, clear vision
 
 
-### F06 USER FEEDBACK - TOASTS, EMAILS, SCREEN PROGRESSION
-The User Experience is designed to be consistent across the app.
+### F06 USER FEEDBACK - TOASTS, FORM ERRORS, EMAILS, SCREEN PROGRESSION
+Jeweller is designed to provide clear and consistent feedback to users as they progress through tasks.
 
-* Feedback
-Feedback/ progress messages are shown when the user performs create, update or delete actions; and on signin and signout of the system.
+#### Toasts - 5-second pop-up messages
+These feedback messages are designed to guide a user through a process, giving them clear feedback that a step they've performed has been updated successfully. 
+Examples realting to user setup were given under feature F01; similarly when the user updates the Jeweller database they see a confirmation message.
 
-![consistent UX](./django_financial_planner/docs/readme_images/f03-consistent-ux.png?raw=true "consistent UX")
+Examples:
 
-![consistent UX - errors](./django_financial_planner/docs/readme_images/f03-consistent-ux-errors.png?raw=true "consistent UX - errors")
 
-![consistent UX - message login](./django_financial_planner/docs/readme_images/f03-consistent-ux-messaging-login.png?raw=true "consistent UX - message-login")
+#### On-screen Data verification and error messages targeted to form fields
+Forms are used to gather information throughout the Jeweller site, examples are:
+* Register as a new user 
+* Add a review
+* Leave feedback - user must use a valid email address
+* Maintain a product
 
-![consistent UX - message logout](./django_financial_planner/docs/readme_images/f03-consistent-ux-messaging-logout.png?raw=true "consistent UX - message-logout")
+In this situation, error messages are specifically targeted at particular fields: the field is highlighted and the user is notified of the error.
+<details><summary>Subscribe to newsletter</summary><img src="./docs/readme_images/f06-subscribe-to-mailing-list-error.png"></details>
 
-Meaningful Error messges
-Confirmation messages (Feedback) when Create-Update-Delete actions are taken 
+#### Feedback Emails:
+Emails (customised for the jeweller site) are generated in certain work processes:
+* User registration and authentication (customised allauth templates)
+* User newsletter signup (Mailchimp)
+* Order lifecycle tracking (python sendmail using customised templates) - sent when order is created, packed, shipped, received/collected
+* Contact form - confirmation of enquiry logged
+
+
+<details><summary>Password reset email</summary><img src="./docs/readme_images/f06-password-reset-email.png"></details>
+<details><summary>Newsletter signup - confirmation email</summary><img src="./docs/readme_images/f06-newsletter-signup-email.png"></details>
+<details><summary>Order creation - email sent</summary><img src="./docs/readme_images/f06-order-update-email-p1.png"></details>
+<details><summary>Order packed - email sent</summary><img src="./docs/readme_images/f06-order-update-email-p2.png"></details>
+<details><summary>Order shipped - email sent</summary><img src="./docs/readme_images/f06-order-update-email-p3.png"></details>
+<details><summary>Order received - email sent</summary><img src="./docs/readme_images/f06-order-update-email-p4.png"></details>
+
+<details><summary>Contact/Enquiry form - confirmation of receipt</summary><img src="./docs/readme_images/f06-order-confirmation-email.png"></details>
+
+
+
+
 
 * SO_04 As site owner I want to provide straightforward, intuitive, consistent website navigation, (using graphical navigation where possible, even where the destination leads to text-based informataion)
 * SO_06 As site owner I want to provide a website, which meets current programming, performance and accessibility standards (html, css, javascript, responsive, accessibility, performance)
 * FTU_03 As a first time user I would like to be able to easily navigate the site and quickly learn its functionality 
 * FTU_06 As a first-time user I want clear, timely and unambiguous feedback and interaction
 * FTU_07 As a first-time user I expect links and functions that work as expected
+
+#### Screen progression
+* Some more text here perhaps?
+
+
 
 F07 - VIEW / SEARCH PRODUCTS
 ### F07 View/ Search Products
