@@ -5,6 +5,7 @@ from django.conf import settings
 
 from .models import Order, OrderLineItem
 from products.models import Product
+from profiles.models import UserProfile
 
 import json
 import time
@@ -73,6 +74,15 @@ class StripeWH_Handler:
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
+
+        # Update profile information if save_info was checked
+        profile = None
+        username = intent.metadata.username
+        if username != 'AnonymousUser':
+            profile = UserProfile.objects.get(user__username=username)
+            if save_info:
+                profile.default_phone_number1 = shipping_details.phone
+                profile.save()
 
         # assume the order doesnt yet exist
         order_exists = False
@@ -143,7 +153,7 @@ class StripeWH_Handler:
                             sku=product.sku,
                             category=product.category,
                             quantity=item_data,
-                            product_size='Not set',
+                            product_size='',
                             price=product.price,
                             lineitem_total=item_data
                         )
@@ -171,7 +181,7 @@ class StripeWH_Handler:
                             line_number=current_line_number,
                             product=product,
                             sku=product.sku,
-                            product_size='Not set',
+                            product_size='',
                             category=product.category,
                             quantity=quantity,
                             # DMcC 01/03/24 add a value for can_be_engraved

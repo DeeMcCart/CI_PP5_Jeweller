@@ -30,6 +30,7 @@ RING_SIZE_CHOICES = [
     ('R', 'Ring size R'),
     ('S', 'Ring size S'),
     ('', 'Not set'),
+    ('-', 'Not set'),
 ]
 
 DELIVERY_METHODS = [
@@ -146,7 +147,7 @@ class OrderLineItem(models.Model):
     category = models.CharField(max_length=30, null=True, blank=True)
     product_size = models.CharField(max_length=1,
                                     choices=RING_SIZE_CHOICES,
-                                    default=' ')
+                                    default='-')
     can_be_engraved = models.BooleanField(default=False)
     engrave_text = models.CharField(max_length=100, null=True, blank=True)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2,

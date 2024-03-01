@@ -46,6 +46,8 @@ RING_SIZE_CHOICES = [
     ('R', 'Ring size R'),
     ('S', 'Ring size S'),
     ('', 'Not set'),
+    ('-', 'Not set'),
+    
 ]
 
 
