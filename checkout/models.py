@@ -62,7 +62,8 @@ class Order(models.Model):
     delivery_method = models.CharField(max_length=7, choices=DELIVERY_METHODS,
                                        default='REGPOST')
     delivery_track = models.CharField(max_length=13, null=True, blank=True)
-    order_status = models.CharField(max_length=10, choices=ORDER_STATUS_CHOICES,
+    order_status = models.CharField(max_length=10,
+                                    choices=ORDER_STATUS_CHOICES,
                                     default='ORDERED')
     delivery_cost = models.DecimalField(max_digits=6, decimal_places=2,
                                         null=False, default=0)
@@ -81,7 +82,8 @@ class Order(models.Model):
         Else, if no orders on table, use settings.FIRST_ORDER_NUMBER
         """
         if (Order.objects.all().order_by('order_number').last()):
-            max_order_number = Order.objects.all().order_by('order_number').last().order_number
+            max_order_number = (Order.objects.all().
+                                order_by('order_number').last().order_number)
             next_order_number = int(max_order_number) + 1
         else:
             next_order_number = settings.FIRST_ORDER_NUMBER
@@ -93,17 +95,16 @@ class Order(models.Model):
         """
         Update grand total each time a line item is added,
         accounting for delivery costs.
-        DMcC 15/02/24 would like this only to apply when status = ORDERED or PACKED.
-        As deleting a historical product master can mean the order total
-        recalculates for historical orders
+        DMcC 15/02/24 do not recalcalate for historical orders.
         """
-        print(f'In order.update_total, order ', self.order_number)
+        print('In order.update_total, order ', self.order_number)
         if self.order_status not in ['SHIPPED', 'RECEIVED']:
-            print(f'Order at status {self.order_status}'
-                  + 'will not be affected by product removal')
-            self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+            self.order_total = (self.lineitems.aggregate(Sum('lineitem_total'))
+                                ['lineitem_total__sum']) or 0
             if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
-                self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
+                self.delivery_cost = (self.order_total
+                                      * settings.STANDARD_DELIVERY_PERCENTAGE
+                                      / 100)
             else:
                 self.delivery_cost = 0
             self.grand_total = self.order_total + self.delivery_cost
@@ -127,9 +128,10 @@ class Order(models.Model):
     def order_ship_date(self):
         """ calculate the order shipping date based on the """
         """ latest order line ship date    """
-        latest_line_ship_date = self.lineitems.aggregate(Max('line_ship_date'))['line_ship_date__max']
-        return (latest_line_ship_date or
-                datetime.date(2024, 2, 28).time(0, 0, 0))
+        last_line_ship_date = (self.lineitems.aggregate(Max('line_ship_date'))
+                               ['line_ship_date__max'])
+        return (last_line_ship_date or
+                datetime.date(2024, 3, 10).time(0, 0, 0))
 
 
 class OrderLineItem(models.Model):
@@ -138,7 +140,7 @@ class OrderLineItem(models.Model):
                               related_name='lineitems')
     line_number = models.IntegerField(default=10)
     product = models.ForeignKey(Product, null=False, blank=False,
-                                on_delete=models.CASCADE, 
+                                on_delete=models.CASCADE,
                                 related_name='orderlines')
     sku = models.CharField(max_length=20, null=True, blank=True)
     quantity = models.IntegerField(null=False, blank=False, default=0)
@@ -180,12 +182,12 @@ class OrderLineItem(models.Model):
         """
         print("In function generate_Line_number for order ", order)
         orderlines = OrderLineItem.objects.filter_by(order)
-        if (OrderLineItem.objects.filter_by(order).order_by('line_number').last()):
+        if (orderlines.order_by('line_number').last()):
             max_line_number = (OrderLineItem.objects.filter_by(order).
                                order_by('line_number').last().line_number)
-            print(f"highest line # on this order is ", {max_line_number})
+            print('highest line # on this order is ', {max_line_number})
             next_line_number = int(max_line_number) + 10
-            print(f"next line # on this order is ", next_line_number)
+            print('next line # on this order is ', next_line_number)
         else:
             next_line_number = settings.FIRST_LINE_NUMBER
 
@@ -194,8 +196,8 @@ class OrderLineItem(models.Model):
     def item_ship_date(self):
         now = timezone.now().time(0, 0, 0)
         product_delta = int(self.product.lead_time)
-        print(f'Product ', {self.product}, 'lead_time is ', {product_delta})
-        print(f'ship date calc: ', {now + timedelta(days=product_delta)})
+        print('Product ', self.product, 'lead_time is ', product_delta)
+        print('ship date calc: ', (now + timedelta(days=product_delta)))
         return now + timedelta(days=product_delta)
 
 
@@ -203,7 +205,7 @@ class OrderAddress(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE,
                               related_name="order_address")
     address_type = models.CharField(max_length=4, null=False,
-                                     editable=True, default='BILL')
+                                    editable=True, default='BILL')
     address_id = models.CharField(max_length=4, null=False, editable=False)
     address_label = models.CharField(max_length=25, null=True, blank=True)
     address1 = models.CharField(max_length=80, null=True, blank=True)

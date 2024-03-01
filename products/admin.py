@@ -62,6 +62,7 @@ class ReviewAdmin(admin.ModelAdmin):
         'approved',
     )
 
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Catname, CatnameAdmin)

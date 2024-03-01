@@ -11,7 +11,6 @@ from products.models import Product
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from basket.contexts import basket_contents
-from profiles.views import profile_detail
 
 import stripe
 import json
@@ -90,8 +89,11 @@ def checkout(request):
                             )
                         order_line_item.save()
                         current_line_number += 10
-                    elif isinstance(item_data, dict) and ("items_by_size" in item_data and isinstance(item_data["items_by_size"], dict)):
-                        for size, quantity in item_data['items_by_size'].items():
+                    elif (isinstance(item_data, dict)
+                          and ("items_by_size" in item_data
+                          and isinstance(item_data["items_by_size"], dict))):
+                        for size, quantity in (item_data['items_by_size'].
+                                               items()):
                             order_line_item = OrderLineItem(
                                 order=order,
                                 line_number=current_line_number,
@@ -105,25 +107,29 @@ def checkout(request):
                             )
                             order_line_item.save()
                             current_line_number += 10
-                    elif isinstance(item_data, dict) and ("engrave_text" in item_data and isinstance(item_data["engrave_text"], dict)):
-                        for engrave_text, quantity in item_data['engrave_text'].items():
+                    elif (isinstance(item_data, dict)
+                          and ("engrave_text" in item_data
+                          and isinstance(item_data["engrave_text"], dict))):
+                        for engrave_text, quantity in (item_data
+                                                       ['engrave_text'].
+                                                       items()):
                             order_line_item = OrderLineItem(
-                            order=order,
-                            line_number=current_line_number,
-                            product=product,
-                            sku=product.sku,
-                            product_size='',
-                            category=product.category,
-                            quantity=quantity,
-                            can_be_engraved = True,
-                            engrave_text = engrave_text,
-                            price=product.price,
-                            lineitem_total=item_data,
-                            )
+                                order=order,
+                                line_number=current_line_number,
+                                product=product,
+                                sku=product.sku,
+                                product_size='',
+                                category=product.category,
+                                quantity=quantity,
+                                can_be_engraved=True,
+                                engrave_text=engrave_text,
+                                price=product.price,
+                                lineitem_total=item_data,
+                                )
                             order_line_item.save()
                             current_line_number += 10
-                            # end for 
-                    
+                            # end for
+
                 except Product.DoesNotExist:
                     messages.error(request, (
                         "One of the products in your basket wasn't found. "
@@ -133,14 +139,16 @@ def checkout(request):
                     return redirect(reverse('view_basket'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse('checkout_success',
+                            args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
         basket = request.session.get('basket', {})
         if not basket:
-            messages.error(request, "There's nothing in your basket at the moment")
+            messages.error(request,
+                           "There's nothing in your basket at the moment")
             return redirect(reverse('products'))
 
     current_basket = basket_contents(request)
@@ -164,7 +172,7 @@ def checkout(request):
                 if addresses:
                     bill_address = addresses[0]
             if bill_address:
-                print(f'Found billing address ', {bill_address})
+                print('Found billing address ', bill_address)
                 order_form = OrderForm(initial={
                     'full_name': profile.user.get_full_name(),
                     'email': profile.user.email,
@@ -268,26 +276,28 @@ def maint_orders(request):
 
     return render(request, 'checkout/maint_orders.html', context)
 
+
 def order_late(request, order_id):
     """ determine if an order is late in shipping """
     """ based on order status and planned_ship_date """
     """ DMcC 14/02/24 Moved from Models as constantly recalculating"""
     now = timezone.now()
     order_late = False
-    order=get_object_or_404(Order, pk=order_id)
-    print(f'order.planned_ship_date', order.planned_ship_date)
-    print(f'now', {now})
-    if ((self.order_status in ['ORDERED', 'PACKED'])
+    order = get_object_or_404(Order, pk=order_id)
+    print('order.planned_ship_date', order.planned_ship_date)
+    print('now', {now})
+    if ((order.order_status in ['ORDERED', 'PACKED'])
         and (order.planned_ship_date < now)):
         order_late = True
-    print(f'Order ', {self.order_number}, ' is ', {order_late}, ' late')
+    print('Order ', order.order_number, ' is ', order_late, ' late')
     return order_late
+
 
 def send_update_email(request, order_id):
     """Send the user a confirmation email"""
-    order=get_object_or_404(Order, pk=order_id)
+    order = get_object_or_404(Order, pk=order_id)
     cust_email = order.email
-    cc_email = settings.DEFAULT_CC_EMAIL
+    # cc_email = settings.DEFAULT_CC_EMAIL
     subject = render_to_string(
         'checkout/confirmation_emails/update_email_subject.txt',
         {'order': order})
@@ -304,17 +314,18 @@ def send_update_email(request, order_id):
     )
     return True
 
+
 def order_lines_text(request, order_id):
     """ Return a text string with order details """
-    order = get_object_or_404(Order, order_number=order_number)
-    stringy=""
+    order = get_object_or_404(Order, pk=order_id)
+    stringy = ""
     for item in order.lineitems.all:
-        line_string = (f(item.product.name, " Size ", item.product_size|upper, " ", item.quantity, "@", item.product.price)) 
-        string += line_string
-        endwith
-    endfor
-    print(f" Order details string is ", stringy)
+        line_string = ((" ", item.product.name, " Size ", item.product_size)
+                       + (" ", item.quantity, "@", item.product.price))
+        stringy += line_string
+    print('Order details string is ', stringy)
     return stringy
+
 
 def next_status(request, order_id):
     """ Next status varies depending on delivery method:
@@ -326,9 +337,8 @@ def next_status(request, order_id):
     order = get_object_or_404(Order, pk=order_id)
     current_status = order.order_status
     next_status = 'CLOSED'
-    print(f'Order ', order.order_number, ' current status is ', current_status)
     if (current_status == 'ORDERED'):
-       next_status = 'PACKED'
+        next_status = 'PACKED'
     elif ((current_status == 'PACKED')
           and (order.delivery_method == 'COLLECT')):
         next_status = 'RECEIVED'
@@ -336,21 +346,20 @@ def next_status(request, order_id):
         next_status = 'SHIPPED'
     elif (current_status == 'SHIPPED'):
         next_status = 'RECEIVED'
-    
 
-    order.order_status=next_status
+    order.order_status = next_status
     order.save()
     messages.success(request, f' Order {order.order_number}'
                      + f' updated to status:{order.order_status}')
-    
-    # now send a message to the customer to tell them the order status has changed.
+
+    # now tell the customer the order status has changed.
     send_update_email(request, order.id)
-    
-    # need to think about the ability to move through several stages at once, only really want one email
+
+    # need to think about the ability to move through several stages at once,
+    # only really want one email
     # also need to gather tracker # for shipped items
     # What do we redisplay afterards?  The whole maintenance screen?
     # Should this be paginated?
-    #  
     orders = Order.objects.all()
 
     # sort by SKU in order asc/desc

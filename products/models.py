@@ -10,7 +10,7 @@ from datetime import date, timedelta
 
 class Category(models.Model):
     """ category for products.  This sometimes has special meaning,
-    e.g. category 'ring' will always have sizing """ 
+    e.g. category 'ring' will always have sizing """
     name = models.CharField(max_length=30)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -47,7 +47,6 @@ RING_SIZE_CHOICES = [
     ('S', 'Ring size S'),
     ('', 'Not set'),
     ('-', 'Not set'),
-    
 ]
 
 
@@ -63,7 +62,7 @@ class Product(models.Model):
         item_lead_time: normally product lead times (used to derive orderline
         earliest ship dates) are calcualted based on the source, but an
         override value can be given here;
-        promotion: if there is a promotion code linked to this product """ 
+        promotion: if there is a promotion code linked to this product """
     category = models.ForeignKey('Category', null=True, blank=True,
                                  on_delete=models.SET_NULL)
     sku = models.CharField(max_length=20, null=True, blank=True)
@@ -92,8 +91,8 @@ class Product(models.Model):
         if self.item_lead_time != 0:
             return (self.item_lead_time)
         else:
-            prod_source=self.source
-            source=get_object_or_404(StockType, source=prod_source)
+            prod_source = self.source
+            source = get_object_or_404(StockType, source=prod_source)
             lead_time = source.default_lead_time
             return (lead_time)
 
@@ -107,23 +106,25 @@ class Product(models.Model):
 
     def reviews(self):
         """ returns approved reviews for this product """
-        return(self.reviews.filter(approved=True))
-        
+        return (self.reviews.filter(approved=True))
+
     def num_reviews(self):
         """ returns number of approved reviews for this product """
         return (self.reviews.filter(approved=True).count())
 
     def average_rating(self):
         """ returns average rating of approved reviews """
-        approved_reviews = self.reviews.filter(approved=True)
-        if approved_reviews.exists():
-            avg_rating = approved_reviews.aggregate(Avg('review_rating'))['review_rating__avg']
+        apprvd_revs = self.reviews.filter(approved=True)
+        if apprvd_revs.exists():
+            avg_rating = (apprvd_revs.
+                          aggregate(Avg('review_rating'))
+                          ['review_rating__avg'])
             avg_rating = round(avg_rating, 1)  # Round to one decimal place
             return avg_rating
         else:
-            print(f'No approved reviews found for average rating')
+            print('No approved reviews found for average rating')
             return None  # Handle the case of no approved reviews gracefully
-    
+
     def num_order_lines(self):
         """" return count of order lines for product else 0 """
         num_order_lines = 0
@@ -132,18 +133,17 @@ class Product(models.Model):
         else:
             return (num_order_lines)
 
-
     def is_new(self):
         """ A simple view to determine if a product is < 10 days old """
         today = date.today()
         ten_days_ago = today - timedelta(days=10)
         date_created = self.created_on.date()
         if date_created >= ten_days_ago:
-        # Product was created less than 10 days ago
+            # Product was created less than 10 days ago
             return True
         else:
             return False
-        
+
 
 class Catname(models.Model):
     cat_num = models.IntegerField()
@@ -195,7 +195,7 @@ class Review(models.Model):
     title = models.CharField(max_length=30, null=False, blank=False)
     body = models.CharField(max_length=254, null=False, blank=False)
     review_rating = models.DecimalField(max_digits=6, decimal_places=2,
-                                 null=True, blank=True)
+                                        null=True, blank=True)
     approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
 
@@ -203,4 +203,4 @@ class Review(models.Model):
         ordering = ['created_on']
 
     def __str__(self):
-        return f"Review {self.review_rating} {self.body} by {self.user_profile}"
+        return f"Review {self.review_rating} {self.body} - {self.user_profile}"

@@ -11,6 +11,7 @@ import json
 import time
 import stripe
 
+
 class StripeWH_Handler:
     """Handle Stripe webhooks"""
     """ These webhooks are 'signals' sent from Stripe to a specified URL
@@ -24,7 +25,7 @@ class StripeWH_Handler:
     def _send_confirmation_email(self, order):
         """Send the user a confirmation email"""
         cust_email = order.email
-        cc_email = settings.DEFAULT_CC_EMAIL
+        # cc_email = settings.DEFAULT_CC_EMAIL
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
             {'order': order})
@@ -116,7 +117,8 @@ class StripeWH_Handler:
         if order_exists:
             self._send_confirmation_email(order)
             return HttpResponse(
-                content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
+                content=f'Webhook received: {event["type"]} | SUCCESS: '
+                        + 'Verified order already in database',
                 status=200)
         # but if not then the webhook handler will cause it to be created
         else:
@@ -137,7 +139,7 @@ class StripeWH_Handler:
                     stripe_pid=pid,
                 )
                 # DMcC 21/02/24:  Add logic to include project-specific fields
-                # in order line item build so that webhook built order lines follow
+                # in order line item build so that webhook order lines follow
                 # the same logic as 'mainstream' order lines => line_number,
                 # sku, unit price, category
                 # Order line numbr to start at 10 and increment by 10
@@ -158,9 +160,12 @@ class StripeWH_Handler:
                             lineitem_total=item_data
                         )
                         order_line_item.save()
-                        current_line_number +=10
-                    elif isinstance(item_data, dict) and ("items_by_size" in item_data and isinstance(item_data["items_by_size"], dict)):
-                        for size, quantity in item_data['items_by_size'].items():
+                        current_line_number += 10
+                    elif (isinstance(item_data, dict) and
+                          "items_by_size" in item_data and
+                          isinstance(item_data["items_by_size"], dict)):
+                        for size, quantity in (item_data['items_by_size'].
+                                               items()):
                             order_line_item = OrderLineItem(
                                 order=order,
                                 line_number=current_line_number,
@@ -174,26 +179,30 @@ class StripeWH_Handler:
                             )
                             order_line_item.save()
                             current_line_number += 10
-                    elif isinstance(item_data, dict) and ("engrave_text" in item_data and isinstance(item_data["engrave_text"], dict)):
-                        for engrave_text, quantity in item_data['engrave_text'].items():
+                    elif (isinstance(item_data, dict) and
+                          ("engrave_text" in item_data and
+                          isinstance(item_data["engrave_text"], dict))):
+                        for engrave_text, quantity in (
+                                                    item_data['engrave_text'].
+                                                    items()):
                             order_line_item = OrderLineItem(
-                            order=order,
-                            line_number=current_line_number,
-                            product=product,
-                            sku=product.sku,
-                            product_size='',
-                            category=product.category,
-                            quantity=quantity,
-                            # DMcC 01/03/24 add a value for can_be_engraved
-                            can_be_engraved = True,
-                            engrave_text = engrave_text,
-                            price=product.price,
-                            lineitem_total=item_data,
-                            )
+                                order=order,
+                                line_number=current_line_number,
+                                product=product,
+                                sku=product.sku,
+                                product_size='',
+                                category=product.category,
+                                quantity=quantity,
+                                # DMcC 01/03/24 add a value for can_be_engraved
+                                can_be_engraved=True,
+                                engrave_text=engrave_text,
+                                price=product.price,
+                                lineitem_total=item_data,
+                                )
                             order_line_item.save()
                             current_line_number += 10
-                            # end for 
-                 
+                            # end for
+
             except Exception as e:
                 if order:
                     order.delete()
@@ -202,7 +211,8 @@ class StripeWH_Handler:
                     status=500)
         self._send_confirmation_email(order)
         return HttpResponse(
-            content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
+            content=f'Webhook received: {event["type"]} | SUCCESS: '
+                    + 'Created order in webhook',
             status=200)
 
     def handle_payment_intent_payment_failed(self, event):

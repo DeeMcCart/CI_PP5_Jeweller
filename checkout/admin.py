@@ -2,7 +2,6 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import Order, OrderLineItem, OrderAddress
-from profiles.models import UserProfile
 
 
 class OrderLineItemAdminInline(admin.TabularInline):
@@ -33,5 +32,6 @@ class OrderAdmin(admin.ModelAdmin):
                     'grand_total',)
 
     ordering = ('-date',)
+
 
 admin.site.register(Order, OrderAdmin, )
