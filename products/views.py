@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 def all_products(request):
     """ This is the engine of searching, sorting and filtering """
     """ A view to show all products, including sorting and search queries """
-    """ DMcC 14/02/24 Products with hide_display =True will not be returned"""
+    """ Products with hide_display=True are excluded """
 
     products = Product.objects.all()
     products = products.filter(hide_display=False)
@@ -104,7 +104,6 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
-    num_reviews = 0
     avg_rating = 0
 
     # getting all reviews
@@ -113,7 +112,6 @@ def product_detail(request, product_id):
         # calculate average rating
         avg_rating = product.average_rating
         product.rating = avg_rating
-        
 
     context = {
         'product': product,
@@ -141,7 +139,7 @@ def add_product(request):
         if form.is_valid():
             product = form.save()
             stringy = (f'Successfully added product SKU { product.sku },'
-                    + f'{ product.name }.')
+                       + f'{ product.name }.')
             messages.success(request, stringy)
 
             # return redirect(reverse('add_product'))
@@ -240,7 +238,8 @@ def review_product(request, product_id):
             review_form.instance.user_profile = request.user.userprofile
             review_form.instance.product = product
             review_form.save()
-            messages.success(request, 'Product review added, pending moderator approval')
+            messages.success(request, 'Product review added,'
+                             + ' pending moderator approval')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(request, 'Failed to add review. \
@@ -248,7 +247,7 @@ def review_product(request, product_id):
             return redirect(reverse('product_detail', args=[product.id]))
     else:
         review_form = ReviewForm(instace=product)
-        messsages.info(request, f'In review_product, method not POST')
+        messages.info(request, 'In review_product, method not POST')
 
         template = 'products/product_detail.html'
         context = {
