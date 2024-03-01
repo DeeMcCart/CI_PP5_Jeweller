@@ -18,8 +18,9 @@
 <!-- content is structured into sections, then seqenced text within each -->
 <!-- e.g. About-text, FAQ, Blog etc-->
 {% for topic in about_sections %}
-  <div class="container-fluid" id="{{topic.section}}">
+  <div class="container-fluid mt-4 mb-4" id="{{topic.section}}">
   <h3>{{topic.section_title}}</h3>
+  
       {% for texty in about_text %}
         <h5>{% if texty.section.section == topic.section %}{{texty.text_title}}{% endif %}</h5>
         <p>{% if texty.section.section == topic.section %}{{texty.text_body}}{% endif %}</p>

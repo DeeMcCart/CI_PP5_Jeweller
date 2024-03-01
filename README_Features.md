@@ -14,7 +14,7 @@ F08 - FILTER PRODUCTS
 F09 - SORT PRODUCTS
 F10 - PRODUCT DETAILS
 F11 - PRODUCT REVIEWS (DONE)
-F12 - ABOUT PAGE/ USER FEEDBACK FORM
+F12 - ABOUT PAGE/ USER FEEDBACK FORM (DONE)
 F13 - CREATE SHOPPING BASKET - (INCLUDING SIZING AND PERSONALISATION) (DONE)
 F14 - CREATE ORDER FROM SHOPPING BASKET (INCLUDING DELIVERY METHOD)
 F15 - STRIPE PAYMENTS (WITH RESILIIENCE)
@@ -62,20 +62,20 @@ Password reminders and resets are permitted and handled through back-and-forth e
 <img src="./docs/readme_images/f01-register-new-user-p3.png">
 </details>
 
-<details><summary>Register as a new user - step 4 - sign in with password already entered</summary>
+<details><summary>Register as a new user - step 4 - attempt sign BEFORE confirming email</summary>
 <img src="./docs/readme_images/f01-register-new-user-p4.png">
 </details>
 
-<details><summary>Register as a new user - step 5 - confirm new user</summary>
+<details><summary>Register as a new user - step 5 - follow link given in confirmation email</summary>
 <img src="./docs/readme_images/f01-register-new-user-p5.png">
 </details>
 
-<details><summary>Register as a new user - step 6 - notification that email confirmed</summary>
+<details><summary>Register as a new user - step 6 - see notification that email confirmed</summary>
 <img src="./docs/readme_images/f01-register-new-user-p6.png">
 </details>
 
 <details><summary>Register as a new user - step 7 - signin notification</summary>
-<img src="./docs/readme_images/f01-register-new-user-p6.png">
+<img src="./docs/readme_images/f01-register-new-user-p7.png">
 </details>
 
 
@@ -87,15 +87,15 @@ To further personalise the user's experience, a user can access and update their
 * Personalise my experience - on sign in, my profile picture and personalised welcome message are shown.
 * Personalise my experience - profile pic is shown to other users on reviews I've created
 
-<details><summary>User Profile page with order history, pic & addresses</summary>
+<details><summary>User Profile page with order history, pic & addresses.  I am changing profile image/avatar </summary>
 <img src="./docs/readme_images/f01-user-profile-p1.png">
 </details>
 
-<details><summary>User Avatar shows with welcome message</summary>
+<details><summary>User image shows with welcome message</summary>
 <img src="./docs/readme_images/f01-user-welcome-message.png">
 </details>
 
-<details><summary>User Avatar shows on reviews I've created</summary>
+<details><summary>User image shows on reviews I've created</summary>
 <img src="./docs/readme_images/f01-user-personalised-reviews.png">
 </details>
 
@@ -105,6 +105,8 @@ Certain users have an additional level of security access:
 * Able to access the site's backend to modify database entries
 * Product management console for create-edit-delete of Jeweller's products
 * Order management console to track lifecycle from order creation through to customer receipt.
+
+#### Summary - F01
 
 The functionality in feature **F01 Authentication and Login is quite wide**. This is based on the Django Allauth utility which provides a lot of standard templates and flows; these have been extended and customised for the Jeweller site. This satisfies user stories FTU_05 Navigation without mandatory login; FTU_03/SO_01 feedback at each step in a process; FTU_27 create a profile, RU_06 view order status; RU_04 receive prompts of upcoming celebration days; RU_08 newsletter;       
 
@@ -119,24 +121,24 @@ R = Read
 U = Update
 D = Delete
 
-| User Type            | Description              | UserID                                         | User Profile                                | Article | Article Approval | Article Like | Article Bookmark | Article Task | Article Comment |  Comment Approval | Personal Task |
+| User Type            | Description              | UserID                                         | User Profile & Personal Order Tracking                               | Products | Product Detail | Feedback/Enquiry | Reviews  | Basket | Order |  Comment Approval | Personal Task |
 | -------------------- | ------------------------ | ---------------------------------------------- | ------------------------------------------- | ------- | ---------------- | ------------ | ---------------- | ------------ | --------------- | ----------------- | ------------- |
 | **Guest**      | Never registered on site | none                                           | N - link disabled                           | R       | N                | N            | N                | R            | R               | N                 | N             |
-| **User**     |                          |  Creates allauth 'User' account by registering | C (by adding profile photo once registered) | Read    | N                | CRUD         | CRUD             | CRUD         | CR              | N                 | CRUD          |
+| **User**     |                          |  Creates allauth 'User' by registering | CRU (auto created on registration) | Read    | N                | CRUD         | CRUD             | CRUD         | CR              | N                 | CRUD          |
 |                      |
 | **UserProfile**      | returning user           | R                                              | R                                           | R       | R                |  CRUD        | CRUD             | R (and copy) | CR              | N                 | CRUD          |
-| **Sysadmin** | Django 'staff' users     | CRUD                                           | CRUD                                        | CRUD    | CRUD             | CRUD         | CRUD             | CRUD         | CRUD            | CRUD              | CRUD          |
+| **Sysadmin** | Shop owner     | CRUD                                           | CRUD                                        | CRUD    | CRUD             | CRUD         | CRUD             | CRUD         | CRUD            | CRUD              | CRUD          |
 |                      |
 |                      |
 
+#### Muli-layered Security
 The site is designed with multiple layers of security, so that a user generally may be unaware that an option exists as (e.g. Sysadmin menu, user profile option) the menu options will be hidden.  If a user becomes familiar with the URLs within the site, the options within these URLs perform verification and identity checks to ensure the user is a) registered and b) authorised to use the function, e.g. administrator functions.
 
 <details><summary>User can edit their own profile, note the URL string</summary>
 <img src="./docs/readme_images/f02-security-can-edit-own-profile.png">
 </details>
 
-f02-security-can-edit-own-profile.png
-<details><summary>Attempt by user1 to modify the profile of user2 using direct URL e.g./profile/11/</summary>
+<details><summary>But if they attempt to modify someone else's profile by modifying the URL string, they receive a Toast error e.g./profile/11/</summary>
 <img src="./docs/readme_images/f02-security-cannot-edit-other-profile.png">
 </details>
 
@@ -174,8 +176,10 @@ This addresses user stories
 * FTU_06 As a first-time user I want clear, timely and unambiguous feedback and interaction
 * FTU_07 As a first-time user I expect links and functions that work as expected
 
-F05 CLEAR SITE PURPOSE/ EASE OF USE
+
+
 ### F05 Clear site purpose and ease of use
+F05 CLEAR SITE PURPOSE/ EASE OF USE
 
 Header 
 Footer 
@@ -195,7 +199,6 @@ These feedback messages are designed to guide a user through a process, giving t
 Examples realting to user setup were given under feature F01; similarly when the user updates the Jeweller database they see a confirmation message.
 
 Examples:
-
 
 #### On-screen Data verification and error messages targeted to form fields
 Forms are used to gather information throughout the Jeweller site, examples are:
@@ -219,10 +222,10 @@ Emails (customised for the jeweller site) are generated in certain work processe
 
 <details><summary>Password reset email</summary><img src="./docs/readme_images/f06-password-reset-email.png"></details>
 <details><summary>Newsletter signup - confirmation email</summary><img src="./docs/readme_images/f06-newsletter-signup-email.png"></details>
-<details><summary>Order creation - email sent</summary><img src="./docs/readme_images/f06-order-confirmation-email-p1.png"></details>
-<details><summary>Order packed - email sent</summary><img src="./docs/readme_images/f06-order-update-email-p2.png"></details>
-<details><summary>Order shipped - email sent</summary><img src="./docs/readme_images/f06-order-update-email-p3.png"></details>
-<details><summary>Order received - email sent</summary><img src="./docs/readme_images/f06-order-update-email-p4.png"></details>
+<details><summary>Order creation - notification email</summary><img src="./docs/readme_images/f06-order-confirmation-email.png"></details>
+<details><summary>Order packed - notification email</summary><img src="./docs/readme_images/f06-order-update-email-p2.png"></details>
+<details><summary>Order shipped - notification email</summary><img src="./docs/readme_images/f06-order-update-email-p3.png"></details>
+<details><summary>Order received - notification email</summary><img src="./docs/readme_images/f06-order-update-email-p4.png"></details>
 
 <details><summary>Contact/Enquiry form - confirmation of receipt</summary><img src="./docs/readme_images/f06-order-confirmation-email.png"></details>
 
@@ -305,13 +308,9 @@ Reviews are visible on the product detail page.  The average rating, and approve
 <img src="./docs/readme_images/f11-review-p2.png">
 </details>
 
-<details><summary>Approve review (Sysadmin)</summary>
-<img src="./docs/readme_images/f11-review-p3.png">
-</details>
+<details><summary>Approve review (Sysadmin)</summary><img src="./docs/readme_images/f11-review-p3.png"></details>
 
-<details><summary>Approved Reviews</summary>
-<img src="./docs/readme_images/f11-review-p4.png">
-</details>
+<details><summary>Approved Reviews</summary><img src="./docs/readme_images/f11-review-p4.png"></details>
 
 From a user perspective, this satisfies user stories FTU01, FTU_02, FTU_03 Site purpose, navigation & feedback; FTU_06, FTU_07, RU_01, RU_02 product selection and RU_13 create product reviews.
 
@@ -319,11 +318,17 @@ From a site owner's perspective this contributes to user stories SO_03 using sit
 
 ### F12 ABOUT PAGE/ USER FEEDBACK FORM
 
-![About page](./django_financial_planner/docs/readme_images/f05-about-page.png?raw=true "about page")
+The About page is designed to be maintainable by the Shop Owner Admin.  In its current form it is a set of plaintext blocks including section headings with inline sequenced paragraphs within these.  A near-future enhancement is to apply Summernote styling to the text blocks, this was investigated during this project but found to be a little more complex to implement within Inline Model structures.  Currently the site is configured with three sections - About, FAQ and Feedback.
 
+<details><summary>About - drop-down menu options</summary><img src="./docs/readme_images/f12-about-dropdown.png"></details>
+<details><summary>About Page - user view - 'About / FAQ'</summary><img src="./docs/readme_images/f12-about-p1.png"></details>
 
-* FTU_04 As a first time user I would like to understand the acountability and trustability of information presented on the site - maybe via an 
-about page which clearly identifies information souces, information gathering/harvesting processes including moderation (flowchart would be good here).
+<details><summary>About Page - modifying (Sysadmin)</summary><img src="./docs/readme_images/f12-about-sysadmin-p1.png"></details>
+<details><summary>About Page - modifying (Sysadmin)</summary><img src="./docs/readme_images/f12-about-sysadmin-p2.png"></details>
+
+<details><summary>Enquiry/ feedback form</summary><img src="./docs/readme_images/f12-feedback-form.png"></details>
+
+This satisfies the user requirements SO_15 Extend the walkthrough models, and SO_17 SEO (as the About pages can also be used to build text strings which can be picked up by search engines); RU_07 Raise product enquiries on site; and FTU_01-05 Navigability.
 
 ### F13 CREATE SHOPPING BASKET (INCLUDING SIZING AND PERSONALISATION)
 Jewellery site users can create a shopping basket.  The starting point is always a product detail page; from there the user has a quantity input, and an 'add to basket' button.
