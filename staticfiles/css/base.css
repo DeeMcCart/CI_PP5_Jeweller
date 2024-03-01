@@ -573,6 +573,13 @@ button:hover {
     display: none;
 }
 
+/* Mailchimp */
+#mc_embed_signup{
+    background:#fff; 
+    clear:left; 
+    font:14px Helvetica,Arial,sans-serif; 
+    width: 600px;} 
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
@@ -662,4 +669,12 @@ button:hover {
     .increment-qty, .decrement-qty {
         padding: .25rem .5rem !important
     }
+
+    /* Mailchimp - reduce size of signup field for mobile*/
+#mc_embed_signup{
+    background:#fff; 
+    clear:left; 
+    font:10px Helvetica,Arial,sans-serif; 
+    width: 300px;} 
+
 }

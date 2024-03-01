@@ -112,7 +112,6 @@
             <!-- search field display, this diplays only on L and XL screens  -->    
             <div id="navbar-links" class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <!-- Responsivenes: display the profile and grand total within this ul on large and XL screens -->
-                <!-- 20/02/24 DMcC altered line from <ul class="list-inline list-unstyled text-center text-lg-right my-0 d-none d-lg-block"> -->
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     {% include 'includes/nav-profile.html' %}
                     <!-- if basket exists, show total -->
@@ -129,9 +128,9 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <!-- nav-mobile reduces the searchbar display to an icon with drop-down rather than full field width for XS S M screens-->
-                    {% include 'includes/mobile-top-header.html' %}
-                    <!-- nav-secondary shows a secondary navbar which is used to offer/apply filters on products displayed -->
-                    {% include 'includes/nav-main.html' %}
+                {% include 'includes/mobile-top-header.html' %}
+                <!-- nav-secondary shows a secondary navbar which is used to offer/apply filters on products displayed -->
+                {% include 'includes/nav-main.html' %}
             </ul>
         </div> <!-- end div row -->
         <!-- delivery threshold banner -->
