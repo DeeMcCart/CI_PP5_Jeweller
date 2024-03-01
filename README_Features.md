@@ -1,9 +1,70 @@
+# Features within Jeweller site:
+1. [F01 Authentication and Login](#F01-Authentication-and-Login)
+    1. [Newsletter signup](#F01.1-Mailchimp-signup)
+    2. [Register as a usr](#F01.2-Register-as-a-user)
+    3. [Maintain user profile](#F01.3-User-Profile)
+    4. [System administrator](#F01.4-Sysadmin)
+    5. [Authentication and login - summary](#F01.5-Summary)
+2. [F02 Site security and CRUD Permissions](#F02-Security)
+    1. [Create Read Update Write permissions ](#F02.1-CRUD) 
+    2. [Muli-layered Security](#F02.2-Multi-layered-security)
+3. [F03 Responsiveness](#F03-responsiveness)
+4. [F04 Site Navigation](#F04-site-navigation)
+5. [F05 Ease of Use](#F05-ease-of-use)
+6. [F06 USER FEEDBACK - TOASTS, EMAILS, SCREEN PROGRESSION](#F06-Feedback)
+    1. [Notifications](#F06.1-notifications)
+    2. [Form Validation](#F06.2-form-validation)
+    3. [Feedback emails](#F06.3-feedback-emails)
+7. [F07 View Products](#F07-view-search-products)
+8. [F08 Filter Products](#F08-filter-products )
+9. [F09 Sort Products](#F09-sort-products )
+10. [F10 Product Details ](#F10-product-details )
+11. [F11 Product Reviews](#F11-Reviews )
+12. [F12 About Page & User Feedbackk Form](#F12-about )
+13. [F13 Create Shopping Basket](#F13-basket )
+    1. [standard products](#F13.1-standard-products)
+    2. [Rings with sizing](#F13.2-sized-products)
+    3. [Personalised products](#F13.3-engraved-products)
+14. [F14 Create Order from Shopping Basket](#F14-create-order)
+    1. [Order delivery method](#F14.1-delivery-method)
+    2. [Order lead times](F14.2-lead-times)
+    3. [Order Lifecycle](F14.3-order-status)
+    4. [Confirmation emails](#F14.5-confirmation)
+    5. [Order Visibility to the user ](#F14.5-profile)
+15. [F15 Stripe Payments - with resilience](#F15-stripe)
+16. [F16 Order Lifecycle tracking - including AnPost tracking](#F16-lifecycle)
+17. 
+18. 
+19.
+20. [F20 Sysadmin Product Maintenance](#F20-sysadmin-products)
+21. [F21 ](#F21)
+22. [F22 Newsletter & Marketing, social links](#F22)
+23. [F23 SEO](#F23-SEO)
+        
+
+F08 - F09 - SORT PRODUCTS
+F10 - PRODUCT DETAILS
+F11 - PRODUCT REVIEWS (DONE)
+F12 - ABOUT PAGE/ USER FEEDBACK FORM (DONE)
+F13 - CREATE SHOPPING BASKET - (INCLUDING SIZING AND PERSONALISATION) (DONE)
+F14 - CREATE ORDER FROM SHOPPING BASKET (INCLUDING DELIVERY METHOD)
+F15 - STRIPE PAYMENTS (WITH RESILIIENCE)
+F16 - ORDER LIFECYCLE TRACKING, including ANPOST Tracking (DONE)
+F17 - PRODUCT LEAD TIMES
+F18 - USER PROFILE CREATION & MAINTENANCE
+F19 - EMAIL INTEGRATION
+F20 - SYSADMIN PRODUCT MAINTENANCE
+F21 - SYSADMIN - ORDER MAINTENANCE
+F22 - NEWSLETTER & MARKETING, SOCIAL LINKS
+F23 - SEO
+
+
 # Features within the Jeweller App:
  [Features](#features)
 
 ## Features
 -----------
-F01 Authentication and Login (DONE)
+F01  (DONE)
 F02 SECURITY
 F03 RESPONSIVENESS (DONE)
 F04 NAVIGATION
@@ -26,6 +87,7 @@ F20 - SYSADMIN PRODUCT MAINTENANCE
 F21 - SYSADMIN - ORDER MAINTENANCE
 F22 - NEWSLETTER & MARKETING, SOCIAL LINKS
 F23 - SEO
+
 ### F01 Authentication and Login
 --------------------------------
 In 'Guest' mode, a user can browse the site, make purchases, and make enquiries/give feedback to the shop owner.  This is perfect for first-time or casual users.  When an order is raised, the 'Guest' user will receive emails to notify them of the order's progress through despatch & delivery.   
@@ -41,7 +103,7 @@ A user may choose to signup for emailed updates (typically newsletters) from the
 </details>
 
 
-#### F01.2 Register a profile on Jeweller
+#### F01.2 Register as a user
 Signing in as a registered user gives extra functionality:
 * Track previous/multiple order history on one screen
 * Leave product reviews
@@ -100,38 +162,41 @@ To further personalise the user's experience, a user can access and update their
 </details>
 
 
-#### F01.4 Sysadmin Users
+#### F01.4 Sysadmin
 Certain users have an additional level of security access:
 * Able to access the site's backend to modify database entries
 * Product management console for create-edit-delete of Jeweller's products
 * Order management console to track lifecycle from order creation through to customer receipt.
 
-#### Summary - F01
+#### F01.5 Summary
 
 The functionality in feature **F01 Authentication and Login is quite wide**. This is based on the Django Allauth utility which provides a lot of standard templates and flows; these have been extended and customised for the Jeweller site. This satisfies user stories FTU_05 Navigation without mandatory login; FTU_03/SO_01 feedback at each step in a process; FTU_27 create a profile, RU_06 view order status; RU_04 receive prompts of upcoming celebration days; RU_08 newsletter;       
 
-F02 SECURITY
-### F02 Site security and Create-Read-Update-Delete Permissions
-There are currently 4 levels of access to the Jeweller App.  Guest - Registered - Profile - SysAdmin  
-Permissions are granted to database objects as follows:
+### F02 Security
 
+Security is defined at 4 levels of access to the Jeweller App.  
+Guest - Registered User - SysAdmin (Front-end) - SysAdmin(Backend, via Django's admin console)  
+
+Permissions are granted to database objects as follows:
 N = No Access
 C = Create
 R = Read
 U = Update
 D = Delete
 
-| User Type            | Description              | UserID                                         | User Profile & Personal Order Tracking                               | Products | Product Detail | Feedback/Enquiry | Reviews  | Basket | Order |  Comment Approval | Personal Task |
-| -------------------- | ------------------------ | ---------------------------------------------- | ------------------------------------------- | ------- | ---------------- | ------------ | ---------------- | ------------ | --------------- | ----------------- | ------------- |
-| **Guest**      | Never registered on site | none                                           | N - link disabled                           | R       | N                | N            | N                | R            | R               | N                 | N             |
-| **User**     |                          |  Creates allauth 'User' by registering | CRU (auto created on registration) | Read    | N                | CRUD         | CRUD             | CRUD         | CR              | N                 | CRUD          |
-|                      |
-| **UserProfile**      | returning user           | R                                              | R                                           | R       | R                |  CRUD        | CRUD             | R (and copy) | CR              | N                 | CRUD          |
-| **Sysadmin** | Shop owner     | CRUD                                           | CRUD                                        | CRUD    | CRUD             | CRUD         | CRUD             | CRUD         | CRUD            | CRUD              | CRUD          |
-|                      |
-|                      |
+#### F02.1 CRUD
+This table shows typical activities within the Jeweller site and who has permission to perform them.
+In cases where 'self' is shown, it indicates only the objects the user has created themselves (e.g. their own user profile)
 
-#### Muli-layered Security
+| User Type | Description | Register | User Profile | Products | Product Detail | Reviews | Inquiry form | Basket | Order | About Page Contents |
+|--|--|--|--|--|--|--|--|--|--|--|
+| **Guest** | Not registered on site | C | N | R | R | N | C | CRUD | CR | R |
+| **User**  | Registered | N/A | RU (self) | R | R | CR | C | CRUD | CR | R |
+| **Sysadmin - front-end** | Shop owner | N/A | RU(self) | CRUD | CRUD | R | R (via email) | CRUD | CR(self) | R |
+| **Sysadmin - back-end** | Shop owner | CRUD | CRUD | CRUD | CRUD | CRUD | R (via email) | CRUD | CRUD | CRUD |
+
+
+#### F02.2 Muli-layered Security
 The site is designed with multiple layers of security, so that a user generally may be unaware that an option exists as (e.g. Sysadmin menu, user profile option) the menu options will be hidden.  If a user becomes familiar with the URLs within the site, the options within these URLs perform verification and identity checks to ensure the user is a) registered and b) authorised to use the function, e.g. administrator functions.
 
 <details><summary>User can edit their own profile, note the URL string</summary>
@@ -155,7 +220,7 @@ While the front end tasks can be performed on a device of the user's choosing, t
 
 This satisfies FTU01 Ease of understanding; FTU02 Ease of navigation; FTU04 Access site on a device of my choosing; SO_02 Responsive site
 
-### F04 Site Navigation
+### F04 Navigation
 The site is designed with consistent navbar and footer (where applicable) across pages to make it easier to navigate from task to task.
    
 ![Navbar-registered user](./django_financial_planner/docs/readme_images/f02-navbar-registered-usr.png?raw=true "Navbar reflecting logged in user")
@@ -178,9 +243,9 @@ This addresses user stories
 
 
 
-### F05 Clear site purpose and ease of use
+### F05 Ease of Use
 F05 CLEAR SITE PURPOSE/ EASE OF USE
-
+Clear site purpose and ease of use
 Header 
 Footer 
 landing Page
@@ -194,13 +259,16 @@ Checkout - single page, clear vision
 ### F06 USER FEEDBACK - TOASTS, FORM ERRORS, EMAILS, SCREEN PROGRESSION
 Jeweller is designed to provide clear and consistent feedback to users as they progress through tasks.
 
-#### Toasts - 5-second pop-up messages
-These feedback messages are designed to guide a user through a process, giving them clear feedback that a step they've performed has been updated successfully. 
-Examples realting to user setup were given under feature F01; similarly when the user updates the Jeweller database they see a confirmation message.
+#### F06.1 Notifications
+Toasts are notifications which pop up and remain on-screen for 5 seconds.
+Notifications help users through multi-step processes, giving them clear feedback at each step performed, and ideally letting the user know what's going to hapen next, or any action needed from the user to make something happen. 
+For example, notifications are shown in the screnprints for new user registration in features section F01.
+Similarly when the user makes a change that updates the Jeweller database, they get a notification/confirmation poop-up message.
+Users of Jeweller site will be involved in multi-step processes; Toasts are used to keep the user informed about where they are in the process, and what the next step might be. 
 
-Examples:
 
-#### On-screen Data verification and error messages targeted to form fields
+#### F06.2 Form validation 
+On-screen Data validation on form fields, gives a targeted error and highlights the specific field in error.
 Forms are used to gather information throughout the Jeweller site, examples are:
 * Register as a new user 
 * Add a review
@@ -210,10 +278,7 @@ Forms are used to gather information throughout the Jeweller site, examples are:
 In this situation, error messages are specifically targeted at particular fields: the field is highlighted and the user is notified of the error.
 <details><summary>Subscribe to newsletter</summary><img src="./docs/readme_images/f06-subscribe-to-mailing-list-error.png"></details>
 
-#### Screen progression
-Users of Jeweller site will be involved in multi-step processes; Toasts are used to keep the user informed about where they are in the process, and what the next step might be. 
-
-#### Feedback Emails:
+#### F06.3 Feedback Emails:
 Emails (customised for the jeweller site) are generated in certain work processes:
 * User registration and authentication (customised allauth templates)
 * User newsletter signup (Mailchimp)
@@ -233,10 +298,9 @@ Emails (customised for the jeweller site) are generated in certain work processe
 The design of user feedback addresses user stories FTU_01,02 site navigation, FTU_03 Feedback at each step, FTU_21: email/text notifying me of my order number and lead time; FTU_22: enquiry form; FTU_26/RU_08 newsletter; RU_06 notification of order status;  RU_08 newsletter; RU_09 contact preferences; SO_01, 02 Error handling and feedback; SO_06 Order tracking; SO_12,13 Marketing promotions, SO_15 Extend walkthrough functionality for Jeweller site; SO_16 Employ marketing techniques.
 
 
-F07 - VIEW / SEARCH PRODUCTS
-### F07 View/ Search Products
+### F07 View Products
 ----------------------
-
+View and Sarch Products:
 The full set of articles is available from the Articles link on the navigation bar. 
 From this screen the user can see article title, image suggestive of content, summary/ excerpt, author, last updated, and gain an idea of article popularity, by seeing the number of likes, bookmarks and comments for the article.   'New' articles are flagged.
 
@@ -328,7 +392,7 @@ The About page is designed to be maintainable by the Shop Owner Admin.  In its c
 
 <details><summary>Enquiry/ feedback form</summary><img src="./docs/readme_images/f12-feedback-form.png"></details>
 
-This satisfies the user requirements SO_15 Extend the walkthrough models, and SO_17 SEO (as the About pages can also be used to build text strings which can be picked up by search engines); RU_07 Raise product enquiries on site; and FTU_01-05 Navigability.
+This satisfies the user requirements SO_15 Extend the walkthrough models, and SO_17 SEO (as the About pages can also be used to build text strings which can be picked up by search engines); SO_17 Tailor messages on About page to become closer to customers; RU_07 Raise product enquiries on site; and FTU_01-05 Navigability.
 
 ### F13 CREATE SHOPPING BASKET (INCLUDING SIZING AND PERSONALISATION)
 Jewellery site users can create a shopping basket.  The starting point is always a product detail page; from there the user has a quantity input, and an 'add to basket' button.

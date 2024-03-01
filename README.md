@@ -139,7 +139,7 @@ Generally the websites in this space tend to be strong on imagery and imaginatio
 The Jeweller website delivered in this project is functional and, provides a strong e-commerce solution with good functionality and features, but needs further UX work to implement some of the very visually appealing design approaches that elevate a site and encourage users to spend more time browsing and admiring products.
 
 ### UX Design Strategy Target Audience
-Target audience is people who might not otherwise make it across the threshold
+Target audience is people who might not otherwise make it across the physical threshold
 * Individuals with an interest in Celtic jewellery
 * Individuals with an interest in personalised jewellery (e.g engraved)
 * Individuals who have a unique or unusual requirement e.g. fainne badges
@@ -769,7 +769,192 @@ The website was tested on the following browsers:
 * Google Chrome v112.0.5615.136 (Samsung Galaxy tablet)
 * Mozilla Firefox v112.1.0 (Motorola g(7) phone)
 
-### Testing Features
+### Testing User Stories
+Features were tested under the following personas:
+| User Type | Description |
+|--|--|
+| FTU  | First-time user/ Guest user (not registered) |
+| RTU | Returning user/ Registered user (has a profile) |
+| SO | Sysadmin user, has additional privileges |
+
+<details>
+<summary>F01 Account Registration Tests </summary>
+<br>
+
+| UserType | Test |Result  |
+|--|--|--|
+| FTU | can create an account  | Pass |
+| FTU | is notified that a confirmation email has been sent (Toast messsage) | Pass | 
+| FTU | receives email notification of new account | Pass | 
+| FTU | cannot log into new account until confirmed | Pass |
+| FTU | can verify the new account using email link | Pass |
+| RU | can log into account once account hs been verified | Pass |
+| RU | is notified on logging into account (Toast message) | Pass |
+| RU | can log out of account |Pass |
+| RU | is notified on logging out of account (Toast message) |Pass |
+| RU | can take the 'forgotten password' link on signnin page | Pass |
+| RU | is notified that a reset link has been setn (Toast message) | Pass |
+| RU | receives a password reset email | Pass |
+| RU | can follow the link and reset account password | Pass |
+| RU | can log in with the new password | Pass |
+</details>
+
+---
+
+<details>
+<summary>User Navigation Tests</summary>
+<br>
+
+| Test |Result  |
+|--|--|
+|User can navigate to product| Pass |
+|User can access product details| Pass|
+|User can add a product to cart|Pass|
+|User can navigate back to products|Pass|
+|User can add additional products to cart|Pass|
+|User can add multiple quantities of a product |Pass|
+|User can navigate to cart|Pass|
+|Logged in User can navigate to the profile section of accounts|Pass|
+|User can access their saved address information|Pass|
+|User can access past orders|Pass|
+|User can access the blog section of the page|Pass|
+|User can access specific blogs|Pass|
+|User can access the contact page and form|Pass|
+|All links on footer open to correct pages|Pass|
+|All links on Heading Navigation open to correct option|Pass|
+
+</details>
+
+---
+
+<details>
+<summary>Account Security Tests</summary>
+<br>
+
+| Test |Result  |
+|--|--|
+|NLI cannot make reservation | Pass |
+|NLI cannot access profile page| Pass|
+|NLI cannot access admin panel|Pass|
+|NLI cannot access products management|Pass|
+|NLI cannot access the contact form page|Pass|
+|NLI cannot leave comments on blog|Pass|
+|LIU cannot access admin panel|Pass|
+|LIU cannot access products management|Pass|
+|LIU can access the contact form page|Pass|
+|LIU cannot edit products|Pass|
+|LIU can leave comments on blog articles|Pass|
+
+</details>
+
+--- 
+
+<details>
+<summary>Profile Tests</summary>
+<br>
+
+| Test |Result|
+|--|--|
+|NLI cannot access profile page | Pass |
+|LIU can access profile page|Pass|
+|LIU can see their details on the accounts home page|Pass|
+|LIU can update their first name|Pass|
+|LIU can update their last name|Pass|
+|LIU can update their email|Pass|
+|LIU can update their phone number|Pass|
+|LIU can navigate to their shipping information|Pass|
+|LIU can update street address 1 and 2|Pass|
+|LIU can update town or city|Pass|
+|LIU can update county|Pass|
+|LIU can update postcode|Pass|
+|LIU can update country|Pass|
+|LIU can navigate to change profile image page|Pass|
+|LIU who does not have a personal image has the default image|Pass|
+|LIU can add an image to their profile|Pass|
+|LIU can change their profile image once they have one set |Pass|
+|LIU can remove a personal image entirely |Pass|
+|LIU can select delete account|Pass|
+| Pop-up modal prompts the user to confirm account deletion before closing account |Pass|
+|LIU can close account successfully |Pass|
+|When user closes their account they are redirected to the home page|Pass|
+|When user closes account they receive a pop up notification advising them the account is closed|Pass|
+
+</details>
+
+---
+
+<details>
+<summary>Admin Tests</summary>
+<br>
+
+| Test |Result  |
+|--|--|
+|SUP can access admin panel from the my account dropdown | Pass |
+|SUP can access add product page from my account dropdown|Pass|
+|SUP can see the edit product option on the products page|Pass|
+|SUP can see the delete option on the products page|Pass|
+|SUP can write blogs from the admin panel and publish them|Pass|
+|SUP can edit products and update all fields successfully|Pass|
+|SUP can delete products from the products page|Pass|
+
+</details>
+
+---
+
+<details>
+<summary>Site wide tests</summary>
+<br>
+
+| Test |Result  |
+|--|--|
+|NLI cannot access contact page| Pass |
+|LIU can submit contact form to business|Pass|
+|SUP can view submitted forms from the admin panel|Pass|
+|LIU receives notification the form has been submitted|Pass|
+|User can navigate to privacy policy|Pass|
+|User can navigate to shipping policy|Pass|
+|User can navigate to terms of use page|Pass|
+|Social links open up to the correct pages|Pass|
+|Social links open up in a new tab|Pass|
+
+</details>
+
+---
+
+<details>
+<summary>Payment Tests</summary>
+<br>
+
+| Test |Result  |
+|--|--|
+|NLI can successfully make a payment & order| Pass |
+|LIU can successfully make a payment & order| Pass|
+|All users receive an email confirmation of order on deployed site|Fail|
+|In development email confirmation is printed to terminal|Pass|
+|If payment is successful user will be redirected to order success page|Pass|
+|If order fails due to incorrect information being submitted order will not be submitted|Pass|
+|If there is an error when processing the order the site returns a 500 error without processing order|Pass|
+
+</details>
+
+---
+
+<details>
+<summary>Blog Tests</summary>
+<br>
+
+| Test |Result  |
+|--|--|
+|NLI can access blog pages| Pass |
+|NLI cannot post a comment on blog posts|Pass|
+|LIU can comment on blog posts|Pass|
+|LIU can like blog posts|Pass|
+|LIU's information shows in the comment section after they post comment|Pass|
+|LIU's correct profile image shows on the comment they made|Pass|
+  
+</details>
+
+---
 ![Feature testing page1](./jeweller/docs/readme_images/val-feature-p1.png?raw=true "Feature testing page1") 
 
 ![Feature testing page2](./jeweller/docs/readme_images/val-feature-p2.png?raw=true "Feature testing page2") 
@@ -777,8 +962,12 @@ The website was tested on the following browsers:
 ![Feature testing page3](./jeweller/docs/readme_images/val-feature-p3.png?raw=true "Feature testing page3") 
 
 
+
+
+
+
 ### Bugs and issues
-Almost XX issues were recorded, I used an excel spreadhseet to keep track.  
+Almost 130 issues were recorded, I used an excel spreadhseet to keep track.  
 
 The structure of the log is shown here:
 
