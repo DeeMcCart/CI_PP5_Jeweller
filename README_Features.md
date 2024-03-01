@@ -3,20 +3,20 @@
 
 ## Features
 -----------
-F01 Authentication and Login
+F01 Authentication and Login (DONE)
 F02 SECURITY
-F03 RESPONSIVENESS
+F03 RESPONSIVENESS (DONE)
 F04 NAVIGATION
 F05 CLEAR SITE PURPOSE/ EASE OF USE
-F06 USER FEEDBACK - TOASTS, EMAILS, SCREEN PROGRESSION
+F06 USER FEEDBACK - TOASTS, EMAILS, SCREEN PROGRESSION (DONE)
 F07 - VIEW / SEARCH PRODUCTS
 F08 - FILTER PRODUCTS
 F09 - SORT PRODUCTS
 F10 - PRODUCT DETAILS
-F11 - PRODUCT REVIEWS
+F11 - PRODUCT REVIEWS (DONE)
 F12 - ABOUT PAGE/ USER FEEDBACK FORM
-F13 - CREATE SHOPPING BASKET
-F14 - CREATE ORDER FROM SHOPPING BASKET, including choosing delivery method
+F13 - CREATE SHOPPING BASKET - (INCLUDING SIZING AND PERSONALISATION) (DONE)
+F14 - CREATE ORDER FROM SHOPPING BASKET (INCLUDING DELIVERY METHOD)
 F15 - STRIPE PAYMENTS (WITH RESILIIENCE)
 F16 - ORDER LIFECYCLE TRACKING, including ANPOST Tracking
 F17 - PRODUCT LEAD TIMES
@@ -207,17 +207,19 @@ Forms are used to gather information throughout the Jeweller site, examples are:
 In this situation, error messages are specifically targeted at particular fields: the field is highlighted and the user is notified of the error.
 <details><summary>Subscribe to newsletter</summary><img src="./docs/readme_images/f06-subscribe-to-mailing-list-error.png"></details>
 
+#### Screen progression
+Users of Jeweller site will be involved in multi-step processes; Toasts are used to keep the user informed about where they are in the process, and what the next step might be. 
+
 #### Feedback Emails:
 Emails (customised for the jeweller site) are generated in certain work processes:
 * User registration and authentication (customised allauth templates)
 * User newsletter signup (Mailchimp)
 * Order lifecycle tracking (python sendmail using customised templates) - sent when order is created, packed, shipped, received/collected
-* Contact form - confirmation of enquiry logged
-
+* Contact form - confirmation of enquiry logged (generated using emailjs)
 
 <details><summary>Password reset email</summary><img src="./docs/readme_images/f06-password-reset-email.png"></details>
 <details><summary>Newsletter signup - confirmation email</summary><img src="./docs/readme_images/f06-newsletter-signup-email.png"></details>
-<details><summary>Order creation - email sent</summary><img src="./docs/readme_images/f06-order-update-email-p1.png"></details>
+<details><summary>Order creation - email sent</summary><img src="./docs/readme_images/f06-order-confirmation-email-p1.png"></details>
 <details><summary>Order packed - email sent</summary><img src="./docs/readme_images/f06-order-update-email-p2.png"></details>
 <details><summary>Order shipped - email sent</summary><img src="./docs/readme_images/f06-order-update-email-p3.png"></details>
 <details><summary>Order received - email sent</summary><img src="./docs/readme_images/f06-order-update-email-p4.png"></details>
@@ -225,18 +227,7 @@ Emails (customised for the jeweller site) are generated in certain work processe
 <details><summary>Contact/Enquiry form - confirmation of receipt</summary><img src="./docs/readme_images/f06-order-confirmation-email.png"></details>
 
 
-
-
-
-* SO_04 As site owner I want to provide straightforward, intuitive, consistent website navigation, (using graphical navigation where possible, even where the destination leads to text-based informataion)
-* SO_06 As site owner I want to provide a website, which meets current programming, performance and accessibility standards (html, css, javascript, responsive, accessibility, performance)
-* FTU_03 As a first time user I would like to be able to easily navigate the site and quickly learn its functionality 
-* FTU_06 As a first-time user I want clear, timely and unambiguous feedback and interaction
-* FTU_07 As a first-time user I expect links and functions that work as expected
-
-#### Screen progression
-* Some more text here perhaps?
-
+The design of user feedback addresses user stories FTU_01,02 site navigation, FTU_03 Feedback at each step, FTU_21: email/text notifying me of my order number and lead time; FTU_22: enquiry form; FTU_26/RU_08 newsletter; RU_06 notification of order status;  RU_08 newsletter; RU_09 contact preferences; SO_01, 02 Error handling and feedback; SO_06 Order tracking; SO_12,13 Marketing promotions, SO_15 Extend walkthrough functionality for Jeweller site; SO_16 Employ marketing techniques.
 
 
 F07 - VIEW / SEARCH PRODUCTS
@@ -334,7 +325,36 @@ From a site owner's perspective this contributes to user stories SO_03 using sit
 * FTU_04 As a first time user I would like to understand the acountability and trustability of information presented on the site - maybe via an 
 about page which clearly identifies information souces, information gathering/harvesting processes including moderation (flowchart would be good here).
 
-F13 CREATE SHOPPING BASKET
+### F13 CREATE SHOPPING BASKET (INCLUDING SIZING AND PERSONALISATION)
+Jewellery site users can create a shopping basket.  The starting point is always a product detail page; from there the user has a quantity input, and an 'add to basket' button.
+The user can assemble products, with personalisation, into a shopping basket.
+The product detail page is always used as the 'launch' to add an item to the shopping basket.
+
+<details><summary>Add to basket - standard item</summary><img src="./docs/readme_images/f13-basket-add-p1.png"></details>
+Once added, the basket quantity for this item is maintained per item, ie the item will only appear once in the basket, and any subsequent additions will increase the quantity of this basket line.
+
+If the item is a ring, then the ring size must be entered here, values can be chosen from a drop down
+<details><summary>Add to basket - standard item</summary><img src="./docs/readme_images/f13-basket-add-p2.png"></details>
+This defaults to 'Ring size M'
+Once added, the basket quantity is seen at item/ size level, so the item could appear multiple times in the basket, and any subsequent additions will create a new line if a different size, or will increase qty on this line if the item/size combination already exists in the basket.
+
+If the item is engraveable, then the user can enter text to be engraved on the item.
+This defaults to 'No engraving'.
+Note that ring and engraving are mutually exclusive as per the Jeweller shop owner's request (specialist equipment needed to engrave inside rings).
+<details><summary>Add to basket - standard item</summary><img src="./docs/readme_images/f13-basket-add-p3.png"></details>
+
+It is expected that many users will raise an order for one or two items, but larger baskets can be created with a combination of items as needed:
+<details><summary>Basket with combination of items</summary><img src="./docs/readme_images/f13-basket-p4.png"></details>
+
+Once created, the shopping basket can be maintained, with quantities per line increased/decreased/removed:
+<details><summary>Basket with combination of items</summary><img src="./docs/readme_images/f13-shopping-basket-decrease-qty.png"></details>
+
+And items can be removed from the shopping basket
+<details><summary>Remove item from shopping basket</summary><img src="./docs/readme_images/f13-shopping-basket-remove-product-p1.png"></details>
+
+
+This meets user requirements FTU_01-05; FTU_15,16 Maintain Shopping basket; SO_04,05,15 (extend the walkthorough shopping basket models to include personalisation)
+
 
 F14 CREATE ORDER FROM SHOPPING BASKET, including choosing delivery method
 
@@ -452,22 +472,6 @@ ability for a registered user to add an article to their reading list:
 * SO_11 As site owner, I would like to encourague users to engage with each article's content, by providing suggested actions and next steps for the user to take 
 * RU_01 As a returning user I want to mark information I find useful so I can quickly access it again (favourites)
 * RU_02 As a returning user I want to create a user profile so that I can personalise my site experience (profile image, bookmarks, actions/tasks)
-
-### F13 Personal Tasks - MyPlanner
-The MyPlanner dashboard gives access to the user's personal Task List.  
-This dashboard shows the number of tasks, amongst other information.
-
-From where personal tasks may be created, edited, or deleted.
-The users reading list can also be shown.
-As can the comments they've made on various articles.
-![My Planner](./django_financial_planner/docs/readme_images/f13-personalised-view-myplanner.png?raw=true "MyPlanner")
-
-Progressive reveal is used to hide information until the user requests it.
-Possible to maintain and edit personal tasks from here.
-
-* SO_12 As site owner, I would like to provide a personal database where users can store their own actions and record their progress in following the steps
-* RU_01 As a returning user I want to mark information I find useful so I can quickly access it again (favourites)
-* RU_02 As a returning user I want to create a user profile so that I can personalise my site experience (profile image, bookmarks, actions)
 
 ### F14 My Tasks
 
