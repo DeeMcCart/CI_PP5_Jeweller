@@ -18,7 +18,7 @@ F12 - ABOUT PAGE/ USER FEEDBACK FORM (DONE)
 F13 - CREATE SHOPPING BASKET - (INCLUDING SIZING AND PERSONALISATION) (DONE)
 F14 - CREATE ORDER FROM SHOPPING BASKET (INCLUDING DELIVERY METHOD)
 F15 - STRIPE PAYMENTS (WITH RESILIIENCE)
-F16 - ORDER LIFECYCLE TRACKING, including ANPOST Tracking
+F16 - ORDER LIFECYCLE TRACKING, including ANPOST Tracking (DONE)
 F17 - PRODUCT LEAD TIMES
 F18 - USER PROFILE CREATION & MAINTENANCE
 F19 - EMAIL INTEGRATION
@@ -367,7 +367,24 @@ F14 CREATE ORDER FROM SHOPPING BASKET, including choosing delivery method
 F15 STRIPE PAYMENTS (WITH RESILIIENCE)
 
 
-F16 - ORDER LIFECYCLE TRACKING, including ANPOST Tracking
+### F16 - ORDER LIFECYCLE TRACKING, including ANPOST Tracking
+
+One of the concerns that the Jeweller shop owners had about committing to a website was the ability to know what orders have been raised, and to track whether the order has been packed, shipped or received.  To alleviate some of the concerns about order tracking, a customised tracking portal was created, where the Sysadmin can progress an order through its various stages.
+When the first version of order-level tracking was demonstrated to the Jeweller organisation, they pointed out that they need to see which wtems are on each order.  Therefore the display has been extended to show order details per order.   
+
+To avoid excessive screen width a system of progressive reveal is used, with show-hide toggles for product details (of interest if at the **packing** stage) and order address (of interest if at the **shipping** stage).  An order can move through one of two lifecycles depending on the delivery method.
+If delivery method = COLLECT then ORDERED -> PACKED -> RECEIVED -> CLOSED
+If delivery method = REGPOST then ORDERED -> PACKED -> Assign Tracking ID -> SHIPPED -> RECEIVED -> CLOSED
+
+For convenience, a show-hide button is also available for closed orders.
+
+<details><summary>Order Tracking Portal - show products</summary><img src="./docs/readme_images/f16-sysadmin-order-admin-show-details-with-pers.png"></details>
+
+<details><summary>Order Tracking Portal - show addresses</summary><img src="./docs/readme_images/f16-sysadmin-order-admin-show-address.png"></details>
+
+
+
+
 
 
 F17 PRODUCT LEAD TIMES
