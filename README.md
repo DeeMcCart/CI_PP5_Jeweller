@@ -349,10 +349,6 @@ Written in the format 'As a **role** I want to **action** to achieve **desired o
 | SO-XX | acknowledge to the user that their feedback has been received| encourage feedback  |  
 
   
-### Other stakeholder Goals
-* OT_01
-* 
-
 ## UX Design Decisions
 ----------------
 
@@ -557,100 +553,27 @@ Example 'child' task: https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/17
 
  
 ### Agile Observations and learnings
-* Improvement from PP4 in use of EPICs defined as Issues, which allows a hierarchy of issues to be built
+* Improved from PP4 by use of EPICs defined as Issues, which allows a hierarchy of issues to be built (inspired by our cohort leader Alan Bushell),
+* A 2-way link (EPICs listing child issues, and each child issue showing its parent EPIC).  This helped keep track, as for any 'child' issue I could click on its parent EPIC and see what other related issues existed.  I could then traverse up or down between issues and EPICs.
 * All user stories are assigned a code e.g. RU_01 is first Returning User story, these are used with an abbreviated title to keep the Kanban board neat.
-* To avoid extra documentation work (as I found this quite time consuming in PP4), hyperlinks are used where possible, e.g. on commit message to link to relevant Github Issue. 
-* Improvement from PP4 by defining each EPIC as a parent Issue to represent hierarchy (inspired by our cohort leader Alan Bushell),  it was possible to demonstrate a hierarchy of EPIC -> issues by including a link to the sub-issues within the EPIC 'issue' body.  Thus it was possible to click on the issues within the EPIC, check their status, then return to the EPIC.
-* While it felt like a bit of duplication, I found on the 'Github Insights' bar charts for sprint retrospectives, the EPIC needed to be defined as a project field to become eligible for chart breakdown & grouping.
+* Hyperlinks to Github issues are used where possible, e.g. on commit message; this makes related commit messages visible against the issue. 
 * Labels were well used, 'EPIC' Issues were assigned label 'EPIC' where other issues were given a MoSCoW (01_MustHave 02_ShouldHave, 03_CouldHave, 04_WontHave).  Identifing the EPICs with a separate label allowed them to be excluded from the main KanBan board and moved to a separate board.
-* This project is quite comprehensive and contains a LOT of user stories!!!  In practice, as part of each end-of-sprint ceremony, I created Issues for the user stories to be done in that sprint.  That helped as it just meant the KanBan board didnt become overwhelming.
+* While it felt like a bit of duplication, I found on the 'Github Insights' bar charts for sprint retrospectives, the EPIC needed to be defined as a project field to become eligible for chart breakdown & grouping.
+* This project is quite comprehensive and contains a LOT of user stories!!!  In practice, as part of each end-of-sprint ceremony, I created Issues for the user stories to be done in the next sprint (rather than creating each user story issue at the project beginning).  This meant the KanBan board didn't become overwhelming.
   
 ## Features 
-The site includes over 20 features, these are cross-referenced to the user stories as per the screen captures below:
-
-### F01 LOGON	
-### F02 SECURITY	
-There are currently 4 levels of access to the Financial Planner App.  
-Permissions are granted to database objects as follows:
-
-N = No Acceess
-C = Create
-R = Read
-U = Update
-D = Delete
-| User Type            | Description              | UserID                                         | User Profile                                | Article | Article Approval | Article Like | Article Bookmark | Article Task | Article Comment |  Comment Approval | Personal Task |
-| -------------------- | ------------------------ | ---------------------------------------------- | ------------------------------------------- | ------- | ---------------- | ------------ | ---------------- | ------------ | --------------- | ----------------- | ------------- |
-| **First Time User**      | Never registered on site | none                                           | N - link disabled                           | R       | N                | N            | N                | R            | R               | N                 | N             |
-| **Registering user**     |                          |  Creates allauth 'User' account by registering | C (by adding profile photo once registered) | Read    | N                | CRUD         | CRUD             | CRUD         | CR              | N                 | CRUD          |
-|                      |
-| **Registered user**      | returning user           | R                                              | R                                           | R       | R                |  CRUD        | CRUD             | R (and copy) | CR              | N                 | CRUD          |
-| **Site admin (backend)** | Django 'staff' users     | CRUD                                           | CRUD                                        | CRUD    | CRUD             | CRUD         | CRUD             | CRUD         | CRUD            | CRUD              | CRUD          |
-|                      |
-|                      |
-
-
-
-
-### F03 RESPONSIVENESS	
-
-### F04 NAVIGATION	
-Screenprint - navbar - consistent
-
-Meets requirements:
-* FTU_01  As a **First-Time User** I want to **quickly understand the site purpose** so I **can decide whether to spend time exploring and discovering the site**
-* FTU_02  As a **First-Time User** I want to **easily navigate the site** so I **don't become frustrated and leave**
-
-
-### F05 CLEAR SITE PURPOSE/ EASE OF USE	
-Screenprint - Landing page - clear call-to-action
-
-### F06 USER FEEDBACK - TOASTS, EMAILS, SCREEN PROGRESSION	
-Consistent use of logos, message styles and pop-ups
-Screenprints:  Toast Messaging
-
-Meets requirements:
-* FTU_03 As a **First-Time User** I want to **receive feedback at each step on the site** so that I **understand what I am doing, and, if I'm in a multi-step process, I understand how far along I am in the processs**
-
-### F03 Responsiveness:
-Meets requirement:  * FTU_04 As a **First-Time User** I want to **access this site on a device of my choosing (mobile, tablet, laptop, desktop)** so that I can **access by a method and at a time that is convenient and accessible to me**
-
-### F04 Ability to navigate the site without login
-
-* FTU_05 As a **First-Time User** I want to **navigate the site without mandatory login** so **I can discover site features before deciding whether to commit to using site**
-* SOXX Want to use the site as a shop window and welcome browsers who will complete the purchase pysically at the shop
-
-### F07 - VIEW / SEARCH PRODUCTS	
-### F08 - FILTER PRODUCTS	
-### F09 - SORT PRODUCTS	
-### F10 - PRODUCT DETAILS	
-### F11 - PRODUCT REVIEWS	
-### F12 - ABOUT PAGE/ USER FEEDBACK FORM	
-### F13 - CREATE SHOPPING BASKET	
-### F14 - CREATE ORDER FROM SHOPPING BASKET, including choosing delivery method	
-### F15 - STRIPE PAYMENTS (WITH RESILIIENCE)	
-### F16 - ORDER LIFECYCLE TRACKING, including ANPOST Tracking	
-### F17 - PRODUCT LEAD TIMES	
-### F18 - USER PROFILE CREATION & MAINTENANCE	
-### F19 - EMAIL INTEGRATION	
-### F20 - SYSADMIN PRODUCT MAINTENANCE	
-### F21 - SYSADMIN - ORDER MAINTENANCE	
-### F22 - NEWSLETTER & MARKETING, SOCIAL LINKS	
-### F23 - SEARCH ENGINE OPTIMISTAION
-### F24 - ERROR PAGES
-
-
-Requirements Traceability Matrix - First-time Users
-
-
-
-Requirements Traceability Matrix - Returning Users and System/Shop Owner
-
+The site includes over 20 features, these are listed in a separate READme document (use ctrl-click to open in a separate tab):
 
 ### Features in Scope 
 
 <a href="https://github.com/DeeMcCart/Jeweller/blob/main/README_Features.md" target="_blank">Site features</a>
 
 It was helpful to create this as a separate document, as it is also offered to users as a 'how to' guide.
+
+### Features vs user stories
+
+Requirements Traceability Matrix - First-time Users
+Requirements Traceability Matrix - Returning Users and System/Shop Owner
 
 ### Implementation Decisions
 Incremental delivery, 
@@ -662,7 +585,7 @@ Used real-life verification from an Jewellery shop owner, who was clear on the f
 <br>  
 Some of the site ideas and features needed only really became clear as I played with the site as it was delivered, and experienced frustration or spotted opportunites or elements that were worth adding. So the site grew organically as time went on.  The Agile approach with weekly sprints suits incremental development, as it encouraged weekly analysis of what had been done, and how it might progress.
 <br>
-There were quite a few 'false starts' when I tried to implement functionality and then found that it just didnt work in practice.  
+There were a number of 'false starts' when I tried to implement functionality and then found that it just didnt work in practice.  
 
 Examples were:
 * I envisaged building a rich cross-reference of product characteristics using category codes e.g. to store metal type (gold, silver, platinum etc); type of stone (diamond, tanzanite, garnet etc) and other characteristics which could be built into a search matrix, with dropdown searches per category for the customer.  However when I implemented this, I found it REALLY clunky to edit a product and to maintain the categories, and I also realised that the python q search functionality actually did a really good job of this type of searching (picks up any word or characters from product name/description).  So I backtracked and reversed out this detail.  I simplified the Product model as a result.  See .  [Link Text]([Link URL](https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/31)) {target="_blank"}
@@ -675,14 +598,9 @@ Examples were:
 * Shipping lead time.  I wanted to implement some funtionality whereby  the user would be notified as to the likely despatch date for their order, and the concept of prioritising orders based on their shipping date, and to flagging up 'late' orders falling behind schedule.  I added a default lead time based on product source (stock = 1 day between order creation and shipping, make-to-order = 7 days, commisioned item = 21 days etc) with an editable value per product. Based in this i intended to calculate order/line shipping dates.  I added a method on the order model to determine if the order was 'late'.  This had to be backtracked as it was constantly re-evaluating 'late'ness of an order, and kept prompting as a changed order on every migration.
 Shipping lead time is partially implemented witin the delivererd solution.
 
-
-
-
-
-
-
-
 ### Features Left to Implement
+As this relates to a real-life site there are a number of features that the Jeweller shop owners have discussed as being part of their current business processes, which would be good to reflect in the next software version.
+
 * FTU_28 (Future): As a **First-Time User** I would like to  **make an appointment for engagement rings** in order to **elevate a high value buying decision**
 * 
                
@@ -721,8 +639,8 @@ The following additional python libraries were used:
 
 ### Python Linting
 There are 5 apps plus a project so approx 30 python files involved.  The approach taken to identifying and resolving python linting errors was to work through module-by-module using a command such as 'python3 -m flake8 APPNAME --exclude=APPNAME/migrations/'.  That way it was possible to systematically work through each of the app files and tick off each of the identified errors.
-Of course, following the linting process means introducing more errors so it is a somewhat cyclical process.
-Code not written directly by me (e.g. migrations within each app, Stripe snippets re-used) was not included in the linting validation, as not relevant for migrations which tend to have ultra-long lines and I was cautious about editing some of the template coding.
+Of course, following the linting process means introducing more errors so it is a somewhat cyclical process!
+Code not written directly by me (e.g. migrations within each app) was not included in the linting validation, as I was cautious about making inadvertent changes.
 
 ### HTML Validation 
 - HTML
@@ -784,7 +702,7 @@ Features were tested under the following personas:
 <summary>F01 Account Registration Tests </summary>
 <br>
 
-| UserType | Test |Result  |
+| Role | Test |Result  |
 |--|--|--|
 | FTU | can create an account  | Pass |
 | FTU | is notified that a confirmation email has been sent (Toast messsage) | Pass | 
@@ -808,8 +726,8 @@ Features were tested under the following personas:
 <summary>User Navigation Tests</summary>
 <br>
 
-| Test |Result  |
-|--|--|
+| Role | Test |Result  |
+|--|--|--|
 |User can navigate to product| Pass |
 |User can access product details| Pass|
 |User can add a product to cart|Pass|
