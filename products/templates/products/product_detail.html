@@ -55,8 +55,8 @@
                         <a href="#review-container">
                             <meter class="average-rating" min="0" max="5" value = {{product.average_rating}}
                                 title="reviews out of 5"></meter>
-                            <p>Average rating {{product.average_rating}}</p>
-                            <p>({% if num_reviews == 0 %}No 
+                                {% if product.average_rating %}<p>Average rating {{product.average_rating}} </p>{%endif %}
+                            <p>({% if num_reviews == 0 %}No
                                     {% else %}{{ num_reviews }} 
                                     {% endif %} Review{% if num_reviews != 1 %}s{% endif %})
                             </p>
@@ -66,7 +66,7 @@
                     <p class="mt-3">{{ product.description }}</p>
                     
                     <!-- Add to basket options -->
-                    <form class="form" action="{% url 'add_to_basket' product.id %}" method="POST">
+                    <form class="form form-update" action="{% url 'add_to_basket' product.id %}" method="POST">
                         {% csrf_token %}
                         <div class="form-row">
                             <!-- add logic to deal with ring sizing -->
@@ -90,9 +90,18 @@
                                     </select>
                                 </div>
                             {% endif %}
-
+                            <!-- add logic to deal with engraving/personalisation -->
+                            {% with product.can_be_engraved as e %}
                             <div class="col-12">
-                                <p class="mt-3"><strong>Quantity:</strong></p>
+                                {% if e %}
+                                    <p class="mt-1"><strong>Engraving (optional):</strong>
+                                    <input type="text" length={{product.max_engrave}} class="form-control rounded-0 w-40" name="engrave_text" id='id_engrave_text' value="No engraving"> 
+                                {% endif %}
+                            </div> <!-- end div "col-12" -->
+                            {% endwith %} <!-- end with product.can_be_engraved -->
+      
+                            <div class="col-12">
+                                <p class="mt-1"><strong>Quantity:</strong></p>
                                 
                                 <div class="form-group w-50">
                                     <div class="input-group">
@@ -129,15 +138,7 @@
                                 <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Basket">
                             </div> <!-- end div col-12 -->
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                               <!-- add logic to deal with engraving/personalisation -->
-                               <div class="col-12">
-                                {% with product.can_be_engraved as e %}
-                                {% if e %}
-                                    <p class="mt-3"><strong>Engraving (optional):</strong>
-                                    <input type="text" length={{product.max_engrave}} class="form-control rounded-0 w-40" name="engrave_text" id='id_engrave_text' value="No engraving"> 
-                                {% endif %}
-                                {% endwith %}
-                            </div> <!-- end div "col-12" -->  
+                            {% endwith %} <!-- product.has_sizes as s -->
                         </div> <!-- end div form-row -->
                     </form> <!-- end  add_to_basket form -->
                 </div>  <!-- end class product-details-container mb-5 mt-md-5 -->
@@ -199,7 +200,6 @@
             <i class="scroll-arrow fas fa-arrow-up text-black mx-auto my-auto"></i>
         </a>	
     </div>
-    {% endwith %}
 {% endblock %}
 
 {% block postloadjs %}

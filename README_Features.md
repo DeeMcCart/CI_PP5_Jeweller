@@ -281,7 +281,7 @@ Product details functionality has been extended from the walkthrough to include 
 </details>
 
 
-### F11 PRODUCT REVIEWS
+### F11 Product Reviews
 A logged-in user can create a review of a product - the user doesn't need to first purchase the product. This was a deliberate design descision based on the Jeweller shop owner's experience with other social media sites, where positive comments from followers sparked interest amongst their friends and contacts - a form of organic marketing.  Also, the jewellery products displayed may be expensive or limited-edition items, which restricts the number of purchasers, however many people may admire the item of jewellery, or take inspiration from it, and wish to leave a review on that basis.
 
 Reviews are shown with the user's name and avatar, which promotes social marketing and peer-user prompting.  Reviews will not be displayed, until approved by SysAdmin/ Moderator.  
@@ -290,11 +290,20 @@ Customers who make a purchase are encouraged, once they've received the item, to
 
 Reviews are visible on the product detail page.  The average rating, and approved reviews count, is shown in the visible section of product detail screen, and liked to reviews towards the bottom of the page.  
 
-<details><summary>Products with visible rating</summary>
-<img src="./docs/readme_images/f11-average-rating-p0.png">
+<details><summary>Products page - Guest User - view rating </summary>
+<img src="./docs/readme_images/f11-guest-user-can-view-rating.png">
 </details>
 
-<details><summary>Product detail rating (average) and link to reviews</summary>
+<details><summary>Products page - Signed-in User - view/add rating and choose to go directly and leave a review </summary>
+<img src="./docs/readme_images/f11-registered-user-can-leave-product-review.png">
+</details>
+
+<details><summary>which brings the signed-in user directly to the Product Detail - Reviews section </summary>
+<img src="./docs/readme_images/f11-registered-user-can-leave-product-review-p2.png">
+</details>
+
+
+<details><summary>Product detail shows aerage rating with link to reviews</summary>
 <img src="./docs/readme_images/f11-average-rating-p1.png">
 </details>
 
