@@ -94,7 +94,7 @@
                     <td class="details hide-field">
                         Line{{item.line_number}}:  {{ item.product.name }} 
                         <strong>Qty</strong> {{item.quantity}} @ {{ item.price }} each
-                        {% if item.product_size != 'Not set' %}<strong>Size</strong> {{ item.product_size|upper }}{% endif %} 
+                        {% if item.category == 'ring' %}<strong>Size</strong> {{ item.product_size|upper }}{% endif %} 
                         {% if item.product.can_be_engraved %}<strong>Engraving: </strong>{{ item.engrave_text }}{% endif %}
                         
                     </td>

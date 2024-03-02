@@ -6,25 +6,25 @@ Developer:  **Deirdre McCarthy**, Feb 2024
 
 # Table of Contents:
 1. [About](#about)
+    1. [Responsiveness](#responsiveness)
 2. [Project Goals: ](#project-goals)
     1. [UX Design - Strategy ](#ux-design-strategy) 
     2. [UX Design - Strategy - Competitor Portals](#ux-design-strategy-analysis-of-competitors)
     3. [UX Design - Strategy - Target Audience](#ux-design-strategy-target-audience)
-3. [Ecommerce and Markting Stagtegy](#ecommerce-strategy)
+3. [Ecommerce and Marketing Stagtegy](#ecommerce-strategy)
     1. [Ecommerce Business Model](#e-commerce-business-model)
     2. [Business impacts of adopting an ecommerce strategy](#business-impacts)
     3. [Customer Profiles](#customer-profiles)
     4. [Marketing Strategy](#marketing-strategy)
 3. [UX Design - Scope](#ux-design-scope)
-    1. [UX Design - Scope - User Requirements and Expectations](#ux-design-scope-user-requirements-and-expectations)
-    2. [UX Design - Scope - Data](#ux-design-scope-data)
-    3. [UX Design - Scope - Viewing Device](#ux-design-scope-viewing-device)
+    1. [UX Design - Scope - User Requirements and Expectations](#user-requirements-scope)
+    2. [UX Design - Scope - Geographical](#shipping-constraints)    
+    3. [UX Design - Scope - Data](#data-scope)
 4. [User goals/ user stories: ](#user-goals-user-stories)
     1. [Site Owner Goals](#site-owner-goals)
     2. [First-time User Goals](#first-time-user-goals)
     3. [Returning User Goals](#returning-user-goals)
-    4. [Other stakeholder Goals](#other-stakeholder-goals)
-5. [Further UX Design: ](#ux-design-decisions)
+ 5. [Further UX Design: ](#ux-design-decisions)
     1. [Skeleton - Wireframes; ](#wireframes)
     2. [Surface - Fonts; ](#fonts-chosen)
     3. [Surface - Colours](#colour-scheme)
@@ -105,7 +105,7 @@ The challenges of the current business model (which may be partly addressed with
 
 ### Responsiveness
 The site is built, with the help of Bootstrap & CSS media queries, to be largely responsive so it can be used on a range of devices.
-It is anticipated that certain system admin tasks such as adding or maintaining products, maintaining customer orders, will be performed on a mid to large screen device - a tablet or desktop.  The shop currently has several laptops for performing admin tasks.
+It is anticipated that certain system admin tasks such as adding or maintaining products, maintaining customer orders, will be performed on a mid to large screen device - a tablet or desktop.  The shop currently has a laptop and a tablet for performing admin tasks.
 
 <details><summary>Responsive Mockup</summary><img src="./docs/readme_images/val-responsive.png"></details>
 
@@ -197,9 +197,10 @@ User 4: Males seeking gifts for close females in their life.  These purchasers a
 
 User 5:  Persons (male or female) with a strong interest in celtic jewellery, particularly when it is personalised for them (sizing, engraving, one-off-modifications)
 
-### Jeweller Marketing Strategy
+### Marketing Strategy
 
-The plan for jeweller going forward is to:
+The plan for Jeweller going forward is to:
+
 1. Build on the organic marketing already being done on facebook and Instragram (which generally gathers up to 20 likes and comments per post), extend this by always including a website link in the marketing content.  Similarly link from the website to these social media platforms.
 2. Build content in the 'about' section of the website (it is designed to be quite maintainable from the admin console) to build the website's credibility and increase awareness and alignment with potential customers.  Fresh, regularly updated website content should increase SEO rankings.
 3. Build text in individual product descriptions using SEO keywords  
@@ -223,7 +224,7 @@ Short-tail jewellery, jewelry, jewellers, jewellery Ireland, jewelry Ireland, je
         jewellery repairs, fix broken chain,
         jewellery engraving,  ogham, engrave, customised jewellery, remodelled jewellery, handmade jewellery, rhodium plating rings,
 
-Long-tail
+Long-tail keywords include: 
 
 ### Sitemap.xml
 
@@ -237,7 +238,7 @@ A robots.txt file was created which points to the sitemap allowing google to cra
 ## UX Design Scope
 ----------------
 
-### UX Design Scope - User Requirements and Expectations
+### User Requirements Scope
 <ul>MVP Requirements:
     <li>Must be intuitive to use</li>
     <li>Must be easy to learn</li>
@@ -257,12 +258,12 @@ A robots.txt file was created which points to the sitemap allowing google to cra
     <li> a means of integrating date-based promotions</li>
 </ul>
 
-### UX Design Scope - Geographical & shipping constraints:
+### Shipping constraints:
 Currently interested in orders to be shipped within Ireland only.
 The business is comfortable using registered mail as a shipping method.
 The business would ideally prefer to implement 'click and collect' and largely use the website as an extension of the physical shop window.
 
-### UX Design Scope - Data
+### Data Scope
 To build this project, product images and details from the jeweller's facebook posts over the last 3 years was harvested, and formed into a Google sheets database, which was used to control initial manual dataload into the DEV environment.
 Once loaded it was possible to transfer these test products via json export/import into the PROD database.
 Products are now maintained directly in the PROD database.
@@ -349,7 +350,7 @@ Written in the format 'As a **role** I want to **action** to achieve **desired o
 
   
 ## UX Design Decisions
-----------------
+----------------------
 
 ### Wireframes
 <details><summary>Landing Page, search & filter functionality </summary>
@@ -380,24 +381,28 @@ Written in the format 'As a **role** I want to **action** to achieve **desired o
 (To be completed)
 
 ### Colour Scheme 
-(To be completed) 
+A plain white page backdrop was implemented.
+This is to complement the existing design images which tend to be against textured, natural backgrounds, stone and wood etc.
+Text and buttons shown in a near-black colour with certain notificiations showing teal-coloured button or text. 
 
 ### Design Images
-(To be completed)
-
-### Design Images - Icons and Symbols
-(To be completed)
+The Jeweller's existing design images which had been uploaded to facebook, were re-used for this Version 1 implementation.
+The landing page provides a splash of colour, this uses a recent flyer image developed by the Jeweller.
 
 ## Agile
-An Agile approach was followed in plannning this project.  Github Issues and Projects were used to track project work as follows:
-* Sprints - The project was organised into 5 one-week sprints/iterations Sprint1..Sprint5.
-* EPICS - created to track the various streams of work; Stored as github issues (to allow a task hierarchy) AND as Issue custom fields (to allow for analysis in github insights).  Typically include quite a few sub-issues.  
+--------
+
+An Agile approach was followed in plannning this project.  
+
+Github Issues and Projects were used to track project work as follows:
+* Sprints - The project was organised into 5 one-week sprints/iterations Sprint1..Sprint5 (the final sprint was allowed an extra 5 days to complete).
+* EPICS - created to track the various streams of work; Stored as github issues (to allow a task hierarchy) AND as Issue custom fields (to allow for analysis in github insights).  Each EPIC typically includes quite a few sub-issues.  
 * 6-7 EPICs created for this proect
-* Issues - created to represent items of work.  Issues = User Stories are apply a template, which requires a title, statement in the form of As a **role** I want to **action** in order to **benefit**, Pre-requisites and Tasks.
+* Issues - created to represent items of work.  Typically one issue was created per User Story.  A template was used to keep these consistent (and save on keying), which requires a title, parent EPIC reference, statement in the form of As a **role** I want to **action** in order to **benefit**, Pre-requisites, Acceptance criteria and Tasks.  Where a user story was completed across multiple sprints, I tried to split it into sub-tasks so it became multiple issues.  Some issues were created for tasks that were necessary but didn't align with an individual user story - e.g. deployment, MVP deployment, Version1 deployment.
+* 70 User Story/Task issues were created for this project.
 * Gitpod commit messages can reference #XX, this links to issue XX.  
-* Github allows multi-media comments per issue,  used for screenprint **proofs** of tsk completion. 
-* YY User Story/Task issues were created for this project.
-* Bugs - project issues were used to track bugs, an individual template was created for bug data capture.
+* Github allows multi-media comments per issue,  I used this to hold screenprints as **proofs** of task completion. 
+* Bugs - Generally these were tracked using an excel spreadsheet so as not to clutter the Kanban board, I logged 130 bugs/ observations over the project duration.
 * Kanban boards - 4 status buckets - backlog, in-progress, review, done.  
 * Labels - Used to track MoSCoW prioritisation
 * Project fields: Prioritities P0 = top triority, P1, P2
@@ -405,51 +410,33 @@ An Agile approach was followed in plannning this project.  Github Issues and Pro
 * Project fields: Estimated Story Points (time); actual SPs - used for end-of-spring analysis   
 The entire approach was covered under the EPIC 'Agile' and can be seen under this link: https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/10
 
-### Following an Agile process during development:
-* Timeboxing each Sprint is challenge.  Attempts to 'just finish' a task by extending the iteration by a day or two, needed to be curbed.  Instead, I had to (will have to) train myself to end the sprint, then assess which work had been completed or not.
-* Story points present another challenge.  A very natural interpretation of story points is to assign them a time value (rather than an 'effort' value).  So, at the outset, the most natural approach felt like assigning each task an estimated duration, and reflecting on story points as hours.  This allowed me to capacity plan the first couple of sprints/ iterations based on the time I had available..... I await to see if I will continue this as the project progresses, or whether I move to a more fluid interpretation of SPs.
-
-   
+ 
 ### Project
 A github project was created within the Jeweller repo.  At a high level the project details are very simple really just a name and description.
 
-<details><summary>GitHub Project Setup</summary>
-<img src="./docs/readme_images/agile-overview-of-project.png">
-</details>
-
-
-### Issue Template
-<details><summary>Issue template - User Story</summary>
-<img src="./docs/readme_images/agile-issues-template.png">
-</details>
+<details><summary>GitHub Project Setup</summary><img src="./docs/readme_images/agile-project-setup.png"></details>
     
 At the outset, an issue template was created specifically for user stories.  This holds 5 sections:  
 * EPIC:  The parent functional theme for this user story.  
 * A statement of what is to be achieved in the format 'As a **role** I want to **action** to achieve **goal**'.
-* Assumptions made when creating this isssue (e.g. pre-requisites)
-* Acceptance Criteria: List of conditions to demonstrate the issue has been satisfied/resolved
+* Assumptions/ Pre-requisites
+* Acceptance Criteria: List of conditions to prove user story is delivered
 * Tasks:  Checkbox-marked list of tasks to address this user story.
 * Associated project tracking fields (MoSCoW label, priority, estimated SPs, actual SPs, EPIC, Assigned-to, associated Project & Milestone)
 
 ### Project Issues
-Issues were created to track planned end-to-end work in Financial_Planner, using the issue template for consistent appearance and content.   
-Financial_Planner project scope includes UX design tasks, agile project setup, development tasks, documentation,  and testing.
-<details><summary>Example issue - user story</summary>
-<img src="./docs/readme_images/agile-issue-example-user-story.png">
-</details>
+Issues were created to track planned end-to-end work in Financial_Planner, using the issue template for consistent appearance and 
 
-Some of the issues created were in fact tasks, which underpinned several user stories:
-<details><summary>Example issue - task</summary>
-<img src="./docs/readme_images/agile-issue-example-task.png">
-</details>
+![Example issue - based on user stories ](https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/49)
+
+![Example issue - based on deployment tasks (not directly linked to a user story) ](https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/9)
 
 ### EPICs
-An epic in agile is a large body of work that can be broken down into a number of smaller stories, which are represented as github Issues.
-The Financial_Planner project uses custom fields to hold the epic name, some initial high-level epics:  Agile, UX, Docs, MVP.
-For clarity EPIC is also listed at the top of each issue.
-<details><summary>EPICs</summary>
-<img src="./docs/readme_images/agile-epics.png">
-</details>
+This project had 10 EPICs, it is easiest to get a picture of these from the Kanban board below.  
+For cross-reference EPIC is also listed at the top of each issue, so it is possible to click from a child issue to its parent EPIC and vice verssa.
+
+![Kanban board showing all EPICs in project](https://github.com/users/DeeMcCart/projects/5/views/7)
+
 
 ### MoSCoW prioritisation
 For prioritising user stories and known tasks, I assigned a label to each issue, one of:
@@ -458,14 +445,11 @@ For prioritising user stories and known tasks, I assigned a label to each issue,
 * Could-have (or nice-to-have)
 * Won't have (perhaps its a never, or perhaps this just means 'not at this release')
 To make selection easier (ensure that these appeared at top of label list in the order above) I preceded each label with a number as shown:
-<details><summary>MoSCow labels</summary>
-<img src="./docs/readme_images/agile-issues-moscow-prioritization.png">
-</details>
+<details><summary>MoSCow labels</summary><img src="./docs/readme_images/agile-issues-moscow-prioritization.png"></details>
 
 ### Estimated & Actual Story Points
 Story points are intended as a 'level of required effort' measure.  I used a custom issue category field to represent these. 
 While at the beginning it was easiest to think of story points in terms of 'hours', as the sprints passed it became easier to assess relative to work already completed.
-An observation would be that interpreting story points as 'hours' is somewhat one-dimensional, as sometimes the elapsed hours can be greater or lesser depending on mood, state of flow etc.
 
 ### Milestones
 Three project milestones were used:
@@ -507,32 +491,18 @@ The insights/ burndown charts were useful to track the actual time logged, a use
 
 ### Issue Lifeycle
 An issue is set to progress through a number of stages, each represented by a status during its lifecycle.  
-Issues progressed through:
-* Backlog 
-* To-do
-* In-progress
-* Review
-* Done
-
-
-### Tabular Projects View
-The tabular view of projects was very useful at the backlog grooming stage, as it shows open issues, and gives easy visiblity of associated fields, e.g. story points, epic, assigned sprint, etc 
-<details><summary>Projects - Tabular view</summary>
-<img src="./docs/readme_images/agile-overview-of-project.png">
-</details>
-
-<details><summary>Projects - Tabular view2</summary>
-<img src="./docs/readme_images/agile-issues-tabular-view.png">
-</details>
+Issues progressed from backlog through to done, as per Kanban board.
+[!Kanban board showing issue lifecycle](https://github.com/users/DeeMcCart/projects/5/views/2)
 
 
 ### Commit Messages
-The XXXX convention was adopted this time around for commit messsages, as prviously submitted projects have highlighted small inconsistencies.
+The conventionalcommits.org approach was adopted for my PP5 commit messsages, as per marking feedback from previous projects.
 Where possible the Kanban issue # is referenced, this links the commit message to the issue on the Kanban board.
     
 ### Kanban board
 Within a sprint, the kanban board provides invaluable visual tracking.  
 In the Jeweller kanban board, issues progress from leftmost column (backlog) to rightmost (done)
+
 Note that each column holds a descriptor to tell you what is happening to issues within the column.
 <details><summary>Projects - Kanban (simple)</summary><img src="./docs/readme_images/agile-issues-kanban-view.png"></details>
 
@@ -541,7 +511,6 @@ Two main Kanban views were used, one for EPICs only, and one for Issues.  See:
 * The storypoints for each individual issue, as well as the total storypoints at each lifecycle status (e.g. highlighted in green for 'Todo' column)
 * The EPIC associated with each issue (e.g. highlighted in pink within the 'Done' column)
 
-![Projects - Rich Kanban board](.docs/readme_images/agile-issues-kanban-view-sp-epic-num-issues-per-col.png?raw=true) "Improved kanban board with lots of information"
 
 Viewing by EPIC was useful for an overall view of the project: https://github.com/users/DeeMcCart/projects/5/views/7
 
@@ -551,18 +520,20 @@ Example 'child' task: https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/17
 
  
 ### Agile Observations and learnings
-* Improved from PP4 by use of EPICs defined as Issues, which allows a hierarchy of issues to be built (inspired by our cohort leader Alan Bushell),
+* Improved from PP4 with use of EPICs defined as Issues, which allows a hierarchy of issues to be built (inspired by our cohort leader Alan Bushell's guidance),
 * A 2-way link (EPICs listing child issues, and each child issue showing its parent EPIC).  This helped keep track, as for any 'child' issue I could click on its parent EPIC and see what other related issues existed.  I could then traverse up or down between issues and EPICs.
 * All user stories are assigned a code e.g. RU_01 is first Returning User story, these are used with an abbreviated title to keep the Kanban board neat.
 * Hyperlinks to Github issues are used where possible, e.g. on commit message; this makes related commit messages visible against the issue. 
 * Labels were well used, 'EPIC' Issues were assigned label 'EPIC' where other issues were given a MoSCoW (01_MustHave 02_ShouldHave, 03_CouldHave, 04_WontHave).  Identifing the EPICs with a separate label allowed them to be excluded from the main KanBan board and moved to a separate board.
 * While it felt like a bit of duplication, I found on the 'Github Insights' bar charts for sprint retrospectives, the EPIC needed to be defined as a project field to become eligible for chart breakdown & grouping.
 * This project is quite comprehensive and contains a LOT of user stories!!!  In practice, as part of each end-of-sprint ceremony, I created Issues for the user stories to be done in the next sprint (rather than creating each user story issue at the project beginning).  This meant the KanBan board didn't become overwhelming.
+* Sticking to timeboxing each Sprint is still a challenge.  Attempts to 'just finish' a task by extending the iteration by a day or two, needed to be curbed.  Instead, I had to (will have to) train myself to end the sprint, then assess which work had been completed or not.
+* Story points - I used these as estimates of hours to complete each task.  I then tracked the actual time spent in hours, to determine if I was going adrift.
   
 ## Features 
-The site includes over 20 features, these are listed in a separate READme document (use ctrl-click to open in a separate tab):
 
 ### Features in Scope 
+The site includes over 20 features, these are listed in a separate READme document (use ctrl-click to open in a separate tab):
 
 <a href="https://github.com/DeeMcCart/Jeweller/blob/main/README_Features.md" target="_blank">Site features, open in separate tab using Ctrl-click</a>
 
@@ -680,7 +651,6 @@ The website was tested on the following devices:
 * HP laptop & associated widescreen monitor
 * Samsung Galaxy S10 tablet
 * Motorola G(7) android phone
-* Lenovo IdeaPad Flex3 (mini laptop)
 
 ### Multi-browser Testing
 The website was tested on the following browsers:
@@ -712,27 +682,42 @@ Features were tested under the following personas:
 | RU | can log out of account |Pass |
 | RU | is notified on logging out of account (Toast message) |Pass |
 | RU | can take the 'forgotten password' link on signnin page | Pass |
-| RU | is notified that a reset link has been setn (Toast message) | Pass |
+| RU | is notified that a reset link has been set (Toast message) | Pass |
 | RU | receives a password reset email | Pass |
 | RU | can follow the link and reset account password | Pass |
 | RU | can log in with the new password | Pass |
 </details>
 
 ---
-
 <details>
-<summary>User Navigation Tests</summary>
+<summary>Product & Navigation Tests</summary>
+| FTU | is notified that a confirmation email has been sent (Toast messsage) | Pass | 
 <br>
 
-| Role | Test |Result  |
-|--|--|--|
-|User can navigate to product| Pass |
-|User can access product details| Pass|
-|User can add a product to cart|Pass|
-|User can navigate back to products|Pass|
-|User can add additional products to cart|Pass|
-|User can add multiple quantities of a product |Pass|
-|User can navigate to cart|Pass|
+</details>
+
+---
+
+<details>
+<summary>Basket & Navigation Tests</summary>
+<br>
+| Test | Role | Result  | Role | Result | Role | Result
+|--|--|--|--|--|--|--|
+|User can navigate to product| FTU | Pass | RU | Pass | SO | Pass |
+|User can restrict view by product type e.g. earrings | FTU | Pass | RU | Pass | SO | Pass |
+|User can access product details| FTU | Pass|  RU | Pass | SO | Pass |
+|User can add a 'earrings' product to cart| FTU | Pass|  RU | Pass | SO | Pass |
+|User can navigate back to products| FTU | Pass|  RU | Pass | SO | Pass |
+|User can add a ring to cart, and can choose ring size,e.g. M before adding |FTU | Pass |  RU | Pass | SO | Pass |
+|User can view basket and can modify the quantity of the 'earrings' item  |FTU | Pass | RU | Pass | SO | Pass |
+|User can continue shopping and can add the same ring in a different size e.g. J to basket |FTU | Pass | RU | Pass | SO | Pass |
+|User can view basket and modify the quantity to one of the ring sizes |FTU | Pass | RU | Pass | SO | Pass |
+|User can return to shopping, and select 'st brigids cross' (engraveable item) and choose some engravable text then add to basket |FTU | Pass | RU | Pass | SO | Pass |
+|User can select product 'gift wrap' and add to basket |FTU | Pass | RU | Pass | SO | Pass |
+|User can select product 'gift tag' and add some personalisation text before adding to basket |FTU | Pass | RU | Pass | SO | Pass |
+|Basket accurately shows products, sizes and choices made |FTU | Pass | RU | Pass | SO | Pass |
+
+
 |Logged in User can navigate to the profile section of accounts|Pass|
 |User can access their saved address information|Pass|
 |User can access past orders|Pass|

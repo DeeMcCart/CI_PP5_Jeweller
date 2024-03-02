@@ -1,7 +1,7 @@
 # Features within Jeweller site:
 1. [F01 Authentication and Login](#F01-Authentication-and-Login)
     1. [Newsletter signup](#F01.1-Mailchimp-signup)
-    2. [Register as a usr](#F01.2-Register-as-a-user)
+    2. [Register as a user](#F01.2-Register-as-a-user)
     3. [Maintain user profile](#F01.3-User-Profile)
     4. [System administrator](#F01.4-Sysadmin)
     5. [Authentication and login - summary](#F01.5-Summary)
@@ -11,7 +11,7 @@
 3. [F03 Responsiveness](#F03-responsiveness)
 4. [F04 Site Navigation](#F04-site-navigation)
 5. [F05 Ease of Use](#F05-ease-of-use)
-6. [F06 USER FEEDBACK - TOASTS, EMAILS, SCREEN PROGRESSION](#F06-Feedback)
+6. [F06 USER FEEDBACK - TOASTS, EMAILS, SCREEN PROGRESSION](#F06-User-Feedback)
     1. [Notifications](#F06.1-notifications)
     2. [Form Validation](#F06.2-form-validation)
     3. [Feedback emails](#F06.3-feedback-emails)
@@ -134,7 +134,10 @@ The functionality in feature **F01 Authentication and Login is quite wide**. Thi
 ### F02 Security
 
 Security is defined at 4 levels of access to the Jeweller App.  
-Guest - Registered User - SysAdmin (Front-end) - SysAdmin(Backend, via Django's admin console)  
+* Guest
+* Registered User 
+* SysAdmin (Front-end) 
+* SysAdmin (Backend, via Django's admin console)  
 
 Permissions are granted to database objects as follows:
 N = No Access
@@ -162,7 +165,7 @@ The site is designed with multiple layers of security, so that a user generally 
 <img src="./docs/readme_images/f02-security-can-edit-own-profile.png">
 </details>
 
-<details><summary>But if they attempt to modify someone else's profile by modifying the URL string, they receive a Toast error e.g./profile/11/</summary>
+<details><summary>But if they attempt to modify someone else's profile by modifying the URL string, they receive an  error notification e.g./profile/11/</summary>
 <img src="./docs/readme_images/f02-security-cannot-edit-other-profile.png">
 </details>
 
@@ -205,17 +208,18 @@ Processes covered are:
 | Product reviews | Viewing & Creating | F10, F11 | 
 | Basket | Creating and modifying a shopping basket | F13 |
 | Order | Converting a basket to an Order, including payment | F14, F15 |
-| Order - sysadmin | Managing an order from creation to fulfillment | F16 |
+| Order - sysadmin | Managing order lifecycle from creation to fulfillment | F16 |
 | Products - sysadmin | Creating, maintaining and controlling visibility of Products | F17 |
 
-Where the process involves a series of user steps, these are signposted to the user and screens are designed with minimal distraction, to encourage the user to progress to the next step (e.g. product detail -> 'add to basket'; basket -> checkout; basket -> 'continue shopping') 
+Most processes involve multiple steps, these are signposted to the user.  Screens are designed with minimal distraction, to encourage the user to progress to the next step (e.g. product detail -> 'add to basket'; basket -> checkout; basket -> 'continue shopping') 
 
 This covers user stories FTU_01-03 navigation and ease of learning; FTU_06 ease of product visibility; RU_01-04 ease of navigation and information flow; SO_01-07 relating to extending the site as a 'shop window' and promoting engagement with site content.
 
 At Jeweller Version 1, the Sysadmin (front end) functions hold product and order maintenance, the system administrator must use the Django backend for functions such as Moderating Reviews, maintaining StockType lead times, and maintaining 'About Page' contents.  Mailchimp is administered separately to the Jeweller app, and inquiries go straight to the Jewellers email.  Sysadmin will need to monitor consistency across Mailchimp, email and the Jeweller app.  Over time, it may make sense to integrate these channels into the Jeweller app itself.     
 
-### F06 USER FEEDBACK - TOASTS, FORM ERRORS, EMAILS, SCREEN PROGRESSION
-Jeweller is designed to provide clear and consistent feedback to users as they progress through tasks.
+### F06 USER FEEDBACK
+ - TOASTS, FORM ERRORS, EMAILS, SCREEN PROGRESSION
+ Jeweller is designed to provide clear and consistent feedback to users as they progress through tasks.
 
 #### F06.1 Notifications
 Toasts are notifications which pop up and remain on-screen for 5 seconds.
@@ -234,7 +238,9 @@ Forms are used to gather information throughout the Jeweller site, examples are:
 * Maintain a product
 
 In this situation, error messages are specifically targeted at particular fields: the field is highlighted and the user is notified of the error.
-<details><summary>Subscribe to newsletter</summary><img src="./docs/readme_images/f06-subscribe-to-mailing-list-error.png"></details>
+<details><summary>Form validation example1 - user has already subscribed to newsletter</summary><img src="./docs/readme_images/f06-subscribe-to-mailing-list-error.png"></details>
+<details><summary>For validation example2 - user tries to register with simplistic password</summary><img src="./docs/readme_images/f06-user-reg-password-form-error.png"></details>
+
 
 #### F06.3 Feedback Emails:
 Emails (customised for the jeweller site) are generated in certain work processes:
@@ -245,10 +251,12 @@ Emails (customised for the jeweller site) are generated in certain work processe
 
 <details><summary>Password reset email</summary><img src="./docs/readme_images/f06-password-reset-email.png"></details>
 <details><summary>Newsletter signup - confirmation email</summary><img src="./docs/readme_images/f06-newsletter-signup-email.png"></details>
-<details><summary>Order creation - notification email</summary><img src="./docs/readme_images/f06-order-confirmation-email.png"></details>
-<details><summary>Order packed - notification email</summary><img src="./docs/readme_images/f06-order-update-email-p2.png"></details>
-<details><summary>Order shipped - notification email</summary><img src="./docs/readme_images/f06-order-update-email-p3.png"></details>
-<details><summary>Order received - notification email</summary><img src="./docs/readme_images/f06-order-update-email-p4.png"></details>
+
+
+<details><summary>Order Lifecycle step 1 - creation - notification email</summary><img src="./docs/readme_images/f06-order-confirmation-email.png"></details>
+<details><summary>Order Lifecycle step 2 - packing - notification email</summary><img src="./docs/readme_images/f06-order-update-email-p2.png"></details>
+<details><summary>Order Lifecycle step 3 - shipping - notification email</summary><img src="./docs/readme_images/f06-order-update-email-p3.png"></details>
+<details><summary>Order Lifecycle step 4 - receipt - notification email</summary><img src="./docs/readme_images/f06-order-update-email-p4.png"></details>
 
 <details><summary>Contact/Enquiry form - confirmation of receipt</summary><img src="./docs/readme_images/f06-order-confirmation-email.png"></details>
 
@@ -260,8 +268,14 @@ The design of user feedback addresses user stories FTU_01,02 site navigation, FT
 ----------------------
 View and Sarch Products:   Initially when the 'shop now' button is taken, the Products page is displayed with all products shown.  This works the same for First-time and Registered users, with some additional Sysadmin options.  This page is device-responsive so will show in 4-columns of product on widest screens, down to single-column on smaller screeens.
 
-This meets the requirements for FTU_05,06 navigate without mandatory login and see the range of products offered by Jeweller; FTU_08 Product search, RU_01-04; SO_08-10 relating to display of product range.
+<details><summary>View products - desktop view</summary><img src="./docs/readme_images/f07-products-p1.png"></details>
 
+<details><summary>View products - Tablet view</summary><img src="./docs/readme_images/f07-products-p1.png"></details>
+
+
+<details><summary>View products - mobile view</summary><img src="./docs/readme_images/f07-products-p1.png"></details>
+
+This meets the requirements for FTU_05,06 navigate without mandatory login and see the range of products offered by Jeweller; FTU_08 Product search, RU_01-04; SO_08-10 relating to display of product range.
 
 ### F08 - FILTER PRODUCTS
 -----------------------------
@@ -271,6 +285,7 @@ Can filter products seen based on category (rings, pendants etc)
 -----------------------
 Can sort products according to pre-defined criteria to reflect what is most important to the user, e.g. by price, by most recent/date added, etc
 
+<details><summary>Product sorting - newest first</summary><img src="./docs/readme_images/f09-product-sorting-newest-first.png"></details>
 
 ### F10 - PRODUCT DETAILS
 -----------------------
@@ -402,7 +417,36 @@ Already covered?
 
 
 ### F20 - SYSADMIN PRODUCT MAINTENANCE
-To be completed
+Products can be maintained by sysadmin users directly from either the 'products' or 'product detail' pages.
+This means of access is handy when, for example. Admin notices a product that doesn't look quite right and needs a quick amendment.
+
+<details><summary>All Products page, signed in as admin</summary><img src="./docs/readme_images/f20-.png"></details>
+
+
+<details><summary>Product detail page, signed in as admin</summary><img src="./docs/readme_images/f20-.png"></details>
+
+For editing multiple products, an admin user has a sysadmin menu option - Product maintenance.
+This opens a maintance grid where all products are listed and can be maintained by taking an 'add', 'edit' or 'delete' button.
+
+<details><summary>Product detail page, signed in as admin</summary><img src="./docs/readme_images/f20-.png"></details>
+
+
+The fields for editing include:
+* Product name
+* hidden from display? (this can be used instead of deleting products, particularly when orders exist)
+* category (ring, bracelet, pendant etc) - this is sigificant as choosing 'ring' makes sizing mandatory
+* description
+* stocking type (stock, made-to-order, custom - this is significant as it determines default product lead time)
+* can be engraved - important becuase this triggers an offer to capture personalisation text when added to basket
+* 
+
+<details><summary>Product add/maintain, setting as personalisable/engraveable</summary><img src="./docs/readme_images/f20-personalisation-engraving.png"></details>
+
+<details><summary>Product detail page, signed in as admin</summary><img src="./docs/readme_images/f20-.png"></details>
+<details><summary>Product detail page, signed in as admin</summary><img src="./docs/readme_images/f20-.png"></details>
+
+
+
 
 ### F21 - SYSADMIN - ORDER MAINTENANCE
 --------------------------------------
