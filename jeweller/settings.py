@@ -22,7 +22,7 @@ if os.path.exists('env.py'):
     print('env.py exists within os.path')
     import env
 else:
-    print('env.py does not exist within os.path', env)
+    print('env.py does not exist within os.path')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/

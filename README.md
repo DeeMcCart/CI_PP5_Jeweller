@@ -949,7 +949,7 @@ Additional installs needed to DEV environment for deployment:
 - settings.py INSTALLED_APPS = [..'appname'...]  
 - python3 manage.py migrate (migrate changes) ??
 - python3 manage.py runserver (1st run of server to test)
-- settings.py ALLOWED_HOSts = [...'8000-address'..]
+- settings.py ALLOWED_HOSTS = [...'8000-address'..]
 
 This is the DEV environment and can be used for local host testing on port 8000.
 The locally hosted site can be made public for demonstration to other people, but will only be active while the runserver command is active in the development environment.
@@ -1045,7 +1045,9 @@ commit
 From Heroku panel, deploy from main & test.
 
 #### TEST
-Note that the development and production sites may have small operating differences, for example when testing I ran into difficulty with static paths which worked in DEV but required removing to be picked up in PROD.  Similarly I had some commented-out python code in one of my DEV templates which ran without difficulty, but the PROD environment failed on trying to process the commented-out code.  Keeping DEBUG on in the Production environment during initial testing will help with getting to the bottom of these errors.
+Note that the development and production sites may have small operating differences, for example when testing I ran into difficulty with static paths which worked in DEV but needed tweaking to pick up in PROD.  Similarly I had some commented-out python code in one of my DEV templates which ran without difficulty, but the PROD environment failed on trying to process the commented-out code.  At a later point I encountered some database validation (field length) which caused a crash when running against the PROD database, although worked fine in DEV.
+
+Intermittently turning DEBUG on in the Production environment during initial testing helped with getting to the bottom of these errors.
 
 ### Link PROD website to Stripe TEST/Developer environment
 When you first connect, Stripe will only be aware of the DEV site endpoint.  This is used when the Stripe webhook needs to create an order in the database.  So it makes sense to create an endpoint for the PROD database.  This can still connect to the Stripe test/developer environment, and can still be used with test credit card numbers until ready to bring Stripe live.  There are some Heroku config settings needed for Stripe to interconnect with the PROD website. 
@@ -1082,7 +1084,7 @@ Multiple sources were used in assembling this site.
 * Existing Goldmark Jewellers website
 * Existing Goldmark Jewellers marketing materials
 * Review of other Jewellery websites
-* Simone XXXX jeweller website was a particular inspiration
+* Simone Walsh jeweller website was a particular inspiration
 
 ### Product images and descriptions
 Goldmark facebook page
@@ -1113,51 +1115,3 @@ Multiple Code Institute PP5 projects used for reference
 * I would like to sincerely thank my mentor, Mo Shami for his kindness, enthusiasm and support throughout.  Mo's ability to absorb the essence of a situation and to communicate a clear path ahead has been invaluable.
 * Thank you also to the assessors who have given feedback on prevous projects
 * I would also like to thank Derek and my family for their personal support, and for their advice on Goldmark business processes, help with system testing, and patience during my project-related absence!
-
-
-
-
-
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-Welcome Deirdre McCarthy,
-
-## Gitpod Reminders
-
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
-
-`python3 -m http.server`
-
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
-------
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-
-------
-
-
----
-
-Happy coding!
-
-Credits:
-uxwing:  for social media icons
-font awesome:  for avatar, shopping basket icons
