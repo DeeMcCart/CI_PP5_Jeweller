@@ -1,8 +1,8 @@
 # Jeweller 
 Developer:  **Deirdre McCarthy**, Feb 2024
 
-### Live webpage link
-https://jeweller-bd1caeb15bbd.herokuapp.com/
+### Live webpage link 
+![Jeweller site:  Use Ctrl + click to open in new tab](https://jeweller-bd1caeb15bbd.herokuapp.com/)
 
 # Table of Contents:
 1. [About](#about)

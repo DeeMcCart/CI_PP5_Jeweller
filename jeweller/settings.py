@@ -22,7 +22,7 @@ if os.path.exists('env.py'):
     print('env.py exists within os.path')
     import env
 else:
-    print('env.py does not exist within os.path')
+    print('env.py does not exist within os.path', env)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -35,35 +35,29 @@ DEBUG = 'DEVELOPMENT' in os.environ
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
-                        'django.contrib.auth.backends.ModelBackend',
+                           'django.contrib.auth.backends.ModelBackend',
     # `allauth` specific authentication methods, such as login by email
-                        'allauth.account.auth_backends.AuthenticationBackend',
+                           ('allauth.account.auth_backends.'
+                            + 'AuthenticationBackend'),
                             ]
 
 SITE_ID = 1
 
 # ACCOUNT_FORMS: Used to override the builtin forms.
-# (Otherwise forms are found in templates/allauth/account Defaults to:
-# This has already been handled in BA walkthrough - registration creates user with signal to create UserProfile with default settings
+# (Otherwise forms are found in templates/allauth/account)
+# Registration creates user with signal to create UserProfile
 # The signed-in person can then modify their UserProfile
 #
 ACCOUNT_FORMS = {
                 'signup': 'jeweller.forms.CustomSignupForm',
                 }
 
-# DMcC 20/02/24 do I need the below account_verification_method?
 ACCOUNT_VERIFICATION_METHOD = "username_email"
 # Login method to use -userame/email/either (AllAuth 0.60.0)
-# DMcC 20/02/24 thihnking about modifying this from "username_email" ref issuelog num95
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 # The user must link an email address when signing up.
 ACCOUNT_EMAIL_REQUIRED = True
 # Email verification at signup – mandatory/ optional/none
-# 18/02/24 DMcC tried setting to mandatory but it just seems to prevent User creation 
-# 18/02/24 DMcC changed it back to optional
-# 20/02/24 DMcC reverted this to none as still have an issue since 18/02 that user registration hangs after pressing signup button also
-# the admin console shows emails without the link to user
-# DMcC 20/02/24 identified the problem with user signup - related to a hidden mandatory field - so attempting to reinstate the mandatory verification below
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # When signing up, require emailx2?
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
@@ -83,15 +77,18 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
 ALLOWED_HOSTS = ['8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io',
-                'https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io/',
-                '8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io',
+                 ('https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.'
+                  + 'ws-eu107.gitpod.io/'),
+                 '8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io',
                  '.jeweller-bd1caeb15bbd.herokuapp.com',
                  'https://jeweller-bd1caeb15bbd.herokuapp.com/',
                  ]
 
 CSRF_TRUSTED_ORIGINS = [
-                       'https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu107.gitpod.io',
-                       'https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.ws-eu108.gitpod.io',
+                       ('https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.'
+                        + 'ws-eu107.gitpod.io'),
+                       ('https://8000-deemccart-cipp5jeweller-10k3i9z0k0t.'
+                        + 'ws-eu108.gitpod.io'),
                        'https://jeweller-bd1caeb15bbd.herokuapp.com/'
                        ]
 
@@ -165,7 +162,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'basket.contexts.basket_contents',
             ],
-        'builtins': [
+            'builtins': [
                     'crispy_forms.templatetags.crispy_forms_tags',
                     'crispy_forms.templatetags.crispy_forms_field',
                     ],
@@ -198,16 +195,20 @@ print('Database setting is ', DATABASES)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': ('django.contrib.auth.password_validation.UserAttributeSimilarityValidator'),
+        'NAME': ('django.contrib.auth.password_validation.'
+                 + 'UserAttributeSimilarityValidator'),
     },
     {
-        'NAME': ('django.contrib.auth.password_validation.MinimumLengthValidator'),
+        'NAME': ('django.contrib.auth.password_validation.'
+                 + 'MinimumLengthValidator'),
     },
     {
-        'NAME': ('django.contrib.auth.password_validation.CommonPasswordValidator'),
+        'NAME': ('django.contrib.auth.password_validation.'
+                 + 'CommonPasswordValidator'),
     },
     {
-        'NAME': ('django.contrib.auth.password_validation.NumericPasswordValidator'),
+        'NAME': ('django.contrib.auth.password_validation.'
+                 + 'NumericPasswordValidator'),
     },
 ]
 
