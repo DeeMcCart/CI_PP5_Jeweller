@@ -658,6 +658,7 @@ button:hover {
     .btn.btn-outline-black.rounded-0,
     .btn.btn-black.rounded-0 {
         padding: .375rem .375rem;
+        font-size: .75rem;
     }
 
     .btn.btn-outline-black.rounded-0.btn-lg,

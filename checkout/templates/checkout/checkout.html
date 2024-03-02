@@ -154,10 +154,6 @@
     {{ block.super }}
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
-  <!--  <div> Applying postloadjs block on checkout 
-        <p>Stripe files to load are at {% static 'checkout/js/stripe_elements.js' %}</p>
-    </div> -->
-    <!-- <script src="{% static 'checkout/js/stripe_elements.js' %}"></script> -->
     <!-- DMcC 05/02/24 Build Stripe js directly into checkout html as difficulty retrieving js file in dev environment -->
     <!-- logged in issue log for later investigation -->
     <script type="text/javascript">
