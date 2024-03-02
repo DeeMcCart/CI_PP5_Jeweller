@@ -91,11 +91,12 @@ As a family-owned and -operated business the unique selling points are:
 * affordable pricing and payment flexibility e.g. lay-away schemes allowing customer to pay initial deposit & staged payments before obtaining the product.  
 
 The challenges of the current business model (which may be partly addressed with a fresh ecommerce strategy) are:
-* Existing customer base is aging, need to reach a newer generation & persuade them of the value offering
+* Existing customer base is aging, wish to reach a newer generation & persuade them of the value offering
 * Competition from online retailers (the 'low cost' model)
 * Retail business is staff-intensive and can take skilled staff away from more profitable back-room tasks
-* Need to differentiate vs. local jewellers
-* Shop owners unwilling to stock certain popular brand names, due to restrictive merchandising constraints 
+* Wish to differentiate vs. local jewellers
+* Raising awareness of range of offerings (e.g. Repairs business) with potential local customers who may not have physically visited the shop.
+* Promoting unique or non-mainstream products produced and sold within the Jeweller shop.
 
 **This Jeweller e-commerce offering** is:
 * a B2C website
@@ -106,15 +107,13 @@ The challenges of the current business model (which may be partly addressed with
 The site is built, with the help of Bootstrap & CSS media queries, to be largely responsive so it can be used on a range of devices.
 It is anticipated that certain system admin tasks such as adding or maintaining products, maintaining customer orders, will be performed on a mid to large screen device - a tablet or desktop.  The shop currently has several laptops for performing admin tasks.
 
-<details><summary>Responsive Mockup</summary>
-<img src="./docs/readme_images/val-responsive.png">
-</details>
+<details><summary>Responsive Mockup</summary><img src="./docs/readme_images/val-responsive.png"></details>
 
 ## Project Goals
 ----------------
 1. To provide a website and associated marketing materials
 2. Which aligns with the jewellers current business processes
-3. And provides reach into new market segments
+3. Extend reach into new market segments
 4. Which uses the capabilities of Django python, HTML, CSS and Javascript.
 5. And is accessible, responsive and relevant.
   
@@ -188,25 +187,25 @@ The challenges for the business owners are:
 
 User 1: It is anticipated that a typcial site user will be from the existing customer base, female aged 30 to 60.  
 This person will likely be making a purchase for themselves, in which case customised jewellery is of particular interest.
-They may alternatively be giting and seeking a present for a specific occasion.  They may have spotted an item of interest on fb or Instragram and want to follow up with a purchase, but lead busy lives and may prefer the convenience of online enquiries/ online ordering.
+They may alternatively be gifting for family or friends, and seeking a present for a specific occasion.  They may have spotted an item of interest on fb or Instragram and want to follow up with a purchase, but lead busy lives and may prefer the convenience of online enquiries/ online ordering.
 
 User 2: Female aged between 50 and 90 (or above).  This customer may likely use the website as a 'shop window' and physically come into the shop to create or complete their purchase.  This customer typically has both time and money, and will react to affinity marketing, likes to feel close to the brand and to feel a personal connection with the shop owners.   
 
 User 3: Couples getting engaged or married who need engagement and/or wedding rings.  
 
-User 4: Males seeking gifts for close females in their life.  These purchasers are likely to be suggestible (so newsletter prompts to purchase certain occasion items can act as a nudge to purchase) as they are unsure of what their partner would like.
+User 4: Males seeking gifts for close females in their life.  These purchasers are likely to be suggestible (so newsletter prompts to purchase certain occasion items can act as a nudge to purchase) as they are unsure of what their partner would like.  Often under time pressure due to delayed purchasing decisions, e.g. Christmas-eve shoppers, and willing to pay a premium to ensure the gift is acceptable.
 
 User 5:  Persons (male or female) with a strong interest in celtic jewellery, particularly when it is personalised for them (sizing, engraving, one-off-modifications)
 
 ### Jeweller Marketing Strategy
 
 The plan for jeweller going forward is to:
-1. Continue what is already being done on facebook and Instragram (which generally gathers up to 20 likes and comments per post), extend it by always including a website link in the marketing content.  Similarly link from the website to these social media platforms.
+1. Build on the organic marketing already being done on facebook and Instragram (which generally gathers up to 20 likes and comments per post), extend this by always including a website link in the marketing content.  Similarly link from the website to these social media platforms.
 2. Build content in the 'about' section of the website (it is designed to be quite maintainable from the admin console) to build the website's credibility and increase awareness and alignment with potential customers.  Fresh, regularly updated website content should increase SEO rankings.
 3. Build text in individual product descriptions using SEO keywords  
 4. Encourage customers to create profiles and leave reviews, and dedicate time to moderating, responding to, and curating these reviews. Encourage customers to create a photo for their profile, this personalises the experience and promotes brand affinity & a sense of 'belonging'. 
 5. Encourage customer feedback and consider customer questinos and suggestions when introducing or modifying products
-6. Gain subscribers through the mailchimp application and track response rates; tune the product offerings accordingly.  Each newsletter should include a call-to-action 
+6. Gain subscribers through the mailchimp application and track response rates; tune the product offerings accordingly.  Each newsletter should include a call-to-action. 
 
 Note that, the business does have an active facebook page at https://www.facebook.com/goldmarkjewellerscarlow.jewellers/, however for the purpose of this project a specially-created facebook page was created at https://www.facebook.com/profile.php?id=61556652324443, and this link is used on the Jeweller version1 website. 
 
@@ -283,10 +282,10 @@ Written in the format 'As a **role** I want to **action** to achieve **desired o
 | FTU_03  | receive feedback at each step on the site | understand what I am doing, and, if I'm in a multi-step process, I understand how far along I am in the processs |
 | FTU_04  | access this site on a device of my choosing (mobile, tablet, laptop, desktop) | access by a method and at a time that is convenient and accessible to me |
 | FTU_05  | navigate the site without mandatory login| I can discover site features before deciding whether to commit to using site| 
-| FTU_06  | see a range of products which are offered by the Jeweller, to see pictures, descriptions price (for off-the-shelf items), lead-time for each item** so that I can **make purchase decisions| 
-| FTU_07  | whether an item is in-stock, made-to-order** and **what are lead times (e.g. available now, lead time 6 weeks for make-to-order, lead time 1 week for casted items)| 
-| FTU_08  | search for a product by name or description** to **know if Jeweller sells the item of interest| 
-| FTU_09  | filter my product view** to **see only what I'm interested in ** (e.g. particular metals, stones, colours, particular occasions) (Preferably filter by multiple categories)
+| FTU_06  | see a range of products which are offered by the Jeweller, to see pictures, descriptions price (for off-the-shelf items), lead-time for each item | make purchase decisions| 
+| FTU_07  | whether an item is in-stock, made-to-order** and **what are lead times (e.g. available now, lead time 6 weeks for make-to-order, lead time 1 week for casted items)| make purchase decisions  | 
+| FTU_08  | search for a product by name or description  |  does Jeweller sells the item of interest| 
+| FTU_09  | filter my product view | see only what I'm interested in ** (e.g. particular metals, stones, colours, particular occasions) (Preferably filter by multiple categories)
 | FTU_10  | sort my product view by price, date added .... | see the items most relevant to me| 
 | FTU_11  | view custom products | get inspiration for my design idea| 
 | FTU_12  | receive prompt on affinity items | see items that are related to the item I'm interested in (e.g. earrings may have matching necklace or bracelet)| 
@@ -315,15 +314,15 @@ Written in the format 'As a **role** I want to **action** to achieve **desired o
 | RU_02 | filter products by type, type-of-metal, type-of-stone| see the products I am most interested in| 
 | RU_03 | sort products** by **date added** so i can see what is new on the site| 
 | RU_04 |  receive prompts of upcoming celebration days and associated promotions|  
-| RU_05 | be prompted with affinity products, based on on what I've previously purchased** so I can **make coordinated buying decisions| 
-| RU_06 | view my order status** so I **know if the order has been shipped| 
-| RU_07 | raise product enquiries on the site** so **I can save time rather than phonning| 
-| RU_08 | receive an emailed newsletter periodically** so **I am alerted to promotions| 
-| RU_09 | add or update contact details and preferences (email, phone number)** on my profile so **Jeweller can contact me in a way that suits me| 
-| RU_10 | add an image of my choosing to my profile** to **personalise my experience** #45|  
-| RU_11 | assign delivery address(es) to my account** to **streamline the ordering process| 
-| RU_12 | choose a saved delivery address when placing an order** to **streamline the ordering process| 
-| RU_13 | create Product Reviews and ratings** to **increase interaction with the site and help to guide other purchasers| 
+| RU_05 | be prompted with affinity products, based on on what I've previously purchased | make coordinated buying decisions| 
+| RU_06 | view my order status | know if the order has been shipped| 
+| RU_07 | raise product enquiries on the site |  save time rather than phonning| 
+| RU_08 | receive an emailed newsletter periodically |  alerted to promotions| 
+| RU_09 | add or update contact details and preferences (email, phone number) on my profile  | Jeweller can contact me in a way that suits me| 
+| RU_10 | add an image of my choosing to my profile | personalise my experience|  
+| RU_11 | assign delivery address(es) to my account | streamline the ordering process| 
+| RU_12 | choose a saved delivery address when placing an order | streamline the ordering process| 
+| RU_13 | create Product Reviews and ratings | increase interaction with the site and help to guide other purchasers| 
  
 ### Site owner/moderator Goals
 | ID |  **I want to** | **to achieve** |
@@ -354,27 +353,27 @@ Written in the format 'As a **role** I want to **action** to achieve **desired o
 
 ### Wireframes
 <details><summary>Landing Page, search & filter functionality </summary>
-<img src="/readme_images/wf1-landing-pg.png">
+<img src="./docs/readme_images/wf1-landing-pg.png">
 </details>
 
 <details><summary>Product Search</summary>
-<img src="/readme_images/wf2-products-search.png">
+<img src="./docs/readme_images/wf2-products-search.png">
 </details>
 
 <details><summary>Product detail</summary>
-<img src="/readme_images/wf3-product-detail.png">
+<img src="./docs/readme_images/wf3-product-detail.png">
 </details>
 
 <details><summary>Create a basket</summary>
-<img src="/readme_images/wf4-basket.png">
+<img src="./docs/readme_images/wf4-basket.png">
 </details>
 
 <details><summary>Checkout - additional selections</summary>
-<img src="/readme_images/wf5-checkout-1.png">
+<img src="./docs/readme_images/wf5-checkout-1.png">
 </details>
 
 <details><summary>Checkout - address page/action tracker</summary>
-<img src="/readme_images/wf6-checkout-2.png">
+<img src="./docs/readme_images/wf6-checkout-2.png">
 </details>
   
 ### Fonts Chosen
@@ -413,14 +412,15 @@ The entire approach was covered under the EPIC 'Agile' and can be seen under thi
    
 ### Project
 A github project was created within the Jeweller repo.  At a high level the project details are very simple really just a name and description.
+
 <details><summary>GitHub Project Setup</summary>
-<img src="./readme_images/agile-overview-of-project.png">
+<img src="./docs/readme_images/agile-overview-of-project.png">
 </details>
 
 
 ### Issue Template
 <details><summary>Issue template - User Story</summary>
-<img src="readme_images/agile-issues-template.png">
+<img src="./docs/readme_images/agile-issues-template.png">
 </details>
     
 At the outset, an issue template was created specifically for user stories.  This holds 5 sections:  
@@ -435,12 +435,12 @@ At the outset, an issue template was created specifically for user stories.  Thi
 Issues were created to track planned end-to-end work in Financial_Planner, using the issue template for consistent appearance and content.   
 Financial_Planner project scope includes UX design tasks, agile project setup, development tasks, documentation,  and testing.
 <details><summary>Example issue - user story</summary>
-<img src="/readme_images/agile-issue-example-user-story.png">
+<img src="./docs/readme_images/agile-issue-example-user-story.png">
 </details>
 
 Some of the issues created were in fact tasks, which underpinned several user stories:
 <details><summary>Example issue - task</summary>
-<img src="/readme_images/agile-issue-example-task.png">
+<img src="./docs/readme_images/agile-issue-example-task.png">
 </details>
 
 ### EPICs
@@ -448,7 +448,7 @@ An epic in agile is a large body of work that can be broken down into a number o
 The Financial_Planner project uses custom fields to hold the epic name, some initial high-level epics:  Agile, UX, Docs, MVP.
 For clarity EPIC is also listed at the top of each issue.
 <details><summary>EPICs</summary>
-<img src="/readme_images/agile-epics.png">
+<img src="./docs/readme_images/agile-epics.png">
 </details>
 
 ### MoSCoW prioritisation
@@ -459,7 +459,7 @@ For prioritising user stories and known tasks, I assigned a label to each issue,
 * Won't have (perhaps its a never, or perhaps this just means 'not at this release')
 To make selection easier (ensure that these appeared at top of label list in the order above) I preceded each label with a number as shown:
 <details><summary>MoSCow labels</summary>
-<img src="/readme_images/agile-issues-moscow-prioritization.png">
+<img src="./docs/readme_images/agile-issues-moscow-prioritization.png">
 </details>
 
 ### Estimated & Actual Story Points
@@ -475,7 +475,7 @@ Three project milestones were used:
 This'deploy-early' approach meant the software could be delivered incrementally, with successive releases building on proven, working software.  
 
 <details><summary>Milestones</summary>
-<img src="/readme_images/agile-milestones.png">
+<img src="./docs/readme_images/agile-milestones.png">
 </details>
 
 ### Sprints and Iterations
@@ -518,11 +518,11 @@ Issues progressed through:
 ### Tabular Projects View
 The tabular view of projects was very useful at the backlog grooming stage, as it shows open issues, and gives easy visiblity of associated fields, e.g. story points, epic, assigned sprint, etc 
 <details><summary>Projects - Tabular view</summary>
-<img src="./jeweller/docs/readme_images/agile-overview-of-project.png">
+<img src="./docs/readme_images/agile-overview-of-project.png">
 </details>
 
 <details><summary>Projects - Tabular view2</summary>
-<img src="./jeweller/docs/readme_images/agile-issues-tabular-view.png">
+<img src="./docs/readme_images/agile-issues-tabular-view.png">
 </details>
 
 
@@ -534,16 +534,14 @@ Where possible the Kanban issue # is referenced, this links the commit message t
 Within a sprint, the kanban board provides invaluable visual tracking.  
 In the Jeweller kanban board, issues progress from leftmost column (backlog) to rightmost (done)
 Note that each column holds a descriptor to tell you what is happening to issues within the column.
-<details><summary>Projects - Kanban (simple)</summary>
-<img src="./jeweller/docs/readme_images/agile-issues-kanban-view.png">
-</details>
+<details><summary>Projects - Kanban (simple)</summary><img src="./docs/readme_images/agile-issues-kanban-view.png"></details>
 
 Two main Kanban views were used, one for EPICs only, and one for Issues.  See:
 * the number of issues at each kanban board state (e.g. highlighted in blue for InProgress column)
 * The storypoints for each individual issue, as well as the total storypoints at each lifecycle status (e.g. highlighted in green for 'Todo' column)
 * The EPIC associated with each issue (e.g. highlighted in pink within the 'Done' column)
 
-![Projects - Rich Kanban board](./jeweller/docs/readme_images/agile-issues-kanban-view-sp-epic-num-issues-per-col.png?raw=true "Improved kanban board with lots of information")
+![Projects - Rich Kanban board](.docs/readme_images/agile-issues-kanban-view-sp-epic-num-issues-per-col.png?raw=true) "Improved kanban board with lots of information"
 
 Viewing by EPIC was useful for an overall view of the project: https://github.com/users/DeeMcCart/projects/5/views/7
 
@@ -566,7 +564,7 @@ The site includes over 20 features, these are listed in a separate READme docume
 
 ### Features in Scope 
 
-<a href="https://github.com/DeeMcCart/Jeweller/blob/main/README_Features.md" target="_blank">Site features</a>
+<a href="https://github.com/DeeMcCart/Jeweller/blob/main/README_Features.md" target="_blank">Site features, open in separate tab using Ctrl-click</a>
 
 It was helpful to create this as a separate document, as it is also offered to users as a 'how to' guide.
 
