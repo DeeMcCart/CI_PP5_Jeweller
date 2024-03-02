@@ -272,78 +272,81 @@ Test customers (with real email accounts) and test payment details ONLY have bee
 
 ## User Goals/ User Stories
 ----------------
+
 Written in the format 'As a **role** I want to **action** to achieve **desired outcome**    
+
 ### First-time User/ Unregistered User
-* FTU_01  As a **First-Time User** I want to **quickly understand the site purpose** so I **can decide whether to spend time exploring and discovering the site**
-* FTU_02  As a **First-Time User** I want to **easily navigate the site** so I **don't become frustrated and leave**
-* FTU_03 As a **First-Time User** I want to **receive feedback at each step on the site** so that I **understand what I am doing, and, if I'm in a multi-step process, I understand how far along I am in the processs**
-* FTU_04 As a **First-Time User** I want to **access this site on a device of my choosing (mobile, tablet, laptop, desktop)** so that I can **access by a method and at a time that is convenient and accessible to me**
-* FTU_05 As a **First-Time User** I want to **navigate the site without mandatory login** so **I can discover site features before deciding whether to commit to using site**
-* FTU_06:  As a **First-Time User** I want to **see a range of products which are offered by the Jeweller, to see pictures, descriptions price (for off-the-shelf items), lead-time for each item** so that I can **make purchase decisions**
-* FTU_07:  As a **First-Time User** I want to understand **whether an item is in-stock, made-to-order** and **what are lead times (e.g. available now, lead time 6 weeks for make-to-order, lead time 1 week for casted items)**
-* FTU_08:  As a **First-Time User** I want to **search for a product by name or description** to **know if Jeweller sells the item of interest**
-* FTU_09:  As a **First-Time User** I want to **filter my product view** to **see only what I'm interested in ** (e.g. particular metals, stones, colours, particular occasions) (Preferably filter by multiple categories)
-* FTU_10: As a **First-Time User** I want to **sort my product view by price, date added ....** in order to **see the items most relevant to me**
-* FTU_11: As a **First-Time User** I want to **view custom products** in order to **get inspiration for my design idea**
-* FTU_12: As a **First-Time User** I would like to be able to **receive prompt on affinity items** in order to **see items that are related to the item I'm interested in (e.g. earrings may have matching necklace or bracelet)**
-* FTU_13: As a **First-Time User** I would like to receive suggestions or prompts for particular occasions (which could be date-related e.g. communions, confirmations, mothers day, christmas)
-* FTU_14:  As a **First-Time User** I want to be able to **share/like a item I like with a 3rd party (e.g. via whatsapp, fb etc)** so I can **prompt them to buy it (for me!)** <- affinity marketing
-
-* FTU_15: As a **First-Time User** I want to **create a shopping basket of items** in order to **determine price**
-* FTU_16: As a **First-Time User** I want to **amend or remove items in my shopping basket** in order to **determine price**
-* FTU_17: As a **First-Time User** I want to **convert my shopping basket into a collection order** in order to **purchase items**
-* FTU_18: As a **First-Time User** I want to **personalise my order** to **reflect gift messages, special wrapping etc**
-* FTU_19: As a **First-Time User** I want to **pay for my order using credit card** to **ensure the purchase is completed**
-* FTU_20: As a **First-Time User** I want to **receive an on-screen confirmation of order number** to **ensure the purchase is completed**
-* FTU_21: As a **first-Time User** I want to **receive email/text notifying me of my order number and lead time** so I can **plan when to collect**
-
-* FTU_22: As a **First-Time User** I would like to **complete an enquiry form** to **ask a question about products or services**
-* FTU_23: As a **First-Time User** I want to **see services offered (repairs, make-to-order items,** to achieve **benefit**
-* FTU_24: As a **First-Time User** I want to **browse the Jeweller's blog** to **increase my affinity with this retailer**
-* FTU_25: As a **First-Time User** I want to **consult the Jeweller's FAQ** to **understand the retailer's processes for orders, shipping etc**
-
-* FTU_26: As a **First-Time User** I would like to **signup for newsletter** to **increase my affinity with this retailer**
-* FTU_27: As a **First-Time User** I would like to **create a profile** to **track my history with this retailer**
-
-* FTU_28 (Future): As a **First-Time User** I would like to  **make an appointment for engagement rings** in order to **elevate a high value buying decision**
+| ID |  **I want to** | **to achieve** |
+| -- |  -- | -- |
+| FTU_01  | quickly understand the site purpose | decide whether to spend time exploring and discovering the site |
+| FTU_02  | easily navigate the site | don't become frustrated and leave |
+| FTU_03  | receive feedback at each step on the site | understand what I am doing, and, if I'm in a multi-step process, I understand how far along I am in the processs |
+| FTU_04  | access this site on a device of my choosing (mobile, tablet, laptop, desktop) | access by a method and at a time that is convenient and accessible to me |
+| FTU_05  | navigate the site without mandatory login| I can discover site features before deciding whether to commit to using site| 
+| FTU_06  | see a range of products which are offered by the Jeweller, to see pictures, descriptions price (for off-the-shelf items), lead-time for each item** so that I can **make purchase decisions| 
+| FTU_07  | whether an item is in-stock, made-to-order** and **what are lead times (e.g. available now, lead time 6 weeks for make-to-order, lead time 1 week for casted items)| 
+| FTU_08  | search for a product by name or description** to **know if Jeweller sells the item of interest| 
+| FTU_09  | filter my product view** to **see only what I'm interested in ** (e.g. particular metals, stones, colours, particular occasions) (Preferably filter by multiple categories)
+| FTU_10  | sort my product view by price, date added .... | see the items most relevant to me| 
+| FTU_11  | view custom products | get inspiration for my design idea| 
+| FTU_12  | receive prompt on affinity items | see items that are related to the item I'm interested in (e.g. earrings may have matching necklace or bracelet)| 
+| FTU_13  | receive suggestions or prompts for particular occasions (which could be date-related e.g. communions, confirmations, mothers day, christmas)| 
+| FTU_14  | share/like a item I like with a 3rd party (e.g. via whatsapp, fb etc) | prompt them to buy it (for me!) <- affinity marketing| 
+| FTU_15  | create a shopping basket of items| determine price | 
+| FTU_16  | amend or remove items in my shopping basket | determine price| 
+| FTU_17  | convert my shopping basket into a collection order | purchase items| 
+| FTU_18  | personalise my order | reflect gift messages, special wrapping etc| 
+| FTU_19  | pay for my order using credit card | ensure the purchase is completed| 
+| FTU_20  | receive an on-screen confirmation of order number | ensure the purchase is completed| 
+| FTU_21  | receive email/text notifying me of my order number and lead time | plan when to collect| 
+| FTU_22: | complete an enquiry form | ask a question about products or services | 
+| FTU_23: | see services offered (repairs, make-to-order items | benefit| 
+| FTU_24: | browse the Jeweller's blog | increase my affinity with this retailer| 
+| FTU_25: | consult the Jeweller's FAQ | understand the retailer's processes for orders, shipping etc| 
+| FTU_26: | signup for newsletter | increase my affinity with this retailer| 
+| FTU_27: | create a profile | track my history with this retailer| 
+| FTU_28 (Future):| make an appointment for engagement rings | elevate a high value buying decision| 
 
 
 ### Returning User - Additional Goals
-* RU_01 As a **Returning User** I want to **quickly navigate to the Products Page** to **focus on items i'm most intersted in**
-* RU_02 As a **Returning User** I want to **filter products by type, type-of-metal, type-of-stone** so I can **see the products I am most interested in**
-* RU_03 As a **Returning User** I want to **sort products** by **date added** so i can see what is new on the site
-* RU_04 As a **Returning User** I would like **to receive prompts of upcoming celebration days and associated promotions** 
-* RU_05 As a **Returning User** I would like to **be prompted with affinity products, based on on what I've previously purchased** so I can **make coordinated buying decisions**
-* RU_06 As a **Returning User** I want to **view my order status** so I **know if the order has been shipped**
-* RU_07 As a **Returning User** I want to **raise product enquiries on the site** so **I can save time rather than phonning**
-* RU_08 As a **Returning User** I would like to **receive an emailed newsletter periodically** so **I am alerted to promotions**
-* RU_09 As a **Returning User** I want to **add or update contact details and preferences (email, phone number)** on my profile so **Jeweller can contact me in a way that suits me**
-* RU_10 As a **Returning User** I want to **add an image of my choosing to my profile** to **personalise my experience** #45 
-* RU_11 As **Returning User** I want to **assign delivery address(es) to my account** to **streamline the ordering process**
-* RU_12 As a **Returning User** I would like to **choose a saved delivery address when placing an order** to **streamline the ordering process**
-* RU_13 As a **Returning User** I would like to **create Product Reviews and ratings** to **increase interaction with the site and help to guide other purchasers**
+| ID |  **I want to** | **to achieve** |
+| -- |  -- | -- |
+| RU_01 | quickly navigate to the Products Page | focus on items i'm most intersted in| 
+| RU_02 | filter products by type, type-of-metal, type-of-stone| see the products I am most interested in| 
+| RU_03 | sort products** by **date added** so i can see what is new on the site| 
+| RU_04 |  receive prompts of upcoming celebration days and associated promotions|  
+| RU_05 | be prompted with affinity products, based on on what I've previously purchased** so I can **make coordinated buying decisions| 
+| RU_06 | view my order status** so I **know if the order has been shipped| 
+| RU_07 | raise product enquiries on the site** so **I can save time rather than phonning| 
+| RU_08 | receive an emailed newsletter periodically** so **I am alerted to promotions| 
+| RU_09 | add or update contact details and preferences (email, phone number)** on my profile so **Jeweller can contact me in a way that suits me| 
+| RU_10 | add an image of my choosing to my profile** to **personalise my experience** #45|  
+| RU_11 | assign delivery address(es) to my account** to **streamline the ordering process| 
+| RU_12 | choose a saved delivery address when placing an order** to **streamline the ordering process| 
+| RU_13 | create Product Reviews and ratings** to **increase interaction with the site and help to guide other purchasers| 
  
 ### Site owner/moderator Goals
-* SO_01 As **System Owner** I want to **provide a system that is easy to use** to **encourage users to visit and return to the site** #36 
-* SO_02 As **System Owner** I want to **provide responsive web pages** to **encourage users to use the site across multiple devices**
-* SO_03 As **System Owner** I want to **include social links** to **increase user engagement with site**
-* SO_04 As **System Owner** I want to **use the site as a shop window** to **facilitate unregistered users who will complete purchases in-person**
-* SO_05 As **System Owner** I want to **permit guest checkout** to **facilitate unregistered users to complete purchases on the site**
-* SO_06 As **System Owner** I want to **track orders raised** to **ensure they progress through the shipping lifecycle**
-* SO_07 As **System Owner** I want to **link to an post tracking** to **provide delivery status to customers**
-* SO_08 As **System Owner** I want to **create and maintain product catgories** to **benefit**
-* SO_09 As **System Owner** I want to **create and maintain items** to **benefit**
-* SO_10 As **System Owner** I want to **identify make-to-order/custom products as well as off-the-shelf** products to **advertise both business streams**
-* SO_11 As **System Owner** I want to **create and maintain item affinities** to **benefit**
-* SO_12 As **System Owner** I want to **create and maintain time-based marketing promotions** to **benefit**
-* SO_13 As **System Owner** I want to **link products product categories to marketing promotions** to **benefit**
-* SO_14 As **System Owner** I want to **provide a robust payment interface** so as to **maintain trust and integrity and minimse payment queries**
-
-* SO_XX As site owner I want to showcase my Jewellery business professionally and align with my business values and processes
-* SO_XX As site owner I want to provide straightforward, intuitive, consistent website navigation, (using graphical navigation where possible, even where the destination leads to text-based informataion)
-* SO_XX As site owner I want to provide a website, which meets current programming, performance and accessibility standards (html, css, javascript, responsive, accessibility, performance)
-* SO_XX As site owner I want to provide an opportunity for the user to provide feedback, including reporting issues, or suggesting improvements to the Financial Planner site
-* SO-XX As site owner I want to acknowledge to the user that their feedback has been received
+| ID |  **I want to** | **to achieve** |
+| -- |  -- | -- |
+| SO_01 | provide a system that is easy to use | encourage users to visit and return to the site |  
+| SO_02 | provide responsive web pages | encourage users to use the site across multiple devices| 
+| SO_03 | include social links | increase user engagement with site| 
+| SO_04 | use the site as a shop window | facilitate unregistered users who will complete purchases in-person| 
+| SO_05 | permit guest checkout | facilitate unregistered users to complete purchases on the site| 
+| SO_06 | track orders raised | ensure they progress through the shipping lifecycle| 
+| SO_07 | link to an post tracking | provide delivery status to customers| 
+| SO_08 | create and maintain product catgories | benefit| 
+| SO_09 | create and maintain items | benefit| 
+| SO_10 | identify make-to-order/custom products as well as off-the-shelf products  | advertise both business streams| 
+| SO_11 | create and maintain item affinities | benefit| 
+| SO_12 | create and maintain time-based marketing promotions | benefit| 
+| SO_13 | link products product categories to marketing promotions | | 
+| SO_14 | provide a robust payment interface | maintain trust and integrity and minimse payment queries| 
+| SO_XX | showcase my Jewellery business professionally  | align with my business values and processes| 
+| SO_XX | provide straightforward, intuitive, consistent website navigation,  | ease of use and encourage re-use| 
+| SO_XX | provide a website, which meets current programming, performance and accessibility standards (html, css, javascript, responsive, accessibility, performance)|  | 
+| SO_XX | provide an opportunity for the user to provide feedback, including reporting issues, or suggesting improvements to the Jeweller site| greater engage with users  | 
+| SO-XX | acknowledge to the user that their feedback has been received| encourage feedback  |  
 
   
 ### Other stakeholder Goals

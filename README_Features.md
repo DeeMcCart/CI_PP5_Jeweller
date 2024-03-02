@@ -98,10 +98,10 @@ To increase the user's engagement with the Jeweller shop, there are three furthe
 
 A user may choose to signup for emailed updates (typically newsletters) from the Jeweller, by entering their email address (no password) in the Mailchimp form.  The form is very visible to Guest users, and visible on the landing page thereafter.   Mailchimp handles email verification and manages duplication/ unsubscribe as needed, within an external database (separate to the Jeweller system).  The signup form appears for everyone on the landing page, and for Guest users throughout the site.
 
-<details><summary>Signup for newsletter</summary>
-<img src="./docs/readme_images/f01-subscribe-to-mailing-list.png">
-</details>
+<details><summary>Signup for newsletter</summary><img src="./docs/readme_images/f01-subscribe-to-mailing-list.png"></details>
+<details><summary>Confirmation email received on signuup</summary><img src="./docs/readme_images/f01-subscribe-to-mailing-list-p2.png"></details>
 
+Further Subscribe/unsubcribe options are handled by the MailChimp platform. 
 
 #### F01.2 Register as a user
 Signing in as a registered user gives extra functionality:
@@ -136,7 +136,7 @@ Password reminders and resets are permitted and handled through back-and-forth e
 <img src="./docs/readme_images/f01-register-new-user-p6.png">
 </details>
 
-<details><summary>Register as a new user - step 7 - signin notification</summary>
+<details><summary>Register as a new user - step 7 - successful signin</summary>
 <img src="./docs/readme_images/f01-register-new-user-p7.png">
 </details>
 
@@ -148,6 +148,7 @@ To further personalise the user's experience, a user can access and update their
 * Assign default delivery address
 * Personalise my experience - on sign in, my profile picture and personalised welcome message are shown.
 * Personalise my experience - profile pic is shown to other users on reviews I've created
+* Increases social influence of reviews by 'recognising' other reviewers 
 
 <details><summary>User Profile page with order history, pic & addresses.  I am changing profile image/avatar </summary>
 <img src="./docs/readme_images/f01-user-profile-p1.png">
@@ -221,40 +222,39 @@ While the front end tasks can be performed on a device of the user's choosing, t
 This satisfies FTU01 Ease of understanding; FTU02 Ease of navigation; FTU04 Access site on a device of my choosing; SO_02 Responsive site
 
 ### F04 Navigation
-The site is designed with consistent navbar and footer (where applicable) across pages to make it easier to navigate from task to task.
-   
-![Navbar-registered user](./django_financial_planner/docs/readme_images/f02-navbar-registered-usr.png?raw=true "Navbar reflecting logged in user")
+The site is designed to quickly become familiar, with a navigation bar along the top of the pages and a hamburger menu buttonfor smaller/ mobile screens.  For a signed-in user, the navbar is personalised with their profile image.
 
-For first-time users in browsing mode the navigation bar doesn't show a personalised welcome message, and the menu options are different.
-Particularly, no 'My Planner' option as an unregistered user doesnt have access to this feature.
-![Navbar-unregistered user](./django_financial_planner/docs/readme_images/f02-unregistered-user.png?raw=true "Navbar reflecting first-time or casual user")
+The site landing page shows a 'shop now' button as well as Newsletter signup - two immediate calls for action.   It is envisaged that first time users will explore both these CTAs, whereas returning users will immediately take the 'shop now' button which opens onto the Products 'display all' page. 
 
-Sitemap
-Pagination
-Look and feel
-Icons:
+The footer contains contact details and social media links so the user can visit Facebook, Instagram, YouTube or LinkedIn to connect with the Jeweller business. While the Facebook icon links to a dummy business page specifically created for this project, Instagram and YouTube link to the real-life business pages.
 
-This addresses user stories 
-* SO_04 As site owner I want to provide straightforward, intuitive, consistent website navigation, (using graphical navigation where possible, even where the destination leads to text-based informataion)
-* SO_06 As site owner I want to provide a website, which meets current programming, performance and accessibility standards (html, css, javascript, responsive, accessibility, performance)
-* FTU_03 As a first time user I would like to be able to easily navigate the site and quickly learn its functionality 
-* FTU_06 As a first-time user I want clear, timely and unambiguous feedback and interaction
-* FTU_07 As a first-time user I expect links and functions that work as expected
+(Images to follow)
 
-
+This addresses user stories FTU_01-04 navigation, ease of use and responsiveness;  RU_01 quick navigation to the Products page,   SO_01-04 navigation and social links.
 
 ### F05 Ease of Use
-F05 CLEAR SITE PURPOSE/ EASE OF USE
-Clear site purpose and ease of use
-Header 
-Footer 
-landing Page
+Ease of use relates to how straightforward it is for a user to perform the workflows needed.
+This depends on navigation, as described in F04, and on F06 Clear and consistent feedback at each process step.
 
-Order Flow
-Brought straight to Products page from landing page, from product detail 'continue shopping', from shopping basket 'continue shopping'.
-Basket - encouraged to progress to checkout
-Checkout - single page, clear vision
+Processes covered are:
 
+| Process | Description | Described in Feature |
+|--|--|--|
+| Newsletter signup | How to signup for email updates | F01 |
+| Registration | 7 Steps to register with the site | F01 |
+| User Profile | Maintain own user profile | F01 |
+| Product search & Selection | Finding and selecting items for basket | F07, F08 |
+| Product reviews | Viewing & Creating | F10, F11 | 
+| Basket | Creating and modifying a shopping basket | F13 |
+| Order | Converting a basket to an Order, including payment | F14, F15 |
+| Order - sysadmin | Managing an order from creation to fulfillment | F16 |
+| Products - sysadmin | Creating, maintaining and controlling visibility of Products | F17 |
+
+Where the process involves a series of user steps, these are signposted to the user and screens are designed with minimal distraction, to encourage the user to progress to the next step (e.g. product detail -> 'add to basket'; basket -> checkout; basket -> 'continue shopping') 
+
+This covers user stories FTU_01-03 navigation and ease of learning; FTU_06 ease of product visibility; RU_01-04 ease of navigation and information flow; SO_01-07 relating to extending the site as a 'shop window' and promoting engagement with site content.
+
+At Jeweller Version 1, the Sysadmin (front end) functions hold product and order maintenance, the system administrator must use the Django backend for functions such as Moderating Reviews, maintaining StockType lead times, and maintaining 'About Page' contents.  Mailchimp is administered separately to the Jeweller app, and inquiries go straight to the Jewellers email.  Sysadmin will need to monitor consistency across Mailchimp, email and the Jeweller app.  Over time, it may make sense to integrate these channels into the Jeweller app itself.     
 
 ### F06 USER FEEDBACK - TOASTS, FORM ERRORS, EMAILS, SCREEN PROGRESSION
 Jeweller is designed to provide clear and consistent feedback to users as they progress through tasks.
@@ -300,33 +300,18 @@ The design of user feedback addresses user stories FTU_01,02 site navigation, FT
 
 ### F07 View Products
 ----------------------
-View and Sarch Products:
-The full set of articles is available from the Articles link on the navigation bar. 
-From this screen the user can see article title, image suggestive of content, summary/ excerpt, author, last updated, and gain an idea of article popularity, by seeing the number of likes, bookmarks and comments for the article.   'New' articles are flagged.
+View and Sarch Products:   Initially when the 'shop now' button is taken, the Products page is displayed with all products shown.  This works the same for First-time and Registered users, with some additional Sysadmin options.  This page is device-responsive so will show in 4-columns of product on widest screens, down to single-column on smaller screeens.
 
-![Homepage](./django_financial_planner/docs/readme_images/f08-article-library.png?raw=true "Article library")
+This meets the requirements for FTU_05,06 navigate without mandatory login and see the range of products offered by Jeweller; FTU_08 Product search, RU_01-04; SO_08-10 relating to display of product range.
 
-* SO_01 As site owner I want to provide a platform where users can directly access useful resources to help with real-life financial decision making
-* SO_02 As site owner I want to largely (but not entirely) re-use/ connect to information from authoritative sources 
-* SO_03 As site owner I want to avoid connecting to information which is opinion- rather than fact-based (ie perhaps from a less authoritative source) or at least highlight that the source is less authorative, or offered by a biased source.
-* FTU_01 As a first time user I want to access relevant information to increase my financial understanding/literacy on a specific topic
-* FTU_02 As a first-time user I about what this site does, and want to quickly understand this site's relevance to me, so I don't waste my time on useless engagement 
-* FTU_03 As a first time user I would like to be able to easily navigate the site and quickly learn its functionality 
 
 ### F08 - FILTER PRODUCTS
 -----------------------------
 Can filter products seen based on category (rings, pendants etc)
 
-![article search - result](./django_financial_planner/docs/readme_images/f06-article-search-result.png?raw=true "Article search - result")
-
-* SO_05 As site owner I want to allow users to 'chop and dice' complex information into small chunks 
-* FTU_01 As a first time user I want to access relevant information to increase my financial understanding/literacy on a specific topic
-* FTU_02 As a first-time user I about what this site does, and want to quickly understand this site's relevance to me, so I don't waste my time on useless engagement 
-* FTU_03 As a first time user I would like to be able to easily navigate the site and quickly learn its functionality 
-
 ### F09 - SORT PRODUCTS
 -----------------------
-
+Can sort products according to pre-defined criteria to reflect what is most important to the user, e.g. by price, by most recent/date added, etc
 
 
 ### F10 - PRODUCT DETAILS
@@ -338,19 +323,10 @@ Product details functionality has been extended from the walkthrough to include 
 </details>
 
 
-
-
-
-
-* SO_01 As site owner I want to provide a platform where users can directly access useful resources to help with real-life financial decision making
-* SO_02 As site owner I want to largely (but not entirely) re-use/ connect to information from authoritative sources 
-* SO_03 As site owner I want to avoid connecting to information which is opinion- rather than fact-based (ie perhaps from a less authoritative source) or at least highlight that the source is less authorative, or offered by a biased source.
-
-
 ### F11 PRODUCT REVIEWS
-Any logged-in user can create a review of a product - the user doesn't need to first purchase the product. This was a deliberate design descision based on the Jeweller shop owner's experience with other social media sites, where positive comments from followers sparked interest amongst their friends and contacts - a form of organic marketing.  Similarly, reviews are shown with the user's name and avatar, which promotes social marketing and peer-user prompting.  Reviews will not be displayed, however, until approved by SysAdmin/ Moderator.  
+A logged-in user can create a review of a product - the user doesn't need to first purchase the product. This was a deliberate design descision based on the Jeweller shop owner's experience with other social media sites, where positive comments from followers sparked interest amongst their friends and contacts - a form of organic marketing.  Also, the jewellery products displayed may be expensive or limited-edition items, which restricts the number of purchasers, however many people may admire the item of jewellery, or take inspiration from it, and wish to leave a review on that basis.
 
-Another reason for not limiting reviews to people who have purchased a certain product is that a significant proportion of products on display are expensive and limited-edition, which restricts the number of purchasers, however many people may admire the item of jewellery, or take inspiration from it.
+Reviews are shown with the user's name and avatar, which promotes social marketing and peer-user prompting.  Reviews will not be displayed, until approved by SysAdmin/ Moderator.  
 
 Customers who make a purchase are encouraged, once they've received the item, to leave a review on the website for the purchased product.
 
@@ -425,13 +401,14 @@ And items can be removed from the shopping basket
 This meets user requirements FTU_01-05; FTU_15,16 Maintain Shopping basket; SO_04,05,15 (extend the walkthorough shopping basket models to include personalisation)
 
 
-F14 CREATE ORDER FROM SHOPPING BASKET, including choosing delivery method
+### F14 CREATE ORDER FROM SHOPPING BASKET
+Including choosing delivery method
 
+### F15 STRIPE PAYMENTS
+Including  (WITH RESILIIENCE)
 
-F15 STRIPE PAYMENTS (WITH RESILIIENCE)
-
-
-### F16 - ORDER LIFECYCLE TRACKING, including ANPOST Tracking
+### F16 ORDER LIFECYCLE
+TRACKING, including ANPOST Tracking
 
 One of the concerns that the Jeweller shop owners had about committing to a website was the ability to know what orders have been raised, and to track whether the order has been packed, shipped or received.  To alleviate some of the concerns about order tracking, a customised tracking portal was created, where the Sysadmin can progress an order through its various stages.
 When the first version of order-level tracking was demonstrated to the Jeweller organisation, they pointed out that they need to see which wtems are on each order.  Therefore the display has been extended to show order details per order.   
@@ -447,58 +424,32 @@ For convenience, a show-hide button is also available for closed orders.
 <details><summary>Order Tracking Portal - show addresses</summary><img src="./docs/readme_images/f16-sysadmin-order-admin-show-address.png"></details>
 
 
+### F17 PRODUCT LEAD TIMES
 
 
+### F18 - USER PROFILE CREATION & MAINTENANCE
+Already covered?
 
-
-F17 PRODUCT LEAD TIMES
-
-
-F18 - USeR PROFILE CREATION & MAINTENANCE
-
-
-F19 - EMAIL INTEGRATION
-
+### F19 - EMAIL INTEGRATION
+Already covered?
 
 
 ### F20 - SYSADMIN PRODUCT MAINTENANCE
-Admin users ('staff' users) can access a backend portal which allows create, read, update and delete of:
-* Users (passwords are encrypted so an administrator can never read a users password)
-* User profiles
-* Articles
-* Article actions
-* Article-User Likes
-* Article-User Bookmarks
-* Article Comments
-Site maintenance, including creation and publication of Articles, Response Moderation, and search term maintenance, is done by an administrator (a user flagged as 'staff') using the application back-end.
-
-As the application has grown, this interface has increased in complexity.  It currently looks like this:
-![Content Mgt overview](./django_financial_planner/docs/readme_images/f15-content-management-overview.png?raw=true "Content Mgt")
-
-This administration portal has been adequate as a proof-of-concept whilst delivering the Finance Planner application.
-However as number of articles increase, so does the maintenance overhead.  
-The process for adding a new article is now:
-* Create draft article with appropriate imagery and content
-* Review the lifestage tags to determine which (if any) are most appropriate
-* Either append "exact lifestage text" to the article tags; or update the tag table with the article primary key record #.
-* Create any tasks (article actions) needed for the article and link them to the parent article.
-
-As a next development step for the FinancialPlanner app, I would highly recommend developing an admin portal.  (FUTURE REQUIREMENT) 
-This would allow an Article and each of its related elements to be maintained in sync.  This wasn't intially a requirement as the standard Django-delivered Admin Console was considered adequate, however the data complexity and maintenance overhead have increased as the site has neared completion, and data has been added.  
-
-* SO-09 As site owner I would like to store a database of content to include url links, 
-* SO-10 As site owner, I would like to have the capability to organise the content by lifestage, theme, and other criteria (possibly hierarchical groupings, hashtags) to allow cross referncing of user needs to content 
+To be completed
 
 ### F21 - SYSADMIN - ORDER MAINTENANCE
 --------------------------------------
+Already covered???
 
 ### F22 - NEWSLETTER & MARKETING, SOCIAL LINKS
 ----------------------------------------------
+Already covered???
 
 ### F23 - SEO
 -------------
+Already covered???
 
-### F16 Error Pages
+### FXX Error Pages
 -------------------
 If, or when HTTP erorrs occur, a custom error page with a 'back to home' link displays.  This avoids the user needing to use the back button to get out of an error situation.  Errors 400, 403, 404 and 500 are covered
 
@@ -509,122 +460,3 @@ The 404 page would most likely be seen when the user inadvertently types in some
 The 500 page could be encountered if the user takes the option for example to reset their password - this link is not yet configured to communicate externally from the deployed FinancialPlanner site and will throw a 500 error.
 
 ![500 page](./django_financial_planner/docs/readme_images/f17-500.png?raw=true "HTTP error 500 error page with back button")
-
-
-
-### F07 Lifestage filter
-A second type of search - a Lifestage filter - is available.  This allows searching for articles associated with a pre-defined theme.
-These pre-defined themes are defined as 'tags' in the FinancialPlanner Administrator Console.
-
-![lifestage tag maintnance](./django_financial_planner/docs/readme_images/f07-lifestage-filter-article-tags.png?raw=true "Article tags")
-
-Tags are associated with articles, and there are two ways to update the assocation.  The first is to edit the tag field within the article and add the tag name within quotes, e.g. "Plan for Care in Later Life".  However this method is not ideal, as the field in the Admin Console is unvalidated and allows for free-format text entry.  If a search term is not exactly specified then a categorised article may not be retrieved as expected within Financial Planner.
-
-A better way is to maintain from the tag perspective and to maintain a list of all articles associated with the tag.  Again this is not a perfect solution as the adminstrator must determine the ObjectID of each article, however it suffices at this time for proof-of-concept, and it ensures that the correct association is definitely made.  
-
-![lifestage tag-article maintnance2](./django_financial_planner/docs/readme_images/f07-lifestage-filter-linking-tag-to-article2.png?raw=true "Article linking to tags")
-
-Adding an article to a tagged list performs the corresponding update to the Article's 'Tags' field.
-
-![lifestage tag-article maintnance](./django_financial_planner/docs/readme_images/f07-lifestage-filter-linking-tag-to-article.png?raw=true "Article linking to tags")
-
-This addresses user stories:
-* SO_05 As site owner I want to allow users to 'chop and dice' complex information into small chunks 
-* FTU_01 As a first time user I want to access relevant information to increase my financial understanding/literacy on a specific topic
-* FTU_02 As a first-time user I about what this site does, and want to quickly understand this site's relevance to me, so I don't waste my time on useless engagement 
-* FTU_03 As a first time user I would like to be able to easily navigate the site and quickly learn its functionality 
-
-
-
-### F10 Tasks
-Articles may contain one more suggested tasks.  Often these will include a link, either to a site where the user needs to take a follow-on activity.  These could be:
-- a URL connecting to a government website e.g. the Irish Revenue site
-- a link to a Google sheet which can be personalised e.g. household budget 
-
-![Article tasks](./django_financial_planner/docs/readme_images/f10-article-tasks.png?raw=true "Article tasks")
-
-N.B. For logged-in users, this is the expected step to create a new personal task, by coping an Article to a Personal task, from where the user can update the task as they progress with it.  
-For registered users, a 'copy' icon is seen beside each action 
-* SO_11 As site owner, I would like to encourague users to engage with each article's content, by providing suggested actions and next steps for the user to take 
-* FTU_06 As a first-time user I want clear, timely and unambiguous feedback and interaction
-* FTU_07 As a first-time user I expect links and functions that work as expected
-
-
-### F12 Reading List
-ability for a registered user to add an article to their reading list:
-
-![Reading list (bookmarks)](./django_financial_planner/docs/readme_images/f12-reading-list.png?raw=true "Reading List")
-
-* SO_11 As site owner, I would like to encourague users to engage with each article's content, by providing suggested actions and next steps for the user to take 
-* RU_01 As a returning user I want to mark information I find useful so I can quickly access it again (favourites)
-* RU_02 As a returning user I want to create a user profile so that I can personalise my site experience (profile image, bookmarks, actions/tasks)
-
-### F14 My Tasks
-
-* CREATE A USER TASK:
-A logged-in user can create a 'task' that is, a structured activity which is prompted by an article they have read.  A user task can be created either by copying an article task (the preferred method) or by direct keying of a new task.  Once the task is created, if can be accessed from the task list on the 'My Planner' dashboard, and can be edited, or indeed deleted, by the user.  
-  
-* READ TASKS:
-On the MyPlanner dashboard, the number of tasks created by this user is shown, and can be hidden or revealed by the 'Show Tasks' button.
-
-See user's task list.  Task 30 is selected for edit.  
-![Personal Tasks](./django_financial_planner/docs/readme_images/f14-my-tasks.png?raw=true "My Tasks")
-
-* UPDATE TASKS:
-An update panel is given, and the user updates the 'Progress' field
-![Personal Tasks - update](./django_financial_planner/docs/readme_images/f14-my-tasks-update.png?raw=true "My Tasks - update")
-
-Press the Submit button.
-A confirmation message is shown to confirm the update:
-![Personal Tasks - update confirm](./django_financial_planner/docs/readme_images/f14-my-tasks-update-message.png?raw=true "My Tasks - update confirmed")
-
-The update can be seen when the user's task list is re-displayed:
-![Personal Tasks - updated](./django_financial_planner/docs/readme_images/f14-my-tasks-updated.png?raw=true "My Tasks - updated")
-
-
-* DELETE TASK:
-To delete a task, select the red 'bin' icon on the grid. Task 30 is now selected for delete:
-![Personal Tasks - delete confirm](./django_financial_planner/docs/readme_images/f14-my-tasks-confirm-delete.png?raw=true "Confirm delete")
-
-A confirmation message appears, the total number of tasks is decremented, the task no longer shows on the task list
-![Personal Tasks - delete confirmed](./django_financial_planner/docs/readme_images/f14-my-tasks-confirmed-delete-and-total-decremented.png?raw=true "Confirmed delete")
-
-
-
-
------------------------------------------
-----------------------------------------
-
-### F16 Content Management - Article Creation
-
-
-
-Feedback
-Customer Testimonials
-
-* SO_07 As site owner I want to provide an opportunity for the user to provide feedback, including reporting issues, or suggesting improvements to the Financial Planner site
-* SO-08 As site owner I want to acknowledge to the user that their feedback has been received
-* FTU_05  As a first-time user I would like to undertand the role of user feedback and user reviews 'X users found this useful or relevant',
-
-
-### F16 Content Management - Article creation
-The main elements of an article which are needed for creation are:
-title, excerpt, body of article.
-Through using summernote, there is reasonable editorial flexibility in creating article content.  
-In the example below, an infographic was created usng Canva, and the summernote form was setup with a 2-colum table structure.
-The infographic was inserted in the leftmost column and the text to the right.
-
-![Content Mgt detail](./django_financial_planner/docs/readme_images/f16-article-maintenance-content.png?raw=true "Content Mgt - detail")
-
-With initial user testing, users had some difficulty reading screen content, therefore the best approach seems to be Arial-16 font 
-(the number of fonts available within SummerNote is not extensive), with minimal text and good use of graphics or pictorial elements.
-Note that summernote supports in-frame video from a range of providers, e.g. it was possible to use Veemo video links to embed some video from the RTE 'how to be good with money' series. 
-
-The summernote Django extension is used to create article body.  It provides for 'rich' features such as a variety of fonts and text styles, the ability to incorporate images, video and URLs into content.  
-The content loaded to this demonstration site illustrates some of this, and the site would now benefit by additional effort in content creation.
-
-* SO_01 As site owner I want to provide a platform where users can directly access useful resources to help with real-life financial decision making
-* SO_02 As site owner I want to largely (but not entirely) re-use/ connect to information from authoritative sources 
-* SO_03 As site owner I want to avoid connecting to information which is opinion- rather than fact-based (ie perhaps from a less authoritative source) or at least highlight that the source is less authorative, or offered by a biased source.
-* FTU_01 As a first time user I want to access relevant information to increase my financial understanding/literacy on a specific topic
-* FTU_02 As a first-time user I about what this site does, and want to quickly understand this site's relevance to me, so I don't waste my time on useless engagement 
