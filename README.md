@@ -980,7 +980,7 @@ Features were tested under the following personas:
 <br>
 
 | Role | Test |Result  |
-|--|--|
+|--|--|--|
 | SO | can access sysadmin dropdown | Pass |
 | SO | can access product maintenance page from sysadmin  dropdown|Pass|
 | SO | can access order maintenance grid  from sysadmin dropdown |Pass|
@@ -997,7 +997,7 @@ Features were tested under the following personas:
 <br>
 
 | Role | Test |Result  |
-|--|--|
+|--|--|--|
 | SO | can access order maintenance page from sysadmin  dropdown|Pass|
 | SO | can view orders on Order grid |Pass|
 | SO | can use 'show address' and 'show details' buttons to toggle display of address/ product details |Pass|
