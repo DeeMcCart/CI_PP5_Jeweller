@@ -346,64 +346,13 @@ a.category-badge > span.badge:hover {
 	color: #17a2b8; /* text-info */
 }
 
-
-
-
-
-
-/* DMcC 25/01/24:  Styling for allauth forms */
-/*
-.btn-signup {
-    background-color: #1c9797;
-    color: #fff;
-}
-
-.btn-signup:hover,
-.btn-signup:active {
-    background-color: #fff;
-    color: #1c9797;
-}
-
-.btn-edit {
-    background-color: #1c9797;
-    color: #fff;
-}
-
-.btn-delete {
-    background-color: #E84610;
-    color: #fff;
-}
-
-.icon-delete {
-    color: red;
-}
-
-.icon-edit {
-    color: blue;
-}
-
-.icon-copy {
-    color: green;
-}
-
-.btn-cancel {
-    background-color: gray;
-    color: #fff;
-}
-
-.btn-like {
-    color: var(--color-red);
-    border: none;
-    background: transparent;
-}
-
-.btn-like:hover,
-.btn-like:active {
-    color: var(--color-red);
-    background: transparent;
-    border: none;
-}
-*/
+/* MailChimp styling */
+#mc_embed_signup{
+    background:#fff; 
+    clear:left; 
+    font:14px 
+    Helvetica,Arial,sans-serif; 
+    width: 600px;}
 
 /* footer */
 footer {

@@ -1,7 +1,10 @@
 # Jeweller 
 Developer:  **Deirdre McCarthy**, Feb 2024
 
-### Live webpage link 
+### Live webpage link
+
+![site screenshot](./docs/readme_images/val-responsive.png)
+
 ![Jeweller site:  Use Ctrl + click to open in new tab](https://jeweller-bd1caeb15bbd.herokuapp.com/)
 
 # Table of Contents:
@@ -24,12 +27,16 @@ Developer:  **Deirdre McCarthy**, Feb 2024
     1. [Site Owner Goals](#site-owner-goals)
     2. [First-time User Goals](#first-time-user-goals)
     3. [Returning User Goals](#returning-user-goals)
- 5. [Further UX Design: ](#ux-design-decisions)
+5. [Further UX Design: ](#ux-design-decisions)
     1. [Skeleton - Wireframes; ](#wireframes)
     2. [Surface - Fonts; ](#fonts-chosen)
     3. [Surface - Colours](#colour-scheme)
     4. [Surface - Imagery](#design-images)
-6. [Agile Methology: ](#agile)
+6. [Database](#database)
+    1. [Conceptual database design](#database-design)
+    2. [Database schemas](#database-schema)
+    3. [Techncial implementation](#database-technical)
+7. [Agile Methology: ](#agile)
     1. [Project setup](#project)
     2. [Designing an Issue Template](#issue-template)
     3. [Creating project issues](#project-issues)
@@ -42,10 +49,11 @@ Developer:  **Deirdre McCarthy**, Feb 2024
     10. [Project tabular view](#tabular-projects-view)
     11. [Kanban board](#kanban-board)
     12. [Observations and learnings](#agile-observations-and-learnings)    
-7. [Features](#features)
+8. [Features](#features)
     1. [Included](#features-in-scope)
-    2. [Future Development](#features-left-to-implement)
-8. [Technology](#technologies)
+    2. [Mapped to user stories](#)
+    3. [Future Development](#features-left-to-implement)
+9. [Technology](#technologies)
     1. [Languages](#langugages)
     2. [Frameworks and Tools](#frameworks--tools)
 9. [Validation](#validation)
@@ -389,7 +397,12 @@ Text and buttons shown in a near-black colour with certain notificiations showin
 The Jeweller's existing design images which had been uploaded to facebook, were re-used for this Version 1 implementation.
 The landing page provides a splash of colour, this uses a recent flyer image developed by the Jeweller.
 
-## Database Schema
+## Database
+
+### Database design
+
+
+### Database Schema
 <details>
 <summary>Profiles App</summary>
 <br>
@@ -581,6 +594,9 @@ The landing page provides a splash of colour, this uses a recent flyer image dev
 
 ---
 
+### Database Technical
+The DEV environment was built using a sqlite backend, this was migrated to a PostGRES SQL database on the ElephantSQL platform for the PROD environment.  (This is a medium-term solution as ElephantSQL have made an end-of-life announcement  for Jan 2025).  Static data for the site (css and site images) is stored on AWS S3 buckets, which provides a robust interface with strong security features.  
+
 ## Agile
 --------
 
@@ -606,15 +622,7 @@ The entire approach was covered under the EPIC 'Agile' and can be seen under thi
 ### Project
 A github project was created within the Jeweller repo.  At a high level the project details are very simple really just a name and description.
 
-<details><summary>GitHub Project Setup</summary><img src="./docs/readme_images/agile-project-setup.png"></details>
-    
-At the outset, an issue template was created specifically for user stories.  This holds 5 sections:  
-* EPIC:  The parent functional theme for this user story.  
-* A statement of what is to be achieved in the format 'As a **role** I want to **action** to achieve **goal**'.
-* Assumptions/ Pre-requisites
-* Acceptance Criteria: List of conditions to prove user story is delivered
-* Tasks:  Checkbox-marked list of tasks to address this user story.
-* Associated project tracking fields (MoSCoW label, priority, estimated SPs, actual SPs, EPIC, Assigned-to, associated Project & Milestone)
+At the outset, an issue template was setup for user stories, with 5 sections - EPIC, requirement, pre-requisites, acceptance criteria, tasks.  This template made it easier to structure issues when created.  I also setup a template for bug reporting, but found it too cumbersome for practical use.
 
 ### Project Issues
 Issues were created to track planned end-to-end work in Financial_Planner, using the issue template for consistent appearance and 
@@ -636,12 +644,10 @@ For prioritising user stories and known tasks, I assigned a label to each issue,
 * Should-have
 * Could-have (or nice-to-have)
 * Won't have (perhaps its a never, or perhaps this just means 'not at this release')
-To make selection easier (ensure that these appeared at top of label list in the order above) I preceded each label with a number as shown:
-<details><summary>MoSCow labels</summary><img src="./docs/readme_images/agile-issues-moscow-prioritization.png"></details>
+These were used with T-shirt sizing (S, M , L) to prioritise and plan work.
 
 ### Estimated & Actual Story Points
-Story points are intended as a 'level of required effort' measure.  I used a custom issue category field to represent these. 
-While at the beginning it was easiest to think of story points in terms of 'hours', as the sprints passed it became easier to assess relative to work already completed.
+Story points were assigned per issue, and then actual hours tracked in a separate label.
 
 ### Milestones
 Three project milestones were used:
@@ -649,10 +655,6 @@ Three project milestones were used:
 * MVP (due date =  end Sprint2)
 * Version 1 (due date = end Sprint4)
 This'deploy-early' approach meant the software could be delivered incrementally, with successive releases building on proven, working software.  
-
-<details><summary>Milestones</summary>
-<img src="./docs/readme_images/agile-milestones.png">
-</details>
 
 ### Sprints and Iterations
 In Agile methodology, effort is timeboxed into Srints, with a kickoff at the start of each Sprint time period, in which items from the product backlog are made ready for work (groomed) by ensuring all the details are completed on the user-story/issue card (task details, acceptance criteria, priority, dependencies, Story Point estimate ) before a developer starts working on it.  At the end of a sprint a retrospective should be undertaken to determine what worked well or not during that sprint.
@@ -695,20 +697,11 @@ Where possible the Kanban issue # is referenced, this links the commit message t
 Within a sprint, the kanban board provides invaluable visual tracking.  
 In the Jeweller kanban board, issues progress from leftmost column (backlog) to rightmost (done)
 
-Note that each column holds a descriptor to tell you what is happening to issues within the column.
-<details><summary>Projects - Kanban (simple)</summary><img src="./docs/readme_images/agile-issues-kanban-view.png"></details>
-
-Two main Kanban views were used, one for EPICs only, and one for Issues.  See:
-* the number of issues at each kanban board state (e.g. highlighted in blue for InProgress column)
-* The storypoints for each individual issue, as well as the total storypoints at each lifecycle status (e.g. highlighted in green for 'Todo' column)
-* The EPIC associated with each issue (e.g. highlighted in pink within the 'Done' column)
-
+Two main Kanban views were used, one for EPICs only, and one for Issues.  This was useful for keeping an overview (EPICs) and detailed tracking of the complex work in developing this website.
 
 Viewing by EPIC was useful for an overall view of the project: https://github.com/users/DeeMcCart/projects/5/views/7
 
 Each EPIC contains a drill down into its 'child tasks', e.g. https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/16
-
-Example 'child' task: https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/17
 
  
 ### Agile Observations and learnings
@@ -773,11 +766,11 @@ As this relates to a real-life site there are a number of features that the Jewe
 - Javascript
 - Python
 - Django (initial v 3, now V4+)
-- Bootrap (V5)
-- 
+- Bootrap 
+
 
 ### Frameworks & Tools
-* Github:  used to maintain the code repository, and for some readme edits and commits
+* Github:  used to maintain the code repository, and for version control
 * Git
 * Gitpod:  used for editing and for tracking code commits back to Github
 * Balsamiq:  used for wireframing
@@ -798,10 +791,6 @@ The following additional python libraries were used:
 
 ## Validation 
 
-### Python Linting
-There are 5 apps plus a project so approx 30 python files involved.  The approach taken to identifying and resolving python linting errors was to work through module-by-module using a command such as 'python3 -m flake8 APPNAME --exclude=APPNAME/migrations/'.  That way it was possible to systematically work through each of the app files and tick off each of the identified errors.
-Of course, following the linting process means introducing more errors so it is a somewhat cyclical process!
-Code not written directly by me (e.g. migrations within each app) was not included in the linting validation, as I was cautious about making inadvertent changes.
 
 ### HTML Validation 
 - HTML
@@ -837,6 +826,10 @@ Performance for all pages was tested using the Lighthouse tool within Google Chr
 
 ![Performance - article detail](./jeweller/docs/readme_images/validation-lighthouse-performance-article-detail-html.png?raw=true "Lighthouse - index page") 
 
+### Python Linting
+There are 5 apps plus a project so approx 30 python files involved.  The approach taken to identifying and resolving python linting errors was to work through module-by-module using a command such as 'python3 -m flake8 APPNAME --exclude=APPNAME/migrations/'.  That way it was possible to systematically work through each of the app files and tick off each of the identified errors.
+Of course, following the linting process means introducing more errors so it is a somewhat cyclical process!
+Code not written directly by me (e.g. migrations within each app) was not included in the linting validation, as I was cautious about making inadvertent changes.
 
 ### Device Testing
 The website was tested on the following devices:

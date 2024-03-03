@@ -57,8 +57,8 @@ class Order(models.Model):
                            null=False, blank=False)
     postcode = models.CharField(max_length=20, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    planned_ship_date = models.DateField(default=datetime.
-                                         datetime(2024, 2, 28, 0, 0, 0))
+    planned_ship_date = models.DateField(default=(datetime.date.today()
+                                      + timedelta(days=5)))
     delivery_method = models.CharField(max_length=7, choices=DELIVERY_METHODS,
                                        default='REGPOST')
     delivery_track = models.CharField(max_length=13, null=True, blank=True)

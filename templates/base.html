@@ -42,6 +42,8 @@
     {% endblock %}
     
     {% block extra_css %}
+    <!-- Mailchimp email subscription styling -->
+    <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
     {% endblock %}
     
     {% block corejs %}
@@ -124,9 +126,9 @@
         <div class="row bg-white">
             <!-- DMcC 21/02/24 apply ul rather than navbar -->
             <ul class="navbar navbar-expand-lg navbar-light w-100"> 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </a>
                 <!-- nav-mobile reduces the searchbar display to an icon with drop-down rather than full field width for XS S M screens-->
                 {% include 'includes/mobile-top-header.html' %}
                 <!-- nav-secondary shows a secondary navbar which is used to offer/apply filters on products displayed -->
