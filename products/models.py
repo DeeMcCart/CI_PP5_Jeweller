@@ -69,7 +69,7 @@ class Product(models.Model):
     name = models.CharField(max_length=254)
     hide_display = models.BooleanField(default=False)
     can_be_engraved = models.BooleanField(default=False)
-    max_char_engrave = item_lead_time = models.IntegerField(default=0)
+    max_char_engrave = models.IntegerField(default=0)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     source = models.CharField(max_length=5, choices=ITEM_SOURCE_CHOICES,
                               default='STOCK')
@@ -166,8 +166,7 @@ class Cat5(models.Model):
 
 
 class StockType(models.Model):
-    source = models.CharField(max_length=30, null=True, blank=True)
-    models.CharField(max_length=5, choices=ITEM_SOURCE_CHOICES,
+    source = models.CharField(max_length=5, choices=ITEM_SOURCE_CHOICES,
                      default='STOCK')
     default_lead_time = models.IntegerField()
 

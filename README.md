@@ -389,6 +389,198 @@ Text and buttons shown in a near-black colour with certain notificiations showin
 The Jeweller's existing design images which had been uploaded to facebook, were re-used for this Version 1 implementation.
 The landing page provides a splash of colour, this uses a recent flyer image developed by the Jeweller.
 
+## Database Schema
+<details>
+<summary>Profiles App</summary>
+<br>
+
+#### User Model (from AllAuth)
+| id | Field |
+|--|--|
+|first_name|CharField|
+|last_name|CharField|
+|username|CharField|
+|email|EmailField|
+|phone_number|CharField|
+|date_joined|DateTimeField|
+|last_login|DateTimeField|
+|is_admin|BooleanField|
+|is_staff|BooleanField|
+|is_active|BooleanField|
+|is_superadmin|BooleanField|
+
+#### UserProfile Model
+
+| id | Field |
+|--|--|
+|user|OneToOneField|
+|phone_number1|Charfield|
+|profile_image|ImageField|
+|created_on|DateTimeField|
+
+#### UserAddress Model
+| id | Field |
+|--|--|
+|user_profile|OneToOneField|
+|address_type|Charfield| default 'BILL'
+|address_id|CharField|default 'HOME'
+|address_label|CharField|
+|profile_image|ImageField|
+|created_on|DateTimeField|
+|address1|CharField|
+|address2|CharField|
+|town_or_city|CharField|
+|county|CharField|
+|postcode|CharField|
+|country|CountryField|
+|created_on|DateTimeField|
+
+</details>
+
+---
+
+<details>
+<summary>Products App</summary>
+<br>
+
+#### Category Model
+| id | Field |
+|--|--|
+|name|OneToOneField|
+|friendly_name|Charfield| 
+
+#### Products Model
+| id | Field |
+|--|--|
+|category | ForeignKey('Category')|
+| sku | CharField |
+| name | CharField |
+| hide_display | BooleanField |
+| can_be_engraved | BooleanField |
+| max_char_engrave | IntegerField |
+| price | DecimalField |
+| source | CharField| choices=ITEM_SOURCE_CHOICES, default='STOCK')
+| item_lead_time | IntegerField |
+| promotion | CharField |
+| image | ImageField |
+| image_url | URLField |
+| description | TextField |
+| rating | DecimalField |
+| created_on | DateTimeField |
+
+#### StockType Model
+| id | Field |
+|--|--|
+| source | CharField |
+| default_lead_time | IntegerField |
+| name | CharField |
+
+#### Review Model
+| id | Field |
+|--|--|
+| user_profile | ForeignKey(UserProfile) |
+| product | ForeignKey(Product) |
+| title | CharField |
+| body | CharField |
+| review_rating | DecimalField |
+| approved | BooleanField |
+| created_on | DateTimeField |
+
+</details>
+
+---
+
+<details>
+<summary>Checkout App</summary>
+<br>
+
+#### Order Model
+| id | Field |
+|--|--|
+| order_number | CharField |
+| user_profile | ForeignKey(UserProfile) |
+| full_name | CharField |
+| email | EmailField |
+| phone_number | CharField |
+| street_address1 | CharField |
+| street_address2 | CharField |
+| town_or_city | CharField |
+| county | CharField |
+| country | CountryField |
+| postcode |CharField |
+| date |DateTimeField |
+| planned_ship_date | DateField |
+| delivery_method | CharField | default='REGPOST'
+| delivery_track | CharField |
+| order_status | CharField | default='ORDERED'
+| delivery_cost | DecimalField |
+| order_total |DecimalField |
+| grand_total | DecimalField |
+| original_basket | TextField |
+| stripe_pid | CharField |
+
+
+#### OrderLine Model
+| id | Field |
+|--|--|
+| order | ForeignKey(Order) |
+| line_number| IntegerField |
+| product | ForeignKey(Product) |
+| sku | CharField |
+| quantity |IntegerField |
+| price | DecimalField |
+| category | CharField |
+| product_size | CharField |
+| can_be_engraved |BooleanField |
+| engrave_text |CharField |
+| lineitem_total |Decimal |
+| line_ship_date = DateField |
+
+
+#### OrderLine Model
+| id | Field |
+|--|--|
+| order | ForeignKey(Order) |
+| address_type | CharField |
+| address_id | CharField |
+| address_label |CharField |
+| address1 | CharField |
+| address2 | CharField |
+| town_or_city | CharField |
+| county | CharField |
+| postcode | CharField |
+| country | CountryField |
+| created_on | DateTimeField |
+
+</details>
+
+---
+
+<details>
+<summary>Home App</summary>
+<br>
+
+#### AboutSection Model
+| id | Field |
+|--|--|
+| section | CharField |
+| disp_seq | IntegerField |
+| hide_display | BooleanField |
+| section_title | CharField |
+
+#### AboutText Model
+| id | Field |
+|--|--|
+| section | ForeignKey(AboutSection) |
+| disp_seq | IntegerField |
+| hide_display | BooleanField |
+| text_title | CharField |
+| text_body | TextField |
+
+</details>
+
+---
+
 ## Agile
 --------
 
@@ -564,7 +756,7 @@ Examples were:
 
 * I implemented a model-based approach for the 'About' section, with sysadmin-editable inline text snippets (section -> title & seq# -> text body).  Originally I had thought that these might be edited using Summernote, which would allow for a rich 'About' and 'FAQ' section however summernote implementation is tricky for inline data structures so had to be moved outside the scope of the project.  The data models are in place and remain in use however they're just not as beautiful as i had hoped.
 
-* Shipping lead time.  I wanted to implement some funtionality whereby  the user would be notified as to the likely despatch date for their order, and the concept of prioritising orders based on their shipping date, and to flagging up 'late' orders falling behind schedule.  I added a default lead time based on product source (stock = 1 day between order creation and shipping, make-to-order = 7 days, commisioned item = 21 days etc) with an editable value per product. Based in this i intended to calculate order/line shipping dates.  I added a method on the order model to determine if the order was 'late'.  This had to be backtracked as it was constantly re-evaluating 'late'ness of an order, and kept prompting as a changed order on every migration.
+* Shipping lead time.  I wanted to implement some funtionality whereby  the user would be notified as to the likely despatch date for their order, and the concept of prioritising orders based on their shipping date, and to flagging up 'late' orders falling behind schedule.  I added a default lead time based on product source (stock = 1 day between order creation and shipping, make-to-order = 7 days, commisioned item = 21 days etc) with an editable value per product. Based in this I intended to calculate order/line shipping dates.  I added a method on the order model to determine if the order was 'late'.  This had to be backtracked as it was constantly re-evaluating 'late'ness of an order, and kept prompting as a changed order on every migration.
 Shipping lead time is partially implemented witin the delivererd solution.
 
 ### Features Left to Implement
@@ -908,7 +1100,7 @@ Database model changes were made after initial deploy.  These changes were made 
 
 #### Keeping DEV & PROD data in sync after initial deploy
 Data is stored independently in DEV sqlite and PROD Elephant Postgres databases.
-I had expected this would require re-keying of all testing/demo data into Prod, but Tutor Support helped by flagging that a json data dump could be done from DEV and imported into PROD using the loaddta command.  This worked for 'product' (products & categories) and 'home' (contents of 'about' page) but did not work for all data models as some had inter-app dependencies (e.g. products-reviews app had a dependency on User/UserProfile so this import failed).  The DEV json data dump/ PROD json data import was used just once (Sprint3) and the data was then allowed to grow indepdently on both sites.  
+I had expected this would require re-keying of all testing/demo data into Prod, but Tutor Support helped by flagging that a json data dump could be done from DEV and imported into PROD using the loaddta command.  This worked for 'product' (products & categories) and 'home' (contents of 'about' page) but did not work for all data models as some had inter-app dependencies (e.g. products-reviews app had a dependency on User/UserProfile so this import failed).  The DEV json data dump/ PROD json data import was used just once (Sprint3) and the data was then allowed to grow independently on both sites.  
 
 For the jeweller project there were multiple staged deployments over the project duration:
 * First deploy:  https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/8 (Partial success only, because I hadnt fully read the instructions & missed some installs, errr including not installing the ElephantSQL database)
