@@ -125,17 +125,15 @@
         <!-- New row for the secondary header (category searches) -->
         <div class="row bg-white">
             <!-- DMcC 21/02/24 apply ul rather than navbar -->
-            <ul class="navbar navbar-expand-lg navbar-light w-100"> 
-                <li>
+            <div class="navbar navbar-expand-lg navbar-light w-100"> 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                </li>
                 <!-- nav-mobile reduces the searchbar display to an icon with drop-down rather than full field width for XS S M screens-->
                 {% include 'includes/mobile-top-header.html' %}
                 <!-- nav-secondary shows a secondary navbar which is used to offer/apply filters on products displayed -->
                 {% include 'includes/nav-main.html' %}
-            </ul>
+            </div>
         </div> <!-- end div row -->
         <!-- delivery threshold banner -->
         <div id="delivery-banner" class="row text-center">

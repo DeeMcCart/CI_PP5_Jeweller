@@ -720,7 +720,7 @@ Each EPIC contains a drill down into its 'child tasks', e.g. https://github.com/
 ### Features in Scope 
 The site includes over 20 features, these are listed in a separate READme document (use ctrl-click to open in a separate tab):
 
-<a href="https://github.com/DeeMcCart/Jeweller/blob/main/README_Features.md" target="_blank">Site features, open in separate tab using Ctrl-click</a>
+<a href="https://github.com/DeeMcCart/CI_PP5_Jeweller/blob/main/README_Features.md" target="_blank">Site features, open in separate tab using Ctrl-click</a>
 
 It was helpful to create this as a separate document, as it is also offered to users as a 'how to' guide.
 
