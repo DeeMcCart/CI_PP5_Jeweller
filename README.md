@@ -764,6 +764,7 @@ Examples were:
 
 ### Features Left to Implement
 As this relates to a real-life site there are a number of features that the Jeweller shop owners have discussed as being part of their current business processes, which would be good to reflect in the next software version.
+A mapping of user stories vs features is given in this google sheet:  https://docs.google.com/spreadsheets/d/14lpwEkuFtDyyV5SUqFzs6Nml3einTpHCULN3nOynp5Q/edit?usp=sharing
 
 * FTU_28 (Future): appointment for engagement rings
                
