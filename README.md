@@ -832,12 +832,12 @@ No errors returned when passing through the official Jigsaw validator.
 Performance for all pages was tested using the Lighthouse tool within Google Chrome.  These results are not yet satisfactory and will require more work.
 
 
-![Performance - Lighthouse - index](./docs/readme_images/validation-lighthouse-index.png?raw=true "Lighthouse - index page") 
+![Performance - Lighthouse - index](./docs/readme_images/val-lighthouse-index.png?raw=true "Lighthouse - index page") 
 
 
-![Performance - products page](./docs/readme_images/validation-lighthouse-products.png?raw=true "Lighthouse - index page") 
+![Performance - products page](./docs/readme_images/val-lighthouse-products.png?raw=true "Lighthouse - index page") 
 
-![Performance - product detail page](./docs/readme_images/validation-lighthouse-product-detail.png?raw=true "Lighthouse - index page") 
+![Performance - product detail page](./docs/readme_images/val-lighthouse-product-detail.png?raw=true "Lighthouse - index page") 
 
 ### Python Linting
 There are 5 apps plus a project so approx 30 python files involved.  The approach taken to identifying and resolving python linting errors was to work through module-by-module using a command such as 'python3 -m flake8 APPNAME --exclude=APPNAME/migrations/'.  That way it was possible to systematically work through each of the app files and tick off each of the identified errors.
