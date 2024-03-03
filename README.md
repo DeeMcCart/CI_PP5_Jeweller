@@ -919,6 +919,7 @@ Features were tested under the following personas:
 <summary>Product & Navigation Tests</summary>
 
 | Role | Test |Result  |
+|--|--|--|
 | ALL | can navigate to products  | Pass |
 | ALL | can select 'ALL PRODUCTS' dropdown and see drop-down menu  | Pass |
 | ALL | can select 'ALL PRODUCTS' - All Producs see a list of 30+ products (with count to top lhs of screen)  | Pass |
