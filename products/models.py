@@ -167,7 +167,7 @@ class Cat5(models.Model):
 
 class StockType(models.Model):
     source = models.CharField(max_length=5, choices=ITEM_SOURCE_CHOICES,
-                     default='STOCK')
+                              default='STOCK')
     default_lead_time = models.IntegerField()
 
     def __str__(self):

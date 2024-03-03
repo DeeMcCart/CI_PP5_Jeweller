@@ -5,7 +5,7 @@ Developer:  **Deirdre McCarthy**, Feb 2024
 
 ![site screenshot](./docs/readme_images/val-responsive.png)
 
-![Jeweller site:  Use Ctrl + click to open in new tab](https://jeweller-bd1caeb15bbd.herokuapp.com/)
+Jeweller site:  Use Ctrl + click to open in new tab: https://jeweller-bd1caeb15bbd.herokuapp.com/
 
 # Table of Contents:
 1. [About](#about)
@@ -627,15 +627,15 @@ At the outset, an issue template was setup for user stories, with 5 sections - E
 ### Project Issues
 Issues were created to track planned end-to-end work in Financial_Planner, using the issue template for consistent appearance and 
 
-![Example issue - based on user stories ](https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/49)
+Example issue - based on user stories:  https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/49
 
-![Example issue - based on deployment tasks (not directly linked to a user story) ](https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/9)
+Example issue - based on deployment tasks (not directly linked to a user story): https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/9
 
 ### EPICs
 This project had 10 EPICs, it is easiest to get a picture of these from the Kanban board below.  
 For cross-reference EPIC is also listed at the top of each issue, so it is possible to click from a child issue to its parent EPIC and vice verssa.
 
-![Kanban board showing all EPICs in project](https://github.com/users/DeeMcCart/projects/5/views/7)
+Kanban board showing all EPICs in project: https://github.com/users/DeeMcCart/projects/5/views/7
 
 
 ### MoSCoW prioritisation
@@ -686,7 +686,7 @@ The insights/ burndown charts were useful to track the actual time logged, a use
 ### Issue Lifeycle
 An issue is set to progress through a number of stages, each represented by a status during its lifecycle.  
 Issues progressed from backlog through to done, as per Kanban board.
-[!Kanban board showing issue lifecycle](https://github.com/users/DeeMcCart/projects/5/views/2)
+Kanban board showing issue lifecycle: https://github.com/users/DeeMcCart/projects/5/views/2
 
 
 ### Commit Messages
@@ -730,33 +730,42 @@ Requirements Traceability Matrix - First-time Users
 Requirements Traceability Matrix - Returning Users and System/Shop Owner
 
 ### Implementation Decisions
-Incremental delivery, 
-Deployed early, 
-Followed & adapted the Boutique walkthrough
-Referenced additional Django walkthroughs and other materials
-Used real-life verification from an Jewellery shop owner, who was clear on the features they prioritised
+* Incremental delivery, 
+* Deployed early, 
+* Followed & adapted the Boutique walkthrough ()
+* Referenced additional Django walkthroughs and other materials
+* Made an effort to extend the BA models and functionality, see: https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/50
+* Used real-life verification from an Jewellery shop owner, who was clear on the features they prioritised
 
 <br>  
-Some of the site ideas and features needed only really became clear as I played with the site as it was delivered, and experienced frustration or spotted opportunites or elements that were worth adding. So the site grew organically as time went on.  The Agile approach with weekly sprints suits incremental development, as it encouraged weekly analysis of what had been done, and how it might progress.
+Some of the site ideas and features needed only really became clear as I played with the site as it was delivered, and experienced frustration or spotted opportunites or elements that were worth adding. So the site grew organically as time went on.  
+<br>
+The Agile approach with weekly sprints suits incremental development, as it encouraged weekly analysis of what had been done, and how it might progress.
 <br>
 There were a number of 'false starts' when I tried to implement functionality and then found that it just didnt work in practice.  
 
 Examples were:
-* I envisaged building a rich cross-reference of product characteristics using category codes e.g. to store metal type (gold, silver, platinum etc); type of stone (diamond, tanzanite, garnet etc) and other characteristics which could be built into a search matrix, with dropdown searches per category for the customer.  However when I implemented this, I found it REALLY clunky to edit a product and to maintain the categories, and I also realised that the python q search functionality actually did a really good job of this type of searching (picks up any word or characters from product name/description).  So I backtracked and reversed out this detail.  I simplified the Product model as a result.  See .  [Link Text]([Link URL](https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/31)) {target="_blank"}
+* I envisaged building a rich cross-reference of product characteristics using category codes e.g. to store metal type (gold, silver, platinum etc); type of stone (diamond, tanzanite, garnet etc) and other characteristics which could be built into a search matrix, with dropdown searches per category for the customer.  
+* However when I implemented this, I found it REALLY clunky to edit a product and to maintain the categories, and I also realised that the python q search functionality already does a really good job of this type of searching (picks up any word or characters from product name/description).
+* So I backtracked and reversed out this detail.  I simplified the Product model as a result.  See https://github.com/DeeMcCart/CI_PP5_Jeweller/issues/31
 
 
-* I intended do more with user addresses, and give the user the option to choose a shipping address, as I could see from the Stripe console that it had the concept of a billing & shipping address.  I modified the User Profile and Order data models to include an inline Address.  However when I looked at the order creation process, which is mirrored by a webhook, I could see that the order was being validated against a single-address model in Stripe's database.  This might be a future development with more time.  
+* I intended do more with user addresses, and give the user the option to choose a shipping address, as I could see from the Stripe console that it had the concept of a billing & shipping address.  
+* I modified the User Profile and Order data models to include an inline Address.  However when I looked at the order creation process, which is mirrored by a webhook, I could see that the order was being validated against a single-address model in Stripe's database.  
+* This will be a future development with more time, and be prioritised for the next release of Jeweller.  
 
-* I implemented a model-based approach for the 'About' section, with sysadmin-editable inline text snippets (section -> title & seq# -> text body).  Originally I had thought that these might be edited using Summernote, which would allow for a rich 'About' and 'FAQ' section however summernote implementation is tricky for inline data structures so had to be moved outside the scope of the project.  The data models are in place and remain in use however they're just not as beautiful as i had hoped.
+* I implemented a model-based approach for the 'About' section, with sysadmin-editable inline text snippets (section -> title & seq# -> text body).  
+* Originally I had thought that these might be edited using Summernote, which would allow for a rich 'About' and 'FAQ' section however summernote implementation is tricky for inline data structures so had to be moved outside the scope of the project.  
+* The data models are in place and remain in use however they're just not as beautiful as i had hoped.
 
-* Shipping lead time.  I wanted to implement some funtionality whereby  the user would be notified as to the likely despatch date for their order, and the concept of prioritising orders based on their shipping date, and to flagging up 'late' orders falling behind schedule.  I added a default lead time based on product source (stock = 1 day between order creation and shipping, make-to-order = 7 days, commisioned item = 21 days etc) with an editable value per product. Based in this I intended to calculate order/line shipping dates.  I added a method on the order model to determine if the order was 'late'.  This had to be backtracked as it was constantly re-evaluating 'late'ness of an order, and kept prompting as a changed order on every migration.
-Shipping lead time is partially implemented witin the delivererd solution.
+* Shipping lead time.  I wanted to implement some funtionality whereby  the user would be notified as to the likely despatch date for their order, and the concept of prioritising orders based on their shipping date, and to flagging up 'late' orders falling behind schedule.  
+* I added a default lead time based on product source (stock = 1 day between order creation and shipping, make-to-order = 7 days, commisioned item = 21 days etc) with an editable value per product. Based in this I intended to calculate order/line shipping dates.  I added a method on the order model to determine if the order was 'late'.  This had to be backtracked as it was constantly re-evaluating 'late'ness of an order, and kept prompting as a changed order on every migration.
+* Shipping lead time is partially implemented witin the delivererd solution, a standard lead time of 5 days is used.
 
 ### Features Left to Implement
 As this relates to a real-life site there are a number of features that the Jeweller shop owners have discussed as being part of their current business processes, which would be good to reflect in the next software version.
 
-* FTU_28 (Future): As a **First-Time User** I would like to  **make an appointment for engagement rings** in order to **elevate a high value buying decision**
-* 
+* FTU_28 (Future): appointment for engagement rings
                
 ## Technologies
 
@@ -800,7 +809,7 @@ HTML validation was performed for the various site pages as follows:  Render the
  
   on the index html pages when checked in the W3C validator:
 
-![W3C Validator - index page](./jeweller/docs/readme_images/val-html-landing-page-no-errors.png?raw=true "W3C validator (index page)")
+![W3C Validator - index page ](./docs/readme_images/val-html-landing-page-no-errors.png?raw=true "W3C validator (index page)")
 
 
 ![W3C validator - products page ](./docs/readme_images/val-html-products-page-no-errors.png?raw=true "W3C validator (my planner page)")
@@ -809,29 +818,50 @@ HTML validation was performed for the various site pages as follows:  Render the
 
 ![W3C validator - basket page](./docs/readme_images/val-html-basket-no-errors.png?raw=true "W3C validator (my actions page)") 
 
-![W3C validator - orders page](./docs/readme_images/val-html-orders-no-errors.png?raw=true "W3C validator (my actions page)") 
+![W3C validator - checkout page](./docs/readme_images/val-html-checkout-no-errors.png?raw=true "W3C validator (my actions page)") 
 
 ### CSS Validation
 
 No errors returned when passing through the official Jigsaw validator.  
 
 - ![(Jigaw) CSS Validator - base.css](./jeweller/docs/readme_images/val-jigsaw-base-css-by-file-upload.png?raw=true "CSS validator") 
-- ![(Jigaw) CSS Validator - profiles/style.css](./jeweller/docs/readme_images/val-jigsaw-style-css-by-file-upload.png?raw=true "CSS validator") 
+- ![(Jigaw) CSS Validator - profiles/style.css](./docs/readme_images/val-jigsaw-style-css-by-file-upload.png?raw=true "CSS validator") 
 
 
 ### Performance
-Performance for all pages was tested using the Lighthouse tool within Google Chrome.  Performance was at 98% for the index page (intro modal).
+Performance for all pages was tested using the Lighthouse tool within Google Chrome.  These results are not yet satisfactory and will require more work.
 
 
-![Performance - Lighthouse - index](./jeweller/docs/readme_images/validation-lighthouse-performance-index-html1.png?raw=true "Lighthouse - index page") 
+![Performance - Lighthouse - index](./docs/readme_images/validation-lighthouse-index.png?raw=true "Lighthouse - index page") 
 
 
-![Performance - article detail](./jeweller/docs/readme_images/validation-lighthouse-performance-article-detail-html.png?raw=true "Lighthouse - index page") 
+![Performance - products page](./docs/readme_images/validation-lighthouse-products.png?raw=true "Lighthouse - index page") 
+
+![Performance - product detail page](./docs/readme_images/validation-lighthouse-product-detail.png?raw=true "Lighthouse - index page") 
 
 ### Python Linting
 There are 5 apps plus a project so approx 30 python files involved.  The approach taken to identifying and resolving python linting errors was to work through module-by-module using a command such as 'python3 -m flake8 APPNAME --exclude=APPNAME/migrations/'.  That way it was possible to systematically work through each of the app files and tick off each of the identified errors.
 Of course, following the linting process means introducing more errors so it is a somewhat cyclical process!
 Code not written directly by me (e.g. migrations within each app) was not included in the linting validation, as I was cautious about making inadvertent changes.
+
+Linting output - home app:  
+![Python flake8-profiles-app](./docs/readme_images/val-python-flake8-home-app.png?raw=true "Linting results - profiles app")
+
+Linting output - profiles app:  
+![Python flake8-profiles-app](./docs/readme_images/val-python-flake8-profiles-app.png?raw=true "Linting results - profiles app")
+
+Linting output - products app:  
+![Python flake8-profiles-app](./docs/readme_images/val-python-flake8-products-app.png?raw=true "Linting results - profiles app")
+
+Linting output - basket app:  
+![Python flake8-profiles-app](./docs/readme_images/val-python-flake8-basket-app.png?raw=true "Linting results - profiles app")
+
+
+Linting output - jeweller app:  
+![Python flake8-jeweller-app](./docs/readme_images/val-python-flake8-jeweller-app.png?raw=true "Linting results - jeweller app")
+
+Linting output - checkout app - several errors remain here,I experimeted with resolving but was cautious about chaging certain code that was needed for Stripe/checkout functionality:  
+![Python flake8-profiles-app](./docs/readme_images/val-python-flake8-checkout-app.png?raw=true "Linting results - checkout app")
 
 ### Device Testing
 The website was tested on the following devices:
@@ -854,7 +884,7 @@ Features were tested under the following personas:
 | SO | Sysadmin user, has additional privileges |
 
 <details>
-<summary>F01 Account Registration Tests </summary>
+<summary>F01 Account Registration & Navigation Tests </summary>
 <br>
 
 | Role | Test |Result  |
@@ -873,12 +903,40 @@ Features were tested under the following personas:
 | RU | receives a password reset email | Pass |
 | RU | can follow the link and reset account password | Pass |
 | RU | can log in with the new password | Pass |
+| RU | can modify profile pic and it displays at top of screen | Pass |
+| RU | (with order history) can see orders previously created for their user profile | Pass |
+| RU | (with order history) Order history show order number, date raised, status, product details and order total | Pass |
+| RU | Clicking on an order brings the user to an order history screen where more details including delivery method and ship/collection date can be seen | Pass |
+| RU | Clicking on 'back to profile' button returns to the user profile page| Pass |
+
 </details>
 
 ---
 <details>
 <summary>Product & Navigation Tests</summary>
-| FTU | is notified that a confirmation email has been sent (Toast messsage) | Pass | 
+
+| Role | Test |Result  |
+| ALL | can navigate to products  | Pass |
+| ALL | can select 'ALL PRODUCTS' dropdown and see drop-down menu  | Pass |
+| ALL | can select 'ALL PRODUCTS' - All Producs see a list of 30+ products (with count to top lhs of screen)  | Pass |
+| FTU | sees a product card with picture, title, price, category, rating (if rated) | Pass |
+| RU | sees a product card as above but with 'Review' link | Pass |
+| SO | sees a product card as above but with 'Review' 'Edit' and 'Delete' links | Pass |
+| ALL | can select 'BY TYPE' dropdown, choose one of the dropdown options, and see just products in that category  | Pass |
+| ALL | can select 'ABOUT' dropdown, choose one of the dropdown options, and screen will load  | Pass |
+
+
+
+|Logged in User can navigate to the profile section of accounts|Pass|
+|User can access their saved address information|Pass|
+|User can access past orders|Pass|
+|User can access the blog section of the page|Pass|
+|User can access specific blogs|Pass|
+|User can access the contact page and form|Pass|
+|All links on footer open to correct pages|Pass|
+|All links on Heading Navigation open to correct option|Pass|
+
+
 <br>
 
 </details>
@@ -888,7 +946,8 @@ Features were tested under the following personas:
 <details>
 <summary>Basket & Navigation Tests</summary>
 <br>
-| Test | Role | Result  | Role | Result | Role | Result
+
+| Test | Role | Result  | Role | Result | Role | Result |
 |--|--|--|--|--|--|--|
 |User can navigate to product| FTU | Pass | RU | Pass | SO | Pass |
 |User can restrict view by product type e.g. earrings | FTU | Pass | RU | Pass | SO | Pass |
@@ -903,16 +962,6 @@ Features were tested under the following personas:
 |User can select product 'gift wrap' and add to basket |FTU | Pass | RU | Pass | SO | Pass |
 |User can select product 'gift tag' and add some personalisation text before adding to basket |FTU | Pass | RU | Pass | SO | Pass |
 |Basket accurately shows products, sizes and choices made |FTU | Pass | RU | Pass | SO | Pass |
-
-
-|Logged in User can navigate to the profile section of accounts|Pass|
-|User can access their saved address information|Pass|
-|User can access past orders|Pass|
-|User can access the blog section of the page|Pass|
-|User can access specific blogs|Pass|
-|User can access the contact page and form|Pass|
-|All links on footer open to correct pages|Pass|
-|All links on Heading Navigation open to correct option|Pass|
 
 </details>
 
