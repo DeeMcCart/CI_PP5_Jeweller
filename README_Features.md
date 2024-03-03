@@ -33,16 +33,12 @@
     5. [Order Visibility to the user ](#F14.5-profile)
 15. [F15 Stripe Payments - with resilience](#F15-stripe)
 16. [F16 Order Lifecycle tracking - including AnPost tracking](#F16-lifecycle)
-17. F17 - PRODUCT LEAD TIMES
-F18 - USER PROFILE CREATION & MAINTENANCE
-F19 - EMAIL INTEGRATION
-F20 - SYSADMIN PRODUCT MAINTENANCE
-
-18. 
-19.
-20. [F20 Sysadmin Product Maintenance](#F20-sysadmin-products)
-21. [F21 ](#F21)
-22. [F22 Newsletter & Marketing, social links](#F22)
+17. [F17 Product Lead times](#F17-leadtimes)
+18. [F18 User Profil Creation and Maintenace](#F18-user-profile)
+19. [F19 Email Intgration](#F19-emails)
+20. [F20 Sysadmin Product Maintenance ](#F20-sysadmin-products)
+21. [F21 Sysadmin Order Maintenance ](#F21-sysadmin-orders)
+22. [F22 Newsletter & Marketing, social links](#F22-marketing)
 23. [F23 SEO](#F23-SEO)
 
 
@@ -407,10 +403,10 @@ For convenience, a show-hide button is also available for closed orders.
 
 
 ### F17 PRODUCT LEAD TIMES
-
+This was a desired feature but not fully implemented
 
 ### F18 - USER PROFILE CREATION & MAINTENANCE
-Already covered?
+Already covered in section F01
 
 ### F19 - EMAIL INTEGRATION
 Already covered?
@@ -446,28 +442,18 @@ The fields for editing include:
 <details><summary>Product detail page, signed in as admin</summary><img src="./docs/readme_images/f20-.png"></details>
 
 
-
-
 ### F21 - SYSADMIN - ORDER MAINTENANCE
 --------------------------------------
 Already covered???
 
 ### F22 - NEWSLETTER & MARKETING, SOCIAL LINKS
 ----------------------------------------------
-Already covered???
+Documented in main readme document
 
 ### F23 - SEO
 -------------
-Already covered???
+Documented in main readme document
 
 ### FXX Error Pages
 -------------------
 If, or when HTTP erorrs occur, a custom error page with a 'back to home' link displays.  This avoids the user needing to use the back button to get out of an error situation.  Errors 400, 403, 404 and 500 are covered
-
-The 404 page would most likely be seen when the user inadvertently types in something on the URL bar which doesn't exist on the site:
-
-![404 page](./django_financial_planner/docs/readme_images/f17-404.png?raw=true "HTTP error 404 error page with back button")
-
-The 500 page could be encountered if the user takes the option for example to reset their password - this link is not yet configured to communicate externally from the deployed FinancialPlanner site and will throw a 500 error.
-
-![500 page](./django_financial_planner/docs/readme_images/f17-500.png?raw=true "HTTP error 500 error page with back button")
