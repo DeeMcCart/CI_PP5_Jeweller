@@ -123,7 +123,7 @@ class Product(models.Model):
             return avg_rating
         else:
             print('No approved reviews found for average rating')
-            return None  # Handle the case of no approved reviews gracefully
+            return 0  # Handle the case of no approved reviews gracefully
 
     def num_order_lines(self):
         """" return count of order lines for product else 0 """

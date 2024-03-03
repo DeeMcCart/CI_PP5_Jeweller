@@ -800,14 +800,16 @@ HTML validation was performed for the various site pages as follows:  Render the
  
   on the index html pages when checked in the W3C validator:
 
-![W3C Validator - index page](./jeweller/docs/readme_images/validation-w3c-index-html.png?raw=true "W3C validator (index page)")
+![W3C Validator - index page](./jeweller/docs/readme_images/val-html-landing-page-no-errors.png?raw=true "W3C validator (index page)")
 
 
-![W3C validator - XX template ](./docs/readme_images/validation-w3c-XXXX-html.png?raw=true "W3C validator (my planner page)")
+![W3C validator - products page ](./docs/readme_images/val-html-products-page-no-errors.png?raw=true "W3C validator (my planner page)")
 
-![W3C validator - YY  template ](./docs/readme_images/validation-w3c-XXXX-html.png?raw=true "W3C validator (my actions page)") 
+![W3C validator - product details page ](./docs/readme_images/val-html-product-detail-page-no-errors.png?raw=true "W3C validator (my actions page)") 
 
-![W3C validator - my_user page](./docs/readme_images/validation-w3c-XXXX-html.png?raw=true "W3C validator (my actions page)") 
+![W3C validator - basket page](./docs/readme_images/val-html-basket-no-errors.png?raw=true "W3C validator (my actions page)") 
+
+![W3C validator - orders page](./docs/readme_images/val-html-orders-no-errors.png?raw=true "W3C validator (my actions page)") 
 
 ### CSS Validation
 
