@@ -908,6 +908,9 @@ Features were tested under the following personas:
 | RU | (with order history) Order history show order number, date raised, status, product details and order total | Pass |
 | RU | Clicking on an order brings the user to an order history screen where more details including delivery method and ship/collection date can be seen | Pass |
 | RU | Clicking on 'back to profile' button returns to the user profile page| Pass |
+| All | User can access the About page and form|Pass|
+| All| All links on footer open to correct pages|Pass|
+| All | All links on Heading Navigation open to correct option|Pass|
 
 </details>
 
@@ -921,22 +924,10 @@ Features were tested under the following personas:
 | ALL | can select 'ALL PRODUCTS' - All Producs see a list of 30+ products (with count to top lhs of screen)  | Pass |
 | FTU | sees a product card with picture, title, price, category, rating (if rated) | Pass |
 | RU | sees a product card as above but with 'Review' link | Pass |
+| RU | can leave a review for a product | Pass |
 | SO | sees a product card as above but with 'Review' 'Edit' and 'Delete' links | Pass |
 | ALL | can select 'BY TYPE' dropdown, choose one of the dropdown options, and see just products in that category  | Pass |
 | ALL | can select 'ABOUT' dropdown, choose one of the dropdown options, and screen will load  | Pass |
-
-
-
-|Logged in User can navigate to the profile section of accounts|Pass|
-|User can access their saved address information|Pass|
-|User can access past orders|Pass|
-|User can access the blog section of the page|Pass|
-|User can access specific blogs|Pass|
-|User can access the contact page and form|Pass|
-|All links on footer open to correct pages|Pass|
-|All links on Heading Navigation open to correct option|Pass|
-
-
 <br>
 
 </details>
@@ -944,7 +935,7 @@ Features were tested under the following personas:
 ---
 
 <details>
-<summary>Basket & Navigation Tests</summary>
+<summary>Basket Tests</summary>
 <br>
 
 | Test | Role | Result  | Role | Result | Role | Result |
@@ -957,7 +948,7 @@ Features were tested under the following personas:
 |User can add a ring to cart, and can choose ring size,e.g. M before adding |FTU | Pass |  RU | Pass | SO | Pass |
 |User can view basket and can modify the quantity of the 'earrings' item  |FTU | Pass | RU | Pass | SO | Pass |
 |User can continue shopping and can add the same ring in a different size e.g. J to basket |FTU | Pass | RU | Pass | SO | Pass |
-|User can view basket and modify the quantity to one of the ring sizes |FTU | Pass | RU | Pass | SO | Pass |
+|User can view basket and modify the quantity of one of the ring sizes |FTU | Pass | RU | Pass | SO | Pass |
 |User can return to shopping, and select 'st brigids cross' (engraveable item) and choose some engravable text then add to basket |FTU | Pass | RU | Pass | SO | Pass |
 |User can select product 'gift wrap' and add to basket |FTU | Pass | RU | Pass | SO | Pass |
 |User can select product 'gift tag' and add some personalisation text before adding to basket |FTU | Pass | RU | Pass | SO | Pass |
@@ -968,150 +959,63 @@ Features were tested under the following personas:
 ---
 
 <details>
-<summary>Account Security Tests</summary>
+<summary>Checkout Tests</summary>
 <br>
 
-| Test |Result  |
-|--|--|
-|NLI cannot make reservation | Pass |
-|NLI cannot access profile page| Pass|
-|NLI cannot access admin panel|Pass|
-|NLI cannot access products management|Pass|
-|NLI cannot access the contact form page|Pass|
-|NLI cannot leave comments on blog|Pass|
-|LIU cannot access admin panel|Pass|
-|LIU cannot access products management|Pass|
-|LIU can access the contact form page|Pass|
-|LIU cannot edit products|Pass|
-|LIU can leave comments on blog articles|Pass|
+| Test | Role | Result  | Role | Result | Role | Result |
+|--|--|--|--|--|--|--|
+|User can navigate to checkout| FTU | Pass | RU | Pass | SO | Pass |
+|User can choose delivery method 'COLLECT' or 'REGPOST'| FTU | Pass | RU | Pass | SO | Pass |
+|User can create order using test credit card details | FTU | Pass | RU | Pass | SO | Pass |
+|payment comes through to stripe| FTU | Pass|  RU | Pass | SO | Pass |
+|User receives on-screen confirmation| FTU | Pass|  RU | Pass | SO | Pass |
+|User receives confirmation email | FTU | Pass|  RU | Pass | SO | Pass |
 
 </details>
 
 --- 
 
 <details>
-<summary>Profile Tests</summary>
+<summary>Admin Tests - Product Admin</summary>
 <br>
 
-| Test |Result|
+| Role | Test |Result  |
 |--|--|
-|NLI cannot access profile page | Pass |
-|LIU can access profile page|Pass|
-|LIU can see their details on the accounts home page|Pass|
-|LIU can update their first name|Pass|
-|LIU can update their last name|Pass|
-|LIU can update their email|Pass|
-|LIU can update their phone number|Pass|
-|LIU can navigate to their shipping information|Pass|
-|LIU can update street address 1 and 2|Pass|
-|LIU can update town or city|Pass|
-|LIU can update county|Pass|
-|LIU can update postcode|Pass|
-|LIU can update country|Pass|
-|LIU can navigate to change profile image page|Pass|
-|LIU who does not have a personal image has the default image|Pass|
-|LIU can add an image to their profile|Pass|
-|LIU can change their profile image once they have one set |Pass|
-|LIU can remove a personal image entirely |Pass|
-|LIU can select delete account|Pass|
-| Pop-up modal prompts the user to confirm account deletion before closing account |Pass|
-|LIU can close account successfully |Pass|
-|When user closes their account they are redirected to the home page|Pass|
-|When user closes account they receive a pop up notification advising them the account is closed|Pass|
+| SO | can access sysadmin dropdown | Pass |
+| SO | can access product maintenance page from sysadmin  dropdown|Pass|
+| SO | can access order maintenance grid  from sysadmin dropdown |Pass|
+| SO | can add and edit products from Product maintenance grid |Pass|
+| SO | can delete products from Product maintenance grid ONLY if they are not on an order |Pass|
+| SO | can hide products from display using the edit product hide_display attribute |Pass|
+| SO | can make a (non-ring) product engraveable, causing the 'engrave-text' entry field to activate on product detail -> basket add |Pass|
 
 </details>
 
 ---
-
 <details>
-<summary>Admin Tests</summary>
+<summary>Admin Tests - Order Admin</summary>
 <br>
 
-| Test |Result  |
+| Role | Test |Result  |
 |--|--|
-|SUP can access admin panel from the my account dropdown | Pass |
-|SUP can access add product page from my account dropdown|Pass|
-|SUP can see the edit product option on the products page|Pass|
-|SUP can see the delete option on the products page|Pass|
-|SUP can write blogs from the admin panel and publish them|Pass|
-|SUP can edit products and update all fields successfully|Pass|
-|SUP can delete products from the products page|Pass|
+| SO | can access order maintenance page from sysadmin  dropdown|Pass|
+| SO | can view orders on Order grid |Pass|
+| SO | can use 'show address' and 'show details' buttons to toggle display of address/ product details |Pass|
+| SO | can use the update button to LHS of panel to update order status through ORDER-PACK-SHIP-RECEIVE-CLOSE where delivery moe = REGPOST |Pass|
+| SO | Can add tracker # | Fail|
+| SO | can use the update button to LHS of panel to update order status through ORDER-PACK-RECEIVE-CLOSE where delivery moe = COLLECT | Pass |
+causing the |
+| SO | confirm that user update emails with appropriate content are generated at each stage of the process |Pass|
 
 </details>
-
----
-
-<details>
-<summary>Site wide tests</summary>
-<br>
-
-| Test |Result  |
-|--|--|
-|NLI cannot access contact page| Pass |
-|LIU can submit contact form to business|Pass|
-|SUP can view submitted forms from the admin panel|Pass|
-|LIU receives notification the form has been submitted|Pass|
-|User can navigate to privacy policy|Pass|
-|User can navigate to shipping policy|Pass|
-|User can navigate to terms of use page|Pass|
-|Social links open up to the correct pages|Pass|
-|Social links open up in a new tab|Pass|
-
-</details>
-
----
-
-<details>
-<summary>Payment Tests</summary>
-<br>
-
-| Test |Result  |
-|--|--|
-|NLI can successfully make a payment & order| Pass |
-|LIU can successfully make a payment & order| Pass|
-|All users receive an email confirmation of order on deployed site|Fail|
-|In development email confirmation is printed to terminal|Pass|
-|If payment is successful user will be redirected to order success page|Pass|
-|If order fails due to incorrect information being submitted order will not be submitted|Pass|
-|If there is an error when processing the order the site returns a 500 error without processing order|Pass|
-
-</details>
-
----
-
-<details>
-<summary>Blog Tests</summary>
-<br>
-
-| Test |Result  |
-|--|--|
-|NLI can access blog pages| Pass |
-|NLI cannot post a comment on blog posts|Pass|
-|LIU can comment on blog posts|Pass|
-|LIU can like blog posts|Pass|
-|LIU's information shows in the comment section after they post comment|Pass|
-|LIU's correct profile image shows on the comment they made|Pass|
-  
-</details>
-
----
-![Feature testing page1](./jeweller/docs/readme_images/val-feature-p1.png?raw=true "Feature testing page1") 
-
-![Feature testing page2](./jeweller/docs/readme_images/val-feature-p2.png?raw=true "Feature testing page2") 
-
-![Feature testing page3](./jeweller/docs/readme_images/val-feature-p3.png?raw=true "Feature testing page3") 
-
-
-
-
 
 
 ### Bugs and issues
-Almost 130 issues were recorded, I used an excel spreadhseet to keep track.  
+Almost 130 issues were recorded, I used an excel spreadhseet to keep track.  At the time of submission approx 30 issues remain open, some of these are configuration or data-gathering related and some relate to incomplete functionality.
 
 The structure of the log is shown here:
 
-![Feature testing page3](./jeweller/docs/readme_images/val-issuelog.png?raw=true "Feature testing page3") 
+![Excerpt from issue log](./docs/readme_images/val-issuelog.png?raw=true "Issue log structure") 
 
 There are a number of smaller responsiveness issues still open at the time of writing (icon alignment on mobile phone)
 
