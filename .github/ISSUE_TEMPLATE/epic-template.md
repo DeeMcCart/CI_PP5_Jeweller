@@ -9,4 +9,4 @@ assignees: DeeMcCart
 
 **EPIC:**  
 
-### Descrption:
+### Description:
